@@ -8,7 +8,8 @@
       "leap",
       "difference-of-squares",
       "rna-transcription",
-      "nucleotide-count"
+      "nucleotide-count",
+      "point-mutations"
   ],
   "deprecated": [
 
