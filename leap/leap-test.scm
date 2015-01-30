@@ -1,7 +1,7 @@
 ;; Load SRFI-64 lightweight testing specification
 (use-modules (srfi srfi-64))
 
-;; Require bob impl
+;; Require module
 (add-to-load-path (dirname (current-filename)))
 (use-modules (leap-year))
 
