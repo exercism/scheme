@@ -5,7 +5,7 @@ Exercism exercises in the Scheme Programming Language
 ## TODO
 
 Add instructions for how to do development locally in order to contribute to the
-PL/SQL exercises to improve existing ones or add new ones.
+Scheme exercises to improve existing ones or add new ones.
 
 ## Contributing Guide
 
