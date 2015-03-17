@@ -1,6 +1,8 @@
 ;; Load SRFI-64 lightweight testing specification
 (use-modules (srfi srfi-64))
 
+(module-define! (resolve-module '(srfi srfi-64)) 'test-log-to-file #f)
+
 ;; Require bob impl
 (add-to-load-path (dirname (current-filename)))
 (use-modules (bob))
