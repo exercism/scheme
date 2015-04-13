@@ -27,7 +27,7 @@ testhead=";; Load SRFI-64 lightweight testing specification\n
 (test-end \"$1\")";
 
 stubhead="(define-module ($1)\n
-;;Be sure to define your exports with #:export (fns))";
+;;Be sure to define your exports with #:export (fns)\n)";
 
 # Create the exercise directory
 mkdir -p "$1"
