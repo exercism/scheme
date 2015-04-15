@@ -34,9 +34,13 @@
             "123"
             (area-code "1234567890"))
 
-(test-equal pprint
+(test-equal "pprint"
             "(123) 456-7890"
             (pprint "1234567890"))
+
+(test-equal "pprint with full us phone number"
+            "(123) 456-7890"
+            (pprint "11234567890"))
 
  ;; Tests go here
 
