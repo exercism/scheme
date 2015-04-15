@@ -4,13 +4,16 @@
   "repository": "https://github.com/exercism/xscheme",
   "active": false,
   "problems": [
+      "anagram",
       "bob",
-      "leap",
       "difference-of-squares",
-      "rna-transcription",
+      "grains",
+      "leap",
+      "list-ops",
       "nucleotide-count",
       "point-mutations",
-      "raindrops"
+      "raindrops",
+      "rna-transcription"
   ],
   "deprecated": [
 
