@@ -2,7 +2,7 @@
   "slug": "xscheme",
   "language": "Scheme",
   "repository": "https://github.com/exercism/xscheme",
-  "active": false,
+  "active": true,
   "problems": [
       "anagram",
       "bob",
