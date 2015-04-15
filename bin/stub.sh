@@ -9,6 +9,12 @@
 # to work some sed/awk-jitsu to update old tests when things
 # change, but for now, KISS.
 
+# Assumes the module, exercise, and test names are the same; this
+# is not always the case (see, for instance, the rna-transcription
+# exercise). Normalizing names has been discussed in this PR:
+# https://github.com/exercism/xscheme/pull/17
+# For now, adding warning about name conventions.
+
 
 testhead=";; Load SRFI-64 lightweight testing specification\n
 (use-modules (srfi srfi-64))\n
@@ -37,6 +43,9 @@ if [[ -d $1 ]]
 then
     echo -e $testhead > "$1/$1-test.scm"
     echo -e $stubhead > "$1/$1.scm"
+    echo -e "Generated files assume normalized naming, adjust as needed."
+    exit 0
 else
     echo "An error occurred; is $1 a dir in the cwd?"
+    exit 1
 fi
