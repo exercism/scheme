@@ -1,7 +1,6 @@
 (define-module (phone-number)
-  #:export (numbers area-code pprint))
-
-(use-modules (ice-9 format))
+  #:export (numbers area-code pprint)
+  #:autoload (ice-9 format) (format))
 
 
 (define (strip-non-digits str)

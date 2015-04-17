@@ -1,7 +1,6 @@
 (define-module (grains)
-  #:export (square total))
-
-(use-modules (srfi srfi-1))
+  #:export (square total)
+  #:autoload (srfi srfi-1) (iota))
 
 (define (square n)
   )
