@@ -1,5 +1,7 @@
 # xScheme
 
+[![Join the chat at https://gitter.im/exercism/xscheme](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/exercism/xscheme?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Exercism exercises in the Scheme Programming Language
 
 ## Setup
