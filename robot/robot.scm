@@ -1,7 +1,7 @@
 (define-module (robot)
   #:export (build-robot
             robot-name
-            reset-robot)
+            reset-name)
   #:autoload (srfi srfi-1) (iota))
 
 (define random-alpha-char
@@ -24,7 +24,7 @@
 (define build-robot
   (lambda ()
     (let ((robot (make-hash-table 2)))
-      (hashq-create-handle! robot 'name  (gen-name))
+      (hashq-set! robot 'name  (gen-name))
       robot)))
 
 
@@ -33,6 +33,6 @@
   (lambda (robot)
     (hashq-ref robot 'name)))
 
-(define reset-robot
+(define reset-name
   (lambda (robot)
     (set! robot (hashq-set! robot 'name (gen-name)))))

@@ -25,8 +25,17 @@
 
 (test-assert "different robots have different names"
              (not
-              (string-equal
+              (string=?
                (robot-name *robbie*)
                (robot-name *clutz*))))
+
+(test-assert "name can be reset"
+             (let* ((robot (build-robot))
+                    (original-name (robot-name robot)))
+               (reset-name robot)
+               (not
+                (string=?
+                 (robot-name robot)
+                 original-name))))
 
 (test-end "robot")
