@@ -8,7 +8,7 @@
 (add-to-load-path (dirname (current-filename)))
 (use-modules (robot))
 
-(test-begin "robot")
+(test-begin "robot-name")
 
 (define *robbie* (build-robot))
 (define *clutz*  (build-robot))
@@ -38,4 +38,4 @@
                  (robot-name robot)
                  original-name))))
 
-(test-end "robot")
+(test-end "robot-name")
