@@ -25,6 +25,27 @@ Arch:
 pacman -S guile
 ```
 
+Ubuntu:
+
+In ubuntu 14.04 the packages for guile are missing modules that prevent the
+tests from running.
+Guile can be installed from source under your home directory by following the
+instructions below.
+```
+sudo apt-get install libltdl-dev libunistring-dev libgc-dev libmpd-dev libgmp3-dev libffi-dev
+cd $HOME/Downloads/
+wget ftp://ftp.gnu.org/gnu/guile/guile-2.0.11.tar.gz
+tar -zxvf guile-2.0.11.tar.gz
+cd guile-2.0.11/
+./configure --prefix=$HOME/lib/guile
+make
+make install
+if [ ! -d $HOME/bin ]; then mkdir $HOME/bin; fi
+ln -s $HOME/lib/guile/bin/guile $HOME/bin/guile
+```
+After installation is complete you will need to log out and back into ubuntu
+in order for the path to be set on your /home/bin directory.
+
 **Windows**
 
 Guile can theoretically be compiled from source under [Cygwin](https://www.cygwin.com/), but as with
