@@ -3,5 +3,5 @@
 
 (define hello
   (lambda* (#:optional name)
-    (let ((target (or name "world")))
+    (let ((target (or name "World")))
       (string-concatenate (list "Hello, " target "!")))))
