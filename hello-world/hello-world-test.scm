@@ -12,7 +12,7 @@
 
 (test-assert "Called with no args returns hello world"
              (equal? (hello)
-                     "Hello, world!"))
+                     "Hello, World!"))
 
 (test-assert "Called with an arg returns hello arg"
              (equal? (hello "exercism")
