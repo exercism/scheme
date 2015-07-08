@@ -1,11 +1,9 @@
 No additional dependencies should be required.
 
 Sometimes module functions will be loaded that are useful to the problem case.
-You'll see them in the `define-package` macro at the top of the source file,
-thus: `#:autoload (mod submod) (function0 function1)`. The curious can read
-about included modules [[https://www.gnu.org/software/guile/docs/docs-2.0/guile-ref/Included-Guile-Modules.html][
-here]].
+You'll see them in the =define-package= macro at the top of the source file,
+thus: =#:autoload (mod submod) (function0 function1)=. The curious can read
+about included modules [[https://www.gnu.org/software/guile/docs/docs-2.0/guile-ref/Included-Guile-Modules.html][here]].
 
-If you need help getting set up, see [[http://help.exercism.io/getting-started-with-scheme.html][
-Getting Started With Scheme]]
+If you need help getting set up, see [[http://help.exercism.io/getting-started-with-scheme.html][Getting Started With Scheme]]
 in the [[http://help.exercism.io][Exercism.io Help]] pages.
