@@ -16,14 +16,14 @@ and so should (hopefully) be rather implementation-agnostic.
 
 Each problem should have a test suite and an example solution,
 as well as a stub file for the solution declaring the module and exports.
-The example solution should be named `example.scm`.
+The example solution should be named =example.scm=.
 
 ** Dependencies
 
 Try to avoid external dependencies. It will often be necessary to use various
 modules included in the Guile distribution, such as the ice-9 and srfi
 collections. When using these modules in exercises/examples, please use the
-`#:autoload` directive in `(define-module)` rather than `(use-modules ...)` for
+=#:autoload= directive in =(define-module)= rather than =(use-modules ...)= for
 the sake of consistency, and to give a clue which functions are being relied
 upon.
 
@@ -35,4 +35,4 @@ Please see the [[https://github.com/exercism/x-api/blob/master/CONTRIBUTING.md#t
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Katrina Owen, _@kytrinyx.com
+Copyright (c) 2014 Katrina Owen, [[mailto:_@kytrinyx.com][_@kytrinyx.com]]
