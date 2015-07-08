@@ -35,4 +35,4 @@ Please see the [[https://github.com/exercism/x-api/blob/master/CONTRIBUTING.md#t
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Katrina Owen, _@kytrinyx.com
+Copyright (c) 2014 Katrina Owen, [[mailto:_@kytrinyx.com][_@kytrinyx.com]]
