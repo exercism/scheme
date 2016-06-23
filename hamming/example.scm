@@ -1,4 +1,4 @@
-(define-module (point-mutations)
+(define-module (hamming)
   #:export (hamming-distance))
 
 (define hamming-distance
