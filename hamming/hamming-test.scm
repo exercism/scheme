@@ -5,9 +5,9 @@
 (module-define! (resolve-module '(srfi srfi-64)) 'test-log-to-file #f)
 
 (add-to-load-path (dirname (current-filename)))
-(use-modules (point-mutations))
+(use-modules (hamming))
 
-(test-begin "point-mutations")
+(test-begin "hamming")
 
 (test-eqv "no-difference-between-empty-strands"
           0
@@ -34,4 +34,4 @@
          (hamming-distance "AGACAACAGCCAGCCGCCGGATT" "AGGCAA"))
 
 
-(test-end "point-mutations")
+(test-end "hamming")

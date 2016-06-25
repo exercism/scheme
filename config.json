@@ -5,7 +5,7 @@
   "active": true,
   "problems": [
       "hello-world",
-      "point-mutations",
+      "hamming",
       "leap",
       "grains",
       "bob",
