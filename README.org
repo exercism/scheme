@@ -37,3 +37,8 @@ Please see the [[https://github.com/exercism/x-api/blob/master/CONTRIBUTING.md#t
 The MIT License (MIT)
 
 Copyright (c) 2014 Katrina Owen, [[mailto:_@kytrinyx.com][_@kytrinyx.com]]
+
+** Scheme icon
+
+The Scheme logo was created by [[Matthias.f at en.wikipedia][https://en.wikipedia.org/wiki/User:Matthias.f]] and released under the Creative Commons Attribution-Share Alike 3.0 Unported license.
+We adapted the logo, creating a pink/black version to use on Exercism.
