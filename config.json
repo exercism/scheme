@@ -18,6 +18,74 @@
       "difference-of-squares",
       "list-ops"
   ],
+  "exercises" : [
+    {
+      "slug": "hello-world",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "hamming",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "leap",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "grains",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "bob",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "raindrops",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "rna-transcription",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "robot-name",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "phone-number",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "anagram",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "nucleotide-count",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "difference-of-squares",
+      "difficulty": 1,
+      "topics": []
+    },
+    {
+      "slug": "list-ops",
+      "difficulty": 1,
+      "topics": []
+    }
+
+  ],
   "deprecated": [
 
   ],
