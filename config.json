@@ -3,21 +3,6 @@
   "language": "Scheme",
   "repository": "https://github.com/exercism/xscheme",
   "active": true,
-  "problems": [
-      "hello-world",
-      "hamming",
-      "leap",
-      "grains",
-      "bob",
-      "raindrops",
-      "rna-transcription",
-      "robot-name",
-      "phone-number",
-      "anagram",
-      "nucleotide-count",
-      "difference-of-squares",
-      "list-ops"
-  ],
   "exercises" : [
     {
       "slug": "hello-world",
