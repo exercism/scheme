@@ -3,21 +3,6 @@
   "language": "Scheme",
   "repository": "https://github.com/exercism/xscheme",
   "active": true,
-  "problems": [
-      "hello-world",
-      "hamming",
-      "leap",
-      "grains",
-      "bob",
-      "raindrops",
-      "rna-transcription",
-      "robot-name",
-      "phone-number",
-      "anagram",
-      "nucleotide-count",
-      "difference-of-squares",
-      "list-ops"
-  ],
   "deprecated": [
 
   ],
@@ -27,5 +12,72 @@
   ],
   "foregone": [
 
+  ],
+  "exercises": [
+    {
+      "difficulty": 1,
+      "slug": "hello-world",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "hamming",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "leap",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "grains",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "bob",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "raindrops",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "rna-transcription",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "robot-name",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "phone-number",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "anagram",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "nucleotide-count",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "difference-of-squares",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "list-ops",
+      "topics": []
+    }
   ]
 }
