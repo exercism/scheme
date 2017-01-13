@@ -68,6 +68,11 @@
       "slug": "list-ops",
       "difficulty": 1,
       "topics": []
+    },
+    {
+      "slug": "scrabble-score",
+      "difficulty": 1,
+      "topics": []
     }
 
   ],
