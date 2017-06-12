@@ -3,78 +3,105 @@
   "language": "Scheme",
   "repository": "https://github.com/exercism/xscheme",
   "active": true,
-  "exercises" : [
+  "exercises": [
     {
       "slug": "hello-world",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "hamming",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "leap",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "grains",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "bob",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "raindrops",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "rna-transcription",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "robot-name",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "phone-number",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "anagram",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "nucleotide-count",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "difference-of-squares",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "list-ops",
       "difficulty": 1,
-      "topics": []
+      "topics": [
+
+      ]
     },
     {
       "slug": "scrabble-score",
       "difficulty": 1,
-      "topics": []
-    }
+      "topics": [
 
+      ]
+    }
   ],
   "deprecated": [
 
