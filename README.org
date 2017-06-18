@@ -1,8 +1,8 @@
-#+TITLE: xScheme
+#+TITLE: Exercism Scheme Track
 #+AUTHOR: Jason Lewis
 
 [[https://gitter.im/exercism/xscheme][https://badges.gitter.im/Join%20Chat.svg]]
-[[https://travis-ci.org/exercism/xscheme][https://travis-ci.org/exercism/xscheme.svg?branch=master]]
+[[https://travis-ci.org/exercism/scheme][https://travis-ci.org/exercism/scheme.svg?branch=master]]
 
 Exercism exercises in the Scheme Programming Language
 
