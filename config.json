@@ -5,106 +5,145 @@
   "active": true,
   "exercises": [
     {
+      "uuid": "f2936612-edc4-44f9-a403-c60f7c6486e4",
       "slug": "hello-world",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "ce513303-471b-459a-bcf1-6c69f4d83ae7",
       "slug": "hamming",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "b94548df-3b35-4ce1-80c7-36179d2b3b86",
       "slug": "leap",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "397d9cfc-43f9-4c57-bc55-5c94ae8f532e",
       "slug": "grains",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "4cf6697c-ad9e-426c-a2d8-6c3695812421",
       "slug": "bob",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "9f13b913-a650-4cbf-a392-4b5614e1aa2a",
       "slug": "raindrops",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2",
       "slug": "rna-transcription",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "62a5a71c-a9eb-416b-809c-c862a4828e8b",
       "slug": "robot-name",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "8ed74044-2361-459e-aca5-abd73ed5c1cb",
       "slug": "phone-number",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "c550055c-4bd5-478b-8e91-94347a314aef",
       "slug": "anagram",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "d72cf2c3-9f30-4df1-a69b-04c638bb2426",
       "slug": "nucleotide-count",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "a3c7a4d2-ba08-47c9-a88e-2311ad02d945",
       "slug": "difference-of-squares",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc",
       "slug": "list-ops",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     },
     {
+      "uuid": "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb",
       "slug": "scrabble-score",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
 
       ]
     }
-  ],
-  "deprecated": [
-
   ],
   "foregone": [
 
