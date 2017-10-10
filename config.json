@@ -112,6 +112,14 @@
       "topics": null,
       "unlocked_by": null,
       "uuid": "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb"
+    },
+    {
+      "core": false,
+      "difficulty": 1,
+      "slug": "word-count",
+      "topics": null,
+      "unlocked_by": null,
+      "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e"
     }
   ],
   "foregone": [],
