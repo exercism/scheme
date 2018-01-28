@@ -2,7 +2,7 @@
 
 Install [Guile Scheme](http://www.gnu.org/software/guile/), a free, open-source scheme implementation available on a variety of platforms.
 
-**OS X**
+### OS X
 
 Install via Homebrew:
 
@@ -10,28 +10,30 @@ Install via Homebrew:
 brew install guile
 ```
 
-**Linux**
+### Linux
 
 On most Linux distros, Guile is probably already installed as it's the official
-GNU extension language. If not, use your distro's package manager to install, e.g.:
+GNU extension language. If not, in most cases, you can use your distro's package manager to install it.
 
-Debian:
+#### Debian
+
 ```bash
 sudo apt-get install guile
 ```
 
-Arch:
+#### Arch
+
 ```bash
 pacman -S guile
 ```
 
-Ubuntu:
+#### Ubuntu 14.04
 
-In ubuntu 14.04 the packages for guile are missing modules that prevent the
-tests from running.
-Guile can be installed from source under your home directory by following the
-instructions below.
-```
+The Guile packages for Ubuntu 14.04 are missing modules that prevent the tests
+from running. Guile can be installed from source under your home directory by
+following the instructions below.
+
+```bash
 sudo apt-get install libltdl-dev libunistring-dev libgc-dev libmpd-dev libgmp3-dev libffi-dev
 cd $HOME/Downloads/
 wget ftp://ftp.gnu.org/gnu/guile/guile-2.0.11.tar.gz
@@ -46,9 +48,16 @@ ln -s $HOME/lib/guile/bin/guile $HOME/bin/guile
 After installation is complete you will need to log out and back into ubuntu
 in order for the path to be set on your /home/bin directory.
 
-**Windows**
+#### Ubuntu 16.04
 
-Guile can theoretically be compiled from source under [Cygwin](https://www.cygwin.com/), but as with
-many things, it's probably easier just to run a Linux VM.
+```bash
+sudo apt install guile-2.0
+```
+
+### Windows
+
+Guile can theoretically be compiled from source under
+[Cygwin](https://www.cygwin.com/), but as with many things, it's probably easier
+just to run a Linux VM.
 
 You shouldn't need any "extra" packages.
