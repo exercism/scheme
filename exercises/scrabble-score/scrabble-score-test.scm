@@ -8,7 +8,7 @@
 (add-to-load-path (dirname (current-filename)))
 (use-modules (scrabble-score))
 
-(test-begin "hello-world")
+(test-begin "scrabble-score")
 
 (test-assert "a is worth one point"
              (equal? (score "a")
@@ -54,4 +54,4 @@
              (equal? (score "")
                      0))
 
-(test-end "hello-world")
+(test-end "scrabble-score")
