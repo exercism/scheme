@@ -10,12 +10,8 @@
 
 (test-begin "hello-world")
 
-(test-assert "Called with no args returns hello world"
+(test-assert "Say Hi!"
              (equal? (hello)
                      "Hello, World!"))
-
-(test-assert "Called with an arg returns hello arg"
-             (equal? (hello "exercism")
-                     "Hello, exercism!"))
 
 (test-end "hello-world")
