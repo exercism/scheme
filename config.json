@@ -128,6 +128,14 @@
       "topics": null,
       "unlocked_by": null,
       "uuid": "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e"
+    },
+    {
+      "core": false,
+      "difficulty": 1,
+      "slug": "atbash-cipher",
+      "topics": null,
+      "unlocked_by": null,
+      "uuid": "82169e85-3938-48da-ada9-7394adadc57a"
     }
   ],
   "foregone": [],
