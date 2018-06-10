@@ -1,143 +1,143 @@
 {
+  "language": "Scheme",
   "active": true,
+  "blurb": "",
   "exercises": [
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "hello-world",
-      "topics": null,
+      "uuid": "f2936612-edc4-44f9-a403-c60f7c6486e4",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "f2936612-edc4-44f9-a403-c60f7c6486e4"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "hamming",
-      "topics": null,
+      "uuid": "ce513303-471b-459a-bcf1-6c69f4d83ae7",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "ce513303-471b-459a-bcf1-6c69f4d83ae7"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "leap",
-      "topics": null,
+      "uuid": "b94548df-3b35-4ce1-80c7-36179d2b3b86",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "b94548df-3b35-4ce1-80c7-36179d2b3b86"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "grains",
-      "topics": null,
+      "uuid": "397d9cfc-43f9-4c57-bc55-5c94ae8f532e",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "397d9cfc-43f9-4c57-bc55-5c94ae8f532e"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "bob",
-      "topics": null,
+      "uuid": "4cf6697c-ad9e-426c-a2d8-6c3695812421",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "4cf6697c-ad9e-426c-a2d8-6c3695812421"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "raindrops",
-      "topics": null,
+      "uuid": "9f13b913-a650-4cbf-a392-4b5614e1aa2a",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "9f13b913-a650-4cbf-a392-4b5614e1aa2a"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "rna-transcription",
-      "topics": null,
+      "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "robot-name",
-      "topics": null,
+      "uuid": "62a5a71c-a9eb-416b-809c-c862a4828e8b",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "62a5a71c-a9eb-416b-809c-c862a4828e8b"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "phone-number",
-      "topics": null,
+      "uuid": "8ed74044-2361-459e-aca5-abd73ed5c1cb",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "8ed74044-2361-459e-aca5-abd73ed5c1cb"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "anagram",
-      "topics": null,
+      "uuid": "c550055c-4bd5-478b-8e91-94347a314aef",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "c550055c-4bd5-478b-8e91-94347a314aef"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "nucleotide-count",
-      "topics": null,
+      "uuid": "d72cf2c3-9f30-4df1-a69b-04c638bb2426",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "d72cf2c3-9f30-4df1-a69b-04c638bb2426"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "difference-of-squares",
-      "topics": null,
+      "uuid": "a3c7a4d2-ba08-47c9-a88e-2311ad02d945",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "a3c7a4d2-ba08-47c9-a88e-2311ad02d945"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "list-ops",
-      "topics": null,
+      "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "scrabble-score",
-      "topics": null,
+      "uuid": "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "word-count",
-      "topics": null,
+      "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "two-fer",
-      "topics": null,
+      "uuid": "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e"
+      "difficulty": 1,
+      "topics": null
     },
     {
-      "core": false,
-      "difficulty": 1,
       "slug": "atbash-cipher",
-      "topics": null,
+      "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
+      "core": false,
       "unlocked_by": null,
-      "uuid": "82169e85-3938-48da-ada9-7394adadc57a"
+      "difficulty": 1,
+      "topics": null
     }
-  ],
-  "foregone": [],
-  "language": "Scheme"
+  ]
 }
