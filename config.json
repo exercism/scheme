@@ -98,7 +98,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "math"
+      ]
     },
     {
       "slug": "list-ops",
