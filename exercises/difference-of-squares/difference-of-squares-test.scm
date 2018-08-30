@@ -10,33 +10,33 @@
 
 (test-begin "difference-of-squares")
 
-(test-eqv "square-of-sums-to-5"
+(test-eqv "square-of-sum-to-5"
           225
-          (square-of-sums 5))
+          (square-of-sum 5))
 (test-eqv "sum-of-squares-to-5"
           55
           (sum-of-squares 5))
-(test-eqv "difference of-sums-to-5"
+(test-eqv "difference-of-squares-to-5"
           170
           (difference 5))
 
-(test-eqv "square-of-sums-to-10"
+(test-eqv "square-of-sum-to-10"
           3025
-          (square-of-sums 10))
+          (square-of-sum 10))
 (test-eqv "sum-of-squares-to-10"
           385
           (sum-of-squares 10))
-(test-eqv "difference of-sums-to-10"
+(test-eqv "difference-of-squares-to-10"
           2640
           (difference 10))
 
-(test-eqv "square-of-sums-to-100"
+(test-eqv "square-of-sum-to-100"
           25502500
-          (square-of-sums 100))
+          (square-of-sum 100))
 (test-eqv "sum-of-squares-to-100"
           338350
           (sum-of-squares 100))
-(test-eqv "difference of-sums-to-100"
+(test-eqv "difference-of-squares-to-100"
           25164150
           (difference 100))
 
