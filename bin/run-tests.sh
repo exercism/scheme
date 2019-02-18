@@ -8,7 +8,7 @@ for exercise_directory in $(find ./exercises/* -type d); do
     solution_file="$exercise_directory/example.scm"
     cp "$test_file" "$tmpdir"
     cp "$solution_file" "$tmpdir/$(basename "${test_file//-test}")"
-    cd "$tmpdir" && guile "$test_file"
+    cd "$tmpdir" && guile "$(basename $test_file)"
     ret="$?"
     cd "$ROOT"
     rm -rf "$tmpdir"
