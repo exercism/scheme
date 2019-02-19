@@ -13,7 +13,7 @@ for exercise_directory in $(find ./exercises/* -type d); do
     ret="$?"
     cd "$ROOT"
     rm -rf "$tmpdir"
-    if [ -n "$ret" ]; then
+    if [ ! -z "$ret" ]; then
         failed="$(( failed + 1 ))"
     fi
 done
