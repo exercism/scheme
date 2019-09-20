@@ -18,7 +18,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "list"
+      ]
     },
     {
       "slug": "leap",
@@ -34,7 +36,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "math"
+      ]
     },
     {
       "slug": "bob",
@@ -42,7 +46,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "raindrops",
@@ -58,7 +64,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "robot-name",
@@ -74,7 +82,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "anagram",
@@ -82,7 +92,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "nucleotide-count",
@@ -135,12 +147,38 @@
       "topics": null
     },
     {
+      "slug": "sieve",
+      "uuid": "732e4c98-675d-4b67-b672-37ef9c848733",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "math",
+        "vector"
+      ]
+    },
+    {
+      "slug": "pascals-triangle",
+      "uuid": "d5caff8b-ffaa-4055-9bb9-7d31a4480956",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "list",
+        "math",
+        "recursion"
+      ]
+    },
+    {
       "slug": "atbash-cipher",
       "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "cipher",
+        "string"
+      ]
     }
   ]
 }
