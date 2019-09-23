@@ -1,7 +1,6 @@
-Scheme is a tail-recursive and statically scoped dialect of the Lisp programming language.
-It was built to have uncomplicated semantics and several different ways to form
-expressions. Multiple programming paradigms, including functional, message,
-and imperative, find easy expression in Scheme. 
-
-Scheme was invented by Guy Lewis Steele Jr. and Gerald Jay Sussman.
-To learn more about Scheme, take a look at [MIT's Scheme page](https://groups.csail.mit.edu/mac/projects/scheme/index.html).
+Scheme is a statically scoped and properly tail-recursive dialect of
+the Lisp programming language invented by Guy Lewis Steele Jr. and
+Gerald Jay Sussman. It was designed to have an exceptionally clear and
+simple semantics and few different ways to form expressions. A wide
+variety of programming paradigms, including functional, imperative,
+and message passing styles, find convenient expression in Scheme.
