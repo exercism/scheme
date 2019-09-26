@@ -9,16 +9,39 @@
       (delete-file config.json))
     (with-output-to-file config.json
       (lambda ()
-	(json-write (process-config))))))
+        (json-write 'pretty (process-config))))))
+
+(define (kebab->snake str)
+  (let ((k->s (lambda (c) (if (char=? c #\-) #\_ c))))
+    (apply string (map k->s (string->list str)))))
+
+(define (exercises->snake-case exercises)
+  (let* ((sym-bol->str_ing
+          (lambda (s) (kebab->snake (symbol->string s))))
+         (format-pair
+          (lambda (pair)
+            (let ((snake-key (sym-bol->str_ing (car pair))))
+              (if (null? (cdr pair))
+                  `(,snake-key)
+                  (if (symbol=? 'topics (car pair))
+                      (cons snake-key
+                            (sort string<?
+                                  (map sym-bol->str_ing (cdr pair))))
+                      `(,snake-key . ,(cdr pair)))))))
+         (handle
+          (lambda (exercise)
+            (map format-pair exercise))))
+    (map handle exercises)))
 
 ;; preprocess nodes in config. currently removes exercises marked wip
 (define (process-config)
   (map (lambda (x)
          (if (not (eq? (car x) 'exercises))
              x
-             `(exercises . ,(remp (lambda (exercise)
-                                    (memq 'wip (map car exercise)))
-                                  (cdr x)))))
+             `(exercises . ,(exercises->snake-case
+                             (remp (lambda (exercise)
+                                     (memq 'wip (map car exercise)))
+                                   (cdr x))))))
        track-config))
 
 ;; Check problem's entry in config for uuid and existence.
@@ -53,28 +76,28 @@
 ;; fetch the files in the given problem's directory
 (define (get-problem-specification problem)
   (let* ((problem-dir (format "../problem-specifications/exercises/~a" problem))
-	 (spec (directory-list problem-dir)))
+         (spec (directory-list problem-dir)))
     (map (lambda (file)
-	   (format "~a/~a" problem-dir file))
-	 spec)))
+           (format "~a/~a" problem-dir file))
+         spec)))
 
 ;; fetches the README.md file for a given problem
 ;; nb: likely be replaced by sxml configuration
 (define (write-problem-description problem)
   (let ((file (find (lambda (spec)
-		      (string=? "md" (path-extension spec)))
-		    (get-problem-specification problem)))
-	(dir (format "code/exercises/~a" problem)))
+                      (string=? "md" (path-extension spec)))
+                    (get-problem-specification problem)))
+        (dir (format "code/exercises/~a" problem)))
     (unless file
       (error 'get-problem-description "couldn't find description" problem))
     (system (format "mkdir -p ~a && cp ~a ~a/README.md"
-		    dir file dir))))
+                    dir file dir))))
 
-;; reads the test specification for a given problem 
+;; reads the test specification for a given problem
 (define (get-test-specification problem)
   (let ((test-suite-file (find (lambda (spec)
-				 (string=? "json" (path-extension spec)))
-			       (get-problem-specification problem))))
+                                 (string=? "json" (path-extension spec)))
+                               (get-problem-specification problem))))
     (unless test-suite-file
       (error 'get-test-specification "couldn't find test suite for" problem))
     (with-input-from-file test-suite-file json-read)))
@@ -105,10 +128,10 @@
 ;; solution.
 (define (put-problem! problem implementation)
   (for-each (lambda (aspect)
-	      (unless (assoc aspect implementation)
-		(error 'put-test! "problem does not implement" problem aspect)))
-	    ;; test is an sexpression. skeleton and solution are file paths
-	    '(test skeleton solution))
+              (unless (assoc aspect implementation)
+                (error 'put-test! "problem does not implement" problem aspect)))
+            ;; test is an sexpression. skeleton and solution are file paths
+            '(test skeleton solution))
   (hashtable-set! *problem-table* problem implementation))
 
 ;; look up the problem in the problem table.
@@ -132,25 +155,25 @@
   (let* ((dir (format "code/exercises/~a" problem))
 	 (implementation (format "~a/test.ss" dir))
          ;; todo, add "properties" found in spec to stub skeleton and solution
-	 (skeleton (format "~a/~a.scm" dir problem))
-	 (solution (format "~a/example.scm" dir))
+         (skeleton (format "~a/~a.scm" dir problem))
+         (solution (format "~a/example.scm" dir))
          ;; see code/exercises/anagram/anagram.ss for more information
-	 (stub-implementation
-	  `(,@'((define (parse-test test)
-		  `(lambda ()
-		     (test-success (lookup 'description test)
-				   equal?
-				   problem
-				   (lookup 'input test)
-				   (lookup 'expected test))))
-		(define (spec->tests spec)
-		  `(,@*test-definitions*
+         (stub-implementation
+          `(,@'((define (parse-test test)
+                  `(lambda ()
+                     (test-success (lookup 'description test)
+                                   equal?
+                                   problem
+                                   (lookup 'input test)
+                                   (lookup 'expected test))))
+                (define (spec->tests spec)
+                  `(,@*test-definitions*
                     (define (test . args)
 		      (apply run-test-suite
 			     (list ,@(map parse-test (lookup 'cases spec)))
 			     args)))))
 	    (put-problem! ',problem
-			  ;; fixme, quoted expression for test not working 
+			  ;; fixme, quoted expression for test not working
 			  `((test . ,(spec->tests
 				      (get-test-specification ',problem)))
 			    (skeleton . ,,(path-last skeleton))
