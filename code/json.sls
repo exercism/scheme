@@ -43,6 +43,11 @@
    (only (chezscheme) include)
    (packrat))
 
+  (define (string-replace str old new)
+    (let ((old=? (lambda (c)
+                   (if (char=? c old) new c))))
+      (apply string (map old=? (string->list str)))))
+
   ;; Provide the message 'pretty to get pretty printed output
   ;; Otherwise pass any other symbol as the first argument
   ;; and you will get regular json without formatting

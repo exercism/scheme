@@ -5,7 +5,7 @@
       (delete-file config.json))
     (with-output-to-file config.json
       (lambda ()
-	(json-write (process-config))))))
+	(json-write 'pretty (process-config))))))
 
 (define (process-config)
   (map (lambda (x)
