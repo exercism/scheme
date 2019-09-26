@@ -12,7 +12,7 @@
       (core . #f)
       ;; nb configlet fmt rejects auto-approve but doesn't mind
       ;; unlocked-by.
-      (auto_approve . #t)
+      (auto-approve . #t)
       (unlocked-by)
       (difficulty . 1)
       (topics))
@@ -50,7 +50,7 @@
       (core . #f)
       (unlocked-by)
       (difficulty . 1)
-      (topics))
+      (topics conditionals association-lists))
 
      ((slug . rna-transcription)
       (uuid . "26bf9c24-ba92-473e-9270-8964f1bf71f2")

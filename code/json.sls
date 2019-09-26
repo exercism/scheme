@@ -43,10 +43,11 @@
    (only (chezscheme) include)
    (packrat))
 
+  ;; Helper to convert from kebab-case to snake_case
   (define (string-replace str old new)
-    (let ((old=? (lambda (c)
-                   (if (char=? c old) new c))))
-      (apply string (map old=? (string->list str)))))
+    (let ((old->new (lambda (c)
+                      (if (char=? c old) new c))))
+      (apply string (map old->new (string->list str)))))
 
   ;; Provide the message 'pretty to get pretty printed output
   ;; Otherwise pass any other symbol as the first argument
@@ -82,8 +83,10 @@
             (when pretty? (display-level p))
             (display "\"" p)
             (cond
-             ((symbol? k) (display (symbol->string k) p))
-             ((string? k) (display k p))
+             ((symbol? k)
+              (display (string-replace (symbol->string k) #\- #\_) p))
+             ((string? k)
+              (display k p))
              (else (error "Invalid JSON table key in json-write" k)))
             (display "\": " p)
             (write-any v p)))
@@ -119,8 +122,11 @@
          ((or (string? x)
               (number? x)) (write x p))
          ((boolean? x) (display (if x "true" "false") p))
-         ((symbol? x) (write (if (eq? x 'null) 'null (symbol->string x))
-                             p)) ;; for convenience
+         ((symbol? x)
+          (write (if (eq? x 'null)
+                     'null
+                     (string-replace (symbol->string x) #\- #\_))
+                 p)) ;; for convenience
          ((null? x) (display "null" p))
          ((and (list? x)
                (pair? (car x))
