@@ -136,7 +136,7 @@
       (core . #f)
       (unlocked-by)
       (difficulty . 5)
-      (topics dynamic-programming graph)
+      (topics dynamic-programming graph recursion)
       (wip))
      
      ;; list problems
@@ -153,7 +153,7 @@
       (uuid . "37e2745f-1437-4362-9230-aaf17a2a2170")
       (core . #f)
       (difficulty . 2)
-      (topics list)
+      (topics recursion list)
       (wip))
 
      ;; cipher problems
@@ -169,7 +169,7 @@
       (core . #f)
       (unlocked-by)
       (difficulty . 6)
-      (topics optimization dynamic-programming greedy-programming)
+      (topics optimization dynamic-programming search)
       (wip)))
     
     ))

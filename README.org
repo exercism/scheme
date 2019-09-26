@@ -4,35 +4,93 @@
 [[https://gitter.im/exercism/xscheme][https://badges.gitter.im/Join%20Chat.svg]]
 [[https://travis-ci.org/exercism/scheme][https://travis-ci.org/exercism/scheme.svg?branch=master]]
 
-Exercism exercises in the Scheme Programming Language
+Exercisms in scheme.
 
+** Overview
+ 
+   Problems are implemented in [[https://github.com/exercism/scheme/tree/master/code/exercises/][code/exercises/]]. The track contents are
+   generated from there to [[https://github.com/exercism/scheme/tree/master/exercises][exercises/]]. Scheme tooling for testing and
+   implementing problems is in the [[https://github.com/exercism/scheme/tree/master/code][code]] directory. 
+
+     - [[https://github.com/exercism/scheme/tree/master/code/json.sls][code/json.sls]] and [[https://github.com/exercism/scheme/tree/master/code/packrat.sls][code/packrat.sls]] take care of JSON
+       serialization, allowing for track development and testing from
+       within scheme.
+     - [[https://github.com/exercism/scheme/tree/master/code/outils.ss][code/outils.ss]] has various utility procedures.
+     - [[https://github.com/exercism/scheme/tree/master/code/test.ss][code/test.ss]] is a bare bones test library that gets spliced to
+       the generated test files.
+     - [[https://github.com/exercism/scheme/tree/master/code/track.ss][code/track.ss]] contains the most of the definitions.
+   
 ** Setup
 
-You'll need a vaguely [[http://www.r6rs.org/][R6RS]]-compliant Scheme implementation.
-As of this writing, the exercises are being developed in
-[[http://www.gnu.org/software/guile/][Guile Scheme]], but the tests are using [[http://srfi.schemers.org/srfi-64/srfi-64.html][SRFI-64]],
-and so should (hopefully) be rather implementation-agnostic.
+    To work on the scheme track you'll want [[https://cisco.github.io/ChezScheme/][ChezScheme]] installed. The
+    json serialization library in =code/json.sls= relies on some
+    modules from the [[https://github.com/fedeinthemix/chez-srfi][srfi]] collection, whose path needs to be visible to
+    scheme via the =CHEZSCHEMELIBDIRS= environment
+    variable. Instructions for installing the srfi collection can be
+    found at [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]].
 
-** Working on Problems
+    It is assumed that the [[https://github.com/exercism/problem-specifications][exercism/problem-specifications]] can be
+    found in the same directory that this track is. Running =make=
+    clones it there. =make= will also ensures that the =configlet=
+    binary is in the =bin= directory, for formatting the
+    =config.json=, linting the exercises, and generating fresh uuids
+    for exercises.
 
-Each problem should have a test suite and an example solution,
-as well as a stub file for the solution declaring the module and exports.
-The example solution should be named =example.scm=.
+** Working on the Scheme track
 
-** Dependencies
+    To work the track, you should start by heading to this directory
+    and firing up a Scheme REPL. Once here enter =(load "load.ss")=,
+    which will orchestrate loading the appropriate files.
 
-Try to avoid external dependencies. It will often be necessary to use various
-modules included in the Guile distribution, such as the ice-9 and srfi
-collections. When using these modules in exercises/examples, please use the
-=#:autoload= directive in =(define-module)= rather than =(use-modules ...)= for
-the sake of consistency, and to give a clue which functions are being relied
-upon.
+*** Adding new problems
+    
+    Suppose you'd like to add =change=, a problem in the
+    exercism/problem-specifications repository you think should be in
+    the scheme track. The process for adding it to the track goes
+    something like this:
 
-** Contributing Guide
+     - =(setup-exercism 'change)= gets the specification, copying the
+       default README, and creates =change.ss=, =change.scm=, and
+       =example.scm= into the directory =code/exercises/change/=.
+     - In =change.ss=, you need to implement two functions to turn the
+       specification json into a test suite, =spec->tests= and
+       =parse-test=. The job of =spec->tests= is to take the parsed
+       json and find the tests. Each test case is transformed to a
+       quoted, runnable scheme function by =parse-test=, which ends up
+       in the generated =test.scm= file (the file that the student
+       uses to check their answers). See the [[https://github.com/exercism/scheme/tree/master/code/exercises][code/exercises/*]]
+       directories for examples.
+     - In =example.scm=, you need to implement an example solution to
+       the problem. =(verify-exercism 'change)= checks that the
+       solution passes generated test suite.
+     - =change.scm= contains the solution stub. Ensure that the stub
+       function and arguments matches the solution you provide.
+     - Finally, add the problem to the configuration expression in
+       [[https://github.com/exercism/scheme/blob/master/code/config.ss][code/config.ss]]. You need to provide a uuid, which can be
+       generated by the configlet binary or from the repl by calling
+       =(configlet-uuid)=.
 
-Please see the [[https://github.com/exercism/x-api/blob/master/CONTRIBUTING.md#the-exercise-data][contributing guide]]
+    If you're unsure about what problem to add, =(get-problem-list)=
+    reads the problem-specifications repository and returns a list of
+    specified problems. 
+
+    It is important is to know that some test cases are expected to
+    fail. To implement an instance for =test-success= provide the test
+    case description, a success predicate, a procedure name to be
+    tested, the input, and the output. For =test-error=, the
+    description, a procedure name, and the test case input
+    suffice. Your implementation of =parse-test= is responsible for
+    deciding which to use for each test case.
+
+*** Adding problems not in exercism/problem-specifications
+
+    New problems from outside of the specifications are welcome as
+    well. Develop them in the =code/exercises= directory, following
+    the process outlined above, only from scratch. Make sure to cover
+    analogous problem specification requirements.
 
 ** Scheme icon
 
-The Scheme logo was created by [[Matthias.f at en.wikipedia][https://en.wikipedia.org/wiki/User:Matthias.f]] and released under the Creative Commons Attribution-Share Alike 3.0 Unported license.
-We adapted the logo, creating a pink/black version to use on Exercism.
+   The Scheme logo was created by https://en.wikipedia.org/wiki/User:Matthias.f
+ and released under the Creative Commons Attribution-Share Alike 3.0 Unported license.
+ We adapted the logo, creating a pink/black version to use on Exercism.
