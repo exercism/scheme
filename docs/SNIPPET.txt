@@ -1,7 +1,4 @@
-(define-module (hello-world)
-  #:export (hello))
 
-(define hello
-  (lambda* (#:optional name)
-    (let ((target (or name "World")))
-      (string-concatenate (list "Hello, " target "!")))))
+(let ((quine '((lambda (q) `(,q ',q))
+               '(lambda (q) `(,q ',q)))))
+  (equal? quine (eval quine)))
