@@ -108,10 +108,10 @@
 				   (lookup 'expected test))))
 		(define (spec->tests spec)
 		  `(,@*test-definitions*
-		    (define (test . args)
-		      (apply run-test-suite
-                             (list ,@(map parse-test (lookup 'cases spec)))
-                             args)))))
+                    (define (test . args)
+                       (apply run-test-suite
+                              (list ,@(map parse-test (lookup 'cases spec)))
+                              args)))))
 	    (put-problem! ',problem
 			  ;; fixme, quoted expression for test not working 
 			  `((test . ,(spec->tests
@@ -146,7 +146,6 @@
                        "please add problem to config/config.ss"
                        problem)))))
 
-;; http://exercism.io/api/v1/uuids
 (define (verify-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem))
         (implementation (get-problem problem)))
@@ -161,7 +160,8 @@
           (unless (eq? 'success example)
             (error 'verify-output "bad implementation!" problem)))))
     (format #t "updating exercises/~a~%" problem)
-    (system (format "rm -rf exercises/~a && cp -r ~a exercises/~a" problem dir problem))
+    ;; for now hold off on using new problems 
+;;    (system (format "rm -rf exercises/~a && cp -r ~a exercises/~a" problem dir problem))
     'done))
 
 (define (build-implementations)

@@ -22,7 +22,7 @@
 ;;    anagram
 ;;    nucleotide-count
 ;;    atbash-cipher
-;;    pascals-triangle
+    pascals-triangle
 ;;    sieve
 ;;    change
 ;;    knapsack
