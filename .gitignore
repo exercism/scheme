@@ -5,3 +5,4 @@ bin/configlet
 bin/configlet.exe
 *~
 _build/*
+*.html

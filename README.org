@@ -4,35 +4,44 @@
 [[https://gitter.im/exercism/xscheme][https://badges.gitter.im/Join%20Chat.svg]]
 [[https://travis-ci.org/exercism/scheme][https://travis-ci.org/exercism/scheme.svg?branch=master]]
 
-Exercism exercises in the Scheme Programming Language
+Exercisms in scheme.
+
+** Overview
+ 
+   Scheme tooling for testing and implementing problems is in the [[https://github.com/exercism/scheme/tree/master/code][code]]
+   directory. 
+     - [[https://github.com/exercism/scheme/tree/master/code/json.sls][code/json.sls]] and [[https://github.com/exercism/scheme/tree/master/code/packrat.sls][code/packrat.sls]] take care of JSON
+       serialization, allowing for track development and testing from
+       within scheme.
+     - [[https://github.com/exercism/scheme/tree/master/code/outils.ss][code/outils.ss]] has various utility procedures.
+     - [[https://github.com/exercism/scheme/tree/master/code/test.ss][code/test.ss]] is a bare bones test library that gets spliced to
+       the generated test files.
+     - [[https://github.com/exercism/scheme/tree/master/code/track.ss][code/track.ss]] contains the rest of it.
 
 ** Setup
+   To work on the scheme track you'll want [[https://cisco.github.io/ChezScheme/][ChezScheme]] installed. The
+   json serialization library in =code/json.sls= relies on some
+   modules from the [[https://github.com/fedeinthemix/chez-srfi][srfi]] collection, whose path needs to be visible to
+   scheme via the =CHEZSCHEMELIBDIRS= environment
+   variable. Instructions for installing the srfi collection can be
+   found at [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]].
 
-You'll need a vaguely [[http://www.r6rs.org/][R6RS]]-compliant Scheme implementation.
-As of this writing, the exercises are being developed in
-[[http://www.gnu.org/software/guile/][Guile Scheme]], but the tests are using [[http://srfi.schemers.org/srfi-64/srfi-64.html][SRFI-64]],
-and so should (hopefully) be rather implementation-agnostic.
+   It is assumed that the [[https://github.com/exercism/problem-specifications][exercism/problem-specifications]] can be found
+   in the same directory that this track is. If not, running =make=
+   will clone it there. =make= will also ensure that the =configlet=
+   binary is in the =bin= directory, for formatting the =config.json=,
+   linting the exercises, and generating fresh uuids for exercises.
 
-** Working on Problems
+** Contributing
 
-Each problem should have a test suite and an example solution,
-as well as a stub file for the solution declaring the module and exports.
-The example solution should be named =example.scm=.
+   Please see [[https://github.com/exercism/scheme/blob/master/CONTRIBUTING.org][contributing]].
 
 ** Dependencies
 
-Try to avoid external dependencies. It will often be necessary to use various
-modules included in the Guile distribution, such as the ice-9 and srfi
-collections. When using these modules in exercises/examples, please use the
-=#:autoload= directive in =(define-module)= rather than =(use-modules ...)= for
-the sake of consistency, and to give a clue which functions are being relied
-upon.
-
-** Contributing Guide
-
-Please see the [[https://github.com/exercism/x-api/blob/master/CONTRIBUTING.md#the-exercise-data][contributing guide]]
+   Scheme specific dependencies include [[https://cisco.github.io/ChezScheme/][ChezScheme]] and [[https://github.com/fedeinthemix/chez-srfi][chez-srfi]].
 
 ** Scheme icon
 
-The Scheme logo was created by [[Matthias.f at en.wikipedia][https://en.wikipedia.org/wiki/User:Matthias.f]] and released under the Creative Commons Attribution-Share Alike 3.0 Unported license.
-We adapted the logo, creating a pink/black version to use on Exercism.
+   The Scheme logo was created by https://en.wikipedia.org/wiki/User:Matthias.f
+ and released under the Creative Commons Attribution-Share Alike 3.0 Unported license.
+ We adapted the logo, creating a pink/black version to use on Exercism.

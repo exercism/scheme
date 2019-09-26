@@ -11,9 +11,11 @@
   `(lambda ()
      (test-success "all rows sum to power of 2"
                    (lambda (n ignore)
-                     (andmap (lambda (row)
-                               (= 1 (bitwise-bit-count (apply + row))))
-                             (pascals-triangle n)))
+                     (null?
+                       (filter not
+                               (map (lambda (row)
+                                      (= 1 (bitwise-bit-count (apply + row))))
+                                    (pascals-triangle n)))))
                    (lambda (x) x)
                    '(,n)
                    'ignore)))
@@ -27,7 +29,7 @@
                       (lookup 'cases
                               (car
                                 (lookup 'cases spec))))
-               ,(test-2^n 500))
+               ,(test-2^n 100))
          args))))
 
 (put-problem!
@@ -35,6 +37,6 @@
   `((test
       .
       ,(spec->tests (get-test-specification 'pascals-triangle)))
-     (skeleton . ,"pascals-triangle.scm")
-     (solution . ,"example.scm")))
+     (skeleton . "pascals-triangle.scm")
+     (solution . "example.scm")))
 
