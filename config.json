@@ -18,7 +18,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "list"
+      ]
     },
     {
       "slug": "leap",
@@ -34,7 +36,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "math"
+      ]
     },
     {
       "slug": "bob",
@@ -42,7 +46,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "raindrops",
@@ -58,7 +64,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "robot-name",
@@ -74,7 +82,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "anagram",
@@ -82,7 +92,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "string"
+      ]
     },
     {
       "slug": "nucleotide-count",
@@ -140,7 +152,10 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "cipher",
+        "string"
+      ]
     }
   ]
 }
