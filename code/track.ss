@@ -12,6 +12,11 @@
 	   (name (symbol->string tag))
 	   (content (content-raw tree)))
       (case tag
+	((bold) `("__" ,@(map sxml->md content) "__"))
+	((emphasis) `("_" ,@(map sxml->md content) "_"))
+	((strike-through) `("~~" ,@(map sxml->md content) "~~"))
+	((code) `("```" ,(car content) "\n" ,(cdr content) "\n" "```"))
+	((inline-code) `("`" ,@(map sxml->md content) "`"))
 	((h1) `("# " ,@(map sxml->md content) "\n"))
 	((h2) `("## " ,@(map sxml->md content) "\n"))
 	((h3) `("### " ,@(map sxml->md content) "\n"))
@@ -44,11 +49,8 @@
 ;; a simple way to test the output. eventual goal is to generate the
 ;; markdown in docs/*
 (define (put-md md)
-  (let ((source (format "code/docs/~a.ss" md))
-	(target (format "~a.md" (string-upcase
-				 (symbol->string md)))))
-    (load source)
-    (apply send-reply (sxml->md content))))
+  (load (format "code/docs/~a.ss" md))
+  (send-reply (sxml->md content)))
 
 ;;; Config
 
