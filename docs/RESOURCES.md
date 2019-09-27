@@ -1,10 +1,26 @@
 ## Recommended Resources
 
-* [Structure and Interpretation of Computer Programs](http://mitpress.mit.edu/sicp/), by Abelson, Sussman, and Sussman
-* [The Scheme Programming Language](https://www.scheme.com/tspl4/), by Kent Dybvig
-* [The Little Schemer](http://mitpress.mit.edu/books/little-schemer)
-* [Berkeley CS61A Lectures](https://archive.org/details/ucberkeley-webcast-PL3E89002AA9B9879E?sort=titleSorter), by Brian Harvey, based on the SICP book
+### Books
 
-## Tools
+* [Structure and Interpretation of Computer Programs](http://mitpress.mit.edu/sicp/)
+* [The Scheme Programming Language](https://www.scheme.com/tspl4/)
 
-Emacs users will want to check out [Geiser](http://www.nongnu.org/geiser/), a collection of major and minor modes for interactive Scheme development
+### Manuals
+
+* [ChezScheme](http://cisco.github.io/ChezScheme/csug9.5/csug.html)
+* [GNU Guile](https://www.gnu.org/software/guile/manual/)
+
+### Miscellaneous
+
+* [Oleg Kiselyov's website](http://okmij.org/ftp/Scheme/)
+* ['(schemers . org)](https://schemers.org/)
+* [Style Guide](https://mumble.net/~campbell/scheme/style.txt)
+* [The Revised Report](http://www.r6rs.org/)
+* [Coursera CS 341](https://www.coursera.org/learn/programming-languages-part-b)
+
+### Emacs modes
+
+* [Geiser](http://www.nongnu.org/geiser/)
+* [Par Edit](https://www.emacswiki.org/emacs/ParEdit)
+* [Rainbow Delimiters](https://www.emacswiki.org/emacs/RainbowDelimiters)
+
