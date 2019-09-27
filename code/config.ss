@@ -105,7 +105,7 @@
       (core . #f)
       (unlocked-by)
       (difficulty . 1)
-      (topics conditionals association-lists))
+      (topics))
 
      ((slug . robot-name)
       (uuid . "62a5a71c-a9eb-416b-809c-c862a4828e8b")
