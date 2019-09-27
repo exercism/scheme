@@ -3,7 +3,7 @@
     
     (active . #t)
 
-    (blurb . "")
+    (blurb . "Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary.")
 
     (exercises
      
@@ -148,7 +148,7 @@
       (topics recursion list math)
       (wip))
      
-;;     sublist wants order to matter. lame     
+     ;;     sublist wants order to matter. lame     
      ((slug . "sublist")
       (uuid . "37e2745f-1437-4362-9230-aaf17a2a2170")
       (core . #f)
