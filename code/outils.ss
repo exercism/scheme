@@ -32,6 +32,43 @@
 (define (update-config)
   (load "code/config.ss"))
 
+;; Begin Preprocessing/Helpers for make-config
+;;
+;; Top level helper for make-config
+(define (process-config)
+  (map (lambda (x)
+         (if (not (eq? (car x) 'exercises))
+             x
+             (cons 'exercises
+                   (exercises->snake-case
+                    (remp (lambda (exercise)
+                            (memq 'wip (map car exercise)))
+                          (cdr x))))))
+       track-config))
 
+;; Top level helper for process-config
+(define (exercises->snake-case exercises)
+  (let ((handle (lambda (exercise)
+                  (map format-js-pair exercise))))
+    (map handle exercises)))
 
+;; Helpers for exercises->snake-case
+(define (kebab->snake str)
+  (let ((k->s (lambda (c) (if (char=? c #\-) #\_ c))))
+    (apply string (map k->s (string->list str)))))
 
+(define (symbol->snake-case-string symbol)
+  (kebab->snake (symbol->string symbol)))
+
+(define (format-js-pair pair)
+  (let ((snake-key (symbol->snake-case-string (car pair))))
+    (if (null? (cdr pair))
+        `(,snake-key)
+        ;; sort the topics list
+        (if (symbol=? 'topics (car pair))
+            (cons snake-key
+                  (sort string<?
+                        (map symbol->snake-case-string (cdr pair))))
+            ;; regular pair for everything else
+            `(,snake-key . ,(cdr pair))))))
+;; End Preprocessing/Helpers for make-config
