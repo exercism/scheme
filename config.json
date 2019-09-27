@@ -4,7 +4,7 @@
   "blurb": "",
   "exercises": [
     {
-      "slug": "hello_world",
+      "slug": "hello-world",
       "uuid": "f2936612-edc4-44f9-a403-c60f7c6486e4",
       "core": false,
       "auto_approve": true,
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "slug": "rna_transcription",
+      "slug": "rna-transcription",
       "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2",
       "core": false,
       "unlocked_by": null,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "slug": "robot_name",
+      "slug": "robot-name",
       "uuid": "62a5a71c-a9eb-416b-809c-c862a4828e8b",
       "core": false,
       "unlocked_by": null,
@@ -80,7 +80,7 @@
       "topics": null
     },
     {
-      "slug": "phone_number",
+      "slug": "phone-number",
       "uuid": "8ed74044-2361-459e-aca5-abd73ed5c1cb",
       "core": false,
       "unlocked_by": null,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "slug": "nucleotide_count",
+      "slug": "nucleotide-count",
       "uuid": "d72cf2c3-9f30-4df1-a69b-04c638bb2426",
       "core": false,
       "unlocked_by": null,
@@ -108,7 +108,7 @@
       "topics": null
     },
     {
-      "slug": "difference_of_squares",
+      "slug": "difference-of-squares",
       "uuid": "a3c7a4d2-ba08-47c9-a88e-2311ad02d945",
       "core": false,
       "unlocked_by": null,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "slug": "list_ops",
+      "slug": "list-ops",
       "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc",
       "core": false,
       "unlocked_by": null,
@@ -126,7 +126,7 @@
       "topics": null
     },
     {
-      "slug": "scrabble_score",
+      "slug": "scrabble-score",
       "uuid": "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb",
       "core": false,
       "unlocked_by": null,
@@ -134,7 +134,7 @@
       "topics": null
     },
     {
-      "slug": "word_count",
+      "slug": "word-count",
       "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e",
       "core": false,
       "unlocked_by": null,
@@ -142,7 +142,7 @@
       "topics": null
     },
     {
-      "slug": "two_fer",
+      "slug": "two-fer",
       "uuid": "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e",
       "core": false,
       "unlocked_by": null,
@@ -150,7 +150,7 @@
       "topics": null
     },
     {
-      "slug": "atbash_cipher",
+      "slug": "atbash-cipher",
       "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
       "core": false,
       "unlocked_by": null,
