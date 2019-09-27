@@ -1,18 +1,16 @@
-### Running tests
+# Running and testing your solutions
 
-Run `guile test-file.scm` from the command line.
+## Overview
 
-### Making your first Scheme solution
+Suppose you're solving __hello-world__:
 
-To create scheme code that can be loaded with `(use-modules (dna))`,
-put this code in `dna.scm`:
+* Start a REPL, either in your favorite editor or from the
+command line.
+* Type `(load "hello-world.scm")` at the prompt.
+* Test your code by calling `(test)` from the REPL.
 
-```scheme
-(define-module (dna)
-  #:export (to-rna))
+## Testing options
 
-(define to-rna
-  (lambda (dna)
-  ;; Do something to transcribe dna to rna
-  ))
-```
+You can see more information about failing test cases by passing
+arguments to the procedure `test`. 
+To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`.
