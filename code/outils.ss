@@ -33,20 +33,8 @@
 (define (update-config)
   (load "code/config.ss"))
 
-;; Begin Preprocessing/Helpers for make-config
+;; Begin Preprocessing/Helpers for process-config
 ;;
-;; Top level helper for make-config
-(define (process-config)
-  (map (lambda (x)
-         (if (not (eq? (car x) 'exercises))
-             x
-             (cons 'exercises
-                   (exercises->snake-case
-                    (remp (lambda (exercise)
-                            (memq 'wip (map car exercise)))
-                          (cdr x))))))
-       track-config))
-
 ;; Top level helper for process-config
 (define (exercises->snake-case exercises)
   (let ((handle (lambda (exercise)
@@ -66,7 +54,7 @@
     (if (null? (cdr pair))
         `(,snake-key)
         ;; sort the topics list
-        (if (symbol=? 'topics (car pair))
+        (if (eq? 'topics (car pair))
             (cons snake-key
                   (sort string<?
                         (map symbol->snake-case-string (cdr pair))))
