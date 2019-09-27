@@ -258,21 +258,6 @@
 (define (verify-implementations)
   (for-each verify-exercism implementations))
 
-(define implementations
-  '(
-    ;;    hello-world
-    ;;    leap
-    ;;    rna-transcription
-    ;;    hamming
-    ;;    grains
-    ;;    anagram
-    ;;    nucleotide-count
-    ;;    atbash-cipher
-    pascals-triangle
-    ;;    sieve
-    ;;    change
-    ;;    knapsack
-    ;;    sublist
-    ))
+
 
 
