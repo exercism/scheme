@@ -1,3 +1,39 @@
+;;;; Main track tooling
+
+;;; Transform scheme into markdown
+
+(define (sxml->md tree)
+  (cond
+   ((nodeset? tree) (map sxml->md tree))
+   ((pair? tree)
+    (let* ((tag (name tree))
+	   (name (symbol->string tag))
+	   (content (content-raw tree)))
+      (case tag
+	((h1) `("# " ,@(map sxml->md content) "\n"))
+	((h2) `("## " ,@(map sxml->md content) "\n"))
+	((h3) `("### " ,@(map sxml->md content) "\n"))
+	((h4) `("#### " ,@(map sxml->md content) "\n"))
+	((h5) `("##### " ,@(map sxml->md content) "\n"))
+	((h6) `("###### " ,@(map sxml->md content) "\n"))
+	((item)
+	 `("* " ,@(map sxml->md content) "\n"))
+	((enum)
+	 (map sxml->md content))
+	((link)
+	 `("[" ,(car content) "]" "(" ,(cadr content) ")"))
+	((link-with-title)
+	 `("[" ,(car content) "](" ,(cadr content) " \"" ,(caddr content) "\")"))
+	((sentence)
+	 `(,@(map sxml->md content) "\n"))
+	((nl)
+	 "\n")
+	(else (error 'sxml->md "unexpected tag" tag)))
+      ))
+   ((string? tree) (list tree))
+   ((symbol? tree) (list (symbol->string tree)))
+   (else (error 'sxml->md "unexpected node" tree))))
+
 ;; for turning the track-config value into a config.json file
 (define (make-config)
   (let ((config.json "config.json"))
@@ -86,8 +122,8 @@
 	   (README.md (format "~a/README.md" src)))
       (format #t "writing _build/~a~%" problem)
       (system
-	(format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a"
-		dir skeleton.scm dir solution.scm dir README.md dir))
+       (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a"
+	       dir skeleton.scm dir solution.scm dir README.md dir))
       (write-expression-to-file (lookup 'test implementation) test.scm))))
 
 (define (setup-exercism problem)
@@ -109,9 +145,9 @@
 		(define (spec->tests spec)
 		  `(,@*test-definitions*
                     (define (test . args)
-                       (apply run-test-suite
-                              (list ,@(map parse-test (lookup 'cases spec)))
-                              args)))))
+		      (apply run-test-suite
+			     (list ,@(map parse-test (lookup 'cases spec)))
+			     args)))))
 	    (put-problem! ',problem
 			  ;; fixme, quoted expression for test not working 
 			  `((test . ,(spec->tests
@@ -152,16 +188,16 @@
     (check-config-for problem)
     (load (format "~a/test.scm" dir))
     (with-output-to-string
-      (lambda ()
-        (let ((example
-               (begin
-                 (load (format "~a/~a" dir (lookup 'solution implementation)))
-                 (test))))
-          (unless (eq? 'success example)
-            (error 'verify-output "bad implementation!" problem)))))
+     (lambda ()
+       (let ((example
+	      (begin
+		(load (format "~a/~a" dir (lookup 'solution implementation)))
+		(test))))
+	 (unless (eq? 'success example)
+	   (error 'verify-output "bad implementation!" problem)))))
     (format #t "updating exercises/~a~%" problem)
     ;; for now hold off on using new problems 
-;;    (system (format "rm -rf exercises/~a && cp -r ~a exercises/~a" problem dir problem))
+    ;;    (system (format "rm -rf exercises/~a && cp -r ~a exercises/~a" problem dir problem))
     'done))
 
 (define (build-implementations)
