@@ -21,18 +21,35 @@
 	((enum)
 	 (map sxml->md content))
 	((link)
+	 (unless (and (list? content) (= 2 (length content)))
+	   (error 'sxml->md "incorrect link. provide description and url"
+		  content))
 	 `("[" ,(car content) "]" "(" ,(cadr content) ")"))
 	((link-with-title)
+	 (unless (and (list? content) (= 3 (length content)))
+	   (error 'sxml->md "incorrect link. provide description and url and title"
+		  content))
 	 `("[" ,(car content) "](" ,(cadr content) " \"" ,(caddr content) "\")"))
 	((sentence)
 	 `(,@(map sxml->md content) "\n"))
 	((nl)
 	 "\n")
-	(else (error 'sxml->md "unexpected tag" tag)))
-      ))
+	(else (error 'sxml->md "unexpected tag" tag)))))
    ((string? tree) (list tree))
    ((symbol? tree) (list (symbol->string tree)))
    (else (error 'sxml->md "unexpected node" tree))))
+
+(define (put-md file)
+  (let ((source (format "code/docs/~a.ss" file))
+	(target (format "~a.md" (string-upcase
+				 (symbol->string file)))))
+    (load source)
+    (when (file-exists? target)
+      (delete-file target))
+    (with-output-to-file target
+      (lambda ()
+	(apply send-reply
+	       (sxml->md content))))))
 
 ;; for turning the track-config value into a config.json file
 (define (make-config)

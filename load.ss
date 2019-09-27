@@ -1,7 +1,8 @@
 (unless (assoc "code" (library-directories))
   (library-directories (cons "code" (library-directories))))
 
-(import (json))
+(import (json)
+	(sxml))
 
 (define (load-problem problem)
   (load (format "code/exercises/~a/~a.ss" problem problem)))
@@ -14,19 +15,19 @@
 
 (define implementations
   '(
-;;    hello-world
-;;    leap
-;;    rna-transcription
-;;    hamming
-;;    grains
-;;    anagram
-;;    nucleotide-count
-;;    atbash-cipher
+    ;;    hello-world
+    ;;    leap
+    ;;    rna-transcription
+    ;;    hamming
+    ;;    grains
+    ;;    anagram
+    ;;    nucleotide-count
+    ;;    atbash-cipher
     pascals-triangle
-;;    sieve
-;;    change
-;;    knapsack
-;;    sublist
+    ;;    sieve
+    ;;    change
+    ;;    knapsack
+    ;;    sublist
     ))
 
 (for-each load source-files)

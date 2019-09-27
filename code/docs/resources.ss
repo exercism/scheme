@@ -1,7 +1,6 @@
-
 (define content
-  '((h2 "Recommended Resources")
-    (nl) (h3 "Books") (nl)
+  '((h1 "Recommended Resources")
+    (nl) (h2 "Books") (nl)
     (enum
      (item
       (link "Structure and Interpretation of Computer Programs"
@@ -9,7 +8,7 @@
      (item
       (link "The Scheme Programming Language"
 	    "https://www.scheme.com/tspl4/")))
-    (nl) (h3 "Manuals") (nl)
+    (nl) (h2 "Manuals") (nl)
     (enum
      (item
       (link ChezScheme
@@ -17,7 +16,7 @@
      (item
       (link "GNU Guile"
 	    "https://www.gnu.org/software/guile/manual/")))
-    (nl) (h3 "Miscellaneous") (nl)
+    (nl) (h2 "Miscellaneous") (nl)
     (enum
      (item
       (link "Oleg Kiselyov's website"
@@ -34,7 +33,7 @@
      (item
       (link "Coursera CS 341"
 	    "https://www.coursera.org/learn/programming-languages-part-b")))
-    (nl) (h3 "Emacs modes") (nl)
+    (nl) (h2 "Emacs modes") (nl)
     (enum
      (item
       (link "Geiser"
