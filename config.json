@@ -57,8 +57,8 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "conditionals",
-        "association_lists"
+        "association_lists",
+        "conditionals"
       ]
     },
     {
@@ -156,8 +156,8 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "string",
-        "cipher"
+        "cipher",
+        "string"
       ]
     }
   ]
