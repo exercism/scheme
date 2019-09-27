@@ -11,22 +11,22 @@
   (let ((k->s (lambda (c) (if (char=? c #\-) #\_ c))))
     (apply string (map k->s (string->list str)))))
 
-(define (exercises->snake-case exercises)
-  (let* ((sym-bol->str_ing
-          (lambda (s) (kebab->snake (symbol->string s))))
-         (format-pair
-          (lambda (pair)
-            (let ((snake-key (sym-bol->str_ing (car pair))))
-              (if (null? (cdr pair))
-                  `(,snake-key)
-                  (if (symbol=? 'topics (car pair))
-                      (cons snake-key
-                            (sort string<?
+(define (sym-bol->str_ing symbol)
+  (kebab->snake (symbol->string symbol)))
+
+(define (format-js-pair pair)
+  (let ((snake-key (sym-bol->str_ing (car pair))))
+    (if (null? (cdr pair))
+        `(,snake-key)
+        (if (symbol=? 'topics (car pair))
+            (cons snake-key (sort string<?
                                   (map sym-bol->str_ing (cdr pair))))
-                      `(,snake-key . ,(cdr pair)))))))
-         (handle
-          (lambda (exercise)
-            (map format-pair exercise))))
+            `(,snake-key . ,(cdr pair))))))
+
+(define (exercises->snake-case exercises)
+  (let ((handle
+         (lambda (exercise)
+           (map format-js-pair exercise))))
     (map handle exercises)))
 
 (define (process-config)
