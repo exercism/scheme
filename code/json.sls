@@ -125,9 +125,52 @@
          ((list? x) (write-array x p))
          (else (error "Invalid JSON object in json-write" x))))
 
-      (lambda (msg x . maybe-port)
-        (case msg ((pretty) (set! pretty? #t)))
-        (write-any x (if (pair? maybe-port) (car maybe-port) (current-output-port))))))
+      (case-lambda
+        ;; 1 argument provides default behavior
+        ((obj)
+         (set! pretty? #f)
+         (write-any obj (current-output-port)))
+        ;; 2 arguments can be obj and port or msg and obj
+        ((msg-or-obj obj-or-port)
+         (case msg-or-obj
+           ;; pretty printing with 2 arguments take no port
+           ((pretty)
+            (set! pretty? #t)
+            (set! tabstop-size 2)
+            (if (port? obj-or-port)
+                (error 'json-write
+                       "expected scheme obj not port"
+                       obj-or-port)
+                (write-any
+                 obj-or-port
+                 (current-output-port))))
+           ;; 2 arguments and no pretty printing = obj and port
+           (else (if (port? obj-or-port)
+                     (begin
+                       (set! pretty? #f)
+                       (write-any msg-or-obj obj-or-port))
+                     (error 'json-write
+                            "expected port but got"
+                            obj-or-port)))))
+        ;; 3 arguments is always for pretty printing
+        ((msg obj tabstop-or-port)
+         (set! pretty? #t)
+         (case msg
+           ((pretty)
+            (cond ((port? tabstop-or-port)
+                   (write-any obj tabstop-or-port))
+                  (else (set! tabstop-size tabstop-or-port)
+                        (write-any obj (current-output-port)))))
+           (else (error 'json-write "invalid message" msg))))
+        ;; 4 arguments is always for pretty printing
+        ((msg obj tabstop port)
+         (when (not (port? port))
+           (error 'json-write "expected port but got" port))
+         (set! pretty? #t)
+         (set! tabstop-size tabstop)
+         (case msg
+           ((pretty) (write-any obj port))
+           (else (error 'json-write "invalid message" msg)))))))
 
   (define json-read
     (let ()
