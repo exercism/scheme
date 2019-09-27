@@ -56,10 +56,7 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": [
-        "association_lists",
-        "conditionals"
-      ]
+      "topics": null
     },
     {
       "slug": "rna-transcription",

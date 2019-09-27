@@ -50,7 +50,7 @@
       (core . #f)
       (unlocked-by)
       (difficulty . 1)
-      (topics conditionals association-lists))
+      (topics))
 
      ((slug . rna-transcription)
       (uuid . "26bf9c24-ba92-473e-9270-8964f1bf71f2")
