@@ -18,7 +18,7 @@ config.json : load.ss code/config.ss
 	echo "(make-config)" | $(chez) -q $<
 
 # documentation
-docs/%.md : load.ss code/docs/%.ss
+docs/%.md : load.ss code/track.ss code/sxml.sls code/docs/%.ss
 	echo "(put-md '$(@F:.md=))" | $(chez) -q $<
 
 # generate problems

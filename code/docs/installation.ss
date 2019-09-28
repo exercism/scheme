@@ -12,6 +12,5 @@
     (h2 "GNU Guile")
     (sentence
      "Follow the instructions at "
-     (link "GNU Guile" "https://www.gnu.org/software/guile/download/") ".")
-    (sentence "I'm (test-ing)")))
+     (link "GNU Guile" "https://www.gnu.org/software/guile/download/") ".")))
 
