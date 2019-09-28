@@ -13,6 +13,7 @@ implementations := \
 	leap \
 	hamming \
 	atbash-cipher \
+	anagram \
 	pascals-triangle
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
