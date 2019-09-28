@@ -2,6 +2,19 @@
 
 ;;; Markdown
 
+(define (string->goodMD s)
+  ((make-char-quotator '((#\_ . "\\_")
+			 (#\- . "\\-")
+			 (#\` . "\\`")
+			 (#\* . "\\*")
+			 (#\{ . "\\{")
+			 (#\} . "\\}")
+			 (#\[ . "\\[")
+			 (#\] . "\\]")
+			 (#\( . "\\(")
+			 (#\) . "\\)")
+			 )) s))
+
 ;; transform sxml tree into tree of strings. the tree of strings can
 ;; be traversed outputting each node with `send-reply`.
 (define (sxml->md tree)
@@ -42,15 +55,21 @@
 	((nl)
 	 "\n")
 	(else (error 'sxml->md "unexpected tag" tag)))))
-   ((string? tree) (list tree))
-   ((symbol? tree) (list (symbol->string tree)))
+   ((string? tree) (list (string->goodMD tree)))
+   ((symbol? tree) (list (string->goodMD (symbol->string tree))))
    (else (error 'sxml->md "unexpected node" tree))))
 
 ;; a simple way to test the output. eventual goal is to generate the
 ;; markdown in docs/*
 (define (put-md md)
-  (load (format "code/docs/~a.ss" md))
-  (send-reply (sxml->md content)))
+  (let ((source (format "code/docs/~a.ss" md))
+	(target (format "docs/~a.md" (string-upcase (symbol->string md)))))
+    (load source)
+    (when (file-exists? target)
+      (delete-file target))
+    (with-output-to-file target
+      (lambda ()
+	(send-reply (sxml->md content))))))
 
 ;;; Config
 

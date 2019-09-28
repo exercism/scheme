@@ -23,4 +23,3 @@
 * [Par Edit](https://www.emacswiki.org/emacs/ParEdit)
 * [Rainbow Delimiters](https://www.emacswiki.org/emacs/RainbowDelimiters)
 
-#t
