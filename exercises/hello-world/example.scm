@@ -1,4 +1,7 @@
-(define-module (hello-world)
-  #:export (hello))
+#!r6rs
 
-(define (hello) "Hello, World!")
+(import (rnrs (6)))
+
+(define hello-world
+  "Hello, World!")
+

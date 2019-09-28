@@ -145,8 +145,7 @@
       (core . #t)
       (unlocked-by)
       (difficulty . 4)
-      (topics recursion list math)
-      (wip))
+      (topics recursion list math))
      
      ;;     sublist wants order to matter. lame     
      ((slug . "sublist")

@@ -147,6 +147,18 @@
       "topics": null
     },
     {
+      "slug": "pascals-triangle",
+      "uuid": "d5caff8b-ffaa-4055-9bb9-7d31a4480956",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "list",
+        "math",
+        "recursion"
+      ]
+    },
+    {
       "slug": "atbash-cipher",
       "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
       "core": false,

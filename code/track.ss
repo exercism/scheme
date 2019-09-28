@@ -289,6 +289,8 @@
 (define (verify-implementations)
   (for-each verify-exercism implementations))
 
-
+(define (make-exercism problem)
+  (build-exercism problem)
+  (verify-exercism problem))
 
 

@@ -2,10 +2,19 @@ chez := scheme
 
 problem-specifications := git@github.com:exercism/problem-specifications.git
 
-doc-files := about installation resources tests
+doc-files := \
+	about \
+	installation \
+	resources \
+	tests
+
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
+implementations := \
+	hello-world \
+	pascals-triangle
 
+exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))
 
 default : track
 
@@ -25,6 +34,9 @@ config.json : load.ss code/config.ss
 docs/%.md : load.ss code/track.ss code/sxml.sls code/docs/%.ss
 	echo "(put-md '$(@F:.md=))" | $(chez) -q $<
 
+exercises/% : load.ss code/track.ss code/exercises/%/*
+	echo "(make-exercism '$(@F))" | $(chez) -q $< && rm -rf $@ && mv _build/$@ $@
+
 # generate problems
 build : load.ss ../problem-specifications
 	echo "(build-implementations)" | $(chez) -q $<
@@ -34,7 +46,7 @@ test : load.ss
 	echo "(verify-implementations)" | $(chez) -q $<
 
 # build whole track
-track : ../problem-specifications config.json bin/configlet $(track-documentation) test
+track : ../problem-specifications config.json bin/configlet $(track-documentation) $(exercisms)
 	./bin/configlet generate .
 	./bin/configlet fmt .
 	./bin/configlet lint .
@@ -45,5 +57,5 @@ clean :
 	find . -name "*.html" -exec rm {} \;
 	rm -rf _build
 
-.PHONY : track clean build test
+.PHONY : track clean
 
