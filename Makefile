@@ -13,6 +13,7 @@ implementations := \
 	leap \
 	hamming \
 	atbash-cipher \
+	grains \
 	anagram \
 	pascals-triangle
 
@@ -23,6 +24,7 @@ track-requirements := \
 	../problem-specifications \
 	bin/configlet \
 	config.json \
+	code/stub-makefile \
 	$(track-documentation) \
 	$(exercisms)
 
@@ -44,7 +46,7 @@ config.json : load.ss code/config.ss
 docs/%.md : load.ss code/track.ss code/sxml.sls code/docs/%.ss
 	echo "(put-md '$(@F:.md=))" | $(chez) -q $<
 
-exercises/% : load.ss code/track.ss code/exercises/%/*
+exercises/% : load.ss code/track.ss code/exercises/%/* code/stub-makefile
 	echo "(make-exercism '$(@F))" | $(chez) -q $<
 
 # build whole track

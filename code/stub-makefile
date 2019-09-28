@@ -1,10 +1,9 @@
 chez := scheme
 
 all : check-chez check-guile
-	echo "testing example solution with chez and guile"
 
 check-chez : 
-	echo "(assert (eq? 'success (test)))" | scheme -q example.scm
+	echo "(when (eq? 'failure (test)) (error 'chez \"fail!\"))" | scheme -q example.scm
 
 check-guile : 
 	guile --no-auto-compile -q -l example.scm -c \
