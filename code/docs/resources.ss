@@ -44,4 +44,3 @@
      (item
       (link "Rainbow Delimiters"
 	    "https://www.emacswiki.org/emacs/RainbowDelimiters")))))
-

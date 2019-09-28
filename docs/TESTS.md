@@ -13,4 +13,4 @@ command line.
 
 You can see more information about failing test cases by passing
 arguments to the procedure `test`. 
-To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`.
+To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`.#t
