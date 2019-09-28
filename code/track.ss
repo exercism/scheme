@@ -262,7 +262,6 @@
 ;; _build/exercises/problem/problem.scm and
 ;; _build/exercises/problem/test.scm
 (define (verify-exercism problem)
-  (build-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem))
         (implementation (get-problem problem)))
     (check-config-for problem)
@@ -280,6 +279,12 @@
     ;;    (system (format "rm -rf exercises/~a && cp -r ~a exercises/~a" problem dir problem))
     'done))
 
+(define (include-exercism problem)
+  (format #t "including exercises/~a~%" problem)
+  (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a"
+		  problem problem problem))
+  'done)
+
 ;; build all implementations in the problem table
 (define (build-implementations)
   (for-each build-exercism implementations))
@@ -290,6 +295,7 @@
 
 (define (make-exercism problem)
   (build-exercism problem)
-  (verify-exercism problem))
+  (verify-exercism problem)
+  (include-exercism problem))
 
 

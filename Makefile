@@ -11,6 +11,7 @@ doc-files := \
 implementations := \
 	hello-world \
 	leap \
+	hamming \
 	pascals-triangle
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
@@ -42,7 +43,7 @@ docs/%.md : load.ss code/track.ss code/sxml.sls code/docs/%.ss
 	echo "(put-md '$(@F:.md=))" | $(chez) -q $<
 
 exercises/% : load.ss code/track.ss code/exercises/%/*
-	echo "(make-exercism '$(@F))" | $(chez) -q $< && rm -rf $@ && mv _build/$@ $@
+	echo "(make-exercism '$(@F))" | $(chez) -q $<
 
 # build whole track
 track : $(track-requirements)
