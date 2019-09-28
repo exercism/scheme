@@ -16,7 +16,8 @@ implementations := \
 	grains \
 	anagram \
 	pascals-triangle \
-	rna-transcription
+	rna-transcription \
+	difference-of-squares
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))

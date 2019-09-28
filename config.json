@@ -13,6 +13,28 @@
       "topics": null
     },
     {
+      "slug": "leap",
+      "uuid": "b94548df-3b35-4ce1-80c7-36179d2b3b86",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "conditionals",
+        "control_flow"
+      ]
+    },
+    {
+      "slug": "rna-transcription",
+      "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "map",
+        "string"
+      ]
+    },
+    {
       "slug": "hamming",
       "uuid": "ce513303-471b-459a-bcf1-6c69f4d83ae7",
       "core": true,
@@ -23,21 +45,46 @@
       ]
     },
     {
-      "slug": "leap",
-      "uuid": "b94548df-3b35-4ce1-80c7-36179d2b3b86",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 2,
-      "topics": null
-    },
-    {
       "slug": "grains",
       "uuid": "397d9cfc-43f9-4c57-bc55-5c94ae8f532e",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
-      "difficulty": 1,
+      "difficulty": 3,
       "topics": [
         "math"
+      ]
+    },
+    {
+      "slug": "anagram",
+      "uuid": "c550055c-4bd5-478b-8e91-94347a314aef",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "list",
+        "string"
+      ]
+    },
+    {
+      "slug": "difference-of-squares",
+      "uuid": "a3c7a4d2-ba08-47c9-a88e-2311ad02d945",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "math"
+      ]
+    },
+    {
+      "slug": "pascals-triangle",
+      "uuid": "d5caff8b-ffaa-4055-9bb9-7d31a4480956",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 5,
+      "topics": [
+        "list",
+        "math",
+        "recursion"
       ]
     },
     {
@@ -59,16 +106,6 @@
       "topics": null
     },
     {
-      "slug": "rna-transcription",
-      "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "string"
-      ]
-    },
-    {
       "slug": "robot-name",
       "uuid": "62a5a71c-a9eb-416b-809c-c862a4828e8b",
       "core": false,
@@ -87,32 +124,12 @@
       ]
     },
     {
-      "slug": "anagram",
-      "uuid": "c550055c-4bd5-478b-8e91-94347a314aef",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 4,
-      "topics": [
-        "string"
-      ]
-    },
-    {
       "slug": "nucleotide-count",
       "uuid": "d72cf2c3-9f30-4df1-a69b-04c638bb2426",
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
       "topics": null
-    },
-    {
-      "slug": "difference-of-squares",
-      "uuid": "a3c7a4d2-ba08-47c9-a88e-2311ad02d945",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "math"
-      ]
     },
     {
       "slug": "list-ops",
@@ -145,18 +162,6 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": null
-    },
-    {
-      "slug": "pascals-triangle",
-      "uuid": "d5caff8b-ffaa-4055-9bb9-7d31a4480956",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 4,
-      "topics": [
-        "list",
-        "math",
-        "recursion"
-      ]
     },
     {
       "slug": "atbash-cipher",
