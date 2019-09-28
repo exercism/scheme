@@ -8,13 +8,20 @@ doc-files := \
 	resources \
 	tests
 
-track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
-
 implementations := \
 	hello-world \
+	leap \
 	pascals-triangle
 
+track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))
+
+track-requirements := \
+	../problem-specifications \
+	bin/configlet \
+	config.json \
+	$(track-documentation) \
+	$(exercisms)
 
 default : track
 
@@ -37,16 +44,8 @@ docs/%.md : load.ss code/track.ss code/sxml.sls code/docs/%.ss
 exercises/% : load.ss code/track.ss code/exercises/%/*
 	echo "(make-exercism '$(@F))" | $(chez) -q $< && rm -rf $@ && mv _build/$@ $@
 
-# generate problems
-build : load.ss ../problem-specifications
-	echo "(build-implementations)" | $(chez) -q $<
-
-# test problems
-test : load.ss
-	echo "(verify-implementations)" | $(chez) -q $<
-
 # build whole track
-track : ../problem-specifications config.json bin/configlet $(track-documentation) $(exercisms)
+track : $(track-requirements)
 	./bin/configlet generate .
 	./bin/configlet fmt .
 	./bin/configlet lint .
