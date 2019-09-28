@@ -9,7 +9,7 @@
      
      ((slug . hello-world)
       (uuid . "f2936612-edc4-44f9-a403-c60f7c6486e4")
-      (core . #f)
+      (core . #t)
       ;; nb configlet fmt rejects auto-approve but doesn't mind
       ;; unlocked-by.
       (auto_approve . #t)
@@ -19,16 +19,16 @@
      
      ((slug . hamming)
       (uuid . "ce513303-471b-459a-bcf1-6c69f4d83ae7")
-      (core . #f)
+      (core . #t)
       (unlocked-by)
-      (difficulty . 1)
+      (difficulty . 3)
       (topics list))
      
      ((slug . leap)
       (uuid . "b94548df-3b35-4ce1-80c7-36179d2b3b86")
-      (core . #f)
+      (core . #t)
       (unlocked-by)
-      (difficulty . 1)
+      (difficulty . 2)
       (topics))
      
      ((slug . grains)
@@ -54,7 +54,7 @@
      
      ((slug . rna-transcription)
       (uuid . "26bf9c24-ba92-473e-9270-8964f1bf71f2")
-      (core . #f)
+      (core . #t)
       (unlocked-by)
       (difficulty . 1)
       (topics string))
@@ -75,9 +75,9 @@
      
      ((slug . anagram)
       (uuid . "c550055c-4bd5-478b-8e91-94347a314aef")
-      (core . #f)
+      (core . #t)
       (unlocked-by)
-      (difficulty . 1)
+      (difficulty . 4)
       (topics string))
      
      ((slug . nucleotide-count)
@@ -148,7 +148,7 @@
       (topics recursion list math))
      
      ;;     sublist wants order to matter. lame     
-     ((slug . "sublist")
+     ((slug . sublist)
       (uuid . "37e2745f-1437-4362-9230-aaf17a2a2170")
       (core . #f)
       (difficulty . 2)

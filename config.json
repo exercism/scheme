@@ -6,7 +6,7 @@
     {
       "slug": "hello-world",
       "uuid": "f2936612-edc4-44f9-a403-c60f7c6486e4",
-      "core": false,
+      "core": true,
       "auto_approve": true,
       "unlocked_by": null,
       "difficulty": 1,
@@ -15,9 +15,9 @@
     {
       "slug": "hamming",
       "uuid": "ce513303-471b-459a-bcf1-6c69f4d83ae7",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
-      "difficulty": 1,
+      "difficulty": 3,
       "topics": [
         "list"
       ]
@@ -25,9 +25,9 @@
     {
       "slug": "leap",
       "uuid": "b94548df-3b35-4ce1-80c7-36179d2b3b86",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
-      "difficulty": 1,
+      "difficulty": 2,
       "topics": null
     },
     {
@@ -61,7 +61,7 @@
     {
       "slug": "rna-transcription",
       "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
@@ -89,9 +89,9 @@
     {
       "slug": "anagram",
       "uuid": "c550055c-4bd5-478b-8e91-94347a314aef",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "string"
       ]
