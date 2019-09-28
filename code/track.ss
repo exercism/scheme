@@ -182,8 +182,8 @@
 	   (solution.scm (format "~a/~a" src (lookup 'solution implementation))))
       (format #t "writing _build/exercises/~a~%" problem)
       (system
-       (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a"
-	       dir skeleton.scm dir solution.scm dir))
+       (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a/Makefile"
+	       dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
       (write-expression-to-file (lookup 'test implementation) test.scm))))
 
 ;; test the problem output in _build/exercises/problem/* by loading
@@ -193,21 +193,15 @@
   (let ((dir (format "_build/exercises/~a" problem))
         (implementation (get-problem problem)))
     (check-config-for problem)
-    (load (format "~a/test.scm" dir))
-    (with-output-to-string
-      (lambda ()
-	(let ((example
-	       (begin
-		 (load (format "~a/~a" dir (lookup 'solution implementation)))
-		 (test))))
-	  (unless (eq? 'success example)
-	    (error 'verify-output "bad implementation!" problem)))))
+    (let ((x (system (format "cd ~a && make" dir))))
+      (unless (zero? x)
+	(error 'verify-exercism "example solution incorrect" problem)))
     'done))
 
 (define (include-exercism problem)
   (format #t "including exercises/~a~%" problem)
-  (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a"
-		  problem problem problem))
+  (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a && rm exercises/~a/Makefile"
+		  problem problem problem problem))
   'done)
 
 ;; build all implementations in the problem table

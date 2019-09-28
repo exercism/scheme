@@ -1,0 +1,12 @@
+chez := scheme
+
+all : check-chez check-guile
+	echo "testing example solution with chez and guile"
+
+check-chez : 
+	echo "(load \"test.scm\")(assert (eq? 'success (test)))" | scheme -q example.scm
+
+check-guile : 
+	guile -q -l example.scm -c "(load \"test.scm\")(when (eq? 'failure (test)) (error 'guile \"fail!\"))"
+
+.PHONY : all check-chez check-guile

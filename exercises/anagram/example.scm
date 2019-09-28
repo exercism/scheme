@@ -1,7 +1,7 @@
 (import (rnrs (6)))
 
 (define (canon word)
-  (sort char<? (string->list word)))
+  (list-sort char<? (string->list word)))
 
 (define (anagram target words)
   (let ((target (string-downcase target)))

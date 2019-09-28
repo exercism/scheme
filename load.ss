@@ -11,22 +11,4 @@
     "code/md.ss"
     "code/track.ss"))
 
-(define implementations
-  '(
-    hello-world
-    ;;    leap
-    ;;    rna-transcription
-    ;;    hamming
-    ;;    grains
-    ;;    anagram
-    ;;    nucleotide-count
-    ;;    atbash-cipher
-    pascals-triangle
-    ;;    sieve
-    ;;    change
-    ;;    knapsack
-    ;;    sublist
-    ))
-
 (for-each load source-files)
-;; (for-each load-problem implementations)

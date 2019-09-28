@@ -1,4 +1,5 @@
 (import (rnrs (6)))
 
-(define (anagram ) 'implement-me!)
+(define (anagram target words)
+  'implement-me!)
 

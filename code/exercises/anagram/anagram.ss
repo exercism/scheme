@@ -17,8 +17,8 @@
   `(lambda ()
      (test-success ,(lookup 'description test)
 		   (lambda (xs ys)
-		     (equal? (sort string<? xs)
-			     (sort string<? ys)))
+		     (equal? (list-sort string<? xs)
+			     (list-sort string<? ys)))
 		   anagram
 		   '(,@(map cdr (lookup 'input test)))
 		   '(,@(lookup 'expected test)))))
