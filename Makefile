@@ -17,9 +17,11 @@ implementations := \
 	anagram \
 	pascals-triangle \
 	rna-transcription \
-	difference-of-squares
+	difference-of-squares \
+	nucleotide-count
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
+
 exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))
 
 track-requirements := \
@@ -48,10 +50,11 @@ config.json : load.ss code/config.ss
 docs/%.md : load.ss code/track.ss code/sxml.sls code/docs/%.ss
 	echo "(put-md '$(@F:.md=))" | $(chez) -q $<
 
+# exercises
 exercises/% : load.ss code/track.ss code/exercises/%/* code/stub-makefile
 	echo "(make-exercism '$(@F))" | $(chez) -q $<
 
-# build whole track
+# build track
 track : $(track-requirements)
 	./bin/configlet generate .
 	./bin/configlet fmt .
