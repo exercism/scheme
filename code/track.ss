@@ -186,9 +186,7 @@
 	       dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
       (write-expression-to-file (lookup 'test implementation) test.scm))))
 
-;; test the problem output in _build/exercises/problem/* by loading
-;; _build/exercises/problem/problem.scm and
-;; _build/exercises/problem/test.scm
+;; test the problem output in _build/exercises/problem/*
 (define (verify-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem))
         (implementation (get-problem problem)))

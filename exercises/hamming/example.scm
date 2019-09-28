@@ -1,5 +1,7 @@
 (import (rnrs (6)))
 
+(load "test.scm")
+
 (define (hamming-distance strand-a strand-b)
   (when (not (= (string-length strand-a)
 		(string-length strand-b)))
