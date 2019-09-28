@@ -156,6 +156,7 @@
 			    (skeleton . ,,(path-last skeleton))
 			    (solution . ,,(path-last solution))))))
 	 (stub-solution `((import (rnrs (6)))
+			  (load "test.scm")
 			  (define (,problem)
 			    'implement-me!))))
     (when (file-exists? implementation)

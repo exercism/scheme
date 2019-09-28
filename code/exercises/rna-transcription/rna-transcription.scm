@@ -2,6 +2,6 @@
 
 (load "test.scm")
 
-(define (grains n)
+(define (dna->rna dna)
   'implement-me!)
 

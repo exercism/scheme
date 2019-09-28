@@ -15,7 +15,8 @@ implementations := \
 	atbash-cipher \
 	grains \
 	anagram \
-	pascals-triangle
+	pascals-triangle \
+	rna-transcription
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))
