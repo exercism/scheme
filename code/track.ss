@@ -164,6 +164,9 @@
 
 ;;; Problem Implementations
 
+(define (load-problem problem)
+  (load (format "code/exercises/~a/~a.ss" problem problem)))
+
 ;; table to hold problem implementations
 (define *problem-table*
   (make-hash-table))
@@ -183,9 +186,13 @@
 ;; look up the problem in the problem table.
 (define (get-problem problem)
   (let ((implementation (hashtable-ref *problem-table* problem #f)))
-    (unless implementation
-      (error 'get-test "no implementation" problem))
-    implementation))
+    (or implementation
+	(begin
+	  (load-problem problem)
+	  (let ((implementation (hashtable-ref *problem-table* problem #f)))
+	    (unless implementation
+	      (error 'get-problem "no implementation" problem))
+	    implementation)))))
 
 ;;; Stubbing, Building, and Testing problems
 
@@ -245,10 +252,8 @@
 	   (src (format "code/exercises/~a" problem))
 	   (test.scm (format "~a/test.scm" dir))
 	   (skeleton.scm (format "~a/~a" src (lookup 'skeleton implementation)))
-	   (solution.scm (format "~a/~a" src (lookup 'solution implementation)))
-	   ;;	   (README.md (format "~a/README.md" src))
-	   )
-      (format #t "writing _build/~a~%" problem)
+	   (solution.scm (format "~a/~a" src (lookup 'solution implementation))))
+      (format #t "writing _build/exercises/~a~%" problem)
       (system
        (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a"
 	       dir skeleton.scm dir solution.scm dir))
@@ -258,18 +263,19 @@
 ;; _build/exercises/problem/problem.scm and
 ;; _build/exercises/problem/test.scm
 (define (verify-exercism problem)
+  (build-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem))
         (implementation (get-problem problem)))
     (check-config-for problem)
     (load (format "~a/test.scm" dir))
     (with-output-to-string
-     (lambda ()
-       (let ((example
-	      (begin
-		(load (format "~a/~a" dir (lookup 'solution implementation)))
-		(test))))
-	 (unless (eq? 'success example)
-	   (error 'verify-output "bad implementation!" problem)))))
+      (lambda ()
+	(let ((example
+	       (begin
+		 (load (format "~a/~a" dir (lookup 'solution implementation)))
+		 (test))))
+	  (unless (eq? 'success example)
+	    (error 'verify-output "bad implementation!" problem)))))
     (format #t "updating exercises/~a~%" problem)
     ;; for now hold off on using new problems 
     ;;    (system (format "rm -rf exercises/~a && cp -r ~a exercises/~a" problem dir problem))
@@ -277,7 +283,7 @@
 
 ;; build all implementations in the problem table
 (define (build-implementations)
-  (vector-for-each build-exercism (hashtable-keys *problem-table*)))
+  (for-each build-exercism implementations))
 
 ;; test all builds specified as implemented
 (define (verify-implementations)

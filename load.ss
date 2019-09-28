@@ -4,9 +4,6 @@
 (import (json)
 	(sxml))
 
-(define (load-problem problem)
-  (load (format "code/exercises/~a/~a.ss" problem problem)))
-
 (define source-files
   '("code/outils.ss"
     "code/config.ss"
@@ -15,7 +12,7 @@
 
 (define implementations
   '(
-    ;;    hello-world
+    hello-world
     ;;    leap
     ;;    rna-transcription
     ;;    hamming
@@ -31,11 +28,4 @@
     ))
 
 (for-each load source-files)
-(for-each load-problem implementations)
-
-
-
-
-
-
-
+;; (for-each load-problem implementations)
