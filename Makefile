@@ -19,7 +19,8 @@ implementations := \
 	rna-transcription \
 	difference-of-squares \
 	nucleotide-count \
-	scrabble-score
+	scrabble-score \
+	two-fer
 
 load := load.ss
 
