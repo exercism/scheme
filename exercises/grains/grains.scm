@@ -1,9 +1,7 @@
-(define-module (grains)
-  #:export (square total)
-  #:autoload (srfi srfi-1) (iota))
+(import (rnrs (6)))
 
-(define (square n)
-  )
+(load "test.scm")
 
-(define (total)
-  )
+(define (grains n)
+  'implement-me!)
+

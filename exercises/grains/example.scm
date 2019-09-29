@@ -1,9 +1,11 @@
-(define-module (grains)
-  #:export (square total)
-  #:autoload (srfi srfi-1) (iota))
+(import (rnrs (6)))
+
+(load "test.scm")
 
 (define (square n)
-  (expt 2 (1- n)))
+  (when (or (< n 0) (> n 64))
+    (error 'square "out of range" n))
+  (ash 1 (1- n)))
 
-(define (total)
-  (reduce + 0 (map square (iota 64 1))))
+(define total
+  (1- (* 2 (square 64))))

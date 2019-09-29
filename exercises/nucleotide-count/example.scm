@@ -1,20 +1,18 @@
-(define-module (nucleotide-count)
-  #:export (nucleotide-counts dna-count))
+(import (rnrs (6)))
 
+(load "test.scm")
 
-(define validate-nucleotide
-  (lambda (nucleotide)
-    (if (not (string-any nucleotide "ACGT"))
-        (error "Invalid nucleotide"))))
+(define (nucleotide-count dna)
+  (let ((table (make-eq-hashtable)))
+    (for-each (lambda (nucleotide)
+		(unless (memq nucleotide (string->list "ACGT"))
+		  (error 'nucleotide-count "not a nucleotide" nucleotide))
+		(hashtable-set! table
+				nucleotide
+				(1+ (hashtable-ref table nucleotide 0))))
+	      (string->list dna))
+    (let-values (((neucleotides counts)
+		  (hashtable-entries table)))
+      (vector->list
+       (vector-map cons neucleotides counts)))))
 
-(define dna-count
-  (lambda (nucleotide strand)
-    (validate-nucleotide nucleotide)
-    (string-count strand nucleotide)))
-
-(define nucleotide-counts
-  (lambda (strand)
-    (let* ((counts '((#\A . 0) (#\C . 0) (#\G . 0) (#\T . 0)))
-           (bases '(#\A #\C #\G #\T)))
-      (map (lambda (c) (assoc-set! counts c (dna-count c strand))) bases)
-      counts)))

@@ -2,6 +2,6 @@
 
 (load "test.scm")
 
-(define (nucleotide-count dna)
+(define (leap-year? year)
   'implement-me!)
 

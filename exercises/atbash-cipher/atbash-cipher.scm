@@ -1,8 +1,6 @@
-(define-module (atbash-cipher)
-  #:export (encode decode))
+(import (rnrs (6)))
 
-(define (encode phrase)
-  "")
+(load "test.scm")
 
-(define (decode ciphertext)
-  "")
+(define (atbash-cipher) 'implement-me!)
+

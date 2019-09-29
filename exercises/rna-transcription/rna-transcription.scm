@@ -2,6 +2,6 @@
 
 (load "test.scm")
 
-(define hello-world
-  "Hello, World!")
+(define (dna->rna dna)
+  'implement-me!)
 
