@@ -2,5 +2,9 @@
 
 (load "test.scm")
 
-(define (atbash-cipher) 'implement-me!)
+(define (encode phrase)
+  'implement-me!)
+
+(define (decode phrase)
+  'implement-me!)
 

@@ -2,15 +2,15 @@
 
 (load "test.scm")
 
-(define (canon word)
+(define (canonicalize word)
   (list-sort char<? (string->list word)))
 
 (define (anagram target words)
   (let ((target (string-downcase target)))
     (filter (lambda (word)
 	      (let ((word (string-downcase word)))
-		(and (equal? (canon word) (canon target))
-		     (not (string=? word target)))))
+		(and (equal? (canonicalize word) (canonicalize target))
+		     (not (equal? word target)))))
 	    words)))
 
 

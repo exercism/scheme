@@ -93,7 +93,7 @@
 ;;; Problem Implementations
 
 (define (load-problem problem)
-  (load (format "code/exercises/~a/~a.ss" problem problem)))
+  (load (format "code/exercises/~a/test.ss" problem)))
 
 ;; table to hold problem implementations
 (define *problem-table*
@@ -130,7 +130,7 @@
 (define (stub-exercism problem)
   (format #t "setting up ~a~%" problem)
   (let* ((dir (format "code/exercises/~a" problem))
-	 (implementation (format "~a/~a.ss" dir problem))
+	 (implementation (format "~a/test.ss" dir))
          ;; todo, add "properties" found in spec to stub skeleton and solution
 	 (skeleton (format "~a/~a.scm" dir problem))
 	 (solution (format "~a/example.scm" dir))
