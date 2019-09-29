@@ -1,12 +1,12 @@
-(define-module (hamming)
-  #:export (hamming-distance))
+(import (rnrs (6)))
 
-(define hamming-distance
-  (lambda (dna1 dna2)
-    (if (eqv? (string-length dna1) (string-length dna2))
-        (length
-         (filter not
-                 (map char=?
-                      (string->list dna1)
-                      (string->list dna2))))
-        (error "String length mismatch."))))
+(load "test.scm")
+
+(define (hamming-distance strand-a strand-b)
+  (when (not (= (string-length strand-a)
+		(string-length strand-b)))
+    (error 'hamming "unequal strands" strand-a strand-b))
+  (length (filter not (map char=?
+			   (string->list strand-a)
+			   (string->list strand-b)))))
+

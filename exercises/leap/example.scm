@@ -1,8 +1,9 @@
-(define-module (leap-year)
-  #:export (leap-year?))
+(import (rnrs (6)))
 
-(define leap-year?
-  (lambda (year)
-    (and (= (modulo year 4) 0)
-         (or (not (= (modulo year 100) 0))
-             (= (modulo year 400) 0)))))
+(load "test.scm")
+
+(define (leap-year? year)
+  (and (zero? (modulo year 4))
+       (or (not (zero? (modulo year 100)))
+	   (zero? (modulo year 400)))))
+

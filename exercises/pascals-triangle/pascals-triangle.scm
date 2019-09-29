@@ -2,6 +2,7 @@
 
 (load "test.scm")
 
-(define (nucleotide-count dna)
+(define (pascals-triangle n)
   'implement-me!)
+
 
