@@ -2,7 +2,6 @@
 
 (load "test.scm")
 
-(define (pascals-triangle n)
+(define (anagram target words)
   'implement-me!)
-
 

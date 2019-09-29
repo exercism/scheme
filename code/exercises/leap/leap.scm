@@ -2,7 +2,6 @@
 
 (load "test.scm")
 
-(define (pascals-triangle n)
+(define (leap-year? year)
   'implement-me!)
-
 

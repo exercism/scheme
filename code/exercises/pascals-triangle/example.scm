@@ -1,19 +1,13 @@
+(import (rnrs (6)))
+
+(load "test.scm")
 
 (define (pascals-triangle n)
+  (build n '(1)))
+
+(define (build n row)
   (if (zero? n)
       '()
-      (reverse (rows n))))
-
-(define (rows n)
-  (if (= n 1)
-      '((1))
-      (let ((triangle (rows (1- n))))
-        (cons (map +
-                   `(0 ,@(car triangle))
-                   `(,@(car triangle) 0))
-              triangle))))
-  
-
-
-
-
+      (cons row
+	    (build (- n 1)
+		   (map + `(0 ,@row) `(,@row 0))))))
