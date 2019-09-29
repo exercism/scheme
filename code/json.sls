@@ -43,9 +43,15 @@
    (only (chezscheme) include)
    (packrat))
 
-  ;; Provide the message 'pretty to get pretty printed output
-  ;; Otherwise pass any other symbol as the first argument
-  ;; and you will get regular json without formatting
+  ;; write-json :: sexp -> json
+  ;; The interface is three-fold and implemented as a case-lambda
+  ;; 1 argument  = simple unformatted json
+  ;; 2 arguments = first must be 'pretty
+  ;;                 any other symbol will throw an error
+  ;;               second must be the symbolic representation of a scheme object
+  ;; 3 arguments = first must be 'pretty
+  ;;               second must be the symbolic representation of a scheme object
+  ;;               third must be the tabpstop size defined in spaces
   (define json-write
     (let ()
       ;; control whether or not to pretty print
@@ -54,6 +60,7 @@
       (define indent-level 0)
       (define tabstop-size 2)
 
+      ;; Print the indentation level
       (define (display-level p)
         (display (make-string (* indent-level tabstop-size) #\space) p))
 
