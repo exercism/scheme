@@ -18,7 +18,10 @@ implementations := \
 	pascals-triangle \
 	rna-transcription \
 	difference-of-squares \
-	nucleotide-count
+	nucleotide-count \
+	scrabble-score
+
+load := load.ss
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
@@ -43,16 +46,16 @@ bin/configlet :
 	./bin/fetch-configlet
 
 # configuration
-config.json : load.ss code/config.ss
-	echo "(make-config)" | $(chez) -q $<
+config.json : code/config.ss
+	echo "(make-config)" | $(chez) -q $(load)
 
 # documentation
-docs/%.md : load.ss code/track.ss code/sxml.sls code/docs/%.ss
-	echo "(put-md '$(@F:.md=))" | $(chez) -q $<
+docs/%.md : code/md.ss code/docs/%.ss
+	echo "(put-md '$(@F:.md=))" | $(chez) -q $(load)
 
 # exercises
-exercises/% : load.ss code/track.ss code/exercises/%/* code/stub-makefile
-	echo "(make-exercism '$(@F))" | $(chez) -q $<
+exercises/% : code/track.ss code/exercises/%/* code/stub-makefile
+	echo "(make-exercism '$(@F))" | $(chez) -q $(load)
 
 # build track
 track : $(track-requirements)

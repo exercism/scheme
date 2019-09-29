@@ -117,8 +117,8 @@
      ((slug . scrabble-score)
       (uuid . "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
+      (unlocked-by hamming)
+      (difficulty . 3)
       (topics))
      
      ((slug . word-count)
