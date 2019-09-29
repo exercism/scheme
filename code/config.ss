@@ -1,3 +1,5 @@
+;;;; Configuration for the scheme track
+
 (define track-config
   `((language . "Scheme")
     
@@ -6,10 +8,12 @@
     (blurb . "Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary.")
 
     (exercises
+
+     ;;; Core exercises
      
      ((slug . hello-world)
       (uuid . "f2936612-edc4-44f9-a403-c60f7c6486e4")
-      (core . #f)
+      (core . #t)
       ;; nb configlet fmt rejects auto-approve but doesn't mind
       ;; unlocked-by.
       (auto_approve . #t)
@@ -17,26 +21,56 @@
       (difficulty . 1)
       (topics))
      
-     ((slug . hamming)
-      (uuid . "ce513303-471b-459a-bcf1-6c69f4d83ae7")
-      (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics list))
-     
      ((slug . leap)
       (uuid . "b94548df-3b35-4ce1-80c7-36179d2b3b86")
-      (core . #f)
+      (core . #t)
       (unlocked-by)
-      (difficulty . 1)
-      (topics))
+      (difficulty . 2)
+      (topics control-flow conditionals))
+     
+     ((slug . rna-transcription)
+      (uuid . "26bf9c24-ba92-473e-9270-8964f1bf71f2")
+      (core . #t)
+      (unlocked-by)
+      (difficulty . 2)
+      (topics string map))
+     
+     ((slug . hamming)
+      (uuid . "ce513303-471b-459a-bcf1-6c69f4d83ae7")
+      (core . #t)
+      (unlocked-by)
+      (difficulty . 3)
+      (topics list))
      
      ((slug . grains)
       (uuid . "397d9cfc-43f9-4c57-bc55-5c94ae8f532e")
-      (core . #f)
+      (core . #t)
       (unlocked-by)
-      (difficulty . 1)
+      (difficulty . 3)
       (topics math))
+     
+     ((slug . anagram)
+      (uuid . "c550055c-4bd5-478b-8e91-94347a314aef")
+      (core . #t)
+      (unlocked-by)
+      (difficulty . 4)
+      (topics string list))
+     
+     ((slug . difference-of-squares)
+      (uuid . "a3c7a4d2-ba08-47c9-a88e-2311ad02d945")
+      (core . #t)
+      (unlocked-by)
+      (difficulty . 3)
+      (topics math))
+     
+     ((slug . pascals-triangle)
+      (uuid . "d5caff8b-ffaa-4055-9bb9-7d31a4480956")
+      (core . #t)
+      (unlocked-by)
+      (difficulty . 5)
+      (topics recursion list math))
+
+     ;;; Other problems
      
      ((slug . bob)
       (uuid . "4cf6697c-ad9e-426c-a2d8-6c3695812421")
@@ -52,13 +86,6 @@
       (difficulty . 1)
       (topics))
      
-     ((slug . rna-transcription)
-      (uuid . "26bf9c24-ba92-473e-9270-8964f1bf71f2")
-      (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics string))
-     
      ((slug . robot-name)
       (uuid . "62a5a71c-a9eb-416b-809c-c862a4828e8b")
       (core . #f)
@@ -73,26 +100,12 @@
       (difficulty . 1)
       (topics string))
      
-     ((slug . anagram)
-      (uuid . "c550055c-4bd5-478b-8e91-94347a314aef")
-      (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics string))
-     
      ((slug . nucleotide-count)
       (uuid . "d72cf2c3-9f30-4df1-a69b-04c638bb2426")
       (core . #f)
       (unlocked-by)
       (difficulty . 1)
       (topics))
-     
-     ((slug . difference-of-squares)
-      (uuid . "a3c7a4d2-ba08-47c9-a88e-2311ad02d945")
-      (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics math))
      
      ((slug . list-ops)
       (uuid . "903374d2-8155-4fe3-bf90-5b6359c7b5cc")
@@ -140,16 +153,9 @@
       (wip))
      
      ;; list problems
-     ((slug . pascals-triangle)
-      (uuid . "d5caff8b-ffaa-4055-9bb9-7d31a4480956")
-      (core . #t)
-      (unlocked-by)
-      (difficulty . 4)
-      (topics recursion list math)
-      (wip))
      
      ;;     sublist wants order to matter. lame     
-     ((slug . "sublist")
+     ((slug . sublist)
       (uuid . "37e2745f-1437-4362-9230-aaf17a2a2170")
       (core . #f)
       (difficulty . 2)

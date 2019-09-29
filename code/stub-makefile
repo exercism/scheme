@@ -1,0 +1,16 @@
+chez := scheme
+guile := guile
+guile-args := --no-auto-compile -q -l example.scm -c
+
+run-test = \
+	"(when (eq? 'failure (test)) (error '$(1) \"incorrect implementation\"))"
+
+all : check-chez check-guile
+
+check-chez : example.scm test.scm
+	(echo $(call run-test,$@) | $(chez) -q $<)
+
+check-guile :
+	($(guile) $(guile-args) $(call run-test,$@))
+
+.PHONY : all check-chez check-guile
