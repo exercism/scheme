@@ -2,7 +2,6 @@
 
 (load "test.scm")
 
-(define (pascals-triangle n)
+(define (hamming-distance strand-a strand-b)
   'implement-me!)
-
 

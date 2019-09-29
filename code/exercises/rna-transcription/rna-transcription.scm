@@ -2,7 +2,6 @@
 
 (load "test.scm")
 
-(define (pascals-triangle n)
+(define (dna->rna dna)
   'implement-me!)
-
 
