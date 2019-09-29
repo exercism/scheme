@@ -84,7 +84,7 @@
             (write-any v p)))
         (when pretty?
           (set! indent-level (- indent-level 1))
-          (display "\n")
+          (display "\n" p)
           (display-level p))
         (display "}" p))
 
@@ -105,7 +105,7 @@
                     a))
         (when pretty?
           (set! indent-level (- indent-level 1))
-          (display "\n")
+          (display "\n" p)
           (display-level p))
         (display "]" p))
 
@@ -115,8 +115,7 @@
               (number? x)) (write x p))
          ((boolean? x) (display (if x "true" "false") p))
          ((symbol? x)
-          (write (if (eq? x 'null) 'null (symbol->string x))
-                 p)) ;; for convenience
+          (write (if (eq? x 'null) 'null (symbol->string x)) p))
          ((null? x) (display "null" p))
          ((and (list? x)
                (pair? (car x))
@@ -126,50 +125,25 @@
          (else (error "Invalid JSON object in json-write" x))))
 
       (case-lambda
-        ;; 1 argument provides default behavior
+        ;; For default unformatted json rendering
         ((obj)
          (set! pretty? #f)
          (write-any obj (current-output-port)))
-        ;; 2 arguments can be obj and port or msg and obj
-        ((msg-or-obj obj-or-port)
-         (case msg-or-obj
-           ;; pretty printing with 2 arguments take no port
+        ;; For default Pretty Printing with a tabstop of 2 spaces
+        ((msg obj)
+         (case msg
            ((pretty)
             (set! pretty? #t)
             (set! tabstop-size 2)
-            (if (port? obj-or-port)
-                (error 'json-write
-                       "expected scheme obj not port"
-                       obj-or-port)
-                (write-any
-                 obj-or-port
-                 (current-output-port))))
-           ;; 2 arguments and no pretty printing = obj and port
-           (else (if (port? obj-or-port)
-                     (begin
-                       (set! pretty? #f)
-                       (write-any msg-or-obj obj-or-port))
-                     (error 'json-write
-                            "expected port but got"
-                            obj-or-port)))))
-        ;; 3 arguments is always for pretty printing
-        ((msg obj tabstop-or-port)
-         (set! pretty? #t)
+            (write-any obj (current-output-port)))
+           (else (error 'json-write "Invalid message" msg))))
+        ;; Pretty Print with custom tabsize defined in spaces
+        ((msg obj tabsize)
          (case msg
            ((pretty)
-            (cond ((port? tabstop-or-port)
-                   (write-any obj tabstop-or-port))
-                  (else (set! tabstop-size tabstop-or-port)
-                        (write-any obj (current-output-port)))))
-           (else (error 'json-write "invalid message" msg))))
-        ;; 4 arguments is always for pretty printing
-        ((msg obj tabstop port)
-         (when (not (port? port))
-           (error 'json-write "expected port but got" port))
-         (set! pretty? #t)
-         (set! tabstop-size tabstop)
-         (case msg
-           ((pretty) (write-any obj port))
+            (set! pretty? #t)
+            (set! tabstop-size tabsize)
+            (write-any obj (current-output-port)))
            (else (error 'json-write "invalid message" msg)))))))
 
   (define json-read
