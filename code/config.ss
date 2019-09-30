@@ -175,7 +175,6 @@
       (core . #f)
       (unlocked-by)
       (difficulty . 6)
-      (topics optimization dynamic-programming search)
-      (wip)))
+      (topics optimization dynamic-programming search)))
     
     ))

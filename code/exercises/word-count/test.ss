@@ -33,10 +33,10 @@
        args))))
 
 (put-problem!
-  'word-count
-  `((test
-      .
-      ,(spec->tests (get-test-specification 'word-count)))
-     (skeleton . ,"word-count.scm")
-     (solution . ,"example.scm")))
+ 'word-count
+ `((test
+    .
+    ,(spec->tests (get-test-specification 'word-count)))
+   (skeleton . "word-count.scm")
+   (solution . "example.scm")))
 

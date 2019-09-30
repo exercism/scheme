@@ -21,7 +21,8 @@ implementations := \
 	nucleotide-count \
 	scrabble-score \
 	two-fer \
-	word-count
+	word-count \
+	knapsack
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

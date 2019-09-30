@@ -188,6 +188,18 @@
         "cipher",
         "string"
       ]
+    },
+    {
+      "slug": "knapsack",
+      "uuid": "96f2a7e3-1283-4fca-944d-8cf2fe463c56",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 6,
+      "topics": [
+        "dynamic_programming",
+        "optimization",
+        "search"
+      ]
     }
   ]
 }
