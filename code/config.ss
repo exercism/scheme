@@ -108,7 +108,7 @@
      ((slug . nucleotide-count)
       (uuid . "d72cf2c3-9f30-4df1-a69b-04c638bb2426")
       (core . #f)
-      (unlocked-by rna-transcription)
+      (unlocked-by . rna-transcription)
       (difficulty . 3)
       (topics string hashtable))
 
@@ -122,21 +122,21 @@
      ((slug . scrabble-score)
       (uuid . "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb")
       (core . #f)
-      (unlocked-by rna-transcription)
+      (unlocked-by . rna-transcription)
       (difficulty . 3)
       (topics string list))
 
      ((slug . word-count)
       (uuid . "9460b65d-dc80-4a95-8782-b395d2cc979e")
       (core . #f)
-      (unlocked-by nucleotide-count)
+      (unlocked-by . nucleotide-count)
       (difficulty . 4)
       (topics string hashtable parsing))
 
      ((slug . two-fer)
       (uuid . "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e")
       (core . #f)
-      (unlocked-by hello-world)
+      (unlocked-by . hello-world)
       (difficulty . 3)
       (topics control-flow string))
 
@@ -171,7 +171,7 @@
      ((slug . atbash-cipher)
       (uuid . "82169e85-3938-48da-ada9-7394adadc57a")
       (core . #f)
-      (unlocked-by rna-transcription)
+      (unlocked-by . rna-transcription)
       (difficulty . 4)
       (topics string cipher)))
 
