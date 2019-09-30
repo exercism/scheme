@@ -171,7 +171,7 @@
       "slug": "word-count",
       "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e",
       "core": false,
-      "unlocked_by": "nucleotide-count",
+      "unlocked_by": "anagram",
       "difficulty": 4,
       "topics": [
         "hashtable",

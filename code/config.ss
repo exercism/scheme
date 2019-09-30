@@ -129,7 +129,7 @@
      ((slug . word-count)
       (uuid . "9460b65d-dc80-4a95-8782-b395d2cc979e")
       (core . #f)
-      (unlocked-by . nucleotide-count)
+      (unlocked-by . anagram)
       (difficulty . 4)
       (topics string hashtable parsing))
 
