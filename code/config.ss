@@ -117,7 +117,7 @@
      ((slug . scrabble-score)
       (uuid . "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb")
       (core . #f)
-      (unlocked-by hamming)
+      (unlocked-by rna-transcription)
       (difficulty . 3)
       (topics))
      
@@ -131,8 +131,8 @@
      ((slug . two-fer)
       (uuid . "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
+      (unlocked-by hello-world)
+      (difficulty . 3)
       (topics))
 
      ;; math problems
@@ -140,7 +140,7 @@
       (uuid . "732e4c98-675d-4b67-b672-37ef9c848733")
       (core . #f)
       (unlocked-by)
-      (difficulty . 2)
+      (difficulty . 5)
       (topics math vector)
       (wip))
      
