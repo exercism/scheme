@@ -7,27 +7,29 @@
 
 (define (branch&bound capacity items)
   (letrec ((best 0)
-	   (relaxed-estimate (lambda (capacity value item)
-			       (+ value (* (cdr item)
-					   capacity
-					   (/ (car item))))))
-	   (bound (lambda (capacity value items)
-		    (do ((items items (cdr items)))
-			((or (null? items)
-			     (< capacity (caar items)))
-			 (if (null? items)
-			     value
-			     (relaxed-estimate capacity value (car items))))
-		      (set! capacity (- capacity (caar items)))
-		      (set! value (+ value (cdar items))))))
+	   ;; include as many items as possible and pretend we can
+	   ;; take a fraction of the last one. items are ordered by
+	   ;; density, so this is an upper bound.
+	   (bound (lambda (capacity items)
+		    (cond ((null? items) 0)
+			  ((< capacity (item-weight (car items)))
+			   (* (density (car items)) capacity))
+			  (else
+			   (+ (item-value (car items))
+			      (bound (- capacity
+					(item-weight (car items)))
+				     (cdr items)))))))
+	   ;; search for best knapsack
 	   (branch (lambda (capacity value items)
 		     (when (< best value)
 		       (set! best value))
 		     (unless (null? items)
-		       (when (<= best (bound capacity value items))
-			 (when (<= (caar items) capacity)
-			   (branch (- capacity (caar items))
-				   (+ value (cdar items))
+		       ;; if we might still improve the best found knapsack
+		       (when (<= best (+ value (bound capacity items)))
+			 ;; if we can fit the next item
+			 (when (<= (item-weight (car items)) capacity)
+			   (branch (- capacity (item-weight (car items)))
+				   (+ value (item-value (car items)))
 				   (cdr items)))
 			 (branch capacity
 				 value
@@ -35,13 +37,16 @@
     (branch capacity 0 (order-by-density items))
     best))
 
+(define item-weight car)
+
+(define item-value cdr)
+
+(define (density item)
+  (/ (item-value item)
+     (item-weight item)))
+
 (define (order-by-density items)
-  (list-sort (lambda (w1.v1 w2.v2)
-	       (> (/ (cdr w1.v1) (car w1.v1))
-		  (/ (cdr w2.v2) (car w2.v2))))
+  (list-sort (lambda (a b)
+	       (> (density a)
+		  (density b)))
 	     items))
-
-
-
-
-

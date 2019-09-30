@@ -90,6 +90,18 @@
       ]
     },
     {
+      "slug": "knapsack",
+      "uuid": "96f2a7e3-1283-4fca-944d-8cf2fe463c56",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 6,
+      "topics": [
+        "dynamic_programming",
+        "optimization",
+        "search"
+      ]
+    },
+    {
       "slug": "bob",
       "uuid": "4cf6697c-ad9e-426c-a2d8-6c3695812421",
       "core": false,
@@ -187,18 +199,6 @@
       "topics": [
         "cipher",
         "string"
-      ]
-    },
-    {
-      "slug": "knapsack",
-      "uuid": "96f2a7e3-1283-4fca-944d-8cf2fe463c56",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 6,
-      "topics": [
-        "dynamic_programming",
-        "optimization",
-        "search"
       ]
     }
   ]
