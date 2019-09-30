@@ -2,6 +2,6 @@
 
 (load "test.scm")
 
-(define (knapsack capacity weights vlues)
+(define (knapsack capacity weights values)
   'implement-me!)
 

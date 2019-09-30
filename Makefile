@@ -23,7 +23,8 @@ implementations := \
 	two-fer \
 	word-count \
 	knapsack \
-	raindrops
+	raindrops \
+	phone-number
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

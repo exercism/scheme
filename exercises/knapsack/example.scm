@@ -20,7 +20,6 @@
 					(item-weight (car items)))
 				     (cdr items)))))))
 	   ;; search for best knapsack
-	   
 	   (branch (lambda (capacity value items)
 		     (when (< best value)
 		       (set! best value))

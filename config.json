@@ -116,8 +116,11 @@
       "uuid": "9f13b913-a650-4cbf-a392-4b5614e1aa2a",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 1,
-      "topics": null
+      "difficulty": 3,
+      "topics": [
+        "control_flow",
+        "string"
+      ]
     },
     {
       "slug": "robot-name",
