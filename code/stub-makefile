@@ -3,7 +3,7 @@ guile := guile
 guile-args := --no-auto-compile -q -l example.scm -c
 
 run-test = \
-	"(when (eq? 'failure (test)) (error '$(1) \"incorrect implementation\"))"
+	"(when (eq? 'failure (test 'input 'output)) (error '$(1) \"incorrect implementation\"))"
 
 all : check-chez check-guile
 
