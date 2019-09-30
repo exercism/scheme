@@ -14,9 +14,7 @@
      ((slug . hello-world)
       (uuid . "f2936612-edc4-44f9-a403-c60f7c6486e4")
       (core . #t)
-      ;; nb configlet fmt rejects auto-approve but doesn't mind
-      ;; unlocked-by.
-      (auto_approve . #t)
+      (auto-approve . #t)
       (unlocked-by)
       (difficulty . 1)
       (topics warmup))
