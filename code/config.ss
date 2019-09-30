@@ -47,20 +47,6 @@
       (difficulty . 3)
       (topics math))
 
-     ((slug . hamming)
-      (uuid . "ce513303-471b-459a-bcf1-6c69f4d83ae7")
-      (core . #t)
-      (unlocked-by)
-      (difficulty . 3)
-      (topics list))
-
-     ((slug . grains)
-      (uuid . "397d9cfc-43f9-4c57-bc55-5c94ae8f532e")
-      (core . #t)
-      (unlocked-by)
-      (difficulty . 3)
-      (topics math))
-
      ((slug . anagram)
       (uuid . "c550055c-4bd5-478b-8e91-94347a314aef")
       (core . #t)
