@@ -2,5 +2,6 @@
 
 (load "test.scm")
 
-(define (phone-number) 'implement-me!)
+(define (clean phone-number)
+  'implement-me!)
 

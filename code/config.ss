@@ -103,8 +103,8 @@
      ((slug . phone-number)
       (uuid . "8ed74044-2361-459e-aca5-abd73ed5c1cb")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
+      (unlocked-by raindrops)
+      (difficulty . 4)
       (topics string))
      
      ((slug . nucleotide-count)
