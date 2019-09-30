@@ -9,19 +9,21 @@
       (delete-file config.json))
     (with-output-to-file config.json
       (lambda ()
-	(json-write (process-config))))))
+        (json-write (process-config) 'pretty)))))
 
-;; preprocess nodes in config. currently removes exercises marked wip
+;; Top level helper for make-config
 (define (process-config)
   (map (lambda (x)
          (if (not (eq? (car x) 'exercises))
              x
-             `(exercises . ,(remp (lambda (exercise)
-                                    (memq 'wip (map car exercise)))
-                                  (cdr x)))))
+             (cons 'exercises
+                   (exercises->snake-case
+                    (remp (lambda (exercise)
+                            (memq 'wip (map car exercise)))
+                          (cdr x))))))
        track-config))
 
-;; Check problem's entry in config for uuid and existence.
+;; Check problem's entry in config for uuid and existence
 (define (check-config-for problem)
   (format #t "checking config for ~a~%" problem)
   (let ((exercisms (lookup 'exercises track-config)))
@@ -53,28 +55,28 @@
 ;; fetch the files in the given problem's directory
 (define (get-problem-specification problem)
   (let* ((problem-dir (format "../problem-specifications/exercises/~a" problem))
-	 (spec (directory-list problem-dir)))
+         (spec (directory-list problem-dir)))
     (map (lambda (file)
-	   (format "~a/~a" problem-dir file))
-	 spec)))
+           (format "~a/~a" problem-dir file))
+         spec)))
 
 ;; fetches the README.md file for a given problem
 ;; nb: likely be replaced by sxml configuration
 (define (write-problem-description problem)
   (let ((file (find (lambda (spec)
-		      (string=? "md" (path-extension spec)))
-		    (get-problem-specification problem)))
-	(dir (format "code/exercises/~a" problem)))
+                      (string=? "md" (path-extension spec)))
+                    (get-problem-specification problem)))
+        (dir (format "code/exercises/~a" problem)))
     (unless file
       (error 'get-problem-description "couldn't find description" problem))
     (system (format "mkdir -p ~a && cp ~a ~a/README.md"
-		    dir file dir))))
+                    dir file dir))))
 
-;; reads the test specification for a given problem 
+;; reads the test specification for a given problem
 (define (get-test-specification problem)
   (let ((test-suite-file (find (lambda (spec)
-				 (string=? "json" (path-extension spec)))
-			       (get-problem-specification problem))))
+                                 (string=? "json" (path-extension spec)))
+                               (get-problem-specification problem))))
     (unless test-suite-file
       (error 'get-test-specification "couldn't find test suite for" problem))
     (with-input-from-file test-suite-file json-read)))
@@ -105,10 +107,10 @@
 ;; solution.
 (define (put-problem! problem implementation)
   (for-each (lambda (aspect)
-	      (unless (assoc aspect implementation)
-		(error 'put-test! "problem does not implement" problem aspect)))
-	    ;; test is an sexpression. skeleton and solution are file paths
-	    '(test skeleton solution))
+              (unless (assoc aspect implementation)
+                (error 'put-test! "problem does not implement" problem aspect)))
+            ;; test is an sexpression. skeleton and solution are file paths
+            '(test skeleton solution))
   (hashtable-set! *problem-table* problem implementation))
 
 ;; look up the problem in the problem table.
@@ -132,25 +134,25 @@
   (let* ((dir (format "code/exercises/~a" problem))
 	 (implementation (format "~a/test.ss" dir))
          ;; todo, add "properties" found in spec to stub skeleton and solution
-	 (skeleton (format "~a/~a.scm" dir problem))
-	 (solution (format "~a/example.scm" dir))
+         (skeleton (format "~a/~a.scm" dir problem))
+         (solution (format "~a/example.scm" dir))
          ;; see code/exercises/anagram/anagram.ss for more information
-	 (stub-implementation
-	  `(,@'((define (parse-test test)
-		  `(lambda ()
-		     (test-success (lookup 'description test)
-				   equal?
-				   problem
-				   (lookup 'input test)
-				   (lookup 'expected test))))
-		(define (spec->tests spec)
-		  `(,@*test-definitions*
+         (stub-implementation
+          `(,@'((define (parse-test test)
+                  `(lambda ()
+                     (test-success (lookup 'description test)
+                                   equal?
+                                   problem
+                                   (lookup 'input test)
+                                   (lookup 'expected test))))
+                (define (spec->tests spec)
+                  `(,@*test-definitions*
                     (define (test . args)
 		      (apply run-test-suite
 			     (list ,@(map parse-test (lookup 'cases spec)))
 			     args)))))
 	    (put-problem! ',problem
-			  ;; fixme, quoted expression for test not working 
+			  ;; fixme, quoted expression for test not working
 			  `((test . ,(spec->tests
 				      (get-test-specification ',problem)))
 			    (skeleton . ,,(path-last skeleton))
