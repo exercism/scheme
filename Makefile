@@ -20,7 +20,8 @@ implementations := \
 	difference-of-squares \
 	nucleotide-count \
 	scrabble-score \
-	two-fer
+	two-fer \
+	word-count
 
 load := load.ss
 
