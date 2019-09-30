@@ -7,7 +7,6 @@
       "slug": "hello-world",
       "uuid": "f2936612-edc4-44f9-a403-c60f7c6486e4",
       "core": true,
-      "auto_approve": true,
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
@@ -116,11 +115,8 @@
       "uuid": "9f13b913-a650-4cbf-a392-4b5614e1aa2a",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "control_flow",
-        "string"
-      ]
+      "difficulty": 1,
+      "topics": null
     },
     {
       "slug": "robot-name",
@@ -135,7 +131,7 @@
       "uuid": "8ed74044-2361-459e-aca5-abd73ed5c1cb",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 4,
+      "difficulty": 1,
       "topics": [
         "string"
       ]
