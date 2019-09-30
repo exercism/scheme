@@ -23,8 +23,6 @@ implementations := \
 	two-fer \
 	word-count
 
-load := load.ss
-
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
 exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))
@@ -36,6 +34,9 @@ track-requirements := \
 	code/stub-makefile \
 	$(track-documentation) \
 	$(exercisms)
+
+# run given expression after loading load.ss
+exercise = echo $(1) | $(chez) -q load.ss
 
 default : track
 
@@ -49,15 +50,15 @@ bin/configlet :
 
 # configuration
 config.json : code/config.ss
-	echo "(make-config)" | $(chez) -q $(load)
+	$(call exercise, "(make-config)")
 
 # documentation
 docs/%.md : code/md.ss code/docs/%.ss
-	echo "(put-md '$(@F:.md=))" | $(chez) -q $(load)
+	$(call exercise, "(put-md '$(@F:.md=))")
 
 # exercises
 exercises/% : code/track.ss code/exercises/%/* code/stub-makefile
-	echo "(make-exercism '$(@F))" | $(chez) -q $(load)
+	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
 track : $(track-requirements)

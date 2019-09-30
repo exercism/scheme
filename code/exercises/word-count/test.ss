@@ -1,17 +1,7 @@
 (define (parse-test test)
   `(lambda ()
      (test-success ,(lookup 'description test)
-		   (lambda (result expected)
-		     (and (= (length expected)
-			     (hashtable-size result))
-			  (fold-left (lambda (count-agrees w.c)
-				       (and count-agrees
-					    (= (cdr w.c)
-					       (hashtable-ref result
-							      (car w.c)
-							      0))))
-				     #t
-				     expected)))
+		   count-equal?
 		   word-count
 		   '(,(cdar (lookup 'input test)))
 		   '(,@(map (lambda (expected)
@@ -21,6 +11,21 @@
 
 (define (spec->tests spec)
   `(,@*test-definitions*
+    (define (count-equal? result expected)
+      (let ((get-count (if (hashtable? result)
+			   (lambda (word)
+			     (hashtable-ref result word 0))
+			   (lambda (word)
+			     (cond ((assoc word result) => cdr)
+				   (else 0))))))
+	(and (= (length expected)
+		(hashtable-size result))
+	     (fold-left (lambda (count-agrees w.c)
+			  (and count-agrees
+			       (= (cdr w.c)
+				  (get-count (car w.c)))))
+			#t
+			expected))))
     (define (test . args)
       (apply
        run-test-suite
