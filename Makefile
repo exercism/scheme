@@ -22,7 +22,8 @@ implementations := \
 	scrabble-score \
 	two-fer \
 	word-count \
-	knapsack
+	knapsack \
+	raindrops
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

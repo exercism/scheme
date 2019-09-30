@@ -89,10 +89,10 @@
      ((slug . raindrops)
       (uuid . "9f13b913-a650-4cbf-a392-4b5614e1aa2a")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics))
-     
+      (unlocked-by leap)
+      (difficulty . 3)
+      (topics control-flow string))
+
      ((slug . robot-name)
       (uuid . "62a5a71c-a9eb-416b-809c-c862a4828e8b")
       (core . #f)
