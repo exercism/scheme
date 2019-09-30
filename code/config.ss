@@ -19,7 +19,7 @@
       (auto_approve . #t)
       (unlocked-by)
       (difficulty . 1)
-      (topics))
+      (topics warmup))
      
      ((slug . leap)
       (uuid . "b94548df-3b35-4ce1-80c7-36179d2b3b86")
@@ -33,7 +33,7 @@
       (core . #t)
       (unlocked-by)
       (difficulty . 2)
-      (topics string map))
+      (topics string))
      
      ((slug . hamming)
       (uuid . "ce513303-471b-459a-bcf1-6c69f4d83ae7")
@@ -61,7 +61,7 @@
       (core . #t)
       (unlocked-by)
       (difficulty . 3)
-      (topics math))
+      (topics math list))
      
      ((slug . pascals-triangle)
       (uuid . "d5caff8b-ffaa-4055-9bb9-7d31a4480956")
@@ -69,6 +69,13 @@
       (unlocked-by)
       (difficulty . 5)
       (topics recursion list math))
+
+     ((slug . knapsack)
+      (uuid . "96f2a7e3-1283-4fca-944d-8cf2fe463c56")
+      (core . #t)
+      (unlocked-by)
+      (difficulty . 6)
+      (topics optimization dynamic-programming search))
 
      ;;; Other problems
      
@@ -103,9 +110,9 @@
      ((slug . nucleotide-count)
       (uuid . "d72cf2c3-9f30-4df1-a69b-04c638bb2426")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics))
+      (unlocked-by rna-transcription)
+      (difficulty . 3)
+      (topics string hashtable))
      
      ((slug . list-ops)
       (uuid . "903374d2-8155-4fe3-bf90-5b6359c7b5cc")
@@ -119,21 +126,21 @@
       (core . #f)
       (unlocked-by rna-transcription)
       (difficulty . 3)
-      (topics))
+      (topics string list))
      
      ((slug . word-count)
       (uuid . "9460b65d-dc80-4a95-8782-b395d2cc979e")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics))
+      (unlocked-by nucleotide-count)
+      (difficulty . 4)
+      (topics string hashtable parsing))
      
      ((slug . two-fer)
       (uuid . "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e")
       (core . #f)
       (unlocked-by hello-world)
       (difficulty . 3)
-      (topics))
+      (topics control-flow string))
 
      ;; math problems
      ((slug . sieve)
@@ -166,16 +173,8 @@
      ((slug . atbash-cipher)
       (uuid . "82169e85-3938-48da-ada9-7394adadc57a")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
-      (topics string cipher))
-
-     ((slug . knapsack)
-      (uuid . "96f2a7e3-1283-4fca-944d-8cf2fe463c56")
-      (core . #f)
-      (unlocked-by)
-      (difficulty . 6)
-      (topics optimization dynamic-programming search)
-      (wip)))
+      (unlocked-by rna-transcription)
+      (difficulty . 4)
+      (topics string cipher)))
     
     ))

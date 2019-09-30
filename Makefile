@@ -20,9 +20,9 @@ implementations := \
 	difference-of-squares \
 	nucleotide-count \
 	scrabble-score \
-	two-fer
-
-load := load.ss
+	two-fer \
+	word-count \
+	knapsack
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
@@ -36,6 +36,9 @@ track-requirements := \
 	$(track-documentation) \
 	$(exercisms)
 
+# run given expression after loading load.ss
+exercise = echo $(1) | $(chez) -q load.ss
+
 default : track
 
 # exercism/problem-specifications repo
@@ -48,15 +51,15 @@ bin/configlet :
 
 # configuration
 config.json : code/config.ss
-	echo "(make-config)" | $(chez) -q $(load)
+	$(call exercise, "(make-config)")
 
 # documentation
 docs/%.md : code/md.ss code/docs/%.ss
-	echo "(put-md '$(@F:.md=))" | $(chez) -q $(load)
+	$(call exercise, "(put-md '$(@F:.md=))")
 
 # exercises
 exercises/% : code/track.ss code/exercises/%/* code/stub-makefile
-	echo "(make-exercism '$(@F))" | $(chez) -q $(load)
+	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
 track : $(track-requirements)

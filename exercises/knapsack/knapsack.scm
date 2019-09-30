@@ -2,6 +2,6 @@
 
 (load "test.scm")
 
-(define (word-count sentence)
+(define (knapsack capacity weights vlues)
   'implement-me!)
 

@@ -10,7 +10,9 @@
       "auto_approve": true,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "warmup"
+      ]
     },
     {
       "slug": "leap",
@@ -30,7 +32,6 @@
       "unlocked_by": null,
       "difficulty": 2,
       "topics": [
-        "map",
         "string"
       ]
     },
@@ -72,6 +73,7 @@
       "unlocked_by": null,
       "difficulty": 3,
       "topics": [
+        "list",
         "math"
       ]
     },
@@ -85,6 +87,18 @@
         "list",
         "math",
         "recursion"
+      ]
+    },
+    {
+      "slug": "knapsack",
+      "uuid": "96f2a7e3-1283-4fca-944d-8cf2fe463c56",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 6,
+      "topics": [
+        "dynamic_programming",
+        "optimization",
+        "search"
       ]
     },
     {
@@ -128,8 +142,11 @@
       "uuid": "d72cf2c3-9f30-4df1-a69b-04c638bb2426",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 1,
-      "topics": null
+      "difficulty": 3,
+      "topics": [
+        "hashtable",
+        "string"
+      ]
     },
     {
       "slug": "list-ops",
@@ -145,15 +162,22 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 3,
-      "topics": null
+      "topics": [
+        "list",
+        "string"
+      ]
     },
     {
       "slug": "word-count",
       "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 1,
-      "topics": null
+      "difficulty": 4,
+      "topics": [
+        "hashtable",
+        "parsing",
+        "string"
+      ]
     },
     {
       "slug": "two-fer",
@@ -161,14 +185,17 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 3,
-      "topics": null
+      "topics": [
+        "control_flow",
+        "string"
+      ]
     },
     {
       "slug": "atbash-cipher",
       "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "cipher",
         "string"
