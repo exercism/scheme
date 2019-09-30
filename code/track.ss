@@ -28,17 +28,17 @@
   (format #t "checking config for ~a~%" problem)
   (let ((exercisms (lookup 'exercises track-config)))
     (cond ((find (lambda (exercism)
-                   (eq? problem (lookup 'slug exercism)))
-                 exercisms)
-           =>
-           (lambda (config)
-             (unless (assoc 'uuid config)
-               (error 'check-config-for
-                      "please set uuid"
-                      problem))))
-          (else (error 'check-config-for
-                       "please add problem to config/config.ss"
-                       problem)))))
+		   (eq? problem (lookup 'slug exercism)))
+		 exercisms)
+	   =>
+	   (lambda (config)
+	     (unless (assoc 'uuid config)
+	       (error 'check-config-for
+		      "please set uuid"
+		      problem))))
+	  (else (error 'check-config-for
+		       "please add problem to config/config.ss"
+		       problem)))))
 
 ;;; UUID
 
