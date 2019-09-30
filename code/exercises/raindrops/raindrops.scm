@@ -2,5 +2,6 @@
 
 (load "test.scm")
 
-(define (raindrops) 'implement-me!)
+(define (convert number)
+  'implement-me!)
 
