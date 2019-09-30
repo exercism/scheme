@@ -3,7 +3,7 @@
 (load "test.scm")
 
 (define (knapsack capacity weights values)
-  (branch&bound capacity (order-by-density (map cons weights values))))
+  (branch&bound capacity (map cons weights values)))
 
 (define (branch&bound capacity items)
   (letrec ((best 0)
@@ -32,7 +32,7 @@
 			 (branch capacity
 				 value
 				 (cdr items)))))))
-    (branch capacity 0 items)
+    (branch capacity 0 (order-by-density items))
     best))
 
 (define (order-by-density items)

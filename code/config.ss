@@ -70,6 +70,13 @@
       (difficulty . 5)
       (topics recursion list math))
 
+     ((slug . knapsack)
+      (uuid . "96f2a7e3-1283-4fca-944d-8cf2fe463c56")
+      (core . #t)
+      (unlocked-by)
+      (difficulty . 6)
+      (topics optimization dynamic-programming search))
+
      ;;; Other problems
      
      ((slug . bob)
@@ -168,13 +175,6 @@
       (core . #f)
       (unlocked-by rna-transcription)
       (difficulty . 4)
-      (topics string cipher))
-
-     ((slug . knapsack)
-      (uuid . "96f2a7e3-1283-4fca-944d-8cf2fe463c56")
-      (core . #f)
-      (unlocked-by)
-      (difficulty . 6)
-      (topics optimization dynamic-programming search)))
+      (topics string cipher)))
     
     ))
