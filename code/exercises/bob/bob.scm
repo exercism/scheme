@@ -2,5 +2,5 @@
 
 (load "test.scm")
 
-(define (bob) 'implement-me!)
-
+(define (response-for message)
+  'implement-me!)

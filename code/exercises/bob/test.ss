@@ -2,7 +2,7 @@
   (let ((input (lookup 'heyBob (lookup 'input test))))
   `(lambda ()
      (test-success ,(lookup 'description test) equal? response-for
-       ,input (lookup 'expected test)))))
+       ,input ,(lookup 'expected test)))))
 
 (define (spec->tests spec)
   `(,@*test-definitions*
