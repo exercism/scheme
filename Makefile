@@ -24,7 +24,8 @@ implementations := \
 	word-count \
 	knapsack \
 	raindrops \
-	phone-number
+	phone-number \
+	bob
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

@@ -1,8 +1,12 @@
 (define (parse-test test)
   (let ((input (lookup 'heyBob (lookup 'input test))))
-  `(lambda ()
-     (test-success ,(lookup 'description test) equal? response-for
-       ,input ,(lookup 'expected test)))))
+    `(lambda ()
+       (test-success ,(lookup 'description test)
+		     equal? response-for
+		     ;; input needs to be a list. since the procedure
+		     ;; response-for is called via (apply response-for arg-list)
+		     '(,input)
+		     ,(lookup 'expected test)))))
 
 (define (spec->tests spec)
   `(,@*test-definitions*

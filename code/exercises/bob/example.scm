@@ -1,12 +1,18 @@
-(import (rnrs (6))
-        (srfi :1))
+(import (rnrs (6)
+	      ;; no srfi :1 here if we want portability between
+	      ;; schemes.
+	      ))
 
 (load "test.scm")
 
 (define (response-for message)
   (let ((not-whitespace?
          (lambda (c) (not (char-whitespace? c)))))
-    (bob-reply (string-filter not-whitespace? message))))
+    ;; sadly, instead of string-filter. If we want basic funtions like
+    ;; this, they could be added to `test.ss`
+    (bob-reply (list->string
+		(filter not-whitespace?
+			(string->list message))))))
 
 ;; Now we can really easily write new responder functions
 (define (bob-reply message)
@@ -27,6 +33,7 @@
            (unless (string=? "" message)
              (char=? #\? (string-last message))))))
     (lambda (message)
+      ;; confusing shadowing
       (define question (question? message))
       (define yelling  (yelling?  message))
       ;; transform results to enum
