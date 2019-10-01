@@ -1,7 +1,8 @@
 (define (parse-test test)
+  (let ((input (lookup 'heyBob (lookup 'input test))))
   `(lambda ()
-     (test-success (lookup 'description test) equal? problem
-       (lookup 'input test) (lookup 'expected test))))
+     (test-success ,(lookup 'description test) equal? response-for
+       ,input (lookup 'expected test)))))
 
 (define (spec->tests spec)
   `(,@*test-definitions*
