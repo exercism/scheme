@@ -23,6 +23,6 @@ arguments to the procedure "
     " and to see the output as well call "
     (inline-code "(test 'input 'output)")
     "."
-
+    
     ))
 
