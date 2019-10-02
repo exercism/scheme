@@ -187,7 +187,23 @@
       (system
        (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a/Makefile"
 	       dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
+      (hint-exercism problem)
       (write-expression-to-file (lookup 'test implementation) test.scm))))
+
+;; If hint field is specified, include .meta/hints.md in exercise
+;; directory.
+(define (hint-exercism problem)
+  (cond ((assoc 'hints.md (get-problem problem)) =>
+	 (lambda (hint)
+	   (let* ((target (format "_build/exercises/~a/.meta/hints.md" problem))
+		  (meta-dir (path-parent target)))
+	     (unless (file-exists? meta-dir)
+	       (mkdir (path-parent target)))
+	     (when (file-exists? target)
+	       (delete-file target))
+	     (with-output-to-file target
+	       (lambda ()
+		 (send-reply (sxml->md (cdr hint))))))))))
 
 ;; test the problem output in _build/exercises/problem/*
 (define (verify-exercism problem)

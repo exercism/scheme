@@ -66,7 +66,7 @@ $(readme-splice) : docs/TESTS.md
 	cp $< $@
 
 # exercises
-exercises/% : code/track.ss code/exercises/%/* code/stub-makefile
+exercises/% : code/track.ss code/exercises/%/* code/stub-makefile code/docs/tests.ss
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
