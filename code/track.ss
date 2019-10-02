@@ -203,7 +203,7 @@
 	       (delete-file target))
 	     (with-output-to-file target
 	       (lambda ()
-		 (send-reply (sxml->md (cdr hint))))))))))
+		 (put-md (cdr hint)))))))))
 
 ;; test the problem output in _build/exercises/problem/*
 (define (verify-exercism problem)

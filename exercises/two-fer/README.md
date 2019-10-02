@@ -28,7 +28,7 @@ Here are some examples:
 # Notes
 
 One way to get optional arguments in scheme is by specifying the arguments as a list\.
-Two ways to do that are: `(define (two-fer . args) ...)` or `(define two-fer (lambda args ...) ...)`\.
+Two ways to do that are: `(define (two-fer . args) ...)` or `(define two-fer (lambda args ...))`\.
 
 
 # Running and testing your solutions
@@ -47,8 +47,9 @@ reload the file to run the tests again\.
 ## Testing options
 
 You can see more information about failing test cases by passing
-arguments to the procedure `test`\. 
+arguments to the procedure `test`\.
 To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
+
 ## Source
 
 [https://github.com/exercism/problem-specifications/issues/757](https://github.com/exercism/problem-specifications/issues/757)

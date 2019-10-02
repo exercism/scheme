@@ -39,8 +39,9 @@ reload the file to run the tests again\.
 ## Testing options
 
 You can see more information about failing test cases by passing
-arguments to the procedure `test`\. 
+arguments to the procedure `test`\.
 To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
+
 ## Source
 
 JavaRanch Cattle Drive, exercise 3 [http://www.javaranch.com/leap.jsp](http://www.javaranch.com/leap.jsp)

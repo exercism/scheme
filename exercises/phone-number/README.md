@@ -44,8 +44,9 @@ reload the file to run the tests again\.
 ## Testing options
 
 You can see more information about failing test cases by passing
-arguments to the procedure `test`\. 
+arguments to the procedure `test`\.
 To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
+
 ## Source
 
 Event Manager by JumpstartLab [http://tutorials.jumpstartlab.com/projects/eventmanager.html](http://tutorials.jumpstartlab.com/projects/eventmanager.html)

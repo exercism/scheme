@@ -20,6 +20,24 @@
 
 ;; transform sxml tree into tree of strings. the tree of strings can
 ;; be traversed outputting each node with `send-reply`.
+
+(define sxml-bindings
+  `((section . ,(lambda (_ title . x)
+		  `((h1 ,title) (nl) ,@x)))
+    (subsection . ,(lambda (_ subtitle . x)
+		     `((h2 ,subtitle) (nl) ,@x)))
+    (paragraph . ,(lambda (_ . x)
+		    `(,@x (nl) (nl))))
+    (sentence . ,(lambda (_ . x)
+		   `(,@x (nl))))
+    (link . ,(case-lambda
+	       ((_ description href)
+		`(*raw* "[" ,description "]" "(" ,href ")"))
+	       ((_ description href title)
+		`(*raw* "[" ,description "]" "(" ,href "\"" ,title "\"" ")"))))
+    (*default* . ,(lambda x x))
+    (*text* . ,(lambda (_ . x) x))))
+
 (define (sxml->md tree)
   (cond
    ((nodeset? tree) (map sxml->md tree))
@@ -28,6 +46,7 @@
 	   (name (symbol->string tag))
 	   (content (content-raw tree)))
       (case tag
+	((*raw*) content)
 	((bold) `("__" ,@(sxml->md content) "__"))
 	((emphasis) `("_" ,@(sxml->md content) "_"))
 	((strike-through) `("~~" ,@(sxml->md content) "~~"))
@@ -41,20 +60,7 @@
 	((h6) `("###### " ,@(sxml->md content) "\n"))
 	((item) `("* " ,@(sxml->md content) "\n"))
 	((enum) `("\n" ,@(sxml->md content) "\n"))
-	((link)
-	 (unless (and (list? content) (= 2 (length content)))
-	   (error 'sxml->md "incorrect link. provide description and url"
-		  content))
-	 `("[" ,(car content) "]" "(" ,(cadr content) ")"))
-	((link-with-title)
-	 (unless (and (list? content) (= 3 (length content)))
-	   (error 'sxml->md "incorrect link. provide description and url and title"
-		  content))
-	 `("[" ,(car content) "](" ,(cadr content) " \"" ,(caddr content) "\")"))
-	((sentence)
-	 `(,@(sxml->md content) "\n"))
-	((nl)
-	 "\n")
+	((nl) "\n")
 	(else (error 'sxml->md "unexpected tag" tag)))))
    ((string? tree) (list (string->goodMD tree)))
    ((symbol? tree) (list (string->goodMD (symbol->string tree))))
@@ -62,7 +68,7 @@
 
 ;; a simple way to test the output. eventual goal is to generate the
 ;; markdown in docs/*
-(define (put-md md)
+(define (put-doc md)
   (let ((source (format "code/docs/~a.ss" md))
 	(target (format "docs/~a.md" (string-upcase (symbol->string md)))))
     (load source)
@@ -70,10 +76,14 @@
       (delete-file target))
     (with-output-to-file target
       (lambda ()
-	(send-reply (sxml->md content))))))
+	(put-md content)))))
+
+(define (put-md md)
+  (send-reply
+   (sxml->md
+    (pre-post-order md sxml-bindings))))
 
 (define (md-hints md)
-  `((h1 "Notes") (nl)
-    ,@md))
+  `(section "Notes" ,@md))
 
 

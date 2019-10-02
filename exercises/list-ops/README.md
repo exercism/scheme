@@ -35,8 +35,9 @@ reload the file to run the tests again\.
 ## Testing options
 
 You can see more information about failing test cases by passing
-arguments to the procedure `test`\. 
+arguments to the procedure `test`\.
 To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
+
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
