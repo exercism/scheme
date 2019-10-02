@@ -29,6 +29,6 @@
 	(sentence "Two ways to do that are: "
 		  (inline-code "(define (two-fer . args) ...)")
 		  " or "
-		  (inline-code "(define two-fer (lambda args ...) ...)")
+		  (inline-code "(define two-fer (lambda args ...))")
 		  "."))))))
 
