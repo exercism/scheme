@@ -73,6 +73,10 @@ Exercisms in scheme.
     reads the problem-specifications repository and returns a list of
     specified problems.
 
+    Last, but not least, add the problem to the list of
+    =implementations= in the Makefile so that it actually gets
+    included in builds and tests!
+
 *** Adding problems not in exercism/problem-specifications
 
     New problems from outside of the specifications are welcome as
