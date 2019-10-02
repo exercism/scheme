@@ -25,16 +25,16 @@
 
 (define (test-error description procedure input)
   (call/cc
-    (lambda (k)
-      (with-exception-handler
-        (lambda (e)
-          (k `(pass . ,description)))
-	(lambda ()
-	  (test-run-scheme procedure input)
-	  `(fail . ((description . ,description)
-		    (input . ,input)
-		    (output . ,output)
-		    (who . ,procedure))))))))
+   (lambda (k)
+     (with-exception-handler
+	 (lambda (e)
+	   (k `(pass . ,description)))
+       (lambda ()
+	 (test-run-solution procedure input)
+	 `(fail . ((description . ,description)
+		   (input . ,input)
+		   (output . error)
+		   (who . ,procedure))))))))
 
 (define (run-test-suite tests . query)
   (for-each (lambda (field)
