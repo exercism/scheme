@@ -14,6 +14,23 @@ respond with a new random name.
 The names must be random: they should not follow a predictable sequence.
 Random names means a risk of collisions. Your solution must ensure that
 every existing robot has a unique name.
+
+# Running and testing your solutions
+
+## Overview
+
+Suppose you're solving __hello\-world__:
+
+* Start a REPL, either in your favorite editor or from the
+command line\.
+* Type `(load "hello-world.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+
+## Testing options
+
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\. 
+To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`\.
 ## Source
 
 A debugging session with Paul Blackwell at gSchool. [http://gschool.it](http://gschool.it)

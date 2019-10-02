@@ -35,6 +35,23 @@ weight 4 and value 40, and so on.
 In this example, Bob should take the second and fourth item to maximize his
 value, which, in this case, is 90. He cannot get more than 90 as his
 knapsack has a weight limit of 10.
+
+# Running and testing your solutions
+
+## Overview
+
+Suppose you're solving __hello\-world__:
+
+* Start a REPL, either in your favorite editor or from the
+command line\.
+* Type `(load "hello-world.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+
+## Testing options
+
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\. 
+To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`\.
 ## Source
 
 Wikipedia [https://en.wikipedia.org/wiki/Knapsack_problem](https://en.wikipedia.org/wiki/Knapsack_problem)

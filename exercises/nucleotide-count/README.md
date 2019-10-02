@@ -11,6 +11,23 @@ Here is an analogy:
 - nucleotides are to DNA as
 - legos are to lego houses as
 - words are to sentences as...
+
+# Running and testing your solutions
+
+## Overview
+
+Suppose you're solving __hello\-world__:
+
+* Start a REPL, either in your favorite editor or from the
+command line\.
+* Type `(load "hello-world.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+
+## Testing options
+
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\. 
+To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`\.
 ## Source
 
 The Calculating DNA Nucleotides_problem at Rosalind [http://rosalind.info/problems/dna/](http://rosalind.info/problems/dna/)
