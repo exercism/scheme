@@ -152,6 +152,13 @@
       (topics math vector)
       (wip))
 
+     ((slug . prime-factors)
+      (uuid . "e9f82c77-fde0-41fd-a0b6-e459bd3b71d9")
+      (core . #f)
+      (unlocked-by . grains)
+      (difficulty . 5)
+      (topics math))
+
      ((slug . change)
       (uuid . "6f2d8731-2c2c-4faa-a9bf-11f785c2e5bc")
       (core . #f)
