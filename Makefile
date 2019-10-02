@@ -25,7 +25,8 @@ implementations := \
 	knapsack \
 	raindrops \
 	phone-number \
-	prime-factors
+	prime-factors \
+	transpose
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

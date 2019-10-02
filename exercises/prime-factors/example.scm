@@ -2,12 +2,6 @@
 
 (load "test.scm")
 
-(define (square x)
-  (* x x))
-
-(define (divides? d n)
-  (zero? (modulo n d)))
-
 (define (factorize n)
   (if (even? n)
       (cons 2 (factorize (/ n 2)))
@@ -18,4 +12,10 @@
                (cons d (loop d (/ n d))))
               (else
                (loop (+ d 2) n))))))
+
+(define (square x)
+  (* x x))
+
+(define (divides? d n)
+  (zero? (modulo n d)))
 

@@ -183,6 +183,13 @@
       (core . #f)
       (unlocked-by . hamming)
       (difficulty . 4)
-      (topics string cipher)))
+      (topics string cipher))
+
+     ((slug . transpose)
+      (uuid . "f2dc14e3-89e9-4942-80b6-6578b7a7f71b")
+      (core . #f)
+      (unlocked-by . hello-world)
+      (difficulty . 6)
+      (topics list)))
 
     ))
