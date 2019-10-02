@@ -1,30 +1,36 @@
 # Nucleotide Count
 
-Given a DNA string, compute how many times each nucleotide occurs in the string.
+Given a single stranded DNA string, compute how many times each nucleotide occurs in the string.
 
-DNA is represented by an alphabet of the following symbols: 'A', 'C',
-'G', and 'T'.
+The genetic language of every living thing on the planet is DNA.
+DNA is a large molecule that is built from an extremely long sequence of individual elements called nucleotides.
+4 types exist in DNA and these differ only slightly and can be represented as the following symbols: 'A' for adenine, 'C' for cytosine, 'G' for guanine, and 'T' thymine.
 
-Each symbol represents a nucleotide, which is a fancy name for the
-particular molecules that happen to make up a large part of DNA.
-
-Shortest intro to biochemistry EVAR:
-
+Here is an analogy:
 - twigs are to birds nests as
-- nucleotides are to DNA and RNA as
-- amino acids are to proteins as
-- sugar is to starch as
-- oh crap lipids
+- nucleotides are to DNA as
+- legos are to lego houses as
+- words are to sentences as...
 
-I'm not going to talk about lipids because they're crazy complex.
+# Running and testing your solutions
 
-So back to nucleotides.
+## Overview
 
-DNA contains four types of them: adenine (`A`), cytosine (`C`), guanine
-(`G`), and thymine (`T`).
+Suppose you're solving __halting\-problem__:
 
-RNA contains a slightly different set of nucleotides, but we don't care
-about that for now.
+* Start a REPL, either in your favorite editor or from the
+command line\.
+* Type `(load "halting-problem.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\. At first this should result in failed tests\.
+* Develop your solution in "halting\-problem\.scm" and
+reload the file to run the tests again\.
+
+## Testing options
+
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\.
+To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
+
 ## Source
 
 The Calculating DNA Nucleotides_problem at Rosalind [http://rosalind.info/problems/dna/](http://rosalind.info/problems/dna/)
