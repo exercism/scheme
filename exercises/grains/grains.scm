@@ -2,6 +2,9 @@
 
 (load "test.scm")
 
-(define (grains n)
+(define (square n)
+  'implement-me!)
+
+(define total
   'implement-me!)
 

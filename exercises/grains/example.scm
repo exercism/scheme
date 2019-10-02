@@ -3,7 +3,7 @@
 (load "test.scm")
 
 (define (square n)
-  (when (or (< n 0) (> n 64))
+  (when (or (< n 1) (> n 64))
     (error 'square "out of range" n))
   (ash 1 (1- n)))
 
