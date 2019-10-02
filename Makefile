@@ -38,7 +38,6 @@ track-requirements := \
 	config.json \
 	code/stub-makefile \
 	$(readme-splice) \
-	$(track-documentation) \
 	$(exercisms)
 
 # run given expression after loading load.ss
@@ -60,19 +59,18 @@ config.json : code/config.ss
 
 # documentation
 docs/%.md : code/md.ss code/docs/%.ss
-	$(call exercise, "(put-md '$(@F:.md=))")
+	$(call exercise, "(put-doc '$(@F:.md=))")
 
-$(readme-splice) : docs/TESTS.md
-	cp $< $@
+$(readme-splice) : $(track-documentation)
+	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/track.ss code/exercises/%/* code/stub-makefile
+exercises/% : code/track.ss code/md.ss code/exercises/%/* code/stub-makefile code/docs/tests.ss
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
 track : $(track-requirements)
 	./bin/configlet generate .
-#	./bin/configlet fmt .
 	./bin/configlet lint .
 
 clean :

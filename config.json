@@ -107,10 +107,10 @@
       "core": false,
       "unlocked_by": "anagram",
       "difficulty": 1,
+      "deprecated": true,
       "topics": [
         "string"
-      ],
-      "deprecated": true
+      ]
     },
     {
       "slug": "raindrops",
@@ -126,8 +126,8 @@
       "core": false,
       "unlocked_by": "anagram",
       "difficulty": 1,
-      "topics": null,
-      "deprecated": true
+      "deprecated": true,
+      "topics": null
     },
     {
       "slug": "phone-number",
@@ -156,8 +156,8 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null,
-      "deprecated": true
+      "deprecated": true,
+      "topics": null
     },
     {
       "slug": "scrabble-score",

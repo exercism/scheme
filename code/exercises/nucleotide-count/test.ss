@@ -39,10 +39,10 @@
 	     args))))
 
 (put-problem!
-  'nucleotide-count
-  `((test
-      .
-      ,(spec->tests (get-test-specification 'nucleotide-count)))
-     (skeleton . ,"nucleotide-count.scm")
-     (solution . ,"example.scm")))
+ 'nucleotide-count
+ `((test
+    .
+    ,(spec->tests (get-test-specification 'nucleotide-count)))
+   (skeleton . "nucleotide-count.scm")
+   (solution . "example.scm")))
 
