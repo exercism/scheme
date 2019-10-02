@@ -23,6 +23,11 @@ an attempt to calculate it between sequences of different lengths should
 not work. The general handling of this situation (e.g., raising an
 exception vs returning a special value) may differ between languages.
 
+# Notes
+
+For scheme, you may want to look into one of `error`, `assert`, or `raise`\.
+
+
 # Running and testing your solutions
 
 ## Overview

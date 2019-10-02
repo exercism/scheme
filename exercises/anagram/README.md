@@ -7,6 +7,12 @@ Given `"listen"` and a list of candidates like `"enlists" "google"
 "inlets" "banana"` the program should return a list containing
 `"inlets"`.
 
+# Notes
+
+For purposes of this exercise, a word is not
+considered to be an anagram of itself\.
+
+
 # Running and testing your solutions
 
 ## Overview

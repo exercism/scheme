@@ -18,8 +18,17 @@
          args))))
 
 (put-problem!
-  'two-fer
-  `((test . ,(spec->tests (get-test-specification 'two-fer)))
-     (skeleton . ,"two-fer.scm")
-     (solution . ,"example.scm")))
+ 'two-fer
+ `((test . ,(spec->tests (get-test-specification 'two-fer)))
+   (skeleton . ,"two-fer.scm")
+   (solution . ,"example.scm")
+   (hints.md
+    .
+    ,(md-hints
+      `((sentence "One way to get optional arguments in scheme is by specifying the arguments as a list.")
+	(sentence "Two ways to do that are: "
+		  (inline-code "(define (two-fer . args) ...)")
+		  " or "
+		  (inline-code "(define two-fer (lambda args ...) ...)")
+		  "."))))))
 

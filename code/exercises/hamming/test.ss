@@ -29,5 +29,15 @@
  'hamming
  `((test . ,(spec->tests (get-test-specification 'hamming)))
    (skeleton . ,"hamming.scm")
-   (solution . ,"example.scm")))
+   (solution . ,"example.scm")
+   (hints.md
+    .
+    ,(md-hints
+      `((sentence "For scheme, you may want to look into one of "
+		  (inline-code "error")
+		  ", "
+		  (inline-code "assert")
+		  ", or "
+		  (inline-code "raise")
+		  "."))))))
 

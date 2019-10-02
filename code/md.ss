@@ -72,4 +72,8 @@
       (lambda ()
 	(send-reply (sxml->md content))))))
 
+(define (md-hints md)
+  `((h1 "Notes") (nl)
+    ,@md))
+
 

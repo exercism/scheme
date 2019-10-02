@@ -28,9 +28,14 @@
 	       args)))))
 
 (put-problem!
-  'grains
-  `((test . ,(spec->tests (get-test-specification 'grains)))
-    (skeleton . "grains.scm")
-    (solution . "example.scm")))
+ 'grains
+ `((test . ,(spec->tests (get-test-specification 'grains)))
+   (skeleton . "grains.scm")
+   (solution . "example.scm")
+   (hints.md
+    .
+    ,(md-hints
+      `((sentence "The tests expect an error to be reported for out of
+range inputs."))))))
 
 

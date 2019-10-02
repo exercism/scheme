@@ -14,10 +14,10 @@ The objectives are simple:
 
 If everything goes well, you will be ready to fetch your first real exercise.
 
-## Scheme Track Notes
+# Notes
 
-Your solution may be a procedure
-that returns the desired string or a variable whose value is that
+Your solution may be a procedure that
+returns the desired string or a variable whose value is that
 string\.
 
 
