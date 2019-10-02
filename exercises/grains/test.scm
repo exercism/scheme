@@ -92,16 +92,16 @@
       (lambda ()
         (test-success "64" equal? square '(64) 9223372036854775808))
       (lambda ()
-        (test-error "square 0 raises an exception" square '0))
+        (test-error "square 0 raises an exception" square '(0)))
       (lambda ()
         (test-error
           "negative square raises an exception"
           square
-          '-1))
+          '(-1)))
       (lambda ()
         (test-error
           "square greater than 64 raises an exception"
           square
-          '65)))
+          '(65))))
     args))
 
