@@ -30,11 +30,14 @@ track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
 exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))
 
+readme-splice := config/exercise-readme-insert.md
+
 track-requirements := \
 	../problem-specifications \
 	bin/configlet \
 	config.json \
 	code/stub-makefile \
+	$(readme-splice) \
 	$(track-documentation) \
 	$(exercisms)
 
@@ -58,6 +61,9 @@ config.json : code/config.ss
 # documentation
 docs/%.md : code/md.ss code/docs/%.ss
 	$(call exercise, "(put-md '$(@F:.md=))")
+
+$(readme-splice) : docs/TESTS.md
+	cp $< $@
 
 # exercises
 exercises/% : code/track.ss code/exercises/%/* code/stub-makefile
