@@ -25,6 +25,23 @@ are some additional things you could try:
 
 Then please share your thoughts in a comment on the submission. Did this
 experiment make the code better? Worse? Did you learn anything from it?
+
+# Running and testing your solutions
+
+## Overview
+
+Suppose you're solving __hello\-world__:
+
+* Start a REPL, either in your favorite editor or from the
+command line\.
+* Type `(load "hello-world.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+
+## Testing options
+
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\. 
+To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`\.
 ## Source
 
 JavaRanch Cattle Drive, exercise 6 [http://www.javaranch.com/grains.jsp](http://www.javaranch.com/grains.jsp)

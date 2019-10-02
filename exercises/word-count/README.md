@@ -29,6 +29,23 @@ so: 1
 i: 1
 fled: 1
 ```
+
+# Running and testing your solutions
+
+## Overview
+
+Suppose you're solving __hello\-world__:
+
+* Start a REPL, either in your favorite editor or from the
+command line\.
+* Type `(load "hello-world.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+
+## Testing options
+
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\. 
+To see the failing input call `(test 'input)` and to see the output as well call `(test 'input 'output)`\.
 ## Source
 
 This is a classic toy problem, but we were reminded of it by seeing it in the Go Tour.
