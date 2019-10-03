@@ -26,7 +26,8 @@ implementations := \
 	raindrops \
 	phone-number \
 	prime-factors \
-	transpose
+	transpose \
+	rotational-cipher
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

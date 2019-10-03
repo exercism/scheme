@@ -190,6 +190,13 @@
       (core . #f)
       (unlocked-by . hello-world)
       (difficulty . 6)
+      (topics list))
+
+     ((slug . rotational-cipher)
+      (uuid . "067ff4f0-df23-4a48-842c-65e375361f2b")
+      (core . #f)
+      (unlocked-by . grains)
+      (difficulty . 3)
       (topics list)))
 
     ))
