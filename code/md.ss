@@ -20,7 +20,6 @@
 
 ;; transform sxml tree into tree of strings. the tree of strings can
 ;; be traversed outputting each node with `send-reply`.
-
 (define sxml-bindings
   `((section . ,(lambda (_ title . x)
 		  `((h1 ,title) (nl) ,@x)))
@@ -30,6 +29,38 @@
 		    `(,@x (nl) (nl))))
     (sentence . ,(lambda (_ . x)
 		   `(,@x (nl))))
+    (exercism-test-help
+     *macro*
+     .
+     ,(lambda (_ exercism)
+        `(section
+          "Running and testing your solutions"
+          (subsection
+           "Overview"
+           (enum
+            (item "Start a REPL either in your favorite editor or from
+the command line.")
+            (item "Type "
+                  (inline-code ,(format "(load \"~a.scm\")" exercism))
+                  " at the prompt.")
+            (item "Test your code by calling "
+                  (inline-code "(test)")
+                  " from the REPL.")
+            (item "Develop the solution in "
+                  (inline-code ,(format "~a.scm" exercism))
+                  " and reload as you go.")))
+          (subsection
+           "Testing options"
+           (sentence "You can see more or less information about
+failing test cases an by passing additional arguments to the
+procedure "
+                     (inline-code "test") ".")
+           (sentence 
+            "To see the failing input call "
+            (inline-code "(test 'input)")
+            " and to see the input and output together call "
+            (inline-code "(test 'input 'output)")
+            ".")))))
     (link . ,(case-lambda
 	       ((_ description href)
 		`(*raw* "[" ,description "]" "(" ,href ")"))
@@ -85,5 +116,9 @@
 
 (define (md-hints md)
   `(section "Notes" ,@md))
+
+(define (splice-exercism problem md)
+  `((exercism-test-help ,problem)
+    (section "Notes" ,@md)))
 
 
