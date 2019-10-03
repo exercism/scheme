@@ -28,7 +28,8 @@ implementations := \
 	prime-factors \
 	transpose \
 	rotational-cipher \
-	perfect-numbers
+	perfect-numbers \
+	change
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
