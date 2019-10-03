@@ -16,11 +16,13 @@
                     (lookup 'cases (car (lookup 'cases spec)))))
        args))))
 
-(put-problem!
-  'rotational-cipher
-  `((test
+(let ((spec (get-test-specification 'rotational-cipher)))
+  (put-problem!
+   'rotational-cipher
+   `((test
       .
-      ,(spec->tests (get-test-specification 'rotational-cipher)))
+      ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
      (skeleton . ,"rotational-cipher.scm")
-     (solution . ,"example.scm")))
+     (solution . ,"example.scm"))))
 

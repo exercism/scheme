@@ -30,11 +30,13 @@
        (list ,@(map parse-test (lookup 'cases spec)))
        args))))
 
-(put-problem!
- 'transpose
- `((test
-    .
-    ,(spec->tests (get-test-specification 'transpose)))
-   (skeleton . ,"transpose.scm")
-   (solution . ,"example.scm")))
+(let ((spec (get-test-specification 'transpose)))
+  (put-problem!
+   'transpose
+   `((test
+      .
+      ,(spec->tests spec))
+     (version . ,(lookup 'version spec))   
+     (skeleton . ,"transpose.scm")
+     (solution . ,"example.scm"))))
 

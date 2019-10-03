@@ -23,11 +23,11 @@
                                 (lookup 'cases spec)))))
        args))))
 
-(put-problem!
- 'perfect-numbers
- `((test
-    .
-    ,(spec->tests (get-test-specification 'perfect-numbers)))
-   (skeleton . ,"perfect-numbers.scm")
-   (solution . ,"example.scm")))
+(let ((spec (get-test-specification 'perfect-numbers)))
+  (put-problem!
+   'perfect-numbers
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "perfect-numbers.scm")
+     (solution . "example.scm"))))
 

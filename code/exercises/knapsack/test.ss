@@ -135,21 +135,23 @@
        
        args))))
 
-(put-problem!
- 'knapsack
- `((test . ,(spec->tests (get-test-specification 'knapsack)))
-   (skeleton . ,"knapsack.scm")
-   (solution . ,"example.scm")
-   (hints.md
-    .
-    ,(md-hints
-      `((sentence "In the scheme version the aruguments are the "
-                  (inline-code "capacity")
-                  " of the knapsack and a list of the "
-                  (inline-code "weights")
-                  " and a list of the "
-                  (inline-code "values")
-                  ".")
-        (sentence "It won't be necessary to validate the input -- the
-test inputs have valid values and same length lists."))))))
+(let ((spec (get-test-specification 'knapsack)))
+  (put-problem!
+   'knapsack
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "knapsack.scm")
+     (solution . "example.scm")
+     (hints.md
+      .
+      ,(md-hints
+        `((sentence "In the scheme version the aruguments are the "
+                    (inline-code "capacity")
+                    " of the knapsack and a list of the "
+                    (inline-code "weights")
+                    " and a list of the "
+                    (inline-code "values")
+                    ".")
+          (sentence "It won't be necessary to validate the input -- the
+test inputs have valid values and same length lists.")))))))
 

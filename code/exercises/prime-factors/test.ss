@@ -20,11 +20,13 @@
                              (lookup 'cases spec)))))
        args))))
 
-(put-problem!
-  'prime-factors
-  `((test
+(let ((spec (get-test-specification 'prime-factors)))
+  (put-problem!
+   'prime-factors
+   `((test
       .
-      ,(spec->tests (get-test-specification 'prime-factors)))
+      ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
      (skeleton . ,"prime-factors.scm")
-     (solution . ,"example.scm")))
+     (solution . ,"example.scm"))))
 
