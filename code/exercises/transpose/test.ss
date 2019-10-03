@@ -12,10 +12,14 @@
                      equal?
                      transpose
                      '(,(map (lambda (s)
-                               (fill-string s m))
+                               (map char->integer
+                                    (string->list
+                                     (fill-string s m))))
                              lines))
                      '(,@(map (lambda (s)
-                                (fill-string s n))
+                                (map char->integer
+                                     (string->list
+                                      (fill-string s n))))
                               (lookup 'expected test)))))))
 
 (define (spec->tests spec)

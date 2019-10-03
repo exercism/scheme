@@ -2,11 +2,8 @@
 
 (load "test.scm")
 
-(define (transpose lst)
-  (if (null? lst)
+(define (transpose xs)
+  (if (null? xs)
       '()
-      (map list->string
-           (apply map
-                  list
-                  (map string->list lst)))))
+      (apply map list xs)))
 
