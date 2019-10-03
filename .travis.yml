@@ -10,7 +10,7 @@ matrix:
         apt:
           packages:
             - make
-            - guile-2.0
+            - guile
             - chezscheme
   fast_finish: true
 
