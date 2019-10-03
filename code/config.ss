@@ -197,6 +197,6 @@
       (core . #f)
       (unlocked-by . grains)
       (difficulty . 3)
-      (topics list)))
+      (topics string cipher)))
 
     ))
