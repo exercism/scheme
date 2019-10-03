@@ -24,11 +24,11 @@
        args))))
 
 (put-problem!
-  'difference-of-squares
-  `((test
-      .
-      ,(spec->tests
-         (get-test-specification 'difference-of-squares)))
-     (skeleton . ,"difference-of-squares.scm")
-     (solution . ,"example.scm")))
+ 'difference-of-squares
+ `((test
+    .
+    ,(spec->tests
+      (get-test-specification 'difference-of-squares)))
+   (skeleton . ,"difference-of-squares.scm")
+   (solution . ,"example.scm")))
 

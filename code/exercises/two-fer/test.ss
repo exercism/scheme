@@ -11,11 +11,11 @@
 
 (define (spec->tests spec)
   `(,@*test-definitions*
-     (define (test . args)
-       (apply
-         run-test-suite
-         (list ,@(map parse-test (lookup 'cases spec)))
-         args))))
+    (define (test . args)
+      (apply
+       run-test-suite
+       (list ,@(map parse-test (lookup 'cases spec)))
+       args))))
 
 (put-problem!
  'two-fer

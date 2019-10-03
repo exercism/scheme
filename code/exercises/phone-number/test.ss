@@ -24,10 +24,10 @@
        args))))
 
 (put-problem!
-  'phone-number
-  `((test
-      .
-      ,(spec->tests (get-test-specification 'phone-number)))
-     (skeleton . ,"phone-number.scm")
-     (solution . ,"example.scm")))
+ 'phone-number
+ `((test
+    .
+    ,(spec->tests (get-test-specification 'phone-number)))
+   (skeleton . ,"phone-number.scm")
+   (solution . ,"example.scm")))
 

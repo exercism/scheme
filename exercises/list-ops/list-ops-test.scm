@@ -13,12 +13,12 @@
 (test-begin "list-ops-test")
 
 (test-eqv "length of empty list"
-           0
-           (my-length '()))
+	  0
+	  (my-length '()))
 
 (test-eqv "length of normal list"
-           4
-           (my-length '(1 3 5 7)))
+	  4
+	  (my-length '(1 3 5 7)))
 
 (test-eqv "length of huge list"
           1000000

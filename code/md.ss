@@ -31,10 +31,10 @@
     (sentence . ,(lambda (_ . x)
 		   `(,@x (nl))))
     (link . ,(case-lambda
-	       ((_ description href)
-		`(*raw* "[" ,description "]" "(" ,href ")"))
-	       ((_ description href title)
-		`(*raw* "[" ,description "]" "(" ,href "\"" ,title "\"" ")"))))
+	      ((_ description href)
+	       `(*raw* "[" ,description "]" "(" ,href ")"))
+	      ((_ description href title)
+	       `(*raw* "[" ,description "]" "(" ,href "\"" ,title "\"" ")"))))
     (*default* . ,(lambda x x))
     (*text* . ,(lambda (_ . x) x))))
 

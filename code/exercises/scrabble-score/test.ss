@@ -8,17 +8,17 @@
 
 (define (spec->tests spec)
   `(,@*test-definitions*
-     (define (test . args)
-       (apply
-         run-test-suite
-         (list ,@(map parse-test (lookup 'cases spec)))
-         args))))
+    (define (test . args)
+      (apply
+       run-test-suite
+       (list ,@(map parse-test (lookup 'cases spec)))
+       args))))
 
 (put-problem!
-  'scrabble-score
-  `((test
-      .
-      ,(spec->tests (get-test-specification 'scrabble-score)))
-     (skeleton . ,"scrabble-score.scm")
-     (solution . ,"example.scm")))
+ 'scrabble-score
+ `((test
+    .
+    ,(spec->tests (get-test-specification 'scrabble-score)))
+   (skeleton . ,"scrabble-score.scm")
+   (solution . ,"example.scm")))
 

@@ -21,10 +21,10 @@
        args))))
 
 (put-problem!
-  'prime-factors
-  `((test
-      .
-      ,(spec->tests (get-test-specification 'prime-factors)))
-     (skeleton . ,"prime-factors.scm")
-     (solution . ,"example.scm")))
+ 'prime-factors
+ `((test
+    .
+    ,(spec->tests (get-test-specification 'prime-factors)))
+   (skeleton . ,"prime-factors.scm")
+   (solution . ,"example.scm")))
 

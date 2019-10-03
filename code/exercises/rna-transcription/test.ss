@@ -14,9 +14,9 @@
 	     args))))
 
 (put-problem!
-  'rna-transcription
-  `((test . ,(spec->tests
-	      (get-test-specification 'rna-transcription)))
-    (skeleton . "rna-transcription.scm")
-    (solution . "example.scm")))
+ 'rna-transcription
+ `((test . ,(spec->tests
+	     (get-test-specification 'rna-transcription)))
+   (skeleton . "rna-transcription.scm")
+   (solution . "example.scm")))
 

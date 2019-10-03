@@ -5,7 +5,7 @@
   (lambda (phrase)
     (and (string-any char-alphabetic? phrase)
          (string-every char-upper-case?
-                   (string-filter char-alphabetic? phrase)))))
+		       (string-filter char-alphabetic? phrase)))))
 
 (define question?
   (lambda (phrase)
