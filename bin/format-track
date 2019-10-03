@@ -1,0 +1,12 @@
+#! /bin/sh
+
+readonly list="$(find . -name \*.ss -or -name \*.scm)"
+
+for file in $list; do
+    emacs -nw -Q "$file" \
+        --eval "(mark-whole-buffer)" \
+        --eval "(indent-region (point-min) (point-max))" \
+        --eval "(save-buffer)" \
+        --kill
+done
+
