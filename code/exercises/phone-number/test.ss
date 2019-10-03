@@ -3,16 +3,16 @@
   ;;  (let ((expected (lookup 'expected test))))
   (let ((expected (lookup 'expected test)))
     (if (string? expected)
-	`(lambda ()
-	   (test-success ,(lookup 'description test)
-			 equal?
-			 clean
-			 '(,(cdar (lookup 'input test)))
-			 ,expected))
-	`(lambda ()
-	   (test-error ,(lookup 'description test)
-		       clean
-		       '(,(cdar (lookup 'input test))))))))
+        `(lambda ()
+           (test-success ,(lookup 'description test)
+                         equal?
+                         clean
+                         '(,(cdar (lookup 'input test)))
+                         ,expected))
+        `(lambda ()
+           (test-error ,(lookup 'description test)
+                       clean
+                       '(,(cdar (lookup 'input test))))))))
 
 (define (spec->tests spec)
   `(,@*test-definitions*
@@ -20,14 +20,16 @@
       (apply
        run-test-suite
        (list ,@(map parse-test (lookup 'cases
-				       (car (lookup 'cases spec)))))
+                                       (car (lookup 'cases spec)))))
        args))))
 
-(put-problem!
-  'phone-number
-  `((test
+(let ((spec (get-test-specification 'phone-number)))
+  (put-problem!
+   'phone-number
+   `((test
       .
-      ,(spec->tests (get-test-specification 'phone-number)))
-     (skeleton . ,"phone-number.scm")
-     (solution . ,"example.scm")))
+      ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "phone-number.scm")
+     (solution . "example.scm"))))
 

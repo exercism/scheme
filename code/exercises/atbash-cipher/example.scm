@@ -4,17 +4,17 @@
 
 (define (encode phrase)
   (apply string-append
-	 (atbash-chunks 5
+         (atbash-chunks 5
                         (map convert
                              (filter relevant-char?
                                      (string->list
-				      (string-downcase phrase)))))))
+                                      (string-downcase phrase)))))))
 
 (define (decode phrase)
   (list->string
    (map convert
-	(filter relevant-char?
-		(string->list phrase)))))
+        (filter relevant-char?
+                (string->list phrase)))))
 
 (define (convert char)
   (if (char-alphabetic? char)

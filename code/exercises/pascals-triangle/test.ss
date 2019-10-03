@@ -22,21 +22,23 @@
 
 (define (spec->tests spec)
   `(,@*test-definitions*
-     (define (test . args)
-       (apply
-         run-test-suite
-         (list ,@(map parse-test
-                      (lookup 'cases
-                              (car
-                                (lookup 'cases spec))))
-               ,(test-2^n 100))
-         args))))
+    (define (test . args)
+      (apply
+       run-test-suite
+       (list ,@(map parse-test
+                    (lookup 'cases
+                            (car
+                             (lookup 'cases spec))))
+             ,(test-2^n 100))
+       args))))
 
-(put-problem!
-  'pascals-triangle
-  `((test
+(let ((spec (get-test-specification 'pascals-triangle)))
+  (put-problem!
+   'pascals-triangle
+   `((test
       .
-      ,(spec->tests (get-test-specification 'pascals-triangle)))
+      ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
      (skeleton . "pascals-triangle.scm")
-     (solution . "example.scm")))
+     (solution . "example.scm"))))
 

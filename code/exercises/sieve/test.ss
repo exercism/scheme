@@ -26,9 +26,11 @@
                                        (1000000 . 78498))))
        args))))
 
-(put-problem!
- 'sieve
- `((test . ,(spec->tests (get-test-specification 'sieve)))
-   (skeleton . "sieve.scm")
-   (solution . "example.scm")))
+(let ((spec (get-test-specification 'sieve)))
+  (put-problem!
+   'sieve
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "sieve.scm")
+     (solution . "example.scm"))))
 
