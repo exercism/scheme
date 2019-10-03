@@ -7,9 +7,9 @@
 
 * Start a REPL either in your favorite editor or from
 the command line\.
-* Type `(load "perfect-numbers.scm.scm")` at the prompt\.
+* Type `(load "perfect-numbers.scm")` at the prompt\.
 * Test your code by calling `(test)` from the REPL\.
-* Develop the solution in `perfect-numbers.scm.scm` and reload as you go\.
+* Develop the solution in `perfect-numbers.scm` and reload as you go\.
 
 ### Testing options
 

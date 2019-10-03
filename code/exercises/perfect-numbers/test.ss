@@ -30,5 +30,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . "perfect-numbers.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'perfect-numbers.scm)))))
+     (hints.md . ,(splice-exercism 'perfect-numbers)))))
 
