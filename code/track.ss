@@ -207,8 +207,7 @@
 
 ;; test the problem output in _build/exercises/problem/*
 (define (verify-exercism problem)
-  (let ((dir (format "_build/exercises/~a" problem))
-        (implementation (get-problem problem)))
+  (let ((dir (format "_build/exercises/~a" problem)))
     (check-config-for problem)
     (let ((x (system (format "cd ~a && make" dir))))
       (unless (zero? x)

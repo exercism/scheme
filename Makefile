@@ -77,11 +77,14 @@ track : $(track-requirements)
 	./bin/configlet generate .
 	./bin/configlet lint .
 
+ci :
+	echo "(run-ci '($(implementations)))" | $(chez) -q "code/ci.ss"
+
 clean :
 	find . -name "*.so" -exec rm {} \;
 	find . -name "*~" -exec rm {} \;
 	find . -name "*.html" -exec rm {} \;
 	rm -rf _build
 
-.PHONY : track clean
+.PHONY : track clean ci
 
