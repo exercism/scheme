@@ -219,7 +219,7 @@
                (delete-file target))
              (with-output-to-file target
                (lambda ()
-                 (display version))))))))
+                 (display (cdr version)))))))))
 
 ;; test the problem output in _build/exercises/problem/*
 (define (verify-exercism problem)
