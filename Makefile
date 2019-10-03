@@ -24,7 +24,9 @@ implementations := \
 	word-count \
 	knapsack \
 	raindrops \
-	phone-number
+	phone-number \
+	prime-factors \
+	transpose
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
@@ -65,7 +67,7 @@ $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/*.ss code/exercises/%/* code/stub-makefile code/docs/tests.ss
+exercises/% : code/md.ss code/test.ss code/track.ss code/exercises/%/* code/stub-makefile code/docs/tests.ss
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track

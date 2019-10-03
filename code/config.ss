@@ -152,6 +152,13 @@
       (topics math vector)
       (wip))
 
+     ((slug . prime-factors)
+      (uuid . "e9f82c77-fde0-41fd-a0b6-e459bd3b71d9")
+      (core . #f)
+      (unlocked-by . grains)
+      (difficulty . 5)
+      (topics math))
+
      ((slug . change)
       (uuid . "6f2d8731-2c2c-4faa-a9bf-11f785c2e5bc")
       (core . #f)
@@ -176,6 +183,13 @@
       (core . #f)
       (unlocked-by . hamming)
       (difficulty . 4)
-      (topics string cipher)))
+      (topics string cipher))
+
+     ((slug . transpose)
+      (uuid . "f2dc14e3-89e9-4942-80b6-6578b7a7f71b")
+      (core . #f)
+      (unlocked-by . hello-world)
+      (difficulty . 6)
+      (topics list)))
 
     ))

@@ -194,6 +194,16 @@
       ]
     },
     {
+      "slug": "prime-factors",
+      "uuid": "e9f82c77-fde0-41fd-a0b6-e459bd3b71d9",
+      "core": false,
+      "unlocked_by": "grains",
+      "difficulty": 5,
+      "topics": [
+        "math"
+      ]
+    },
+    {
       "slug": "atbash-cipher",
       "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
       "core": false,
@@ -202,6 +212,16 @@
       "topics": [
         "cipher",
         "string"
+      ]
+    },
+    {
+      "slug": "transpose",
+      "uuid": "f2dc14e3-89e9-4942-80b6-6578b7a7f71b",
+      "core": false,
+      "unlocked_by": "hello-world",
+      "difficulty": 6,
+      "topics": [
+        "list"
       ]
     }
   ]
