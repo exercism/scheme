@@ -27,7 +27,8 @@ implementations := \
 	phone-number \
 	prime-factors \
 	transpose \
-	rotational-cipher
+	rotational-cipher \
+	perfect-numbers
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

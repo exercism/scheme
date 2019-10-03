@@ -143,7 +143,6 @@
       (difficulty . 3)
       (topics control-flow string))
 
-     ;; math problems
      ((slug . sieve)
       (uuid . "732e4c98-675d-4b67-b672-37ef9c848733")
       (core . #f)
@@ -166,8 +165,6 @@
       (difficulty . 5)
       (topics dynamic-programming graph recursion)
       (wip))
-
-     ;; list problems
 
      ;; sublist wants order to matter. lame
      ((slug . sublist)
@@ -197,6 +194,13 @@
       (core . #f)
       (unlocked-by . grains)
       (difficulty . 3)
-      (topics string cipher)))
+      (topics string cipher))
+
+     ((slug . perfect-numbers)
+      (uuid . "68a1d62a-fc10-41f4-9960-ebebc099404b")
+      (core . #f)
+      (unlocked-by . leap)
+      (difficulty . 5)
+      (topics math)))
 
     ))
