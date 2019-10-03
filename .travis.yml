@@ -4,12 +4,14 @@ language: generic
 matrix:
   include:
     - os: linux
-      dist: xenial
+      dist: bionic
       sudo: false
       addons:
         apt:
           packages:
+            - make
             - guile-2.0
+            - chezscheme
   fast_finish: true
 
 before_script:
@@ -17,4 +19,4 @@ before_script:
   - bin/configlet lint .
 
 script:
-  - bin/run-tests.sh
+  - make ci
