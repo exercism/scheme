@@ -29,7 +29,8 @@ implementations := \
 	transpose \
 	rotational-cipher \
 	perfect-numbers \
-	change
+	change \
+	sieve
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

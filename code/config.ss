@@ -147,9 +147,8 @@
       (uuid . "732e4c98-675d-4b67-b672-37ef9c848733")
       (core . #f)
       (unlocked-by)
-      (difficulty . 5)
-      (topics math vector)
-      (wip))
+      (difficulty . 6)
+      (topics math vector bits))
 
      ((slug . prime-factors)
       (uuid . "e9f82c77-fde0-41fd-a0b6-e459bd3b71d9")
