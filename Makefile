@@ -88,5 +88,5 @@ clean :
 	find . -name "*.html" -exec rm {} \;
 	rm -rf _build
 
-.PHONY : track clean ci
+.PHONY : track clean
 
