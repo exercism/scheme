@@ -204,6 +204,18 @@
       ]
     },
     {
+      "slug": "change",
+      "uuid": "6f2d8731-2c2c-4faa-a9bf-11f785c2e5bc",
+      "core": false,
+      "unlocked_by": "hamming",
+      "difficulty": 5,
+      "topics": [
+        "dynamic_programming",
+        "graph",
+        "recursion"
+      ]
+    },
+    {
       "slug": "atbash-cipher",
       "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
       "core": false,

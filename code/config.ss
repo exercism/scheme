@@ -161,10 +161,9 @@
      ((slug . change)
       (uuid . "6f2d8731-2c2c-4faa-a9bf-11f785c2e5bc")
       (core . #f)
-      (unlocked-by)
+      (unlocked-by . hamming)
       (difficulty . 5)
-      (topics dynamic-programming graph recursion)
-      (wip))
+      (topics dynamic-programming graph recursion))
 
      ;; sublist wants order to matter. lame
      ((slug . sublist)
