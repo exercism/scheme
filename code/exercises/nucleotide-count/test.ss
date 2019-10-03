@@ -46,5 +46,6 @@
       ,(spec->tests spec))
      (version . ,(lookup 'version spec))
      (skeleton . "nucleotide-count.scm")
-     (solution . "example.scm"))))
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'nucleotide-count)))))
 

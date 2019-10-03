@@ -34,12 +34,12 @@
      (solution . "example.scm")
      (hints.md
       .
-      ,(md-hints
-        `((sentence "For scheme, you may want to look into one of "
-                    (inline-code "error")
-                    ", "
-                    (inline-code "assert")
-                    ", or "
-                    (inline-code "raise")
-                    ".")))))))
+      ,(splice-exercism 'hamming
+                        '(sentence "For scheme, you may want to look into one of "
+                                   (inline-code "error")
+                                   ", "
+                                   (inline-code "assert")
+                                   ", or "
+                                   (inline-code "raise")
+                                   "."))))))
 

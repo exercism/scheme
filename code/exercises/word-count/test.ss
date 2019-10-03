@@ -38,5 +38,6 @@
    `((test . ,(spec->tests (get-test-specification 'word-count)))
      (version . ,(lookup 'version spec))
      (skeleton . "word-count.scm")
-     (solution . "example.scm"))))
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'word-count)))))
 

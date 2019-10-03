@@ -19,5 +19,6 @@
    `((test . ,(spec->tests spec))
      (version . ,(lookup 'version spec))
      (skeleton . "rna-transcription.scm")
-     (solution . "example.scm"))))
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'rna-transcription)))))
 

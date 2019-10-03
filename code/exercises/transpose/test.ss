@@ -37,6 +37,7 @@
       .
       ,(spec->tests spec))
      (version . ,(lookup 'version spec))   
-     (skeleton . ,"transpose.scm")
-     (solution . ,"example.scm"))))
+     (skeleton . "transpose.scm")
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'transpose)))))
 

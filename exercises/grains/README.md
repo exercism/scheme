@@ -26,29 +26,26 @@ are some additional things you could try:
 Then please share your thoughts in a comment on the submission. Did this
 experiment make the code better? Worse? Did you learn anything from it?
 
-# Notes
+## Track Specific Notes
 
 The tests expect an error to be reported for out of
 range inputs\.
+## Running and testing your solutions
+
+### Overview
 
 
-# Running and testing your solutions
+* Start a REPL either in your favorite editor or from
+the command line\.
+* Type `(load "grains.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+* Develop the solution in `grains.scm` and reload as you go\.
 
-## Overview
+### Testing options
 
-Suppose you're solving __halting\-problem__:
-
-* Start a REPL, either in your favorite editor or from the
-command line\.
-* Type `(load "halting-problem.scm")` at the prompt\.
-* Test your code by calling `(test)` from the REPL\. At first this should result in failed tests\.
-* Develop your solution in "halting\-problem\.scm" and
-reload the file to run the tests again\.
-
-## Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
+You can see more or less information about
+failing test cases an by passing additional arguments to the
+procedure `test`\.
 To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
 
 ## Source

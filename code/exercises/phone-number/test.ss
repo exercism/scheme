@@ -31,5 +31,6 @@
       ,(spec->tests spec))
      (version . ,(lookup 'version spec))
      (skeleton . "phone-number.scm")
-     (solution . "example.scm"))))
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'phone-number)))))
 

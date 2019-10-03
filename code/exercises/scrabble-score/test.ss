@@ -21,7 +21,8 @@
       .
       ,(spec->tests spec))
      (version . ,(lookup 'version spec))   
-     (skeleton . ,"scrabble-score.scm")
-     (solution . ,"example.scm"))))
+     (skeleton . "scrabble-score.scm")
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'scrabble-score)))))
 
 

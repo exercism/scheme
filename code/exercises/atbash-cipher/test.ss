@@ -25,4 +25,5 @@
    `((test . ,(spec->tests spec))
      (version . ,(lookup 'version spec))
      (skeleton . "atbash-cipher.scm")
-     (solution . "example.scm"))))
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'atbash-cipher)))))
