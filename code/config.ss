@@ -65,14 +65,14 @@
       (uuid . "d5caff8b-ffaa-4055-9bb9-7d31a4480956")
       (core . #t)
       (unlocked-by)
-      (difficulty . 5)
+      (difficulty . 4)
       (topics recursion list math))
 
      ((slug . knapsack)
       (uuid . "96f2a7e3-1283-4fca-944d-8cf2fe463c56")
       (core . #t)
       (unlocked-by)
-      (difficulty . 6)
+      (difficulty . 7)
       (topics optimization dynamic-programming search))
 
      ;;; Other problems
@@ -80,29 +80,31 @@
      ((slug . bob)
       (uuid . "4cf6697c-ad9e-426c-a2d8-6c3695812421")
       (core . #f)
-      (unlocked-by)
+      (unlocked-by . anagram)
       (difficulty . 1)
+      (deprecated . #t)
       (topics string))
 
      ((slug . raindrops)
       (uuid . "9f13b913-a650-4cbf-a392-4b5614e1aa2a")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
+      (unlocked-by . leap)
+      (difficulty . 4)
       (topics))
 
      ((slug . robot-name)
       (uuid . "62a5a71c-a9eb-416b-809c-c862a4828e8b")
       (core . #f)
-      (unlocked-by)
+      (unlocked-by . anagram)
       (difficulty . 1)
+      (deprecated . #t)
       (topics))
 
      ((slug . phone-number)
       (uuid . "8ed74044-2361-459e-aca5-abd73ed5c1cb")
       (core . #f)
-      (unlocked-by)
-      (difficulty . 1)
+      (unlocked-by . leap)
+      (difficulty . 4)
       (topics string))
 
      ((slug . nucleotide-count)
@@ -117,6 +119,7 @@
       (core . #f)
       (unlocked-by)
       (difficulty . 1)
+      (deprecated . #t)
       (topics))
 
      ((slug . scrabble-score)
@@ -129,7 +132,7 @@
      ((slug . word-count)
       (uuid . "9460b65d-dc80-4a95-8782-b395d2cc979e")
       (core . #f)
-      (unlocked-by . anagram)
+      (unlocked-by . rna-transcription)
       (difficulty . 4)
       (topics string hashtable parsing))
 
@@ -140,24 +143,26 @@
       (difficulty . 3)
       (topics control-flow string))
 
-     ;; math problems
      ((slug . sieve)
       (uuid . "732e4c98-675d-4b67-b672-37ef9c848733")
       (core . #f)
       (unlocked-by)
+      (difficulty . 6)
+      (topics math vector bits))
+
+     ((slug . prime-factors)
+      (uuid . "e9f82c77-fde0-41fd-a0b6-e459bd3b71d9")
+      (core . #f)
+      (unlocked-by . grains)
       (difficulty . 5)
-      (topics math vector)
-      (wip))
+      (topics math))
 
      ((slug . change)
       (uuid . "6f2d8731-2c2c-4faa-a9bf-11f785c2e5bc")
       (core . #f)
-      (unlocked-by)
+      (unlocked-by . hamming)
       (difficulty . 5)
-      (topics dynamic-programming graph recursion)
-      (wip))
-
-     ;; list problems
+      (topics dynamic-programming graph recursion))
 
      ;; sublist wants order to matter. lame
      ((slug . sublist)
@@ -171,8 +176,29 @@
      ((slug . atbash-cipher)
       (uuid . "82169e85-3938-48da-ada9-7394adadc57a")
       (core . #f)
-      (unlocked-by . rna-transcription)
+      (unlocked-by . hamming)
       (difficulty . 4)
-      (topics string cipher)))
+      (topics string cipher))
+
+     ((slug . transpose)
+      (uuid . "f2dc14e3-89e9-4942-80b6-6578b7a7f71b")
+      (core . #f)
+      (unlocked-by . hello-world)
+      (difficulty . 6)
+      (topics list))
+
+     ((slug . rotational-cipher)
+      (uuid . "067ff4f0-df23-4a48-842c-65e375361f2b")
+      (core . #f)
+      (unlocked-by . grains)
+      (difficulty . 3)
+      (topics string cipher))
+
+     ((slug . perfect-numbers)
+      (uuid . "68a1d62a-fc10-41f4-9960-ebebc099404b")
+      (core . #f)
+      (unlocked-by . leap)
+      (difficulty . 5)
+      (topics math)))
 
     ))

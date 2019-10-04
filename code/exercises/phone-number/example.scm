@@ -23,7 +23,10 @@
 
 (define (clean phone-number)
   (let ((cleaned (split-phone-number phone-number)))
-    (when (char=? #\0 (string-ref cleaned 4))
+    (when (or (char=? #\0 (string-ref cleaned 3))
+	      (char=? #\1 (string-ref cleaned 3))
+	      (char=? #\0 (string-ref cleaned 0))
+	      (char=? #\1 (string-ref cleaned 0)))
       (error 'clean "exchange code begins with 0" phone-number))
     cleaned))
 

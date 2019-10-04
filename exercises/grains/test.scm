@@ -31,11 +31,11 @@
       (with-exception-handler
         (lambda (e) (k `(pass . ,description)))
         (lambda ()
-          (test-run-scheme procedure input)
+          (test-run-solution procedure input)
           `(fail
              (description . ,description)
              (input . ,input)
-             (output . ,output)
+             (output . error)
              (who . ,procedure)))))))
 
 (define (run-test-suite tests . query)
@@ -92,16 +92,16 @@
       (lambda ()
         (test-success "64" equal? square '(64) 9223372036854775808))
       (lambda ()
-        (test-error "square 0 raises an exception" square '0))
+        (test-error "square 0 raises an exception" square '(0)))
       (lambda ()
         (test-error
           "negative square raises an exception"
           square
-          '-1))
+          '(-1)))
       (lambda ()
         (test-error
           "square greater than 64 raises an exception"
           square
-          '65)))
+          '(65))))
     args))
 

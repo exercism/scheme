@@ -14,6 +14,26 @@ The rules of `raindrops` are that if a given number:
 - 28 has 7 as a factor, but not 3 or 5, so the result would be "Plong".
 - 30 has both 3 and 5 as factors, but not 7, so the result would be "PlingPlang".
 - 34 is not factored by 3, 5, or 7, so the result would be "34".
+
+# Running and testing your solutions
+
+## Overview
+
+Suppose you're solving __halting\-problem__:
+
+* Start a REPL, either in your favorite editor or from the
+command line\.
+* Type `(load "halting-problem.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\. At first this should result in failed tests\.
+* Develop your solution in "halting\-problem\.scm" and
+reload the file to run the tests again\.
+
+## Testing options
+
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\.
+To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
+
 ## Source
 
 A variation on FizzBuzz, a famous technical interview question that is intended to weed out potential candidates. That question is itself derived from Fizz Buzz, a popular children's game for teaching division. [https://en.wikipedia.org/wiki/Fizz_buzz](https://en.wikipedia.org/wiki/Fizz_buzz)

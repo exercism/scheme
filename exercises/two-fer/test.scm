@@ -31,11 +31,11 @@
       (with-exception-handler
         (lambda (e) (k `(pass . ,description)))
         (lambda ()
-          (test-run-scheme procedure input)
+          (test-run-solution procedure input)
           `(fail
              (description . ,description)
              (input . ,input)
-             (output . ,output)
+             (output . error)
              (who . ,procedure)))))))
 
 (define (run-test-suite tests . query)
