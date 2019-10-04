@@ -2,7 +2,7 @@
 
 ### Overview
 
-Suppose you're solving __halting\-problem__:
+Suppose you're solving the __halting\-problem__:
 
 * Start a REPL, either in your favorite editor or from the
 command line\.
