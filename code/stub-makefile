@@ -1,16 +1,21 @@
 chez := scheme
+chez-args := -q example.scm
+
 guile := guile
 guile-args := --no-auto-compile -q -l example.scm -c
 
 run-test = \
 	"(when (eq? 'failure (test 'input 'output)) (error '$(1) \"incorrect implementation\"))"
 
-all : check-chez check-guile
+help :
+	echo "Test your solutions from the command line by calling make check-* where * is the name of your scheme."
 
-check-chez : example.scm test.scm
-	(echo $(call run-test,$@) | $(chez) -q $<)
+check-all : check-chez check-guile
+
+check-chez :
+	echo $(call run-test, $@) | $(chez) $(chez-args)
 
 check-guile :
-	($(guile) $(guile-args) $(call run-test,$@))
+	$(guile) $(guile-args) $(call run-test, $@)
 
-.PHONY : all check-chez check-guile
+.PHONY : help check-all check-chez check-guile

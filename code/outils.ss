@@ -31,6 +31,16 @@
                   (pretty-print line) (newline))
                 code))))
 
+(define (write-r6rs-expression-to-file code file)
+  (when (file-exists? file)
+    (delete-file file))
+  (with-output-to-file file
+    (lambda ()
+      (format (current-output-port) "#!r6rs~%")
+      (for-each (lambda (line)
+                  (pretty-print line) (newline))
+                code))))
+
 (define (update-config)
   (load "code/config.ss"))
 

@@ -167,11 +167,11 @@
     ;;    (format #t "~~ getting description~%")
     ;;    (write-problem-description problem)
     (format #t "~~ writing stub implementation~%")
-    (write-expression-to-file stub-implementation implementation)
+    (write-r6rs-expression-to-file stub-implementation implementation)
     (format #t "~~ writing stub solution~%")
-    (write-expression-to-file stub-solution skeleton)
+    (write-r6rs-expression-to-file stub-solution skeleton)
     (format #t "~~ writing stub skeleton~%")
-    (write-expression-to-file stub-solution solution)))
+    (write-r6rs-expression-to-file stub-solution solution)))
 
 ;; write the problem as specified in code/exercises/problem/* to
 ;; _build/exercises/problem/*. This is a temporary location to first
@@ -189,7 +189,7 @@
                dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
       (hint-exercism problem)
       (version-exercism problem)
-      (write-expression-to-file (lookup 'test implementation) test.scm))))
+      (write-r6rs-expression-to-file (lookup 'test implementation) test.scm))))
 
 ;; If hint field is specified, include .meta/hints.md in exercise
 ;; directory.
@@ -225,7 +225,7 @@
 (define (verify-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem)))
     (check-config-for problem)
-    (let ((x (system (format "cd ~a && make" dir))))
+    (let ((x (system (format "cd ~a && make check-all" dir))))
       (unless (zero? x)
         (error 'verify-exercism "example solution incorrect" problem)))
     'done))

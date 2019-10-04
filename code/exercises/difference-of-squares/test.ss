@@ -2,10 +2,14 @@
   `(lambda ()
      (test-success ,(lookup 'description test)
                    =
-                   ,(case (lookup 'property test)
-                      (("sumOfSquares") 'sum-of-squares)
-                      (("differenceOfSquares") 'difference-of-squares)
-                      (("squareOfSum") 'square-of-sum))
+                   ,(let ((proc (lookup 'property test)))
+                      (cond ((string=? proc "sumOfSquares")
+                             'sum-of-squares)
+                            ((string=? proc "differenceOfSquares")
+                             'difference-of-squares)
+                            ((string=? proc "squareOfSum")
+                             'square-of-sum)
+                            (else (error 'parse-test "oops" proc))))
                    '(,(cdar (lookup 'input test)))
                    ,(lookup 'expected test))))
 
@@ -22,7 +26,6 @@
                                              (get-test-specification
                                               'difference-of-squares)))))))
        args))))
-
 
 (let ((spec (get-test-specification 'difference-of-squares)))
   (put-problem!

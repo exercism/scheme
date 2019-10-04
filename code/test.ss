@@ -1,3 +1,5 @@
+(import (rnrs))
+
 (define test-fields
   '(input
     output
