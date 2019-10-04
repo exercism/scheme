@@ -1,8 +1,8 @@
-# Running and testing your solutions
+## Running and testing your solutions
 
-## Overview
+### Overview
 
-Suppose you're solving __halting\-problem__:
+Suppose you're solving the __halting\-problem__:
 
 * Start a REPL, either in your favorite editor or from the
 command line\.
@@ -11,7 +11,7 @@ command line\.
 * Develop your solution in "halting\-problem\.scm" and
 reload the file to run the tests again\.
 
-## Testing options
+### Testing options
 
 You can see more information about failing test cases by passing
 arguments to the procedure `test`\.

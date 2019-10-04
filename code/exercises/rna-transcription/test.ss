@@ -13,10 +13,12 @@
 	     (list ,@(map parse-test (lookup 'cases spec)))
 	     args))))
 
-(put-problem!
-  'rna-transcription
-  `((test . ,(spec->tests
-	      (get-test-specification 'rna-transcription)))
-    (skeleton . "rna-transcription.scm")
-    (solution . "example.scm")))
+(let ((spec (get-test-specification 'rna-transcription)))
+  (put-problem!
+   'rna-transcription
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "rna-transcription.scm")
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'rna-transcription)))))
 

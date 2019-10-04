@@ -1,5 +1,6 @@
 ;; helpful procedures
 
+
 ;; Convenience for grabbing alist values by key
 (define (lookup key alist)
   (cond ((assoc key alist) => cdr)

@@ -12,7 +12,9 @@
     (let ((rotate-under (lambda (base)
                           (integer->char
                            (+ base
-                              (modulo (+ (char->integer char) dx (- base))
+                              (modulo (+ (char->integer char)
+                                         dx
+                                         (- base))
                                       26))))))
       (cond ((char-lower-case? char)
              (rotate-under 97))

@@ -28,17 +28,17 @@
   (format #t "checking config for ~a~%" problem)
   (let ((exercisms (lookup 'exercises track-config)))
     (cond ((find (lambda (exercism)
-		   (eq? problem (lookup 'slug exercism)))
-		 exercisms)
-	   =>
-	   (lambda (config)
-	     (unless (assoc 'uuid config)
-	       (error 'check-config-for
-		      "please set uuid"
-		      problem))))
-	  (else (error 'check-config-for
-		       "please add problem to config/config.ss"
-		       problem)))))
+                   (eq? problem (lookup 'slug exercism)))
+                 exercisms)
+           =>
+           (lambda (config)
+             (unless (assoc 'uuid config)
+               (error 'check-config-for
+                      "please set uuid"
+                      problem))))
+          (else (error 'check-config-for
+                       "please add problem to config/config.ss"
+                       problem)))))
 
 ;;; UUID
 
@@ -117,12 +117,12 @@
 (define (get-problem problem)
   (let ((implementation (hashtable-ref *problem-table* problem #f)))
     (or implementation
-	(begin
-	  (load-problem problem)
-	  (let ((implementation (hashtable-ref *problem-table* problem #f)))
-	    (unless implementation
-	      (error 'get-problem "no implementation" problem))
-	    implementation)))))
+        (begin
+          (load-problem problem)
+          (let ((implementation (hashtable-ref *problem-table* problem #f)))
+            (unless implementation
+              (error 'get-problem "no implementation" problem))
+            implementation)))))
 
 ;;; Stubbing, Building, and Testing problems
 
@@ -132,7 +132,7 @@
 (define (stub-exercism problem)
   (format #t "setting up ~a~%" problem)
   (let* ((dir (format "code/exercises/~a" problem))
-	 (implementation (format "~a/test.ss" dir))
+         (implementation (format "~a/test.ss" dir))
          ;; todo, add "properties" found in spec to stub skeleton and solution
          (skeleton (format "~a/~a.scm" dir problem))
          (solution (format "~a/example.scm" dir))
@@ -148,19 +148,19 @@
                 (define (spec->tests spec)
                   `(,@*test-definitions*
                     (define (test . args)
-		      (apply run-test-suite
-			     (list ,@(map parse-test (lookup 'cases spec)))
-			     args)))))
-	    (put-problem! ',problem
-			  ;; fixme, quoted expression for test not working
-			  `((test . ,(spec->tests
-				      (get-test-specification ',problem)))
-			    (skeleton . ,,(path-last skeleton))
-			    (solution . ,,(path-last solution))))))
-	 (stub-solution `((import (rnrs (6)))
-			  (load "test.scm")
-			  (define (,problem)
-			    'implement-me!))))
+                      (apply run-test-suite
+                             (list ,@(map parse-test (lookup 'cases spec)))
+                             args)))))
+            (put-problem! ',problem
+                          ;; fixme, quoted expression for test not working
+                          `((test . ,(spec->tests
+                                      (get-test-specification ',problem)))
+                            (skeleton . ,,(path-last skeleton))
+                            (solution . ,,(path-last solution))))))
+         (stub-solution `((import (rnrs (6)))
+                          (load "test.scm")
+                          (define (,problem)
+                            'implement-me!))))
     (when (file-exists? implementation)
       (error 'setup-exercism "implementation already exists" problem))
     (system (format "mkdir -p ~a" dir))
@@ -179,46 +179,61 @@
 (define (build-exercism problem)
   (let ((implementation (get-problem problem)))
     (let* ((dir (format "_build/exercises/~a" problem))
-	   (src (format "code/exercises/~a" problem))
-	   (test.scm (format "~a/test.scm" dir))
-	   (skeleton.scm (format "~a/~a" src (lookup 'skeleton implementation)))
-	   (solution.scm (format "~a/~a" src (lookup 'solution implementation))))
+           (src (format "code/exercises/~a" problem))
+           (test.scm (format "~a/test.scm" dir))
+           (skeleton.scm (format "~a/~a" src (lookup 'skeleton implementation)))
+           (solution.scm (format "~a/~a" src (lookup 'solution implementation))))
       (format #t "writing _build/exercises/~a~%" problem)
       (system
        (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a/Makefile"
-	       dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
+               dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
       (hint-exercism problem)
+      (version-exercism problem)
       (write-expression-to-file (lookup 'test implementation) test.scm))))
 
 ;; If hint field is specified, include .meta/hints.md in exercise
 ;; directory.
 (define (hint-exercism problem)
   (cond ((assoc 'hints.md (get-problem problem)) =>
-	 (lambda (hint)
-	   (let* ((target (format "_build/exercises/~a/.meta/hints.md" problem))
-		  (meta-dir (path-parent target)))
-	     (unless (file-exists? meta-dir)
-	       (mkdir (path-parent target)))
-	     (when (file-exists? target)
-	       (delete-file target))
-	     (with-output-to-file target
-	       (lambda ()
-		 (put-md (cdr hint)))))))))
+         (lambda (hint)
+           (let* ((target (format "_build/exercises/~a/.meta/hints.md" problem))
+                  (meta-dir (path-parent target)))
+             (unless (file-exists? meta-dir)
+               (mkdir (path-parent target)))
+             (when (file-exists? target)
+               (delete-file target))
+             (with-output-to-file target
+               (lambda ()
+                 (put-md (cdr hint)))))))))
+
+;; if version field is specified, include .meta/version in exercise
+;; directory.
+(define (version-exercism problem)
+  (cond ((assoc 'version (get-problem problem)) =>
+         (lambda (version)
+           (let* ((target (format "_build/exercises/~a/.meta/version" problem))
+                  (meta-dir (path-parent target)))
+             (unless (file-exists? meta-dir)
+               (mkdir (path-parent target)))
+             (when (file-exists? target)
+               (delete-file target))
+             (with-output-to-file target
+               (lambda ()
+                 (display (cdr version)))))))))
 
 ;; test the problem output in _build/exercises/problem/*
 (define (verify-exercism problem)
-  (let ((dir (format "_build/exercises/~a" problem))
-        (implementation (get-problem problem)))
+  (let ((dir (format "_build/exercises/~a" problem)))
     (check-config-for problem)
     (let ((x (system (format "cd ~a && make" dir))))
       (unless (zero? x)
-	(error 'verify-exercism "example solution incorrect" problem)))
+        (error 'verify-exercism "example solution incorrect" problem)))
     'done))
 
 (define (include-exercism problem)
   (format #t "including exercises/~a~%" problem)
   (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a && rm exercises/~a/Makefile"
-		  problem problem problem problem))
+                  problem problem problem problem))
   'done)
 
 ;; build all implementations in the problem table

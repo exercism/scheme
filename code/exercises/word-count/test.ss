@@ -32,11 +32,12 @@
        (list ,@(map parse-test (lookup 'cases spec)))
        args))))
 
-(put-problem!
- 'word-count
- `((test
-    .
-    ,(spec->tests (get-test-specification 'word-count)))
-   (skeleton . "word-count.scm")
-   (solution . "example.scm")))
+(let ((spec (get-test-specification 'word-count)))
+  (put-problem!
+   'word-count
+   `((test . ,(spec->tests (get-test-specification 'word-count)))
+     (version . ,(lookup 'version spec))
+     (skeleton . "word-count.scm")
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'word-count)))))
 

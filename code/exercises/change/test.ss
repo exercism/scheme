@@ -25,9 +25,12 @@
        (list ,@(map parse-test (lookup 'cases spec)))
        args))))
 
-(put-problem!
- 'change
- `((test . ,(spec->tests (get-test-specification 'change)))
-   (skeleton . ,"change.scm")
-   (solution . ,"example.scm")))
+(let ((spec (get-test-specification 'change)))
+  (put-problem!
+   'change
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "change.scm")
+     (solution . "example.scm")
+     (hints.md . ,(splice-exercism 'change)))))
 

@@ -4,7 +4,7 @@
      "Running and testing your solutions"
      (subsection
       "Overview"
-      "Suppose you're solving "
+      "Suppose you're solving the "
       (bold "halting-problem")
       ":" (nl)
       (enum

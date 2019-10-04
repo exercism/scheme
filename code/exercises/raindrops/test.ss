@@ -1,24 +1,25 @@
 (define (parse-test test)
   `(lambda ()
      (test-success ,(lookup 'description test)
-		   equal?
-		   convert
-		   '(,(lookup-spine '(input number) test))
-		   ,(lookup 'expected test))))
+                   equal?
+                   convert
+                   '(,(lookup-spine '(input number) test))
+                   ,(lookup 'expected test))))
 
 (define (spec->tests spec)
   `(,@*test-definitions*
-     (define (test . args)
-       (apply
-         run-test-suite
-         (list ,@(map parse-test (lookup 'cases spec)))
-         args))))
+    (define (test . args)
+      (apply
+       run-test-suite
+       (list ,@(map parse-test (lookup 'cases spec)))
+       args))))
 
-(put-problem!
-  'raindrops
-  `((test
-      .
-      ,(spec->tests (get-test-specification 'raindrops)))
+(let ((spec (get-test-specification 'raindrops)))
+  (put-problem!
+   'raindrops
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
      (skeleton . ,"raindrops.scm")
-     (solution . ,"example.scm")))
+     (solution . ,"example.scm")
+     (hints.md . ,(splice-exercism 'raindrops)))))
 

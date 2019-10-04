@@ -26,15 +26,17 @@
                      ,@(map parse-test (lookup 'cases test-square)))
                args)))))
 
-(put-problem!
- 'grains
- `((test . ,(spec->tests (get-test-specification 'grains)))
-   (skeleton . "grains.scm")
-   (solution . "example.scm")
-   (hints.md
-    .
-    ,(md-hints
-      `((sentence "The tests expect an error to be reported for out of
+(let ((spec (get-test-specification 'grains)))
+  (put-problem!
+   'grains
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "grains.scm")
+     (solution . "example.scm")
+     (hints.md
+      .
+      ,(splice-exercism 'grains
+                        '(sentence "The tests expect an error to be reported for out of
 range inputs."))))))
 
 

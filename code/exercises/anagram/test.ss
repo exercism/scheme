@@ -30,14 +30,17 @@
 	     (list ,@(map parse-test (lookup 'cases spec)))
 	     args))))
 
-(put-problem!
- 'anagram
- `((test . ,(spec->tests (get-test-specification 'anagram)))
-   (skeleton . "anagram.scm")
-   (solution . "example.scm")
-   (hints.md
-    .
-    ,(md-hints
-      `((sentence "For purposes of this exercise, a word is not
+(let ((spec (get-test-specification 'anagram)))
+  (put-problem!
+   'anagram
+   `((test . ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
+     (skeleton . "anagram.scm")
+     (solution . "example.scm")
+     (hints.md
+      .
+      ,(splice-exercism
+        'anagram
+        '(sentence "For purposes of this exercise, a word is not
 considered to be an anagram of itself."))))))
 
