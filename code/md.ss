@@ -118,7 +118,9 @@ procedure "
   `(section "Notes" ,@md))
 
 (define (splice-exercism problem . md)
-  `((section "Track Specific Notes" ,@md)
-    (exercism-test-help ,problem)))
+  (if (null? md)
+      `(exercism-test-help ,problem)
+      `((section "Track Specific Notes" ,@md)
+        (exercism-test-help ,problem))))
 
 

@@ -30,8 +30,6 @@ i: 1
 fled: 1
 ```
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview

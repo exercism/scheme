@@ -12,8 +12,6 @@ Here is an analogy:
 - legos are to lego houses as
 - words are to sentences as...
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview

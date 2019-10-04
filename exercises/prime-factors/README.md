@@ -29,8 +29,6 @@ You can check this yourself:
 - = 60
 - Success!
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview
