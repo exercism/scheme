@@ -15,10 +15,18 @@
          run-test-suite
          (list ,@(map parse-test (lookup 'cases spec)))
          args))))
-
-(put-problem!
-  'bob
-  `((test . ,(spec->tests (get-test-specification 'bob)))
+(let ((spec (get-test-specification 'bob)))
+  (put-problem!
+   'bob
+   `((test
+      .
+      ,(spec->tests spec))
+     (version . ,(lookup 'version spec))
      (skeleton . ,"bob.scm")
-     (solution . ,"example.scm")))
-
+     (solution . ,"example.scm")
+     (hints.md . ,(splice-exercism
+                   'bob
+                   '(sentence "For extra fun see if you can
+clearly separate responsibilities in your code.
+Using symbol messages can help by acting like enums or ADTs
+in other languages"))))))

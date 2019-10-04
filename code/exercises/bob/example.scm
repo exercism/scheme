@@ -42,3 +42,7 @@
 ;; Unsafe Last
 (define (string-last string)
   (string-ref string (1- (string-length string))))
+
+;; Poor Man's ormap
+(define (ormap pred xs)
+  (if (null? xs) #f (or (pred (car xs)) (ormap pred (cdr xs)))))

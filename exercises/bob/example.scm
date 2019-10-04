@@ -1,26 +1,48 @@
-(define-module (bob)
-  #:export (response-for))
+(import (rnrs (6)))
 
-(define shouting?
-  (lambda (phrase)
-    (and (string-any char-alphabetic? phrase)
-         (string-every char-upper-case?
-                   (string-filter char-alphabetic? phrase)))))
+(load "test.scm")
 
-(define question?
-  (lambda (phrase)
-    (char=? #\?
-            (string-ref phrase
-                        (- (string-length phrase) 1)))))
+(define (response-for message)
+  (let ((not-whitespace?
+         (lambda (c) (not (char-whitespace? c)))))
+    (bob-reply (list->string
+		(filter not-whitespace?
+			(string->list message))))))
 
-(define silent?
-  (lambda (phrase)
-    (or (string-null? phrase)
-        (string-every char-whitespace? phrase))))
+;; Now we can really easily write new responder functions
+(define (bob-reply message)
+  (case (classify message)
+   ((Silence)   "Fine. Be that way!")
+   ((Statement) "Whatever.")
+   ((Yelling)   "Whoa, chill out!")
+   ((Question)  "Sure.")
+   ((YellQuest) "Calm down, I know what I'm doing!")))
 
-(define response-for
-  (lambda (phrase)
-    (cond ((silent? phrase) "Fine. Be that way!")
-          ((shouting? phrase) "Whoa, chill out!")
-          ((question? phrase) "Sure.")
-          (else "Whatever."))))
+(define classify
+  (let ((yelling?
+         (lambda (message)
+           (and (ormap char-upper-case? (string->list message))
+                (not (ormap char-lower-case? (string->list message))))))
+        (question?
+         (lambda (message)
+           (unless (string=? "" message)
+             (char=? #\? (string-last message))))))
+    (lambda (message)
+      ;; confusing shadowing - what should they be?
+      ;; the point is to cache them
+      (define question (question? message))
+      (define yelling  (yelling?  message))
+      ;; transform results to enum
+      (cond ((string=? "" message)  'Silence)
+            ((and yelling question) 'YellQuest)
+            (yelling                'Yelling)
+            (question               'Question)
+            (else                   'Statement)))))
+
+;; Unsafe Last
+(define (string-last string)
+  (string-ref string (1- (string-length string))))
+
+;; Poor Man's ormap
+(define (ormap pred xs)
+  (if (null? xs) #f (or (pred (car xs)) (ormap pred (cdr xs)))))
