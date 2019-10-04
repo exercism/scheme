@@ -82,7 +82,6 @@
       (core . #f)
       (unlocked-by . anagram)
       (difficulty . 1)
-      (deprecated . #t)
       (topics string))
 
      ((slug . raindrops)

@@ -3,7 +3,7 @@
 For extra fun see if you can
 clearly separate responsibilities in your code\.
 Using symbol messages can help by acting like enums or ADTs
-in other languages
+in other languages\.
 ## Running and testing your solutions
 
 ### Overview
