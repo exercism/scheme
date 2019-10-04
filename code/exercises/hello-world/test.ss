@@ -23,8 +23,9 @@
      (version . ,(lookup 'version spec))
      (skeleton . "hello-world.scm")
      (solution . "example.scm")
-     (hints.md . ,(md-hints
-                   `((sentence "Your solution may be a procedure that
+     (hints.md . ,(splice-exercism
+                   'hello-world
+                   '(sentence "Your solution may be a procedure that
 returns the desired string or a variable whose value is that
-string.")))))))
+string."))))))
 

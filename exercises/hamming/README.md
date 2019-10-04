@@ -23,28 +23,25 @@ an attempt to calculate it between sequences of different lengths should
 not work. The general handling of this situation (e.g., raising an
 exception vs returning a special value) may differ between languages.
 
-# Notes
+## Track Specific Notes
 
 For scheme, you may want to look into one of `error`, `assert`, or `raise`\.
+## Running and testing your solutions
+
+### Overview
 
 
-# Running and testing your solutions
+* Start a REPL either in your favorite editor or from
+the command line\.
+* Type `(load "hamming.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+* Develop the solution in `hamming.scm` and reload as you go\.
 
-## Overview
+### Testing options
 
-Suppose you're solving __halting\-problem__:
-
-* Start a REPL, either in your favorite editor or from the
-command line\.
-* Type `(load "halting-problem.scm")` at the prompt\.
-* Test your code by calling `(test)` from the REPL\. At first this should result in failed tests\.
-* Develop your solution in "halting\-problem\.scm" and
-reload the file to run the tests again\.
-
-## Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
+You can see more or less information about
+failing test cases an by passing additional arguments to the
+procedure `test`\.
 To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
 
 ## Source

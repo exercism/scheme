@@ -144,8 +144,9 @@
      (solution . "example.scm")
      (hints.md
       .
-      ,(md-hints
-        `((sentence "In the scheme version the aruguments are the "
+      ,(splice-exercism
+        'knapsack
+        '((sentence "In the scheme version the aruguments are the "
                     (inline-code "capacity")
                     " of the knapsack and a list of the "
                     (inline-code "weights")

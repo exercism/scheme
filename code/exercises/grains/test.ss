@@ -35,8 +35,8 @@
      (solution . "example.scm")
      (hints.md
       .
-      ,(md-hints
-        `((sentence "The tests expect an error to be reported for out of
-range inputs.")))))))
+      ,(splice-exercism 'grains
+                        '(sentence "The tests expect an error to be reported for out of
+range inputs."))))))
 
 

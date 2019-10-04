@@ -71,7 +71,7 @@ $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/md.ss code/test.ss code/track.ss code/exercises/%/* code/stub-makefile code/docs/tests.ss
+exercises/% : code/md.ss code/test.ss code/track.ss code/exercises/%/* code/stub-makefile
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
@@ -79,6 +79,7 @@ track : $(track-requirements)
 	./bin/configlet generate .
 	./bin/configlet lint .
 
+# send a list of implementations to run stub-makefile tests on
 ci :
 	echo "(run-ci '($(implementations)))" | $(chez) -q "code/ci.ss"
 
@@ -87,6 +88,7 @@ clean :
 	find . -name "*~" -exec rm {} \;
 	find . -name "*.html" -exec rm {} \;
 	rm -rf _build
+	rm ci
 
 .PHONY : track clean
 

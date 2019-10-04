@@ -30,5 +30,6 @@
    `((test . ,(spec->tests spec))
      (version . ,(lookup 'version spec))
      (skeleton . ,"difference-of-squares.scm")
-     (solution . ,"example.scm"))))
+     (solution . ,"example.scm")
+     (hints.md . ,(splice-exercism 'difference-of-squares)))))
 

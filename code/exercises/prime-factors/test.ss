@@ -28,5 +28,6 @@
       ,(spec->tests spec))
      (version . ,(lookup 'version spec))
      (skeleton . ,"prime-factors.scm")
-     (solution . ,"example.scm"))))
+     (solution . ,"example.scm")
+     (hints.md . ,(splice-exercism 'prime-factors)))))
 

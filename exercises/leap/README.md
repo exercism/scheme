@@ -23,23 +23,24 @@ phenomenon, go watch [this youtube video][video].
 
 [video]: http://www.youtube.com/watch?v=xX96xng7sAE
 
-# Running and testing your solutions
+## Track Specific Notes
 
-## Overview
+## Running and testing your solutions
 
-Suppose you're solving __halting\-problem__:
+### Overview
 
-* Start a REPL, either in your favorite editor or from the
-command line\.
-* Type `(load "halting-problem.scm")` at the prompt\.
-* Test your code by calling `(test)` from the REPL\. At first this should result in failed tests\.
-* Develop your solution in "halting\-problem\.scm" and
-reload the file to run the tests again\.
 
-## Testing options
+* Start a REPL either in your favorite editor or from
+the command line\.
+* Type `(load "leap.scm")` at the prompt\.
+* Test your code by calling `(test)` from the REPL\.
+* Develop the solution in `leap.scm` and reload as you go\.
 
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
+### Testing options
+
+You can see more or less information about
+failing test cases an by passing additional arguments to the
+procedure `test`\.
 To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
 
 ## Source

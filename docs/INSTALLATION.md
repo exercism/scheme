@@ -1,8 +1,8 @@
-# Installing a scheme
+## Installing a scheme
 
-## ChezScheme
+### ChezScheme
 
 Follow the instructions at [ChezScheme](https://cisco.github.io/ChezScheme/#get)\.
-## GNU Guile
+### GNU Guile
 
 Follow the instructions at [GNU Guile](https://www.gnu.org/software/guile/download/)\.
