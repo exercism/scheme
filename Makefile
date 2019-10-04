@@ -32,6 +32,7 @@ implementations := \
 	perfect-numbers \
 	change \
 	sieve
+#	run-length-encoding
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

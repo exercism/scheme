@@ -198,6 +198,14 @@
       (core . #f)
       (unlocked-by . leap)
       (difficulty . 5)
-      (topics math)))
+      (topics math))
+
+     ((slug . run-length-encoding)
+      (uuid . "d4aa1cad-b8af-4c4c-b922-63cd5c99b6b6")
+      (core . #f)
+      (unlocked-by . difference-of-squares)
+      (difficulty . 4)
+      (topics string parsing compression)
+      (wip)))
 
     ))

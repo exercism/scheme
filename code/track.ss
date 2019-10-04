@@ -151,12 +151,13 @@
                       (apply run-test-suite
                              (list ,@(map parse-test (lookup 'cases spec)))
                              args)))))
-            (put-problem! ',problem
-                          ;; fixme, quoted expression for test not working
-                          `((test . ,(spec->tests
-                                      (get-test-specification ',problem)))
-                            (skeleton . ,(path-last skeleton))
-                            (solution . ,(path-last solution))))))
+            (let ((spec (get-test-specification ',problem)))
+              (put-problem! ',problem
+                            `((test . ,(spec->tests spec))
+                              (version . (lookup 'version spec))
+                              (skeleton . ,,(path-last skeleton))
+                              (solution . ,,(path-last solution))
+                              (hints.md . (splice-exercism ,,problem)))))))
          (stub-solution `((import (rnrs))
                           (load "test.scm")
                           (define (,problem)
