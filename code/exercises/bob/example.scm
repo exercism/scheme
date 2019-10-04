@@ -1,15 +1,10 @@
-(import (rnrs (6)
-	      ;; no srfi :1 here if we want portability between
-	      ;; schemes.
-	      ))
+(import (rnrs (6)))
 
 (load "test.scm")
 
 (define (response-for message)
   (let ((not-whitespace?
          (lambda (c) (not (char-whitespace? c)))))
-    ;; sadly, instead of string-filter. If we want basic funtions like
-    ;; this, they could be added to `test.ss`
     (bob-reply (list->string
 		(filter not-whitespace?
 			(string->list message))))))
@@ -33,7 +28,8 @@
            (unless (string=? "" message)
              (char=? #\? (string-last message))))))
     (lambda (message)
-      ;; confusing shadowing
+      ;; confusing shadowing - what should they be?
+      ;; the point is to cache them
       (define question (question? message))
       (define yelling  (yelling?  message))
       ;; transform results to enum
@@ -46,7 +42,3 @@
 ;; Unsafe Last
 (define (string-last string)
   (string-ref string (1- (string-length string))))
-
-;; can't believe there is no string-filter in chez
-(define (string-filter pred str)
-  (apply string (filter pred (string->list str))))
