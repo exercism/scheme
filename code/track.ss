@@ -155,9 +155,9 @@
                           ;; fixme, quoted expression for test not working
                           `((test . ,(spec->tests
                                       (get-test-specification ',problem)))
-                            (skeleton . ,,(path-last skeleton))
-                            (solution . ,,(path-last solution))))))
-         (stub-solution `((import (rnrs (6)))
+                            (skeleton . ,(path-last skeleton))
+                            (solution . ,(path-last solution))))))
+         (stub-solution `((import (rnrs))
                           (load "test.scm")
                           (define (,problem)
                             'implement-me!))))
@@ -189,7 +189,7 @@
                dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
       (hint-exercism problem)
       (version-exercism problem)
-      (write-expression-to-file (lookup 'test implementation) test.scm))))
+      (write-r6rs-expression-to-file (lookup 'test implementation) test.scm))))
 
 ;; If hint field is specified, include .meta/hints.md in exercise
 ;; directory.
@@ -225,7 +225,7 @@
 (define (verify-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem)))
     (check-config-for problem)
-    (let ((x (system (format "cd ~a && make" dir))))
+    (let ((x (system (format "cd ~a && make check-all" dir))))
       (unless (zero? x)
         (error 'verify-exercism "example solution incorrect" problem)))
     'done))

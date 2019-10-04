@@ -1,3 +1,7 @@
+#!r6rs
+
+(import (rnrs))
+
 (define test-fields '(input output who))
 
 (define (test-run-solution solution input)
