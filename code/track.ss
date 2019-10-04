@@ -155,9 +155,9 @@
                           ;; fixme, quoted expression for test not working
                           `((test . ,(spec->tests
                                       (get-test-specification ',problem)))
-                            (skeleton . ,,(path-last skeleton))
-                            (solution . ,,(path-last solution))))))
-         (stub-solution `((import (rnrs (6)))
+                            (skeleton . ,(path-last skeleton))
+                            (solution . ,(path-last solution))))))
+         (stub-solution `((import (rnrs))
                           (load "test.scm")
                           (define (,problem)
                             'implement-me!))))
@@ -167,11 +167,11 @@
     ;;    (format #t "~~ getting description~%")
     ;;    (write-problem-description problem)
     (format #t "~~ writing stub implementation~%")
-    (write-r6rs-expression-to-file stub-implementation implementation)
+    (write-expression-to-file stub-implementation implementation)
     (format #t "~~ writing stub solution~%")
-    (write-r6rs-expression-to-file stub-solution skeleton)
+    (write-expression-to-file stub-solution skeleton)
     (format #t "~~ writing stub skeleton~%")
-    (write-r6rs-expression-to-file stub-solution solution)))
+    (write-expression-to-file stub-solution solution)))
 
 ;; write the problem as specified in code/exercises/problem/* to
 ;; _build/exercises/problem/*. This is a temporary location to first

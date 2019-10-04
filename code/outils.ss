@@ -36,7 +36,7 @@
     (delete-file file))
   (with-output-to-file file
     (lambda ()
-      (format (current-output-port) "#!r6rs~%")
+      (format #t "#!r6rs~%~%")
       (for-each (lambda (line)
                   (pretty-print line) (newline))
                 code))))
