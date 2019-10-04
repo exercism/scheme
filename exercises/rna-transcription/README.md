@@ -18,8 +18,6 @@ each nucleotide with its complement:
 * `T` -> `A`
 * `A` -> `U`
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview

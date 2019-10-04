@@ -16,8 +16,6 @@ that the sum of the coins' value would equal the correct amount of change.
 - Can you ask for negative change?
 - Can you ask for a change value smaller than the smallest coin value?
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview

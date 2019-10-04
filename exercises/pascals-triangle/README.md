@@ -14,8 +14,6 @@ the right and left of the current position in the previous row.
 # ... etc
 ```
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview

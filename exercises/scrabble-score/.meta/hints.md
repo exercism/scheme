@@ -1,5 +1,3 @@
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview

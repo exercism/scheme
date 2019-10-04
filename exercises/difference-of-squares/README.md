@@ -16,8 +16,6 @@ You are not expected to discover an efficient solution to this yourself from
 first principles; research is allowed, indeed, encouraged. Finding the best
 algorithm for the problem is a key skill in software engineering.
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview

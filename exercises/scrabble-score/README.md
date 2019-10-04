@@ -39,8 +39,6 @@ And to total:
 - You can play a double or a triple letter.
 - You can play a double or a triple word.
 
-## Track Specific Notes
-
 ## Running and testing your solutions
 
 ### Overview
