@@ -3,10 +3,10 @@ chez := scheme
 problem-specifications := git@github.com:exercism/problem-specifications.git
 
 doc-files := \
-	about \
-	installation \
-	resources \
-	tests
+	ABOUT \
+	INSTALLATION \
+	RESOURCES \
+	TESTS
 
 implementations := \
 	hello-world \
