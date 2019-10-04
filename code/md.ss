@@ -101,7 +101,7 @@ procedure "
 ;; markdown in docs/*
 (define (put-doc md)
   (let ((source (format "code/docs/~a.ss" md))
-        (target (format "docs/~a.md" (string-upcase (symbol->string md)))))
+        (target (format "docs/~a.md" (symbol->string md))))
     (load source)
     (when (file-exists? target)
       (delete-file target))
