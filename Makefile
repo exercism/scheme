@@ -25,6 +25,7 @@ implementations := \
 	knapsack \
 	raindrops \
 	phone-number \
+	bob \
 	prime-factors \
 	transpose \
 	rotational-cipher \

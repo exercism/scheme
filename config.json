@@ -107,7 +107,6 @@
       "core": false,
       "unlocked_by": "anagram",
       "difficulty": 1,
-      "deprecated": true,
       "topics": [
         "string"
       ]
