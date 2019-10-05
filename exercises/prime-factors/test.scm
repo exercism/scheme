@@ -78,34 +78,45 @@
        (newline)
        'failure])))
 
-(define (multiset-equal? xs ys)
-  (equal? (list-sort < xs) (list-sort < ys)))
+(define factorize)
 
-(define (test . args)
+(define (test . query)
   (apply
     run-test-suite
     (list
       (lambda ()
-        (test-success "no factors" multiset-equal? factorize '(1)
-          '()))
+        (test-success "no factors"
+          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+          factorize '(1) '()))
       (lambda ()
-        (test-success "prime number" multiset-equal? factorize '(2)
-          '(2)))
+        (test-success "prime number"
+          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+          factorize '(2) '(2)))
       (lambda ()
-        (test-success "square of a prime" multiset-equal? factorize
-          '(9) '(3 3)))
+        (test-success "square of a prime"
+          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+          factorize '(9) '(3 3)))
       (lambda ()
-        (test-success "cube of a prime" multiset-equal? factorize
-          '(8) '(2 2 2)))
+        (test-success "cube of a prime"
+          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+          factorize '(8) '(2 2 2)))
       (lambda ()
         (test-success "product of primes and non-primes"
-          multiset-equal? factorize '(12) '(2 2 3)))
+          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+          factorize '(12) '(2 2 3)))
       (lambda ()
-        (test-success "product of primes" multiset-equal? factorize
-          '(901255) '(5 17 23 461)))
+        (test-success "product of primes"
+          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+          factorize '(901255) '(5 17 23 461)))
       (lambda ()
         (test-success "factors include a large prime"
-          multiset-equal? factorize '(93819012551)
-          '(11 9539 894119))))
-    args))
+          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+          factorize '(93819012551) '(11 9539 894119))))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "prime-factors.scm")
+      (load (cadr args)))
+  (test))
 

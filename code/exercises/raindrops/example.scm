@@ -1,6 +1,4 @@
-(import (rnrs (6)))
-
-(load "test.scm")
+(import (rnrs))
 
 (define (convert number)
   (let* ((rules '((3 . "Pling") (5 . "Plang") (7 . "Plong")))

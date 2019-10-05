@@ -72,7 +72,7 @@
       (uuid . "96f2a7e3-1283-4fca-944d-8cf2fe463c56")
       (core . #t)
       (unlocked-by)
-      (difficulty . 7)
+      (difficulty . 8)
       (topics optimization dynamic-programming search))
 
      ;;; Other problems
@@ -81,7 +81,7 @@
       (uuid . "4cf6697c-ad9e-426c-a2d8-6c3695812421")
       (core . #f)
       (unlocked-by . anagram)
-      (difficulty . 1)
+      (difficulty . 4)
       (topics string))
 
      ((slug . raindrops)

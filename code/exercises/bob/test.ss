@@ -15,4 +15,5 @@
      (skeleton . "bob.scm")
      (solution . "example.scm")
      (stubs response-for)
-     (markdown . ,(splice-exercism 'bob)))))
+     (markdown . ,(splice-exercism 'bob '(sentence "See if you can
+clearly separate responsibilities in your code."))))))

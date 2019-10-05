@@ -16,6 +16,11 @@ He answers 'Whatever.' to anything else.
 Bob's conversational partner is a purist when it comes to written communication and always follows normal rules regarding sentence punctuation in English.
 
 
+## Track Specific Notes
+
+See if you can
+clearly separate responsibilities in your code\.
+
 ## Running and testing your solutions
 
 
