@@ -183,20 +183,22 @@
       (hint-exercism problem)
       (version-exercism problem)
       (write-r6rs-expression-to-file
-       (make-test-file (lookup 'test implementation)
-                       problem)
+       (apply make-test-file
+              (lookup 'test implementation)
+              problem
+              (lookup 'stubs implementation))
        test.scm))))
 
-(define (make-test-file tests problem)
+(define (make-test-file tests problem . stub-defs)
   `((import (rnrs))
     ,@*test-definitions*
+    ,@(map (lambda (stub-def)
+             `(define ,stub-def))
+           stub-defs)
     (let ((args (command-line)))
-      (cond ((null? args)
-             (load ,(format "~a.scm" problem)))
-            ((and (eq? 'guile (car args))
-                  (null? (cdr args)))
-             (load ,(format "~a.scm" problem)))
-            (else (load "example.scm")))
+      (if (null? (cdr args))
+          (load ,(format "~a.scm" problem))
+          (load "example.scm"))
       (let ((test
              (lambda query
                (apply run-test-suite
@@ -242,7 +244,7 @@
 (define (verify-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem)))
     (check-config-for problem)
-    (let ((x (system (format "cd ~a && make check-all" dir))))
+    (let ((x (system (format "cd ~a && make check-all solution=example.scm" dir))))
       (unless (zero? x)
         (error 'verify-exercism "example solution incorrect" problem)))
     'done))

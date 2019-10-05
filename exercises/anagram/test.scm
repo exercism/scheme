@@ -78,12 +78,12 @@
        (newline)
        'failure])))
 
+(define anagram)
+
 (let ([args (command-line)])
-  (cond
-    [(null? args) (load "anagram.scm")]
-    [(and (eq? 'guile (car args)) (null? (cdr args)))
-     (load "anagram.scm")]
-    [else (load "example.scm")])
+  (if (null? (cdr args))
+      (load "anagram.scm")
+      (load "example.scm"))
   (let ([test (lambda query
                 (apply
                   run-test-suite
