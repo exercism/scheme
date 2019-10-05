@@ -26,27 +26,31 @@ are some additional things you could try:
 Then please share your thoughts in a comment on the submission. Did this
 experiment make the code better? Worse? Did you learn anything from it?
 
+
 ## Track Specific Notes
 
 The tests expect an error to be reported for out of
 range inputs\.
+
 ## Running and testing your solutions
 
-### Overview
 
+### From the command line
 
-* Start a REPL either in your favorite editor or from
-the command line\.
-* Type `(load "grains.scm")` at the prompt\.
-* Test your code by calling `(test)` from the REPL\.
-* Develop the solution in `grains.scm` and reload as you go\.
+Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
+
+### From a REPL
+
+* Enter `test.scm` at the repl prompt\.
+* Develop your solution in the file `(load "grains.scm")` reloading as you go\.
+* Run `(test)` to check your solution\.
+
 
 ### Testing options
 
-You can see more or less information about
-failing test cases an by passing additional arguments to the
-procedure `test`\.
-To see the failing input call `(test 'input)` and to see the input and output together call `(test 'input 'output)`\.
+You can see more information about failing test cases by passing
+arguments to the procedure `test`\.
+ To see the failing input and output call `(test 'input 'output)`\.
 
 ## Source
 

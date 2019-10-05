@@ -3,30 +3,29 @@
   `((section
      "Running and testing your solutions"
      (subsection
-      "Overview"
-      "Suppose you're solving the "
-      (bold "halting-problem")
-      ":" (nl)
+      "From the command line"
+      (sentence "Simply type "
+                (inline-code "make chez")
+                " if you're using ChezScheme or "
+                (inline-code "make guile")
+                " if you're using GNU Guile."))
+     (subsection
+      "From a REPL"
       (enum
-       (item "Start a REPL, either in your favorite editor or from the
-command line.")
-       (item "Type "
-	     (inline-code "(load \"halting-problem.scm\")")
-	     " at the prompt.")
-       (item "Test your code by calling "
-	     (inline-code "(test)")
-	     " from the REPL. At first this should result in failed tests.")
-       (item "Develop your solution in \"halting-problem.scm\" and
-reload the file to run the tests again.")))
+       (item "Enter " (inline-code "test.scm") " at the repl prompt.")
+       (item "Develop your solution in the file "
+             (inline-code "problem.scm")
+             " reloading as you go.")
+       (item "Run "
+             (inline-code "(test)")
+             " to check your solution.")))
      (subsection
       "Testing options"
       (sentence "You can see more information about failing test cases by passing
 arguments to the procedure "
-		(inline-code "test") ".")
+                (inline-code "test") ".")
       (sentence 
-       "To see the failing input call "
-       (inline-code "(test 'input)")
-       " and to see the input and output together call "
+       " To see the failing input and output call "
        (inline-code "(test 'input 'output)")
        ".")))))
 
