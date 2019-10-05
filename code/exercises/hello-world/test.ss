@@ -8,9 +8,7 @@
 (let ((spec (get-test-specification 'hello-world)))
   (put-problem!
    'hello-world
-   `((test
-      .
-      ,(map parse-test (lookup 'cases spec)))
+   `((test . ,(map parse-test (lookup 'cases spec)))
      (version . ,(lookup 'version spec))
      (skeleton . "hello-world.scm")
      (solution . "example.scm")

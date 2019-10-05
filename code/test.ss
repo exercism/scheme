@@ -50,8 +50,7 @@
                                 tests))))
     (cond
      ((null? failures)
-      (format #t "~%Well done!~%~%")
-      'success)
+      (format #t "~%Well done!~%~%"))
      (else
       (format #t "~%Passed ~a/~a tests.~%~%The following test cases failed:~%~%"
 	      (length passes)
@@ -66,6 +65,5 @@
 				(format #t "  - ~a: ~a~%" (car info) (cdr info))))
 			    query))
 		failures)
-      (newline)
-      'failure))))
+      (error 'test "incorrect solution")))))
 
