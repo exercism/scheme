@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define transpose)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -156,5 +158,11 @@
               (69 69 69 69 69 32) (82 82 82 82 82 82)))
           '((84 69 65 83 69 82) (32 69 65 83 69 82) (32 32 65 83 69 82) (32 32 32 83 69 82)
              (32 32 32 32 69 82) (32 32 32 32 32 82)))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "transpose.scm")
+      (load (cadr args)))
+  (test))
 

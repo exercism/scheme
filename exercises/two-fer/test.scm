@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define two-fer)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -91,5 +93,11 @@
       (lambda ()
         (test-success "another name given" equal? two-fer '("Bob")
           "One for Bob, one for me.")))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "two-fer.scm")
+      (load (cadr args)))
+  (test))
 

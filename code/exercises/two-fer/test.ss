@@ -1,26 +1,18 @@
 (define (parse-test test)
-  `(lambda ()
-     (test-success ,(lookup 'description test)
-                   equal?
-                   two-fer
-                   ,(let ((input (cdar (lookup 'input test))))
-                      (if (null? input)
-                          ''()
-                          `'(,input)))
-                   ,(lookup 'expected test))))
-
-(define (spec->tests spec)
-  `(,@*test-definitions*
-    (define (test . args)
-      (apply
-       run-test-suite
-       (list ,@(map parse-test (lookup 'cases spec)))
-       args))))
+  `(test-success ,(lookup 'description test)
+                 equal?
+                 two-fer
+                 ,(let ((input (cdar (lookup 'input test))))
+                    (if (null? input)
+                        ''()
+                        `'(,input)))
+                 ,(lookup 'expected test)))
 
 (let ((spec (get-test-specification 'two-fer)))
   (put-problem!
    'two-fer
-   `((test . ,(spec->tests spec))
+   `((test . ,(map parse-test (lookup 'cases spec)))
+     (stubs two-fer)
      (version . ,(lookup 'version spec))
      (skeleton . "two-fer.scm")
      (solution . "example.scm")

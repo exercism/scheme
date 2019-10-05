@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define score)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -105,5 +107,11 @@
       (lambda ()
         (test-success "entire alphabet available" = score
           '("abcdefghijklmnopqrstuvwxyz") 87)))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "scrabble-score.scm")
+      (load (cadr args)))
+  (test))
 

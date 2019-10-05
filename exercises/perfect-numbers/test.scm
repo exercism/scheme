@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define classify)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -135,5 +137,11 @@
           "Negative integer is rejected (not a natural number)"
           classify
           '(-1))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "perfect-numbers.scm")
+      (load (cadr args)))
+  (test))
 

@@ -1,6 +1,4 @@
-(import (rnrs (6)))
-
-(load "test.scm")
+(import (rnrs))
 
 (define (rotate phrase dx)
   'implement-me!)

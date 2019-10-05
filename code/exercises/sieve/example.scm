@@ -1,7 +1,5 @@
-(import (rnrs (6))
+(import (rnrs)
         (rnrs arithmetic bitwise))
-
-(load "test.scm")
 
 (define (sieve N)
   (cond ((> N 4) (run-eratosthenes N))

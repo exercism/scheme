@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define rotate)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -111,5 +113,11 @@
         (test-success "rotate all letters" equal? rotate
           '("The quick brown fox jumps over the lazy dog." 13)
           "Gur dhvpx oebja sbk whzcf bire gur ynml qbt.")))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "rotational-cipher.scm")
+      (load (cadr args)))
+  (test))
 

@@ -1,7 +1,5 @@
-(import (rnrs (6))
+(import (rnrs)
         (rnrs arithmetic bitwise))
-
-(load "test.scm")
 
 (define (sieve n)
   'implement-me!)
