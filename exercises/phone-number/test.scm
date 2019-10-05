@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define clean)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -157,5 +159,11 @@
           "invalid if exchange code starts with 1 on valid 11-digit number"
           clean
           '("1 (223) 156-7890"))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "phone-number.scm")
+      (load (cadr args)))
+  (test))
 

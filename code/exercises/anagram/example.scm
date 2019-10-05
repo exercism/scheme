@@ -1,6 +1,4 @@
-(import (rnrs (6)))
-
-(load "test.scm")
+(import (rnrs))
 
 (define (canonicalize word)
   (list-sort char<? (string->list word)))

@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define pascals-triangle)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -106,15 +108,12 @@
         (test-success "ten rows" equal? pascals-triangle '(10)
           '((1) (1 1) (1 2 1) (1 3 3 1) (1 4 6 4 1) (1 5 10 10 5 1)
                 (1 6 15 20 15 6 1) (1 7 21 35 35 21 7 1)
-                (1 8 28 56 70 56 28 8 1) (1 9 36 84 126 126 84 36 9 1))))
-      (lambda ()
-        (test-success "all rows sum to power of 2"
-          (lambda (n ignore)
-            (null?
-              (filter
-                not
-                (map (lambda (row) (= 1 (bitwise-bit-count (apply + row))))
-                     (pascals-triangle n)))))
-          (lambda (x) x) '(100) 'ignore)))
-    args))
+                (1 8 28 56 70 56 28 8 1) (1 9 36 84 126 126 84 36 9 1)))))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "pascals-triangle.scm")
+      (load (cadr args)))
+  (test))
 

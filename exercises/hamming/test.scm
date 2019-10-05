@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define hamming-distance)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -117,5 +119,11 @@
           "disallow right empty strand"
           hamming-distance
           '("G" ""))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "hamming.scm")
+      (load (cadr args)))
+  (test))
 

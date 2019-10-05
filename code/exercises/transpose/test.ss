@@ -7,37 +7,27 @@
                         (string-append s
                                        (make-string (- k (string-length s))
                                                     #\space)))))
-    `(lambda ()
-       (test-success ,(lookup 'description test)
-                     equal?
-                     transpose
-                     '(,(map (lambda (s)
-                               (map char->integer
-                                    (string->list
-                                     (fill-string s m))))
-                             lines))
-                     '(,@(map (lambda (s)
-                                (map char->integer
-                                     (string->list
-                                      (fill-string s n))))
-                              (lookup 'expected test)))))))
-
-(define (spec->tests spec)
-  `(,@*test-definitions*
-    (define (test . args)
-      (apply
-       run-test-suite
-       (list ,@(map parse-test (lookup 'cases spec)))
-       args))))
+    `(test-success ,(lookup 'description test)
+                   equal?
+                   transpose
+                   '(,(map (lambda (s)
+                             (map char->integer
+                                  (string->list
+                                   (fill-string s m))))
+                           lines))
+                   '(,@(map (lambda (s)
+                              (map char->integer
+                                   (string->list
+                                    (fill-string s n))))
+                            (lookup 'expected test))))))
 
 (let ((spec (get-test-specification 'transpose)))
   (put-problem!
    'transpose
-   `((test
-      .
-      ,(spec->tests spec))
+   `((test . ,(map parse-test (lookup 'cases spec)))
+     (stubs transpose)
      (version . ,(lookup 'version spec))   
      (skeleton . "transpose.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'transpose)))))
+     (markdown . ,(splice-exercism 'transpose)))))
 

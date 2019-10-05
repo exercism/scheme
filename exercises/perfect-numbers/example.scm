@@ -1,6 +1,4 @@
-(import (rnrs (6)))
-
-(load "test.scm")
+(import (rnrs))
 
 (define (classify n)
   (when (or (< n 1) (not (integer? n)))

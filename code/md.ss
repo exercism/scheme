@@ -36,29 +36,29 @@
         `(section
           "Running and testing your solutions"
           (subsection
-           "Overview"
+           "From the command line"
+           (sentence "Simply type "
+                     (inline-code "make chez")
+                     " if you're using ChezScheme or "
+                     (inline-code "make guile")
+                     " if you're using GNU Guile."))
+          (subsection
+           "From a REPL"
            (enum
-            (item "Start a REPL either in your favorite editor or from
-the command line.")
-            (item "Type "
+            (item "Enter " (inline-code "test.scm") " at the repl prompt.")
+            (item "Develop your solution in the file "
                   (inline-code ,(format "(load \"~a.scm\")" exercism))
-                  " at the prompt.")
-            (item "Test your code by calling "
+                  " reloading as you go.")
+            (item "Run "
                   (inline-code "(test)")
-                  " from the REPL.")
-            (item "Develop the solution in "
-                  (inline-code ,(format "~a.scm" exercism))
-                  " and reload as you go.")))
+                  " to check your solution.")))
           (subsection
            "Testing options"
-           (sentence "You can see more or less information about
-failing test cases an by passing additional arguments to the
-procedure "
+           (sentence "You can see more information about failing test cases by passing
+arguments to the procedure "
                      (inline-code "test") ".")
-           (sentence
-            "To see the failing input call "
-            (inline-code "(test 'input)")
-            " and to see the input and output together call "
+           (sentence 
+            " To see the failing input and output call "
             (inline-code "(test 'input 'output)")
             ".")))))
     (link . ,(case-lambda
@@ -83,14 +83,14 @@ procedure "
         ((strike-through) `("~~" ,@(sxml->md content) "~~"))
         ((code) `("```" ,(car content) "\n" ,(cdr content) "\n" "```"))
         ((inline-code) `("`" ,content "`"))
-        ((h1) `("# " ,@(sxml->md content) "\n"))
-        ((h2) `("## " ,@(sxml->md content) "\n"))
-        ((h3) `("### " ,@(sxml->md content) "\n"))
-        ((h4) `("#### " ,@(sxml->md content) "\n"))
-        ((h5) `("##### " ,@(sxml->md content) "\n"))
-        ((h6) `("###### " ,@(sxml->md content) "\n"))
+        ((h1) `("\n" "# " ,@(sxml->md content) "\n"))
+        ((h2) `("\n" "## " ,@(sxml->md content) "\n"))
+        ((h3) `("\n" "### " ,@(sxml->md content) "\n"))
+        ((h4) `("\n" "#### " ,@(sxml->md content) "\n"))
+        ((h5) `("\n" "##### " ,@(sxml->md content) "\n"))
+        ((h6) `("\n" "###### " ,@(sxml->md content) "\n"))
         ((item) `("* " ,@(sxml->md content) "\n"))
-        ((enum) `("\n" ,@(sxml->md content) "\n"))
+        ((enum) `(,@(sxml->md content) "\n"))
         ((nl) "\n")
         (else (error 'sxml->md "unexpected tag" tag)))))
    ((string? tree) (list (string->goodMD tree)))

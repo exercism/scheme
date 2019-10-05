@@ -6,7 +6,7 @@
 (define (run-tests exercism)
   (let* ((dir (format "exercises/~a" exercism))
          (result (system
-                  (format "cp code/stub-makefile ~a/Makefile && cd ~a && make check-all && rm Makefile"
+                  (format "cp code/stub-makefile ~a/Makefile && cd ~a && make check-all solution=example.scm"
                           dir
                           dir))))
     (unless (zero? result)

@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define response-for)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -162,5 +164,9 @@
        (test-success "non-question ending with whitespace" equal? response-for
          '("This is a statement ending with whitespace      ")
          "Whatever.")))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args)) (load "bob.scm") (load (cadr args)))
+  (test))
 

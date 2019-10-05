@@ -1,6 +1,4 @@
-(import (rnrs (6)))
-
-(load "test.scm")
+(import (rnrs))
 
 (define (clean-phone-number S)
   (let ((good-char? (lambda (x)

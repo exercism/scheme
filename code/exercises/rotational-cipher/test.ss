@@ -1,29 +1,22 @@
 (define (parse-test test)
-  `(lambda ()
-     (test-success ,(lookup 'description test)
-                   equal?
-                   rotate
-                   '(,(lookup-spine '(input text) test)
-                     ,(lookup-spine '(input shiftKey) test))
-                   ,(lookup 'expected test))))
+  `(test-success ,(lookup 'description test)
+                 equal?
+                 rotate
+                 '(,(lookup-spine '(input text) test)
+                   ,(lookup-spine '(input shiftKey) test))
+                 ,(lookup 'expected test)))
 
 (define (spec->tests spec)
-  `(,@*test-definitions*
-    (define (test . args)
-      (apply
-       run-test-suite
-       (list ,@(map parse-test
-                    (lookup 'cases (car (lookup 'cases spec)))))
-       args))))
+  (map parse-test
+       (lookup 'cases (car (lookup 'cases spec)))))
 
 (let ((spec (get-test-specification 'rotational-cipher)))
   (put-problem!
    'rotational-cipher
-   `((test
-      .
-      ,(spec->tests spec))
+   `((test . ,(spec->tests spec))
+     (stubs rotate)
      (version . ,(lookup 'version spec))
      (skeleton . "rotational-cipher.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'rotational-cipher)))))
+     (markdown . ,(splice-exercism 'rotational-cipher)))))
 

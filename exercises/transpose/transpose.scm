@@ -1,7 +1,5 @@
-(import (rnrs (6)))
+(import (rnrs))
 
-(load "test.scm")
-
-(define (transpose lst)
+(define (transpose matrix)
   'implement-me!)
 

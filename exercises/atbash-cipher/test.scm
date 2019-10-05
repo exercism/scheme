@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,11 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define encode)
+
+(define decode)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -125,5 +129,11 @@
         (test-success "decode with no spaces" equal? decode
           '("zmlyhgzxovrhlugvmzhgvkkrmthglmv")
           "anobstacleisoftenasteppingstone")))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "atbash-cipher.scm")
+      (load (cadr args)))
+  (test))
 

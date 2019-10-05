@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define sieve)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -117,5 +119,11 @@
         (test-success "78498 primes below 1000000"
           (lambda (result n) (= n (length result))) sieve '(1000000)
           78498)))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "sieve.scm")
+      (load (cadr args)))
+  (test))
 

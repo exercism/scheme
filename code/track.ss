@@ -139,33 +139,26 @@
          ;; see code/exercises/anagram/anagram.ss for more information
          (stub-implementation
           `(,@'((define (parse-test test)
-                  `(lambda ()
-                     (test-success (lookup 'description test)
-                                   equal?
-                                   problem
-                                   (lookup 'input test)
-                                   (lookup 'expected test))))
+                  `(test-success (lookup 'description test)
+                                 equal?
+                                 problem
+                                 (lookup 'input test)
+                                 (lookup 'expected test)))
                 (define (spec->tests spec)
-                  `(,@*test-definitions*
-                    (define (test . args)
-                      (apply run-test-suite
-                             (list ,@(map parse-test (lookup 'cases spec)))
-                             args)))))
-            (put-problem! ',problem
-                          ;; fixme, quoted expression for test not working
-                          `((test . ,(spec->tests
-                                      (get-test-specification ',problem)))
-                            (skeleton . ,(path-last skeleton))
-                            (solution . ,(path-last solution))))))
+                  (map parse-test (lookup 'cases spec))))
+            (let ((spec (get-test-specification ',problem)))
+              (put-problem! ',problem
+                            `((test . ,(spec->tests spec))
+                              (version . (lookup 'version spec))
+                              (skeleton . ,,(path-last skeleton))
+                              (solution . ,,(path-last solution))
+                              (markdown . (splice-exercism ,,problem)))))))
          (stub-solution `((import (rnrs))
-                          (load "test.scm")
                           (define (,problem)
                             'implement-me!))))
     (when (file-exists? implementation)
       (error 'setup-exercism "implementation already exists" problem))
     (system (format "mkdir -p ~a" dir))
-    ;;    (format #t "~~ getting description~%")
-    ;;    (write-problem-description problem)
     (format #t "~~ writing stub implementation~%")
     (write-expression-to-file stub-implementation implementation)
     (format #t "~~ writing stub solution~%")
@@ -187,24 +180,46 @@
       (system
        (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a/Makefile"
                dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
-      (hint-exercism problem)
+      (markdown-exercism problem)
       (version-exercism problem)
-      (write-r6rs-expression-to-file (lookup 'test implementation) test.scm))))
+      (write-r6rs-expression-to-file
+       (apply make-test-file
+              (lookup 'test implementation)
+              problem
+              (lookup 'stubs implementation))
+       test.scm))))
 
-;; If hint field is specified, include .meta/hints.md in exercise
-;; directory.
-(define (hint-exercism problem)
-  (cond ((assoc 'hints.md (get-problem problem)) =>
-         (lambda (hint)
-           (let* ((target (format "_build/exercises/~a/.meta/hints.md" problem))
-                  (meta-dir (path-parent target)))
-             (unless (file-exists? meta-dir)
-               (mkdir (path-parent target)))
-             (when (file-exists? target)
-               (delete-file target))
-             (with-output-to-file target
-               (lambda ()
-                 (put-md (cdr hint)))))))))
+(define (make-test-file tests problem . stub-defs)
+  `((import (rnrs))
+    ,@*test-definitions*
+    ,@(map (lambda (stub-def)
+             `(define ,stub-def))
+           stub-defs)
+    (define (test . query)
+      (apply run-test-suite
+             (list
+              ,@(map (lambda (test)
+                       `(lambda ()
+                          ,test))
+                     tests))
+             query))
+    (let ((args (command-line)))
+      (if (null? (cdr args))
+          (load ,(format "~a.scm" problem))
+          (load (cadr args)))
+      (test))))
+
+(define (markdown-exercism problem)
+  (let* ((markdown (lookup 'markdown (get-problem problem)))
+         (target (format "_build/exercises/~a/.meta/hints.md" problem))
+         (meta-dir (path-parent target)))
+    (unless (file-exists? meta-dir)
+      (mkdir (path-parent target)))
+    (when (file-exists? target)
+      (delete-file target))
+    (with-output-to-file target
+      (lambda ()
+        (put-md markdown)))))
 
 ;; if version field is specified, include .meta/version in exercise
 ;; directory.
@@ -225,15 +240,15 @@
 (define (verify-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem)))
     (check-config-for problem)
-    (let ((x (system (format "cd ~a && make check-all" dir))))
+    (let ((x (system (format "cd ~a && make check-all solution=example.scm" dir))))
       (unless (zero? x)
         (error 'verify-exercism "example solution incorrect" problem)))
     'done))
 
 (define (include-exercism problem)
   (format #t "including exercises/~a~%" problem)
-  (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a && rm exercises/~a/Makefile"
-                  problem problem problem problem))
+  (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a"
+                  problem problem problem))
   'done)
 
 ;; build all implementations in the problem table

@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,35 +78,82 @@
        (newline)
        'failure])))
 
-(define (dna-count-eq? xs ys)
-  (letrec ([make-list (lambda (x n)
-                        (if (zero? n) '() (cons x (make-list x (- n 1)))))]
-           [count->list (lambda (z)
-                          (list-sort
-                            char<?
-                            (apply
-                              append
-                              (map (lambda (x) (make-list (car x) (cdr x)))
-                                   z))))])
-    (equal? (count->list xs) (count->list ys))))
+(define nucleotide-count)
 
-(define (test . args)
+(define (test . query)
   (apply
     run-test-suite
     (list
       (lambda ()
-        (test-success "empty strand" dna-count-eq? nucleotide-count
-          '("") '((#\A . 0) (#\C . 0) (#\G . 0) (#\T . 0))))
+        (test-success "empty strand"
+          (lambda (xs ys)
+            (letrec ([make-list (lambda (x n)
+                                  (if (zero? n)
+                                      '()
+                                      (cons x (make-list x (- n 1)))))]
+                     [count->list (lambda (z)
+                                    (list-sort
+                                      char<?
+                                      (apply
+                                        append
+                                        (map (lambda (x)
+                                               (make-list (car x) (cdr x)))
+                                             z))))])
+              (equal? (count->list xs) (count->list ys))))
+          nucleotide-count '("")
+          '((#\A . 0) (#\C . 0) (#\G . 0) (#\T . 0))))
       (lambda ()
         (test-success "can count one nucleotide in single-character input"
-          dna-count-eq? nucleotide-count '("G")
+          (lambda (xs ys)
+            (letrec ([make-list (lambda (x n)
+                                  (if (zero? n)
+                                      '()
+                                      (cons x (make-list x (- n 1)))))]
+                     [count->list (lambda (z)
+                                    (list-sort
+                                      char<?
+                                      (apply
+                                        append
+                                        (map (lambda (x)
+                                               (make-list (car x) (cdr x)))
+                                             z))))])
+              (equal? (count->list xs) (count->list ys))))
+          nucleotide-count '("G")
           '((#\A . 0) (#\C . 0) (#\G . 1) (#\T . 0))))
       (lambda ()
-        (test-success "strand with repeated nucleotide" dna-count-eq?
+        (test-success "strand with repeated nucleotide"
+          (lambda (xs ys)
+            (letrec ([make-list (lambda (x n)
+                                  (if (zero? n)
+                                      '()
+                                      (cons x (make-list x (- n 1)))))]
+                     [count->list (lambda (z)
+                                    (list-sort
+                                      char<?
+                                      (apply
+                                        append
+                                        (map (lambda (x)
+                                               (make-list (car x) (cdr x)))
+                                             z))))])
+              (equal? (count->list xs) (count->list ys))))
           nucleotide-count '("GGGGGGG")
           '((#\A . 0) (#\C . 0) (#\G . 7) (#\T . 0))))
       (lambda ()
-        (test-success "strand with multiple nucleotides" dna-count-eq?
+        (test-success "strand with multiple nucleotides"
+          (lambda (xs ys)
+            (letrec ([make-list (lambda (x n)
+                                  (if (zero? n)
+                                      '()
+                                      (cons x (make-list x (- n 1)))))]
+                     [count->list (lambda (z)
+                                    (list-sort
+                                      char<?
+                                      (apply
+                                        append
+                                        (map (lambda (x)
+                                               (make-list (car x) (cdr x)))
+                                             z))))])
+              (equal? (count->list xs) (count->list ys))))
           nucleotide-count
           '("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC")
           '((#\A . 20) (#\C . 12) (#\G . 17) (#\T . 21))))
@@ -115,5 +162,11 @@
           "strand with invalid nucleotides"
           nucleotide-count
           '("AGXXACT"))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "nucleotide-count.scm")
+      (load (cadr args)))
+  (test))
 

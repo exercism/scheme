@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define convert)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -149,5 +151,11 @@
         (test-success
           "the sound for 3125 is Plang as it has a factor 5" equal?
           convert '(3125) "Plang")))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "raindrops.scm")
+      (load (cadr args)))
+  (test))
 

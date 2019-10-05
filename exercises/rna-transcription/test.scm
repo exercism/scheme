@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition
@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define dna->rna)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -100,5 +102,11 @@
       (lambda ()
         (test-success "RNA complement" equal? dna->rna
           '("ACGTGGTCTTAA") "UGCACCAGAAUU")))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "rna-transcription.scm")
+      (load (cadr args)))
+  (test))
 
