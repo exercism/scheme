@@ -267,6 +267,17 @@
       "topics": [
         "math"
       ]
+    },
+    {
+      "slug": "binary-search",
+      "uuid": "38ebcac5-4080-41e2-ba80-d809c4a637ac",
+      "core": false,
+      "unlocked_by": "hello-world",
+      "difficulty": 3,
+      "topics": [
+        "search",
+        "vector"
+      ]
     }
   ]
 }

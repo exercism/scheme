@@ -76,7 +76,7 @@
              query))
          failures)
        (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define knapsack)
 
@@ -138,5 +138,6 @@
   (if (null? (cdr args))
       (load "knapsack.scm")
       (load (cadr args)))
-  (test))
+  (when (eq? 'failure (test 'input 'output))
+    (error 'test "incorrect solution")))
 

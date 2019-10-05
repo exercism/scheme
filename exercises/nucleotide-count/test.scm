@@ -76,7 +76,7 @@
              query))
          failures)
        (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define nucleotide-count)
 
@@ -168,5 +168,6 @@
   (if (null? (cdr args))
       (load "nucleotide-count.scm")
       (load (cadr args)))
-  (test))
+  (when (eq? 'failure (test 'input 'output))
+    (error 'test "incorrect solution")))
 

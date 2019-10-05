@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	binary-search \
 	hello-world \
 	leap \
 	hamming \

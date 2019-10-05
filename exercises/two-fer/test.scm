@@ -76,7 +76,7 @@
              query))
          failures)
        (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define two-fer)
 
@@ -99,5 +99,6 @@
   (if (null? (cdr args))
       (load "two-fer.scm")
       (load (cadr args)))
-  (test))
+  (when (eq? 'failure (test 'input 'output))
+    (error 'test "incorrect solution")))
 

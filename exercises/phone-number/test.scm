@@ -76,7 +76,7 @@
              query))
          failures)
        (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define clean)
 
@@ -165,5 +165,6 @@
   (if (null? (cdr args))
       (load "phone-number.scm")
       (load (cadr args)))
-  (test))
+  (when (eq? 'failure (test 'input 'output))
+    (error 'test "incorrect solution")))
 

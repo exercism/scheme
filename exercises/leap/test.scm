@@ -76,7 +76,7 @@
              query))
          failures)
        (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define leap-year?)
 
@@ -122,5 +122,6 @@
 
 (let ([args (command-line)])
   (if (null? (cdr args)) (load "leap.scm") (load (cadr args)))
-  (test))
+  (when (eq? 'failure (test 'input 'output))
+    (error 'test "incorrect solution")))
 

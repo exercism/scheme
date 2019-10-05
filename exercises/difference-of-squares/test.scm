@@ -76,7 +76,7 @@
              query))
          failures)
        (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define sum-of-squares)
 
@@ -117,5 +117,6 @@
   (if (null? (cdr args))
       (load "difference-of-squares.scm")
       (load (cadr args)))
-  (test))
+  (when (eq? 'failure (test 'input 'output))
+    (error 'test "incorrect solution")))
 

@@ -67,5 +67,5 @@
 			    query))
 		failures)
       (newline)
-      'failure))))
+      (error 'test "incorrect solution")))))
 

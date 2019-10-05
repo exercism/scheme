@@ -198,6 +198,15 @@
       (core . #f)
       (unlocked-by . leap)
       (difficulty . 5)
-      (topics math)))
+      (topics math))
+
+     ((slug . binary-search)
+      (uuid . "38ebcac5-4080-41e2-ba80-d809c4a637ac")
+      (core . #f)
+      (unlocked-by . hello-world)
+      (difficulty . 3)
+      (topics vector search)))
+    
+    
 
     ))

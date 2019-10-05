@@ -76,7 +76,7 @@
              query))
          failures)
        (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define response-for)
 
@@ -168,5 +168,6 @@
 
 (let ([args (command-line)])
   (if (null? (cdr args)) (load "bob.scm") (load (cadr args)))
-  (test))
+  (when (eq? 'failure (test 'input 'output))
+    (error 'test "incorrect solution")))
 
