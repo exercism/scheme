@@ -46,8 +46,8 @@
            "From a REPL"
            (enum
             (item "Enter " (inline-code "test.scm") " at the repl prompt.")
-            (item "Develop your solution in the file "
-                  (inline-code ,(format "(load \"~a.scm\")" exercism))
+            (item "Develop your solution in "
+                  (inline-code ,(format "~a.scm" exercism))
                   " reloading as you go.")
             (item "Run "
                   (inline-code "(test)")

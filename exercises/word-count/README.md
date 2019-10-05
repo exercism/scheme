@@ -41,7 +41,7 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 ### From a REPL
 
 * Enter `test.scm` at the repl prompt\.
-* Develop your solution in the file `(load "word-count.scm")` reloading as you go\.
+* Develop your solution in `word-count.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
 
 
