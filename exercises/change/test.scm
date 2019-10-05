@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define change)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -138,5 +140,11 @@
           "cannot find negative change values"
           change
           '(-5 (1 2 5)))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "change.scm")
+      (load (cadr args)))
+  (test))
 

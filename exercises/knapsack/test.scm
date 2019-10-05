@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define knapsack)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -130,5 +132,11 @@
               77174 952 15572 566 4103 313 14393 1313 348 419 246 445
               23552 23552 67))
           142156)))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "knapsack.scm")
+      (load (cadr args)))
+  (test))
 

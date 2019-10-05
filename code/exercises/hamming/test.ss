@@ -7,23 +7,17 @@
          (strand2 (lookup 'strand2 input)))
     ;; if not number test expects error
     (if (number? out)
-        `(lambda ()
-           (test-success ,desc
-                         =
-                         hamming-distance
-                         '(,strand1 ,strand2)
-                         ,out))
-        `(lambda ()
-           (test-error ,desc
+        `(test-success ,desc
+                       =
                        hamming-distance
-                       '(,strand1 ,strand2))))))
+                       '(,strand1 ,strand2)
+                       ,out)
+        `(test-error ,desc
+                     hamming-distance
+                     '(,strand1 ,strand2)))))
 
-(define (spec->tests spec) 
-  `(,@*test-definitions*
-    (define (test . args)
-      (apply run-test-suite
-             (list ,@(map parse-test (lookup 'cases spec)))
-             args))))
+(define (spec->tests spec)
+  (map parse-test (lookup 'cases spec)))
 
 (let ((spec (get-test-specification 'hamming)))
   (put-problem!
@@ -32,6 +26,7 @@
      (version . ,(lookup 'version spec))
      (skeleton . "hamming.scm")
      (solution . "example.scm")
+     (stubs hamming-distance)
      (hints.md
       .
       ,(splice-exercism 'hamming

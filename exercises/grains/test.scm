@@ -78,7 +78,11 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define square)
+
+(define total)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -107,5 +111,11 @@
           "square greater than 64 raises an exception"
           square
           '(65))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "grains.scm")
+      (load (cadr args)))
+  (test))
 

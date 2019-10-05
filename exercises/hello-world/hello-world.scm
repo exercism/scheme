@@ -1,6 +1,5 @@
-(import (rnrs (6)))
+(import (rnrs))
 
-(load "test.scm")
-
-(define (hello-world) 'implement-me!)
+(define (hello-world)
+  'implement-me!)
 

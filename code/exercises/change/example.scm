@@ -1,6 +1,4 @@
-(import (rnrs (6)))
-
-(load "test.scm")
+(import (rnrs))
 
 (define (change amount coins)
   (cond ((< amount 0) (error 'change "can't make change" amount coins))

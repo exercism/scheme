@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define leap-year?)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -116,5 +118,9 @@
         (test-success
           "year divisible by 200, not divisible by 400 in common year"
           eqv? leap-year? '(1800) #f)))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args)) (load "leap.scm") (load (cadr args)))
+  (test))
 

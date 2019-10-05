@@ -1,6 +1,4 @@
-(import (rnrs (6)))
-
-(load "test.scm")
+(import (rnrs))
 
 (define (nucleotide-count dna)
   (let ((table (make-eq-hashtable)))

@@ -78,12 +78,20 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define hello-world)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
       (lambda ()
         (test-success "Say Hi!" equal? hello-world '()
           "Hello, World!")))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "hello-world.scm")
+      (load (cadr args)))
+  (test))
 

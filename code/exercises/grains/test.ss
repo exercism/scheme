@@ -8,23 +8,16 @@
                   in)))
     (if (number? out)
         (if (null? arg)
-            `(lambda ()
-               (test-success ,desc equal? ,val '() ,out))
-            `(lambda ()
-               (test-success ,desc equal? ,val '(,arg) ,out)))
-        `(lambda ()
-           (test-error ,desc ,val '(,arg))))))
+            `(test-success ,desc equal? ,val '() ,out)
+            `(test-success ,desc equal? ,val '(,arg) ,out))
+        `(test-error ,desc ,val '(,arg)))))
 
 (define (spec->tests spec)
   (let* ((step1 (lookup 'cases spec))
          (test-total (cdr step1))
          (test-square (car step1)))
-    `(,@*test-definitions*
-      (define (test . args)
-        (apply run-test-suite
-               (list ,@(map parse-test test-total)
-                     ,@(map parse-test (lookup 'cases test-square)))
-               args)))))
+    (append (map parse-test test-total)
+            (map parse-test (lookup 'cases test-square)))))
 
 (let ((spec (get-test-specification 'grains)))
   (put-problem!
@@ -33,6 +26,7 @@
      (version . ,(lookup 'version spec))
      (skeleton . "grains.scm")
      (solution . "example.scm")
+     (stubs square total)
      (hints.md
       .
       ,(splice-exercism 'grains

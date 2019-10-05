@@ -1,28 +1,20 @@
 (define (parse-test test)
-  `(lambda ()
-     (test-success ,(lookup 'description test)
-		   equal?
-		   hello-world
-		   '()
-		   ,(lookup 'expected test))))
-
-(define (spec->tests spec)
-  `(,@*test-definitions*
-    (define (test . args)
-      (apply
-       run-test-suite
-       (list ,@(map parse-test (lookup 'cases spec)))
-       args))))
+  `(test-success ,(lookup 'description test)
+                 equal?
+                 hello-world
+                 '()
+                 ,(lookup 'expected test)))
 
 (let ((spec (get-test-specification 'hello-world)))
   (put-problem!
    'hello-world
    `((test
       .
-      ,(spec->tests spec))
+      ,(map parse-test (lookup 'cases spec)))
      (version . ,(lookup 'version spec))
      (skeleton . "hello-world.scm")
      (solution . "example.scm")
+     (stubs hello-world)
      (hints.md . ,(splice-exercism
                    'hello-world
                    '(sentence "Your solution may be a procedure that

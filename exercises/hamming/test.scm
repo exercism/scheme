@@ -78,7 +78,9 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define hamming-distance)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -117,5 +119,11 @@
           "disallow right empty strand"
           hamming-distance
           '("G" ""))))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "hamming.scm")
+      (load (cadr args)))
+  (test))
 

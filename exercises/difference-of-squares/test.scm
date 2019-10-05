@@ -78,7 +78,13 @@
        (newline)
        'failure])))
 
-(define (test . args)
+(define sum-of-squares)
+
+(define difference-of-squares)
+
+(define square-of-sum)
+
+(define (test . query)
   (apply
     run-test-suite
     (list
@@ -105,5 +111,11 @@
       (lambda ()
         (test-success "difference of squares 100" =
           difference-of-squares '(100) 25164150)))
-    args))
+    query))
+
+(let ([args (command-line)])
+  (if (null? (cdr args))
+      (load "difference-of-squares.scm")
+      (load (cadr args)))
+  (test))
 
