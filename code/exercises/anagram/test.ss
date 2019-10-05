@@ -19,7 +19,7 @@
      (skeleton . "anagram.scm")
      (solution . "example.scm")
      (stubs anagram)
-     (hints.md . ,(splice-exercism 'anagram '(sentence "For purposes
+     (markdown . ,(splice-exercism 'anagram '(sentence "For purposes
 of this exercise, a word is not considered to be an anagram of
 itself."))))))
 

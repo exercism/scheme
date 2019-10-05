@@ -24,5 +24,5 @@
      (stubs classify)
      (skeleton . "perfect-numbers.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'perfect-numbers)))))
+     (markdown . ,(splice-exercism 'perfect-numbers)))))
 

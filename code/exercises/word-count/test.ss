@@ -30,5 +30,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . "word-count.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'word-count)))))
+     (markdown . ,(splice-exercism 'word-count)))))
 

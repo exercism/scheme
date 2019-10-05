@@ -27,7 +27,7 @@
      (skeleton . "grains.scm")
      (solution . "example.scm")
      (stubs square total)
-     (hints.md
+     (markdown
       .
       ,(splice-exercism 'grains
                         '(sentence "The tests expect an error to be reported for out of

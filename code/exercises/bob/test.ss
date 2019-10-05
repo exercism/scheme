@@ -15,4 +15,4 @@
      (skeleton . "bob.scm")
      (solution . "example.scm")
      (stubs response-for)
-     (hints.md . ,(splice-exercism 'bob)))))
+     (markdown . ,(splice-exercism 'bob)))))

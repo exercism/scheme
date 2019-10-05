@@ -16,7 +16,7 @@
      (version . ,(lookup 'version spec))
      (skeleton . "two-fer.scm")
      (solution . "example.scm")
-     (hints.md
+     (markdown
       .
       ,(splice-exercism
         'two-fer

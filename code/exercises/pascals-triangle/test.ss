@@ -32,5 +32,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . "pascals-triangle.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'pascals-triangle)))))
+     (markdown . ,(splice-exercism 'pascals-triangle)))))
 

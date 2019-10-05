@@ -18,5 +18,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . "rotational-cipher.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'rotational-cipher)))))
+     (markdown . ,(splice-exercism 'rotational-cipher)))))
 

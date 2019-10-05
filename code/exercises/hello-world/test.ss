@@ -15,7 +15,7 @@
      (skeleton . "hello-world.scm")
      (solution . "example.scm")
      (stubs hello-world)
-     (hints.md . ,(splice-exercism
+     (markdown . ,(splice-exercism
                    'hello-world
                    '(sentence "Your solution may be a procedure that
 returns the desired string or a variable whose value is that

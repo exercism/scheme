@@ -29,5 +29,5 @@
      (skeleton . ,"difference-of-squares.scm")
      (solution . ,"example.scm")
      (stubs sum-of-squares difference-of-squares square-of-sum)
-     (hints.md . ,(splice-exercism 'difference-of-squares)))))
+     (markdown . ,(splice-exercism 'difference-of-squares)))))
 

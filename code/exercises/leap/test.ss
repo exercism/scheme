@@ -13,5 +13,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . ,"leap.scm")
      (solution . ,"example.scm")
-     (hints.md . ,(splice-exercism 'leap)))))
+     (markdown . ,(splice-exercism 'leap)))))
 

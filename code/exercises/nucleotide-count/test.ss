@@ -39,5 +39,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . "nucleotide-count.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'nucleotide-count)))))
+     (markdown . ,(splice-exercism 'nucleotide-count)))))
 

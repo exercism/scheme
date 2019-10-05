@@ -27,5 +27,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . "sieve.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'sieve)))))
+     (markdown . ,(splice-exercism 'sieve)))))
 

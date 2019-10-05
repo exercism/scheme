@@ -26,5 +26,5 @@
      (skeleton . "change.scm")
      (solution . "example.scm")
      (stubs change)
-     (hints.md . ,(splice-exercism 'change)))))
+     (markdown . ,(splice-exercism 'change)))))
 

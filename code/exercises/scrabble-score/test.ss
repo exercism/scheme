@@ -13,6 +13,6 @@
      (version . ,(lookup 'version spec))   
      (skeleton . "scrabble-score.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'scrabble-score)))))
+     (markdown . ,(splice-exercism 'scrabble-score)))))
 
 

@@ -20,5 +20,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . "rna-transcription.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'rna-transcription)))))
+     (markdown . ,(splice-exercism 'rna-transcription)))))
 

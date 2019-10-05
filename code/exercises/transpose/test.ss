@@ -29,5 +29,5 @@
      (version . ,(lookup 'version spec))   
      (skeleton . "transpose.scm")
      (solution . "example.scm")
-     (hints.md . ,(splice-exercism 'transpose)))))
+     (markdown . ,(splice-exercism 'transpose)))))
 

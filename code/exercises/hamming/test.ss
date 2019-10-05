@@ -27,7 +27,7 @@
      (skeleton . "hamming.scm")
      (solution . "example.scm")
      (stubs hamming-distance)
-     (hints.md
+     (markdown
       .
       ,(splice-exercism 'hamming
                         '(sentence "For scheme, you may want to look into one of "

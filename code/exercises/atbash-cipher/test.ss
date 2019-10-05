@@ -21,4 +21,4 @@
      (skeleton . "atbash-cipher.scm")
      (solution . "example.scm")
      (stubs encode decode)
-     (hints.md . ,(splice-exercism 'atbash-cipher)))))
+     (markdown . ,(splice-exercism 'atbash-cipher)))))

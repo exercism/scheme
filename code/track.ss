@@ -152,7 +152,7 @@
                               (version . (lookup 'version spec))
                               (skeleton . ,,(path-last skeleton))
                               (solution . ,,(path-last solution))
-                              (hints.md . (splice-exercism ,,problem)))))))
+                              (markdown . (splice-exercism ,,problem)))))))
          (stub-solution `((import (rnrs))
                           (define (,problem)
                             'implement-me!))))
@@ -180,7 +180,7 @@
       (system
        (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a/Makefile"
                dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
-      (hint-exercism problem)
+      (markdown-exercism problem)
       (version-exercism problem)
       (write-r6rs-expression-to-file
        (apply make-test-file
@@ -209,20 +209,17 @@
           (load (cadr args)))
       (test))))
 
-;; If hint field is specified, include .meta/hints.md in exercise
-;; directory.
-(define (hint-exercism problem)
-  (cond ((assoc 'hints.md (get-problem problem)) =>
-         (lambda (hint)
-           (let* ((target (format "_build/exercises/~a/.meta/hints.md" problem))
-                  (meta-dir (path-parent target)))
-             (unless (file-exists? meta-dir)
-               (mkdir (path-parent target)))
-             (when (file-exists? target)
-               (delete-file target))
-             (with-output-to-file target
-               (lambda ()
-                 (put-md (cdr hint)))))))))
+(define (markdown-exercism problem)
+  (let* ((markdown (lookup 'markdown (get-problem problem)))
+         (target (format "_build/exercises/~a/.meta/hints.md" problem))
+         (meta-dir (path-parent target)))
+    (unless (file-exists? meta-dir)
+      (mkdir (path-parent target)))
+    (when (file-exists? target)
+      (delete-file target))
+    (with-output-to-file target
+      (lambda ()
+        (put-md markdown)))))
 
 ;; if version field is specified, include .meta/version in exercise
 ;; directory.

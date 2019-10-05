@@ -136,7 +136,7 @@
      (stubs knapsack)
      (skeleton . "knapsack.scm")
      (solution . "example.scm")
-     (hints.md
+     (markdown
       .
       ,(splice-exercism
         'knapsack

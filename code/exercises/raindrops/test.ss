@@ -21,5 +21,5 @@
      (version . ,(lookup 'version spec))
      (skeleton . ,"raindrops.scm")
      (solution . ,"example.scm")
-     (hints.md . ,(splice-exercism 'raindrops)))))
+     (markdown . ,(splice-exercism 'raindrops)))))
 
