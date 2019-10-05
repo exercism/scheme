@@ -208,8 +208,7 @@
       (if (null? (cdr args))
           (load ,(format "~a.scm" problem))
           (load (cadr args)))
-      (when (eq? 'failure (test 'input 'output))
-        (error 'test "incorrect solution")))))
+      (test 'input 'output))))
 
 (define (markdown-exercism problem)
   (let* ((markdown (lookup 'markdown (get-problem problem)))

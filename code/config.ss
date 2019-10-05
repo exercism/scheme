@@ -205,8 +205,13 @@
       (core . #f)
       (unlocked-by . hello-world)
       (difficulty . 3)
-      (topics vector search)))
-    
-    
+      (topics vector search))
 
+     ((slug . pangram)
+      (uuid . "511b0c8b-0dee-43a5-b107-a08fc8ea0103")
+      (core . #f)
+      (unlocked-by . hamming)
+      (difficulty . 2)
+      (topics string)))
+    
     ))

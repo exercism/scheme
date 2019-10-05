@@ -54,7 +54,7 @@
                   (lambda (result) (eq? 'pass (car result)))
                   (map (lambda (test) (test)) tests))])
     (cond
-      [(null? failures) (format #t "~%Well done!~%~%") 'success]
+      [(null? failures) (format #t "~%Well done!~%~%")]
       [else
        (format
          #t
@@ -75,7 +75,6 @@
                  (format #t "  - ~a: ~a~%" (car info) (cdr info))))
              query))
          failures)
-       (newline)
        (error 'test "incorrect solution")])))
 
 (define dna->rna)
@@ -108,6 +107,5 @@
   (if (null? (cdr args))
       (load "rna-transcription.scm")
       (load (cadr args)))
-  (when (eq? 'failure (test 'input 'output))
-    (error 'test "incorrect solution")))
+  (test 'input 'output))
 

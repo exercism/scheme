@@ -77,49 +77,47 @@
          failures)
        (error 'test "incorrect solution")])))
 
-(define leap-year?)
+(define pangram?)
 
 (define (test . query)
   (apply
     run-test-suite
     (list
       (lambda ()
-        (test-success "year not divisible by 4 in common year" eqv?
-          leap-year? '(2015) #f))
+        (test-success "empty sentence" eq? pangram? '("") #f))
       (lambda ()
-        (test-success
-          "year divisible by 2, not divisible by 4 in common year"
-          eqv? leap-year? '(1970) #f))
+        (test-success "perfect lower case" eq? pangram?
+          '("abcdefghijklmnopqrstuvwxyz") #t))
       (lambda ()
-        (test-success
-          "year divisible by 4, not divisible by 100 in leap year"
-          eqv? leap-year? '(1996) #t))
+        (test-success "only lower case" eq? pangram?
+          '("the quick brown fox jumps over the lazy dog") #t))
       (lambda ()
-        (test-success
-          "year divisible by 4 and 5 is still a leap year" eqv?
-          leap-year? '(1960) #t))
+        (test-success "missing the letter 'x'" eq? pangram?
+          '("a quick movement of the enemy will jeopardize five gunboats")
+          #f))
       (lambda ()
-        (test-success
-          "year divisible by 100, not divisible by 400 in common year"
-          eqv? leap-year? '(2100) #f))
+        (test-success "missing the letter 'h'" eq? pangram?
+          '("five boxing wizards jump quickly at it") #f))
       (lambda ()
-        (test-success
-          "year divisible by 100 but not by 3 is still not a leap year"
-          eqv? leap-year? '(1900) #f))
+        (test-success "with underscores" eq? pangram?
+          '("the_quick_brown_fox_jumps_over_the_lazy_dog") #t))
       (lambda ()
-        (test-success "year divisible by 400 in leap year" eqv?
-          leap-year? '(2000) #t))
+        (test-success "with numbers" eq? pangram?
+          '("the 1 quick brown fox jumps over the 2 lazy dogs") #t))
       (lambda ()
-        (test-success
-          "year divisible by 400 but not by 125 is still a leap year"
-          eqv? leap-year? '(2400) #t))
+        (test-success "missing letters replaced by numbers" eq? pangram?
+          '("7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog") #f))
       (lambda ()
-        (test-success
-          "year divisible by 200, not divisible by 400 in common year"
-          eqv? leap-year? '(1800) #f)))
+        (test-success "mixed case and punctuation" eq? pangram?
+          '("\"Five quacking Zephyrs jolt my wax bed.\"") #t))
+      (lambda ()
+        (test-success "case insensitive" eq? pangram?
+          '("the quick brown fox jumps over with lazy FX") #f)))
     query))
 
 (let ([args (command-line)])
-  (if (null? (cdr args)) (load "leap.scm") (load (cadr args)))
+  (if (null? (cdr args))
+      (load "pangram.scm")
+      (load (cadr args)))
   (test 'input 'output))
 

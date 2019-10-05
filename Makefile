@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	pangram \
 	binary-search \
 	hello-world \
 	leap \
@@ -43,10 +44,10 @@ readme-splice := config/exercise-readme-insert.md
 track-requirements := \
 	../problem-specifications \
 	bin/configlet \
-	config.json \
 	code/stub-makefile \
 	$(readme-splice) \
-	$(exercisms)
+	$(exercisms) \
+	config.json
 
 # run given expression after loading load.ss
 exercise = echo $(1) | $(chez) -q load.ss
