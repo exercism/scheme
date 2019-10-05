@@ -47,7 +47,7 @@
     (lambda (field)
       (unless (and (symbol? field) (memq field test-fields))
         (error 'run-test-suite
-          (format "~a not in ~a" field test-fields))))
+          (format #t "~a not in ~a" field test-fields))))
     query)
   (let-values ([(passes failures)
                 (partition

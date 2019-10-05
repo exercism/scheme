@@ -14,21 +14,16 @@
 ;; result from the spec, by a specified equality predicate. Here, that is to
 ;; sort the list of strings so order doesn't matter in the solution.
 (define (parse-test test)
-  `(lambda ()
-     (test-success ,(lookup 'description test)
-		   (lambda (xs ys)
-		     (equal? (list-sort string<? xs)
-			     (list-sort string<? ys)))
-		   anagram
-		   '(,@(map cdr (lookup 'input test)))
-		   '(,@(lookup 'expected test)))))
+  `(test-success ,(lookup 'description test)
+                 (lambda (xs ys)
+                   (equal? (list-sort string<? xs)
+                           (list-sort string<? ys)))
+                 anagram
+                 '(,@(map cdr (lookup 'input test)))
+                 '(,@(lookup 'expected test))))
 
 (define (spec->tests spec)
-  `(,@*test-definitions*
-    (define (test . args)
-      (apply run-test-suite
-	     (list ,@(map parse-test (lookup 'cases spec)))
-	     args))))
+  (map parse-test (lookup 'cases spec)))
 
 (let ((spec (get-test-specification 'anagram)))
   (put-problem!

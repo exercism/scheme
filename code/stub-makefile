@@ -1,11 +1,13 @@
+solution := example.scm
+
 chez := scheme
-chez-args := -q example.scm
+chez-args := -q test.scm
 
 guile := guile
-guile-args := --no-auto-compile -q -l example.scm -c
+guile-args := --no-auto-compile -q -l test.scm -c
 
 run-test = \
-	"(when (eq? 'failure (test 'input 'output)) (error '$(1) \"incorrect implementation\"))"
+	"(when (eq? 'failure (test 'input 'output 'who)) (error '$(1) \"incorrect implementation\"))"
 
 help :
 	echo "Test your solutions from the command line by calling make check-* where * is the name of your scheme."

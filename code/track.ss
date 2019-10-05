@@ -139,33 +139,26 @@
          ;; see code/exercises/anagram/anagram.ss for more information
          (stub-implementation
           `(,@'((define (parse-test test)
-                  `(lambda ()
-                     (test-success (lookup 'description test)
-                                   equal?
-                                   problem
-                                   (lookup 'input test)
-                                   (lookup 'expected test))))
+                  `(test-success (lookup 'description test)
+                                 equal?
+                                 problem
+                                 (lookup 'input test)
+                                 (lookup 'expected test)))
                 (define (spec->tests spec)
-                  `(,@*test-definitions*
-                    (define (test . args)
-                      (apply run-test-suite
-                             (list ,@(map parse-test (lookup 'cases spec)))
-                             args)))))
-            (put-problem! ',problem
-                          ;; fixme, quoted expression for test not working
-                          `((test . ,(spec->tests
-                                      (get-test-specification ',problem)))
-                            (skeleton . ,(path-last skeleton))
-                            (solution . ,(path-last solution))))))
+                  (map parse-test (lookup 'cases spec))))
+            (let ((spec (get-test-specification ',problem)))
+              (put-problem! ',problem
+                            `((test . ,(spec->tests spec))
+                              (version . (lookup 'version spec))
+                              (skeleton . ,,(path-last skeleton))
+                              (solution . ,,(path-last solution))
+                              (hints.md . (splice-exercism ,,problem)))))))
          (stub-solution `((import (rnrs))
-                          (load "test.scm")
                           (define (,problem)
                             'implement-me!))))
     (when (file-exists? implementation)
       (error 'setup-exercism "implementation already exists" problem))
     (system (format "mkdir -p ~a" dir))
-    ;;    (format #t "~~ getting description~%")
-    ;;    (write-problem-description problem)
     (format #t "~~ writing stub implementation~%")
     (write-expression-to-file stub-implementation implementation)
     (format #t "~~ writing stub solution~%")
@@ -189,7 +182,19 @@
                dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
       (hint-exercism problem)
       (version-exercism problem)
-      (write-r6rs-expression-to-file (lookup 'test implementation) test.scm))))
+      (write-r6rs-expression-to-file
+       (make-test-file (lookup 'test implementation)
+                       problem)
+       test.scm))))
+
+(define (make-test-file tests problem)
+  `((import (rnrs))
+    ,@*test-definitions*
+    (define (test . query)
+      ,@(map (lambda (test)
+               `(lambda ()
+                  ,test))
+             tests))))
 
 ;; If hint field is specified, include .meta/hints.md in exercise
 ;; directory.
