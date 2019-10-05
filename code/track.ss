@@ -190,11 +190,23 @@
 (define (make-test-file tests problem)
   `((import (rnrs))
     ,@*test-definitions*
-    (define (test . query)
-      ,@(map (lambda (test)
-               `(lambda ()
-                  ,test))
-             tests))))
+    (let ((args (command-line)))
+      (cond ((null? args)
+             (load ,(format "~a.scm" problem)))
+            ((and (eq? 'guile (car args))
+                  (null? (cdr args)))
+             (load ,(format "~a.scm" problem)))
+            (else (load "example.scm")))
+      (let ((test
+             (lambda query
+               (apply run-test-suite
+                      (list
+                       ,@(map (lambda (test)
+                                `(lambda ()
+                                   ,test))
+                              tests))
+                      query))))
+        (test)))))
 
 ;; If hint field is specified, include .meta/hints.md in exercise
 ;; directory.

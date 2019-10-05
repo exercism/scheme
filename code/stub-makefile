@@ -1,7 +1,7 @@
 solution := example.scm
 
 chez := scheme
-chez-args := -q test.scm
+chez-args := --script test.scm
 
 guile := guile
 guile-args := --no-auto-compile -q -l test.scm -c
@@ -15,9 +15,9 @@ help :
 check-all : check-chez check-guile
 
 check-chez :
-	echo $(call run-test, $@) | $(chez) $(chez-args)
+	$(chez) --script test.scm
 
 check-guile :
-	$(guile) $(guile-args) $(call run-test, $@)
+	$(guile) --no-auto-compile -q test.scm
 
 .PHONY : help check-all check-chez check-guile
