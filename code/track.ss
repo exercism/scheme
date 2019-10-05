@@ -195,20 +195,19 @@
     ,@(map (lambda (stub-def)
              `(define ,stub-def))
            stub-defs)
+    (define (test . query)
+      (apply run-test-suite
+             (list
+              ,@(map (lambda (test)
+                       `(lambda ()
+                          ,test))
+                     tests))
+             query))
     (let ((args (command-line)))
       (if (null? (cdr args))
           (load ,(format "~a.scm" problem))
-          (load "example.scm"))
-      (let ((test
-             (lambda query
-               (apply run-test-suite
-                      (list
-                       ,@(map (lambda (test)
-                                `(lambda ()
-                                   ,test))
-                              tests))
-                      query))))
-        (test)))))
+          (load (cadr args)))
+      (test))))
 
 ;; If hint field is specified, include .meta/hints.md in exercise
 ;; directory.
@@ -251,8 +250,8 @@
 
 (define (include-exercism problem)
   (format #t "including exercises/~a~%" problem)
-  (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a && rm exercises/~a/Makefile"
-                  problem problem problem problem))
+  (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a"
+                  problem problem problem))
   'done)
 
 ;; build all implementations in the problem table
