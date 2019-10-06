@@ -19,7 +19,7 @@
   (put-problem!
     'affine-cipher
     `((test . ,(spec->tests spec))
-       (version lookup 'version spec)
+       (version . ,(lookup 'version spec))
        (skeleton . ,"affine-cipher.scm")
        (solution . ,"example.scm")
        (stubs encode decode)
