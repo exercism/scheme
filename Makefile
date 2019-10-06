@@ -32,7 +32,7 @@ implementations := \
 	perfect-numbers \
 	change \
 	sieve \
-	affine-cupher
+	affine-cipher
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
