@@ -31,7 +31,8 @@ implementations := \
 	rotational-cipher \
 	perfect-numbers \
 	change \
-	sieve
+	sieve \
+	affine-cupher
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 
