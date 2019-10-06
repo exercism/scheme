@@ -26,4 +26,4 @@
        (markdown
         .
         ,(splice-exercism 'affine-cipher
-                          '(sentence "Creating an assoc list of the alphabet and the cipherbet is an easy way to avoid implementing the full decryption algorithm."))))))
+                          '(sentence "Association lists will probably be your friend in this exercise if you want to avoid the complex computation required for decryption."))))))
