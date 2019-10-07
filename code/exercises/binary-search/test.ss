@@ -21,7 +21,7 @@
    'binary-search
    `((test . ,(spec->tests spec))
      (stubs binary-search)
-     (version ,(lookup 'version spec))
+     (version . ,(lookup 'version spec))
      (skeleton . "binary-search.scm")
      (solution . "example.scm")
      (markdown . ,(splice-exercism 'binary-search

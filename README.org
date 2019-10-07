@@ -7,28 +7,25 @@
 Exercisms in scheme.
 
 ** Overview
- 
-   Problems are implemented in [[https://github.com/exercism/scheme/tree/master/code/exercises/][code/exercises/]]. The track contents are
-   generated from there to [[https://github.com/exercism/scheme/tree/master/exercises][exercises/]]. Scheme tooling for testing and
-   implementing problems is in the [[https://github.com/exercism/scheme/tree/master/code][code]] directory. 
 
-     - [[https://github.com/exercism/scheme/tree/master/code/json.sls][code/json.sls]] and [[https://github.com/exercism/scheme/tree/master/code/packrat.sls][code/packrat.sls]] take care of JSON
-       serialization, allowing for track development and testing from
-       within scheme.
-     - [[https://github.com/exercism/scheme/tree/master/code/outils.ss][code/outils.ss]] has various utility procedures.
-     - [[https://github.com/exercism/scheme/tree/master/code/md.ss][code/md.ss]] prints scheme expressions to md for the student facing docs.
-     - [[https://github.com/exercism/scheme/tree/master/code/test.ss][code/test.ss]] is a bare bones self-contained test library that
-       gets spliced to the generated test files.
-     - [[https://github.com/exercism/scheme/tree/master/code/track.ss][code/track.ss]] contains the rest of the definitions.
-   
+   Most things run through the [[/code][code]] directory including exercise test
+   generation and document generation. Besides that, as far as
+   utilities go, the [[/bin][bin]] directory houses the configlet binary. The
+   [[Makefile][Makefile]] is the main frontend for interacting with this code base,
+   which has been designed to work from the scheme REPL, too.
+
+   Problems are implemented in [[https://github.com/exercism/scheme/tree/master/code/exercises/][code/exercises/]]. The track contents are
+   generated from there to [[https://github.com/exercism/scheme/tree/master/exercises][exercises/]]. The student facing track
+   documentation is built from files in [[/code/docs][code/docs/]].
+
 ** Setup
 
-    To work on the scheme track you'll want [[https://cisco.github.io/ChezScheme/][ChezScheme]] installed. The
+    To work on the scheme track you'll want [[https://cisco.github.io/ChezScheme/][ChezScheme]] . The
     json serialization library in =code/json.sls= relies on some
-    modules from the [[https://github.com/fedeinthemix/chez-srfi][srfi]] collection, whose path needs to be visible to
-    scheme via the =CHEZSCHEMELIBDIRS= environment
+    modules from the [[https://github.com/fedeinthemix/chez-srfi][srfi]] collection, whose path needs to be visible
+    to scheme via the =CHEZSCHEMELIBDIRS= environment
     variable. Instructions for installing the srfi collection can be
-    found at [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]].
+    found at [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. 
 
 ** Working on the Scheme track
 
