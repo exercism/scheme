@@ -212,6 +212,12 @@
       (core . #f)
       (unlocked-by . hamming)
       (difficulty . 2)
-      (topics string)))
-    
-    ))
+      (topics string))
+     
+     ((slug . matching-brackets)
+      (uuid . "fa78d295-adc0-41ae-bfe2-4a6eb8c40f9d")
+      (core . #f)
+      (unlocked-by . leap)
+      (difficulty . 5))
+
+     )))
