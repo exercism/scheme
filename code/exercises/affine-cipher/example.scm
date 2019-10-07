@@ -17,14 +17,14 @@
     (list->string (fold-left append '() l))))
 
 (define (get-translator key)
-   (translator-factory
-    (cdr (assoc 'a key))
-    (cdr (assoc 'b key))))
+  (let ((a (car key))
+        (b (cdr key)))
+  (when (not (coprime? a 26))
+    (error 'affine-cipher "a and m must be coprime" a))
+  (translator-factory a b)))
 
 ;; Work Horse - return a translator tuned to a specific affine key
 (define (translator-factory a b)
-  (when (not (coprime? a 26))
-    (error 'affine-cipher "a and m must be coprime" a))
   (let* (;; generate a char pair from an alphabetic index
          (index->pair
           (lambda (idx)            ;; (a * x + b) % m

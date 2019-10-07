@@ -2,11 +2,15 @@
   (let* ((proc (string->symbol (lookup 'property test)))
          (input (lookup 'input test))
          (key (lookup 'key input))
+         (key-pair (cons (lookup 'a key) (lookup 'b key)))
          (phrase (lookup 'phrase input))
          (expected (lookup 'expected test)))
     (if (string? expected)
-        `(test-success ,(lookup 'description test) equal? ,proc
-                       '(,key ,phrase) ,expected)
+        `(test-success ,(lookup 'description test)
+                       equal?
+                       ,proc
+                       '(,key-pair ,phrase)
+                       ,expected)
         `(test-error ,(lookup 'description test) ,proc '(,key ,phrase)))))
 
 (define (spec->tests spec)
