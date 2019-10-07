@@ -10,6 +10,8 @@ doc-files := \
 
 implementations := \
 	affine-cipher \
+	queen-attack \
+	matching-brackets \
 	pangram \
 	binary-search \
 	hello-world \
