@@ -65,10 +65,10 @@
   (cons (cdr pair) (car pair)))
 
 (define (windows lst size)
-  (let *windows* ((l lst) (acc '()))
+  (let windows* ((l lst) (acc '()))
     (if (>= (length l) size)
         (let ((window (list-head l size)))
-          (*windows* (list-tail l size) (cons window acc)))
+          (windows* (list-tail l size) (cons window acc)))
         (if (null? l)
             (reverse acc)
             (reverse (cons l acc))))))
