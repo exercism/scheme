@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	affine-cipher \
 	hello-world \
 	leap \
 	hamming \
@@ -31,8 +32,7 @@ implementations := \
 	rotational-cipher \
 	perfect-numbers \
 	change \
-	sieve \
-	affine-cipher
+	sieve
 
 track-documentation := $(foreach doc,$(doc-files),docs/$(doc).md)
 

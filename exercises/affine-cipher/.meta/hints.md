@@ -1,8 +1,4 @@
 
-## Track Specific Notes
-
-Association lists will probably be your friend in this exercise if you want to avoid the complex computation required for decryption\.
-
 ## Running and testing your solutions
 
 

@@ -70,10 +70,6 @@ harder to guess things based on word boundaries.
     - `7` is the MMI of `15 mod 26`
 
 
-## Track Specific Notes
-
-Association lists will probably be your friend in this exercise if you want to avoid the complex computation required for decryption\.
-
 ## Running and testing your solutions
 
 

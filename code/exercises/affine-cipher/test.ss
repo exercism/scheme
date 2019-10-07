@@ -23,7 +23,4 @@
        (skeleton . ,"affine-cipher.scm")
        (solution . ,"example.scm")
        (stubs encode decode)
-       (markdown
-        .
-        ,(splice-exercism 'affine-cipher
-                          '(sentence "Association lists will probably be your friend in this exercise if you want to avoid the complex computation required for decryption."))))))
+       (markdown . ,(splice-exercism 'affine-cipher)))))

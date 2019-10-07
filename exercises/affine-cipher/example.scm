@@ -64,26 +64,11 @@
     (error 'riap "wrong type arg is not a pair" pair))
   (cons (cdr pair) (car pair)))
 
-;;; To Handle Formatting
-
 (define (windows lst size)
   (let *windows* ((l lst) (acc '()))
     (if (>= (length l) size)
-        (let ((window (take l size)))
-          (*windows* (drop l size) (cons window acc)))
+        (let ((window (list-head l size)))
+          (*windows* (list-tail l size) (cons window acc)))
         (if (null? l)
             (reverse acc)
             (reverse (cons l acc))))))
-
-;;; Why aren't these already here!?!?
-(define (take lst n)
-  (let *take* ((i 0) (l lst) (acc '()))
-    (if (or (null? l) (= i n))
-        (reverse acc)
-        (*take* (1+ i) (cdr l) (cons (car l) acc)))))
-
-(define (drop lst n)
-  (let *drop* ((i 0) (l lst))
-    (if (or (null? l) (= i n))
-        l
-        (*drop* (1+ i) (cdr l)))))
