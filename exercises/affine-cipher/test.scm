@@ -54,7 +54,7 @@
                   (lambda (result) (eq? 'pass (car result)))
                   (map (lambda (test) (test)) tests))])
     (cond
-      [(null? failures) (format #t "~%Well done!~%~%") 'success]
+      [(null? failures) (format #t "~%Well done!~%~%")]
       [else
        (format
          #t
@@ -75,8 +75,7 @@
                  (format #t "  - ~a: ~a~%" (car info) (cdr info))))
              query))
          failures)
-       (newline)
-       'failure])))
+       (error 'test "incorrect solution")])))
 
 (define encode)
 
@@ -155,5 +154,5 @@
   (if (null? (cdr args))
       (load "affine-cipher.scm")
       (load (cadr args)))
-  (test))
+  (test 'input 'output))
 
