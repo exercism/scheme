@@ -218,6 +218,14 @@
       (uuid . "fa78d295-adc0-41ae-bfe2-4a6eb8c40f9d")
       (core . #f)
       (unlocked-by . leap)
+      (topics string stack fold parsing)
       (difficulty . 5))
+
+     ((slug . queen-attack)
+      (uuid . "c38e9025-4b47-41ef-a91a-5ca9cca2a91f")
+      (core . #f)
+      (unlocked-by . hamming)
+      (topics chess)
+      (difficulty . 2))
 
      )))
