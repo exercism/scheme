@@ -22,7 +22,12 @@
      (version . ,(lookup 'version spec))
      (skeleton . "queen-attack.scm")
      (solution . "example.scm")
-     (markdown . ,(splice-exercism 'queen-attack '(sentence "For this
-track, each queen's position will be represented as a list containing
-the row and the column."))))))
+     (markdown
+      .
+      ,(splice-exercism
+        'queen-attack
+        
+        '((sentence "For this track, each queen's position will be represented as a list
+containing the row and the column.")
+          (sentence "You should assume all inputs are valid, there's no need to report errors.")))))))
 
