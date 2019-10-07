@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	matching-brackets \
 	pangram \
 	binary-search \
 	hello-world \
