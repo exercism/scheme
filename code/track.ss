@@ -149,6 +149,7 @@
             (let ((spec (get-test-specification ',problem)))
               (put-problem! ',problem
                             `((test . ,(spec->tests spec))
+                              (stubs ,problem)
                               (version . (lookup 'version spec))
                               (skeleton . ,,(path-last skeleton))
                               (solution . ,,(path-last solution))
@@ -207,7 +208,7 @@
       (if (null? (cdr args))
           (load ,(format "~a.scm" problem))
           (load (cadr args)))
-      (test))))
+      (test 'input 'output))))
 
 (define (markdown-exercism problem)
   (let* ((markdown (lookup 'markdown (get-problem problem)))

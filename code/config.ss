@@ -205,6 +205,20 @@
       (core . #f)
       (unlocked-by . leap)
       (difficulty . 5)
-      (topics math)))
+      (topics math))
 
+     ((slug . binary-search)
+      (uuid . "38ebcac5-4080-41e2-ba80-d809c4a637ac")
+      (core . #f)
+      (unlocked-by . hello-world)
+      (difficulty . 3)
+      (topics vector search))
+
+     ((slug . pangram)
+      (uuid . "511b0c8b-0dee-43a5-b107-a08fc8ea0103")
+      (core . #f)
+      (unlocked-by . hamming)
+      (difficulty . 2)
+      (topics string)))
+    
     ))
