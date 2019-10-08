@@ -242,4 +242,11 @@
       (topics stack-machine interpreter language)
       (difficulty . 8))
 
+     ((slug . collatz-conjecture)
+      (uuid . "dbab5247-54d1-4830-a159-655397bd91e4")
+      (auto-approve . #f)
+      (unlocked-by . grains)
+      (difficulty . 1)
+      (topics math recursion))
+     
      )))

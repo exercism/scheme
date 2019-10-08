@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	collatz-conjecture \
 	forth \
 	affine-cipher \
 	queen-attack \
