@@ -16,36 +16,35 @@
 (define (define-forth atoms environment)
   (let ((symbol (car atoms)))
     (assert (not (number? symbol)))
-    (cons (cons symbol
-                (fold-right (lambda (atom env)
-                              (cond ((assq atom environment) =>
-                                     (lambda (def)
-                                       `(,@(cdr def) ,@env)))
-                                    (else (cons atom env))))
-                            '()
-                            (cdr atoms)))
-          environment)))
+    `((,symbol ,@(fold-right (lambda (atom definition)
+                               (cond ((assq atom environment)
+                                      => (lambda (def)
+                                           `(,@(cdr def) ,@definition)))
+                                     (else (cons atom definition))))
+                             '()
+                             (cdr atoms)))
+      ,@environment)))
 
 ;; evaluate a line of forth
-(define (evaluate-statement program environment stack)
-  (let walk ((program program) (stack stack))
-    (cond ((null? program) stack) ;; return stack
-          ((number? (car program)) ;; push
-           (walk (cdr program) (cons (car program) stack)))
-          ((assq (car program) environment) => ;; defn
-           (lambda (def)
-             (walk `(,@(cdr def) ,@(cdr program)) stack)))
-          (else ;; builtins
-           (case (car program)
-             ((drop) (walk (cdr program) (cdr stack)))
-             ((dup) (walk (cdr program) `(,(car stack) ,@stack)))
-             ((over) (walk (cdr program) `(,(cadr stack) ,@stack)))
-             ((swap) (walk (cdr program) `(,(cadr stack),(car stack) ,@(cddr stack))))
-             ((*) (walk (cdr program) `(,(* (cadr stack) (car stack)) ,@(cddr stack))))
-             ((+) (walk (cdr program) `(,(+ (cadr stack) (car stack)) ,@(cddr stack))))
-             ((-) (walk (cdr program) `(,(- (cadr stack) (car stack)) ,@(cddr stack))))
-             ((/) (walk (cdr program) `(,(quotient (cadr stack) (car stack)) ,@(cddr stack))))
-             (else (error 'evaluate-statement "todo")))))))
+(define (evaluate-statement statement environment stack)
+  (let walk ((statement statement) (stack stack))
+    (cond
+     ((null? statement) stack) ;; return stack
+     ((number? (car statement)) ;; push number to stack
+      (walk (cdr statement) (cons (car statement) stack)))
+     ((assq (car statement) environment) ;; substitute definition
+      => (lambda (def)
+           (walk `(,@(cdr def) ,@(cdr statement)) stack)))
+     (else ;; builtins
+      (case (car statement)
+        ((drop) (walk (cdr statement) (cdr stack)))
+        ((dup) (walk (cdr statement) `(,(car stack) ,@stack)))
+        ((over) (walk (cdr statement) `(,(cadr stack) ,@stack)))
+        ((swap) (walk (cdr statement) `(,(cadr stack),(car stack) ,@(cddr stack))))
+        ((*) (walk (cdr statement) `(,(* (cadr stack) (car stack)) ,@(cddr stack))))
+        ((+) (walk (cdr statement) `(,(+ (cadr stack) (car stack)) ,@(cddr stack))))
+        ((-) (walk (cdr statement) `(,(- (cadr stack) (car stack)) ,@(cddr stack))))
+        ((/) (walk (cdr statement) `(,(quotient (cadr stack) (car stack)) ,@(cddr stack)))))))))
 
 (define (parse-forth source)
   (define (parse-statement statement)
