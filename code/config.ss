@@ -228,4 +228,11 @@
       (topics chess)
       (difficulty . 2))
 
+     ((slug . forth)
+      (uuid . "09cb9d2b-3a04-4685-95d5-10fe0128be8f")
+      (core . #f)
+      (unlocked-by . hello-world)
+      (topics stack-machine interpreter language)
+      (difficulty . 8))
+
      )))

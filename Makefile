@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	forth \
 	queen-attack \
 	matching-brackets \
 	pangram \

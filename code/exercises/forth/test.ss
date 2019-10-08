@@ -1,10 +1,17 @@
 
 (define (parse-test test)
-  `(test-success ,(lookup 'description test)
-                 equal?
-                 forth
-                 '(,(cdar (lookup 'input test)))
-                 ,(lookup 'expected test)))
+  (let ((expected (lookup 'expected test)))
+    (if (and (pair? expected)
+             (pair? (car expected))
+             (eq? 'error (caar expected)))
+        `(test-error ,(lookup 'description test)
+                     forth
+                     '(,(cdar (lookup 'input test))))
+        `(test-success ,(lookup 'description test)
+                       equal?
+                       forth
+                       '(,(cdar (lookup 'input test)))
+                       '(,@expected)))))
 
 (define (spec->tests spec)
   (map parse-test
