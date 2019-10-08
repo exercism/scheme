@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	affine-cipher \
 	queen-attack \
 	matching-brackets \
 	pangram \
