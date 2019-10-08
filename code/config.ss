@@ -179,6 +179,13 @@
       (difficulty . 4)
       (topics string cipher))
 
+     ((slug . affine-cipher)
+      (uuid . "c8969b0a-232a-4c88-ab2a-0047e8b4b6d0")
+      (core . #f)
+      (unlocked-by . anagram)
+      (difficulty . 6)
+      (topics string cipher math))
+
      ((slug . transpose)
       (uuid . "f2dc14e3-89e9-4942-80b6-6578b7a7f71b")
       (core . #f)

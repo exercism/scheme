@@ -10,6 +10,7 @@ doc-files := \
 
 implementations := \
 	forth \
+	affine-cipher \
 	queen-attack \
 	matching-brackets \
 	pangram \
