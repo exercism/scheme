@@ -9,6 +9,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	forth \
 	affine-cipher \
 	queen-attack \
 	matching-brackets \
