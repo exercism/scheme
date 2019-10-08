@@ -11,7 +11,7 @@
                        equal?
                        forth
                        '(,(cdar (lookup 'input test)))
-                       '(,@expected)))))
+                       '(,@(reverse expected))))))
 
 (define (spec->tests spec)
   (map parse-test
@@ -28,5 +28,15 @@
      (version . ,(lookup 'version spec))
      (skeleton . "forth.scm")
      (solution . "example.scm")
-     (markdown . ,(splice-exercism 'forth)))))
+     (markdown
+      .
+      ,(splice-exercism
+        'forth
+        '((sentence "The input is presented as a list of strings.")
+          (sentence "Definitions are presented as "
+                    (inline-code ": var x ... ;")
+                    " where "
+                    (inline-code "var")
+                    " is bound to what follows.")
+          (sentence "Otherwise the string represents a sequence of stack manipulations.")))))))
 

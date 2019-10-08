@@ -3,7 +3,7 @@
   (evaluate-forth (parse-forth source) '() '()))
 
 (define (evaluate-forth program environment stack)
-  (cond ((null? program) (reverse stack))
+  (cond ((null? program) stack)
         ((eq? 'define-forth (caar program))
          (evaluate-forth (cdr program)
                          (define-forth (cdar program) environment)
@@ -44,7 +44,8 @@
         ((*) (walk (cdr statement) `(,(* (cadr stack) (car stack)) ,@(cddr stack))))
         ((+) (walk (cdr statement) `(,(+ (cadr stack) (car stack)) ,@(cddr stack))))
         ((-) (walk (cdr statement) `(,(- (cadr stack) (car stack)) ,@(cddr stack))))
-        ((/) (walk (cdr statement) `(,(quotient (cadr stack) (car stack)) ,@(cddr stack)))))))))
+        ((/) (walk (cdr statement) `(,(quotient (cadr stack) (car stack)) ,@(cddr stack))))
+        (else (error 'forth "unknown thing" statement environment stack)))))))
 
 (define (parse-forth source)
   (define (parse-statement statement)

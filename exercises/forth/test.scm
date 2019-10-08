@@ -85,7 +85,7 @@
     (list
      (lambda ()
        (test-success "numbers just get pushed onto the stack"
-         equal? forth '(("1 2 3 4 5")) '(1 2 3 4 5)))
+         equal? forth '(("1 2 3 4 5")) '(5 4 3 2 1)))
      (lambda ()
        (test-success "can add two numbers" equal? forth
          '(("1 2 +")) '(3)))
@@ -157,7 +157,7 @@
          '(("1 dup")) '(1 1)))
      (lambda ()
        (test-success "copies the top value on the stack" equal?
-         forth '(("1 2 dup")) '(1 2 2)))
+         forth '(("1 2 dup")) '(2 2 1)))
      (lambda ()
        (test-error
          "errors if there is nothing on the stack"
@@ -179,11 +179,11 @@
      (lambda ()
        (test-success
          "swaps the top two values on the stack if they are the only ones"
-         equal? forth '(("1 2 swap")) '(2 1)))
+         equal? forth '(("1 2 swap")) '(1 2)))
      (lambda ()
        (test-success
          "swaps the top two values on the stack if they are not the only ones"
-         equal? forth '(("1 2 3 swap")) '(1 3 2)))
+         equal? forth '(("1 2 3 swap")) '(2 3 1)))
      (lambda ()
        (test-error
          "errors if there is nothing on the stack"
@@ -201,7 +201,7 @@
      (lambda ()
        (test-success
          "copies the second element if there are more than two"
-         equal? forth '(("1 2 3 over")) '(1 2 3 2)))
+         equal? forth '(("1 2 3 over")) '(2 3 2 1)))
      (lambda ()
        (test-error
          "errors if there is nothing on the stack"
@@ -217,7 +217,7 @@
          '((": dup-twice dup dup ;" "1 dup-twice")) '(1 1 1)))
      (lambda ()
        (test-success "execute in the right order" equal? forth
-         '((": countup 1 2 3 ;" "countup")) '(1 2 3)))
+         '((": countup 1 2 3 ;" "countup")) '(3 2 1)))
      (lambda ()
        (test-success "can override other user-defined words" equal? forth
          '((": foo dup ;" ": foo dup dup ;" "1 foo")) '(1 1 1)))
@@ -230,7 +230,7 @@
      (lambda ()
        (test-success "can use different words with the same name" equal? forth
          '((": foo 5 ;" ": bar foo ;" ": foo 6 ;" "bar foo"))
-         '(5 6)))
+         '(6 5)))
      (lambda ()
        (test-success "can define word that uses word with the same name" equal?
          forth '((": foo 10 ;" ": foo foo 1 + ;" "foo")) '(11)))
@@ -249,7 +249,7 @@
          '(("1 2 3 4 DROP Drop drop")) '(1)))
      (lambda ()
        (test-success "SWAP is case-insensitive" equal? forth
-         '(("1 2 SWAP 3 Swap 4 swap")) '(2 3 4 1)))
+         '(("1 2 SWAP 3 Swap 4 swap")) '(1 4 3 2)))
      (lambda ()
        (test-success "OVER is case-insensitive" equal? forth
          '(("1 2 OVER Over over")) '(1 2 1 2 1)))
