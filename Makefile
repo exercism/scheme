@@ -68,11 +68,11 @@ bin/configlet :
 	./bin/fetch-configlet
 
 # configuration
-config.json : code/config.ss
+config.json : config/track.ss
 	$(call exercise, "(make-config)")
 
 # documentation
-docs/%.md : code/md.ss code/docs/%.ss
+docs/%.md : code/markdown.sls code/docs/%.ss
 	$(call exercise, "(put-doc '$(@F:.md=))")
 
 $(readme-splice) : $(track-documentation)
