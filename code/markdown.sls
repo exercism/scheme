@@ -2,7 +2,7 @@
 (library (markdown)
   (export splice-exercism
           put-doc
-          )
+          put-md)
   (import (chezscheme)
           (sxml)
           (outils))

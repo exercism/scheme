@@ -6,8 +6,5 @@
         (lint)
         (markdown))
 
-(define source-files
-  '("code/test.ss"
-    "code/track.ss"))
+(load "code/track.ss")
 
-(for-each load source-files)
