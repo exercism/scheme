@@ -76,13 +76,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Run `(test)` to check your solution\.
 
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
-
 ## Source
 
 Reddit r/dailyprogrammer challenge #270 [Easy]. [https://www.reddit.com/r/dailyprogrammer/comments/4msu2x/challenge_270_easy_transpose_the_input_text](https://www.reddit.com/r/dailyprogrammer/comments/4msu2x/challenge_270_easy_transpose_the_input_text)

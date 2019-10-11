@@ -35,13 +35,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Run `(test)` to check your solution\.
 
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
-
 ## Source
 
 Taken from Chapter 2 of Functional Thinking by Neal Ford. [http://shop.oreilly.com/product/0636920029687.do](http://shop.oreilly.com/product/0636920029687.do)

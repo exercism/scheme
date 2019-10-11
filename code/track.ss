@@ -151,7 +151,7 @@
                dir skeleton.scm dir solution.scm dir "closet/skeleton-makefile" dir))
       (markdown-exercism problem)
       (version-exercism problem)
-      (write-r6rs-expression-to-file
+      (write-expression-to-file
        (apply make-test-file
               (lookup 'test implementation)
               problem

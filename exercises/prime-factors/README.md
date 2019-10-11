@@ -47,13 +47,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Run `(test)` to check your solution\.
 
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
-
 ## Source
 
 The Prime Factors Kata by Uncle Bob [http://butunclebob.com/ArticleS.UncleBob.ThePrimeFactorsKata](http://butunclebob.com/ArticleS.UncleBob.ThePrimeFactorsKata)

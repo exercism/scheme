@@ -39,13 +39,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Run `(test)` to check your solution\.
 
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
-
 ## Source
 
 This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)

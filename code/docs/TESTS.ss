@@ -17,15 +17,6 @@
          " reloading as you go.")
    (item "Run "
          (inline-code "(test)")
-         " to check your solution.")))
- (subsection
-  "Testing options"
-  (sentence "You can see more information about failing test cases by passing
-arguments to the procedure "
-            (inline-code "test") ".")
-  (sentence 
-   " To see the failing input and output call "
-   (inline-code "(test 'input 'output)")
-   ".")))
+         " to check your solution."))))
 
 

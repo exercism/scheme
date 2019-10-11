@@ -49,13 +49,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Run `(test)` to check your solution\.
 
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
-
 ## Source
 
 An unsolved problem in mathematics named after mathematician Lothar Collatz [https://en.wikipedia.org/wiki/3x_%2B_1_problem](https://en.wikipedia.org/wiki/3x_%2B_1_problem)
