@@ -18,18 +18,22 @@ The Greek mathematician [Nicomachus](https://en.wikipedia.org/wiki/Nicomachus) d
 Implement a way to determine whether a given number is **perfect**. Depending on your language track, you may also need to implement a way to determine whether a given number is **abundant** or **deficient**.
 
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
 
+
 ### From a REPL
 
 * Enter `test.scm` at the repl prompt\.
 * Develop your solution in `perfect-numbers.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
+
 
 
 ### Testing options

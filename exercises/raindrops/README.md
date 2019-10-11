@@ -16,18 +16,22 @@ The rules of `raindrops` are that if a given number:
 - 34 is not factored by 3, 5, or 7, so the result would be "34".
 
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
 
+
 ### From a REPL
 
 * Enter `test.scm` at the repl prompt\.
 * Develop your solution in `raindrops.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
+
 
 
 ### Testing options

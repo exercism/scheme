@@ -68,7 +68,7 @@
 
 ;; read the code/test.ss file as s-expressions
 (define *test-definitions*
-  (with-input-from-file "closet/test.ss" read-all))
+  (with-input-from-file "closet/skeleton-test.ss" read-all))
 
 ;;; Problem Implementations
 
@@ -242,5 +242,4 @@
   (build-exercism problem)
   (verify-exercism problem)
   (include-exercism problem))
-
 

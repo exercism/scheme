@@ -15,24 +15,29 @@ The objectives are simple:
 If everything goes well, you will be ready to fetch your first real exercise.
 
 
+
 ## Track Specific Notes
 
 Your solution may be a procedure that
 returns the desired string or a variable whose value is that
 string\.
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
 
+
 ### From a REPL
 
 * Enter `test.scm` at the repl prompt\.
 * Develop your solution in `hello-world.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
+
 
 
 ### Testing options

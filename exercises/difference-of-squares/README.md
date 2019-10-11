@@ -17,18 +17,22 @@ first principles; research is allowed, indeed, encouraged. Finding the best
 algorithm for the problem is a key skill in software engineering.
 
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
 
+
 ### From a REPL
 
 * Enter `test.scm` at the repl prompt\.
 * Develop your solution in `difference-of-squares.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
+
 
 
 ### Testing options

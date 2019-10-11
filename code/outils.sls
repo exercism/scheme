@@ -8,16 +8,18 @@
           write-expression-to-file
           write-r6rs-expression-to-file
           save-fasl
+          load-config
           fasl-load
 
           ;; config utilities
           processed-config
           persist-config
-          load-config
+          persist-configs
 
           ;; configlet utilities
           configlet-uuid)
-  (import (chezscheme))
+  (import (chezscheme)
+          (json))
 
   ;;; Assoc lists
 
@@ -84,12 +86,30 @@
   
   (define config-file "config/track.ss")
   (define config-fasl "closet/config.fasl")
+  (define track-configs "closet/tracks.txt")
+  (define track-configs-fasl "closet/track-configs.fasl")
 
   (define (persist-config)
     (save-fasl (with-input-from-file config-file read-all) config-fasl))
 
   (define (load-config)
     (fasl-load config-fasl))
+
+  (define (download-config track)
+    (let ((config.json (format "closet/json/~a.json" track)))
+      (system (format "mkdir -p closet/json && wget https://raw.githubusercontent.com/exercism/~a/master/config.json -O ~a"
+                      track
+                      config.json))))
+
+  (define (load-track-config track)
+    (let ((config.json (format "closet/json/~a.json" track)))
+      (unless (file-exists? config.json)
+        (download-config track))
+      (with-input-from-file config.json json-read)))
+
+  (define (persist-configs)
+    (let ((tracks (with-input-from-file track-configs read-all)))
+      (save-fasl (map load-track-config tracks) track-configs-fasl)))
 
   (define (processed-config)
     (map (lambda (x)

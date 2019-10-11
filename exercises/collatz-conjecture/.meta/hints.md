@@ -1,20 +1,25 @@
 
+
 ## Track Specific Notes
 
 Don't worry about validating input for this track \-\- all inputs will be natural numbers\.
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
 
+
 ### From a REPL
 
 * Enter `test.scm` at the repl prompt\.
 * Develop your solution in `collatz-conjecture.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
+
 
 
 ### Testing options
