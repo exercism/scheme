@@ -76,7 +76,8 @@ config.json : closet/config.fasl
 
 # configlet binary
 bin/configlet :
-	./bin/fetch-configlet
+	mkdir bin
+	./script/fetch-configlet
 
 # documentation
 docs/%.md : code/markdown.sls code/docs/%.ss
@@ -96,7 +97,7 @@ track : $(track-requirements)
 
 # send a list of implementations to run stub-makefile tests on
 ci :
-	echo "(run-ci '($(implementations)))" | $(chez) -q "code/ci.ss"
+	echo "(run-ci '($(implementations)))" | $(chez) -q "script/ci.ss"
 
 clean :
 	find . -name "*.so" -exec rm {} \;
