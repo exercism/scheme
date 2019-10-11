@@ -8,11 +8,9 @@ Exercisms in scheme.
 
 ** Overview
 
-   Most things run through the [[/code][code]] directory including exercise test
-   generation and document generation. Besides that, as far as
-   utilities go, the [[/bin][bin]] directory houses the configlet binary. The
-   [[Makefile][Makefile]] is the main frontend for interacting with this code base,
-   which has been designed to work from the scheme REPL, too.
+   Most things run through the [[/code][code]] directory including exercise test generation
+   and document generation. The [[Makefile][Makefile]] is the way to interact with this code
+   base, which has been designed to work from the scheme REPL, too.
 
    Problems are implemented in [[https://github.com/exercism/scheme/tree/master/code/exercises/][code/exercises/]]. The track contents are
    generated from there to [[https://github.com/exercism/scheme/tree/master/exercises][exercises/]]. The student facing track
