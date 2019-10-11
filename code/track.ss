@@ -2,7 +2,7 @@
 
 ;;; Config
 
-;; output config.json from code/config.ss
+;; code/config.ss => config.json
 (define (make-config)
   (let ((config.json "config.json"))
     (when (file-exists? config.json)
@@ -11,11 +11,10 @@
       (lambda ()
         (json-write (processed-config) 'pretty)))))
 
-;; Check problem's entry in config for uuid and existence
-
 ;;; Problem Specifications
 
-;; fetch the files in the given problem's directory
+;; List the files in the given problem's
+;; problem-specifications/exercises/problem directory
 (define (get-problem-specification problem)
   (let* ((problem-dir (format "../problem-specifications/exercises/~a" problem))
          (spec (directory-list problem-dir)))
@@ -23,22 +22,11 @@
            (format "~a/~a" problem-dir file))
          spec)))
 
-;; fetches the README.md file for a given problem
-;; nb: likely be replaced by sxml configuration
-(define (write-problem-description problem)
-  (let ((file (find (lambda (spec)
-                      (string=? "md" (path-extension spec)))
-                    (get-problem-specification problem)))
-        (dir (format "code/exercises/~a" problem)))
-    (unless file
-      (error 'get-problem-description "couldn't find description" problem))
-    (system (format "mkdir -p ~a && cp ~a ~a/README.md"
-                    dir file dir))))
-
 ;; reads the test specification for a given problem
 (define (get-test-specification problem)
   (lookup problem (load-specifications)))
 
+;; parse the canonical-data.json file to scheme
 (define (get-implemented-test-specification problem)
   (let ((test-suite-file (find (lambda (spec)
                                  (string=? "json" (path-extension spec)))
@@ -47,22 +35,25 @@
          (cons problem
                (with-input-from-file test-suite-file json-read)))))
 
+;; name of the file containing all the persisted specifications
 (define specification-file
   "closet/specifications.fasl")
 
+;; read all the problems with canonical-data.json files and save as
+;; a scheme datum
 (define (persist-specifications)
   (save-fasl (filter (lambda (x) x)
                      (map get-implemented-test-specification
                           (get-problem-list)))
              specification-file))
 
+;; load saved specifications
 (define (load-specifications)
   (fasl-load specification-file))
 
 ;; list all the problems in the problem-specifications directory
 (define (get-problem-list)
-  (map string->symbol
-       (directory-list "../problem-specifications/exercises")))
+  (map string->symbol (directory-list "../problem-specifications/exercises")))
 
 ;;; Test suite
 
@@ -105,8 +96,7 @@
 ;;; Stubbing, Building, and Testing problems
 
 ;; Read the problem-specifications directory and generate a stub
-;; implementation. TODO. when the problem is not there, generate a
-;; stub anyway without the readme.
+;; implementation.
 (define (stub-exercism problem)
   (format #t "setting up ~a~%" problem)
   (let* ((dir (format "code/exercises/~a" problem))
@@ -145,9 +135,9 @@
     (format #t "~~ writing stub skeleton~%")
     (write-expression-to-file stub-solution solution)))
 
-;; write the problem as specified in code/exercises/problem/* to
+;; output the problem as specified in code/exercises/problem/* to
 ;; _build/exercises/problem/*. This is a temporary location to first
-;; test the problem before writing to exercises/problem/*.
+;; test the problem before actually writing to exercises/problem/*.
 (define (build-exercism problem)
   (let ((implementation (get-problem problem)))
     (let* ((dir (format "_build/exercises/~a" problem))
@@ -168,6 +158,7 @@
               (lookup 'stubs implementation))
        test.scm))))
 
+;; splice the skeleton test file with the problem's test cases
 (define (make-test-file tests problem . stub-defs)
   `((import (rnrs))
     ,@*test-definitions*
@@ -188,6 +179,7 @@
           (load (cadr args)))
       (test 'input 'output))))
 
+;; output the markdown for the problem
 (define (markdown-exercism problem)
   (let* ((markdown (lookup 'markdown (get-problem problem)))
          (target (format "_build/exercises/~a/.meta/hints.md" problem))
@@ -215,7 +207,8 @@
                (lambda ()
                  (display (cdr version)))))))))
 
-;; test the problem output in _build/exercises/problem/*
+;; test the problem output in _build/exercises/problem/* by using the
+;; skeleton makefile
 (define (verify-exercism problem)
   (let ((dir (format "_build/exercises/~a" problem)))
     (check-config-for problem)
@@ -224,6 +217,7 @@
         (error 'verify-exercism "example solution incorrect" problem)))
     'done))
 
+;; called if the tests succeed. write the problem to exercises/problem/
 (define (include-exercism problem)
   (format #t "including exercises/~a~%" problem)
   (system (format "rm -rf exercises/~a && cp -r _build/exercises/~a exercises/~a"
@@ -234,10 +228,11 @@
 (define (build-implementations)
   (for-each build-exercism implementations))
 
-;; test all builds specified as implemented
+;; test all problems as implemented
 (define (verify-implementations)
   (for-each verify-exercism implementations))
 
+;; build/test/write problem
 (define (make-exercism problem)
   (build-exercism problem)
   (verify-exercism problem)

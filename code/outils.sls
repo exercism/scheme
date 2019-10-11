@@ -12,9 +12,10 @@
           fasl-load
 
           ;; config utilities
-          processed-config
           persist-config
           persist-configs
+          processed-config
+          load-track-configs
 
           ;; configlet utilities
           configlet-uuid)
@@ -32,8 +33,7 @@
        (cond ((assoc symbol thing) => cdr)
              (else (error 'lookup "key not in alist" symbol thing))))
       ((default symbol thing)
-       (cond ((assoc symbol thing)
-              => cdr)
+       (cond ((assoc symbol thing) => cdr)
              (else default)))))
 
   (define (lookup-spine keys alist)
@@ -110,6 +110,9 @@
   (define (persist-configs)
     (let ((tracks (with-input-from-file track-configs read-all)))
       (save-fasl (map load-track-config tracks) track-configs-fasl)))
+
+  (define (load-track-configs)
+    (fasl-load track-configs-fasl))
 
   (define (processed-config)
     (map (lambda (x)
