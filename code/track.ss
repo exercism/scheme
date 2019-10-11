@@ -53,7 +53,7 @@
 
 ;; read the code/test.ss file as s-expressions
 (define *test-definitions*
-  (with-input-from-file "code/test.ss" read-all))
+  (with-input-from-file "closet/test.ss" read-all))
 
 ;;; Problem Implementations
 

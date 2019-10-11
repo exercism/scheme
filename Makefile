@@ -79,7 +79,7 @@ $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/markdown.sls code/test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
+exercises/% : code/markdown.sls closet/test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
