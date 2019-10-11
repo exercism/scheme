@@ -44,6 +44,26 @@
       (error 'get-test-specification "couldn't find test suite for" problem))
     (with-input-from-file test-suite-file json-read)))
 
+(define (get-implemented-test-specification problem)
+  (let ((test-suite-file (find (lambda (spec)
+                                 (string=? "json" (path-extension spec)))
+                               (get-problem-specification problem))))
+    (and test-suite-file
+         (cons problem
+               (with-input-from-file test-suite-file json-read)))))
+
+(define specification-file
+  "closet/specifications.fasl")
+
+(define (persist-specifications)
+  (save-fasl (filter (lambda (x) x)
+                     (map get-implemented-test-specification
+                          (get-problem-list)))
+             specification-file))
+
+(define (load-specifications)
+  (fasl-load specification-file))
+
 ;; list all the problems in the problem-specifications directory
 (define (get-problem-list)
   (map string->symbol
