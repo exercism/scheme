@@ -37,12 +37,27 @@
 
 ;; reads the test specification for a given problem
 (define (get-test-specification problem)
+  (lookup problem (load-specifications)))
+
+(define (get-implemented-test-specification problem)
   (let ((test-suite-file (find (lambda (spec)
                                  (string=? "json" (path-extension spec)))
                                (get-problem-specification problem))))
-    (unless test-suite-file
-      (error 'get-test-specification "couldn't find test suite for" problem))
-    (with-input-from-file test-suite-file json-read)))
+    (and test-suite-file
+         (cons problem
+               (with-input-from-file test-suite-file json-read)))))
+
+(define specification-file
+  "closet/specifications.fasl")
+
+(define (persist-specifications)
+  (save-fasl (filter (lambda (x) x)
+                     (map get-implemented-test-specification
+                          (get-problem-list)))
+             specification-file))
+
+(define (load-specifications)
+  (fasl-load specification-file))
 
 ;; list all the problems in the problem-specifications directory
 (define (get-problem-list)
@@ -53,7 +68,7 @@
 
 ;; read the code/test.ss file as s-expressions
 (define *test-definitions*
-  (with-input-from-file "code/test.ss" read-all))
+  (with-input-from-file "closet/test.ss" read-all))
 
 ;;; Problem Implementations
 

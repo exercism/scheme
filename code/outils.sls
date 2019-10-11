@@ -28,7 +28,7 @@
          (lookup symbol thing)))
       ((symbol thing)
        (cond ((assoc symbol thing) => cdr)
-             (error 'lookup "key not in alist" symbol thing)))
+             (else (error 'lookup "key not in alist" symbol thing))))
       ((default symbol thing)
        (cond ((assoc symbol thing)
               => cdr)
@@ -83,7 +83,7 @@
   ;;; Config
   
   (define config-file "config/track.ss")
-  (define config-fasl "data/config.fasl")
+  (define config-fasl "closet/config.fasl")
 
   (define (persist-config)
     (save-fasl (with-input-from-file config-file read-all) config-fasl))

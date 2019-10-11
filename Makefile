@@ -50,6 +50,8 @@ track-requirements := \
 	../problem-specifications \
 	bin/configlet \
 	closet/skeleton-makefile \
+	closet/specifications.fasl \
+	closet/config.fasl \
 	$(readme-splice) \
 	$(exercisms) \
 	config.json
@@ -63,13 +65,19 @@ default : track
 ../problem-specifications :
 	cd .. && git clone $(problem-specifications)
 
+closet/specifications.fasl : ../problem-specifications
+	$(call exercise, "(persist-specifications)")
+
+closet/config.fasl : config/track.ss
+	$(call exercise, "(persist-config)")
+
+config.json : closet/config.fasl
+	$(call exercise, "(make-config)")
+
 # configlet binary
 bin/configlet :
-	./bin/fetch-configlet
-
-# configuration
-config.json : config/track.ss
-	$(call exercise, "(make-config)")
+	mkdir bin
+	./script/fetch-configlet
 
 # documentation
 docs/%.md : code/markdown.sls code/docs/%.ss
@@ -79,7 +87,7 @@ $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/markdown.sls code/test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
+exercises/% : code/markdown.sls closet/test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
@@ -89,7 +97,7 @@ track : $(track-requirements)
 
 # send a list of implementations to run stub-makefile tests on
 ci :
-	echo "(run-ci '($(implementations)))" | $(chez) -q "code/ci.ss"
+	echo "(run-ci '($(implementations)))" | $(chez) -q "script/ci.ss"
 
 clean :
 	find . -name "*.so" -exec rm {} \;
