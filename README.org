@@ -8,9 +8,10 @@ Exercisms in scheme.
 
 ** Overview
 
-   Most things run through the [[/code][code]] directory including exercise test generation
-   and document generation. The [[Makefile][Makefile]] is the way to interact with this code
-   base, which has been designed to work from the scheme REPL, too.
+   Most things run through the [[/code][code]] directory including exercise test
+   generation and document generation. The [[Makefile][Makefile]] is the main way to
+   interact with this code base, which has been designed to work from
+   the scheme REPL, too.
 
    Problems are implemented in [[https://github.com/exercism/scheme/tree/master/code/exercises/][code/exercises/]]. The track contents are
    generated from there to [[https://github.com/exercism/scheme/tree/master/exercises][exercises/]]. The student facing track
@@ -24,8 +25,8 @@ Exercisms in scheme.
     via the =CHEZSCHEMELIBDIRS= environment variable. Instructions for
     installing the srfi collection can be found at
     [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. Alternatively, if you use the nix package
-    manager, there's an expression in the [[https://github.com/exercism/scheme/blob/master/nix/][nix/]] directory that may
-    help you install the srfis.
+    manager, there's an expression in the [[https://github.com/exercism/scheme/blob/master/nix/][nix/]] directory that may help
+    you install the srfis.
 
 ** Working on the Scheme track
 

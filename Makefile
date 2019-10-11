@@ -72,11 +72,11 @@ closet/specifications.fasl : ../problem-specifications
 closet/tracks.html :
 	wget https://exercism.io/tracks -O $@
 
-closet/tracks.txt : script/fetch-tracks.sh closet/tracks.html 
-	./$<
+closet/tracks.txt : closet/tracks.html script/fetch-tracks.sh
+	./script/fetch-tracks.sh $< $@
 
 closet/track-configs.fasl : closet/tracks.txt
-	$(call exercise, "(persist-configs)")
+	$(call exercise, "(persist-track-configs)")
 
 # CONFIG
 config.json : config/track.ss

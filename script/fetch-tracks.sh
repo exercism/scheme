@@ -1,1 +1,3 @@
-grep --color 'href=\"/tracks' closet/tracks.html | awk -F '(=| |>|<|"|/)' '{print $11}' > closet/tracks.txt
+#!/usr/bin/env bash
+
+grep 'href=\"/tracks' $1 | awk -F '(=| |>|<|"|/)' '{print $11}' > $2

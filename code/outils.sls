@@ -13,7 +13,7 @@
 
           ;; config utilities
           persist-config
-          persist-configs
+          persist-track-configs
           processed-config
           load-track-configs
 
@@ -107,7 +107,7 @@
         (download-config track))
       (with-input-from-file config.json json-read)))
 
-  (define (persist-configs)
+  (define (persist-track-configs)
     (let ((tracks (with-input-from-file track-configs read-all)))
       (save-fasl (map load-track-config tracks) track-configs-fasl)))
 
@@ -134,7 +134,6 @@
         (close-port (car from-to-pid))
         (close-port (cadr from-to-pid))
         (symbol->string fresh-uuid))))
-
   
   ;;; Configlet formatting
   (define (kebab->snake str)
