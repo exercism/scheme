@@ -15,7 +15,7 @@
 (define (spec->tests spec)
   (map parse-test
        (apply append
-              (map (lookup-partial 'cases)
+              (map (lookup 'cases)
                    (map cdr
                         (lookup 'cases
                                 (get-test-specification
@@ -26,8 +26,8 @@
    'difference-of-squares
    `((test . ,(spec->tests spec))
      (version . ,(lookup 'version spec))
-     (skeleton . ,"difference-of-squares.scm")
-     (solution . ,"example.scm")
+     (skeleton . "difference-of-squares.scm")
+     (solution . "example.scm")
      (stubs sum-of-squares difference-of-squares square-of-sum)
      (markdown . ,(splice-exercism 'difference-of-squares)))))
 

@@ -49,7 +49,7 @@ readme-splice := config/exercise-readme-insert.md
 track-requirements := \
 	../problem-specifications \
 	bin/configlet \
-	code/stub-makefile \
+	closet/skeleton-makefile \
 	$(readme-splice) \
 	$(exercisms) \
 	config.json
@@ -68,18 +68,18 @@ bin/configlet :
 	./bin/fetch-configlet
 
 # configuration
-config.json : code/config.ss
+config.json : config/track.ss
 	$(call exercise, "(make-config)")
 
 # documentation
-docs/%.md : code/md.ss code/docs/%.ss
+docs/%.md : code/markdown.sls code/docs/%.ss
 	$(call exercise, "(put-doc '$(@F:.md=))")
 
 $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/md.ss code/test.ss code/track.ss code/exercises/%/* code/stub-makefile
+exercises/% : code/markdown.sls code/test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track

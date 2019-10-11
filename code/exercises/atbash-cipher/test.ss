@@ -10,7 +10,7 @@
 
 (define (spec->tests spec)
   (map parse-test (apply append
-                         (map (lookup-partial 'cases)
+                         (map (lookup 'cases)
                               (lookup 'cases spec)))))
 
 (let ((spec (get-test-specification 'atbash-cipher)))

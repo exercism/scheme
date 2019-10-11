@@ -4,9 +4,9 @@
                    =
                    knapsack
                    '(,(lookup 'maximumWeight input)
-                     (,@(map (lookup-partial 'weight)
+                     (,@(map (lookup 'weight)
                              (lookup 'items input)))
-                     (,@(map (lookup-partial 'value)
+                     (,@(map (lookup 'value)
                              (lookup 'items input))))
                    ,(lookup 'expected test))))
 
