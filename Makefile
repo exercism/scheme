@@ -75,7 +75,7 @@ closet/tracks.html :
 closet/tracks.txt : script/fetch-tracks.sh closet/tracks.html 
 	./$<
 
-closet/track-configs.fasl : closet/json/*.json closet/tracks.txt
+closet/track-configs.fasl : closet/tracks.txt
 	$(call exercise, "(persist-configs)")
 
 # CONFIG
