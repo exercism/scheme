@@ -28,7 +28,7 @@
          (lookup symbol thing)))
       ((symbol thing)
        (cond ((assoc symbol thing) => cdr)
-             (error 'lookup "key not in alist" symbol thing)))
+             (else (error 'lookup "key not in alist" symbol thing))))
       ((default symbol thing)
        (cond ((assoc symbol thing)
               => cdr)

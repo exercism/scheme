@@ -37,12 +37,7 @@
 
 ;; reads the test specification for a given problem
 (define (get-test-specification problem)
-  (let ((test-suite-file (find (lambda (spec)
-                                 (string=? "json" (path-extension spec)))
-                               (get-problem-specification problem))))
-    (unless test-suite-file
-      (error 'get-test-specification "couldn't find test suite for" problem))
-    (with-input-from-file test-suite-file json-read)))
+  (lookup problem (load-specifications)))
 
 (define (get-implemented-test-specification problem)
   (let ((test-suite-file (find (lambda (spec)
