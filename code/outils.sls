@@ -1,7 +1,6 @@
 
 (library (outils)
   (export lookup
-          lookup-partial
           lookup-spine
           
           ;; read/write utilities
@@ -34,10 +33,6 @@
        (cond ((assoc symbol thing)
               => cdr)
              (else default)))))
-
-  (define (lookup-partial key)
-    (lambda (alist)
-      (lookup key alist)))
 
   (define (lookup-spine keys alist)
     (fold-left (lambda (alist key)

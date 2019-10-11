@@ -13,8 +13,6 @@
 
 ;; Check problem's entry in config for uuid and existence
 
-
-
 ;;; Problem Specifications
 
 ;; fetch the files in the given problem's directory
@@ -145,7 +143,7 @@
       (format #t "writing _build/exercises/~a~%" problem)
       (system
        (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a/Makefile"
-               dir skeleton.scm dir solution.scm dir "code/stub-makefile" dir))
+               dir skeleton.scm dir solution.scm dir "closet/skeleton-makefile" dir))
       (markdown-exercism problem)
       (version-exercism problem)
       (write-r6rs-expression-to-file
