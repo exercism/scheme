@@ -1,10 +1,13 @@
 
+
 ## Installing a scheme
+
 
 
 ### ChezScheme
 
 Follow the instructions at [ChezScheme](https://cisco.github.io/ChezScheme/#get)\.
+
 
 ### GNU Guile
 

@@ -1,5 +1,3 @@
-#!r6rs
-
 (import (rnrs))
 
 (define test-fields '(input output who))

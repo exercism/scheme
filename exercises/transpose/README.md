@@ -59,12 +59,15 @@ That means that if a column in the input text contains only spaces on its bottom
 the corresponding output row should contain the spaces in its right-most column(s).
 
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
+
 
 ### From a REPL
 
@@ -72,12 +75,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Develop your solution in `transpose.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
 
 ## Source
 

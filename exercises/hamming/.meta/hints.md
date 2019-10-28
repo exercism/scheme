@@ -1,14 +1,18 @@
 
+
 ## Track Specific Notes
 
 For scheme, you may want to look into one of `error`, `assert`, or `raise`\.
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
+
 
 ### From a REPL
 
@@ -16,9 +20,3 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Develop your solution in `hamming.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.

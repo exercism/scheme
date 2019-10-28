@@ -1,9 +1,10 @@
 .DS_Store
 *.log
 .#*
-bin/configlet
-bin/configlet.exe
-*~
+bin/*
 _build/*
+closet/track-configs.fasl
+closet/json/*
+*~
 *.html
 ci

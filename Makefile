@@ -52,6 +52,7 @@ track-requirements := \
 	closet/skeleton-makefile \
 	closet/specifications.fasl \
 	closet/config.fasl \
+	closet/track-configs.fasl \
 	$(readme-splice) \
 	$(exercisms) \
 	config.json
@@ -61,18 +62,25 @@ exercise = echo $(1) | $(chez) -q load.ss
 
 default : track
 
-# exercism/problem-specifications repo
+# PROBLEM-SPECIFICATIONS
 ../problem-specifications :
 	cd .. && git clone $(problem-specifications)
 
 closet/specifications.fasl : ../problem-specifications
 	$(call exercise, "(persist-specifications)")
 
-closet/config.fasl : config/track.ss
-	$(call exercise, "(persist-config)")
+closet/tracks.html :
+	wget https://exercism.io/tracks -O $@
 
-config.json : closet/config.fasl
-	$(call exercise, "(make-config)")
+closet/tracks.txt : closet/tracks.html script/fetch-tracks.sh
+	./script/fetch-tracks.sh $< $@
+
+closet/track-configs.fasl : closet/tracks.txt
+	$(call exercise, "(persist-track-configs)")
+
+# CONFIG
+config.json : config/track.ss
+	$(call exercise, "(persist-config)(make-config)")
 
 # configlet binary
 bin/configlet :
@@ -87,7 +95,7 @@ $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/markdown.sls closet/test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
+exercises/% : code/markdown.sls closet/skeleton-test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track

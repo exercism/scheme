@@ -16,17 +16,21 @@ He answers 'Whatever.' to anything else.
 Bob's conversational partner is a purist when it comes to written communication and always follows normal rules regarding sentence punctuation in English.
 
 
+
 ## Track Specific Notes
 
 See if you can
 clearly separate responsibilities in your code\.
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
+
 
 ### From a REPL
 
@@ -34,12 +38,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Develop your solution in `bob.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
 
 ## Source
 

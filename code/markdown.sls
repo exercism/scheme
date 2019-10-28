@@ -59,16 +59,7 @@
                     " reloading as you go.")
               (item "Run "
                     (inline-code "(test)")
-                    " to check your solution.")))
-            (subsection
-             "Testing options"
-             (sentence "You can see more information about failing test cases by passing
-arguments to the procedure "
-                       (inline-code "test") ".")
-             (sentence 
-              " To see the failing input and output call "
-              (inline-code "(test 'input 'output)")
-              ".")))))
+                    " to check your solution."))))))
       (link . ,(case-lambda
                  ((_ description href)
                   `(*raw* "[" ,description "]" "(" ,href ")"))
@@ -91,12 +82,12 @@ arguments to the procedure "
           ((strike-through) `("~~" ,@(sxml->md content) "~~"))
           ((code) `("```" ,(car content) "\n" ,(cdr content) "\n" "```"))
           ((inline-code) `("`" ,content "`"))
-          ((h1) `("\n" "# " ,@(sxml->md content) "\n"))
-          ((h2) `("\n" "## " ,@(sxml->md content) "\n"))
-          ((h3) `("\n" "### " ,@(sxml->md content) "\n"))
-          ((h4) `("\n" "#### " ,@(sxml->md content) "\n"))
-          ((h5) `("\n" "##### " ,@(sxml->md content) "\n"))
-          ((h6) `("\n" "###### " ,@(sxml->md content) "\n"))
+          ((h1) `("\n\n" "# " ,@(sxml->md content) "\n"))
+          ((h2) `("\n\n" "## " ,@(sxml->md content) "\n"))
+          ((h3) `("\n\n" "### " ,@(sxml->md content) "\n"))
+          ((h4) `("\n\n" "#### " ,@(sxml->md content) "\n"))
+          ((h5) `("\n\n" "##### " ,@(sxml->md content) "\n"))
+          ((h6) `("\n\n" "###### " ,@(sxml->md content) "\n"))
           ((item) `("* " ,@(sxml->md content) "\n"))
           ((enum) `(,@(sxml->md content) "\n"))
           ((nl) "\n")

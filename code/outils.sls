@@ -8,16 +8,19 @@
           write-expression-to-file
           write-r6rs-expression-to-file
           save-fasl
+          load-config
           fasl-load
 
           ;; config utilities
-          processed-config
           persist-config
-          load-config
+          persist-track-configs
+          processed-config
+          load-track-configs
 
           ;; configlet utilities
           configlet-uuid)
-  (import (chezscheme))
+  (import (chezscheme)
+          (json))
 
   ;;; Assoc lists
 
@@ -30,8 +33,7 @@
        (cond ((assoc symbol thing) => cdr)
              (else (error 'lookup "key not in alist" symbol thing))))
       ((default symbol thing)
-       (cond ((assoc symbol thing)
-              => cdr)
+       (cond ((assoc symbol thing) => cdr)
              (else default)))))
 
   (define (lookup-spine keys alist)
@@ -84,12 +86,33 @@
   
   (define config-file "config/track.ss")
   (define config-fasl "closet/config.fasl")
+  (define track-configs "closet/tracks.txt")
+  (define track-configs-fasl "closet/track-configs.fasl")
 
   (define (persist-config)
     (save-fasl (with-input-from-file config-file read-all) config-fasl))
 
   (define (load-config)
     (fasl-load config-fasl))
+
+  (define (download-config track)
+    (let ((config.json (format "closet/json/~a.json" track)))
+      (system (format "mkdir -p closet/json && wget https://raw.githubusercontent.com/exercism/~a/master/config.json -O ~a"
+                      track
+                      config.json))))
+
+  (define (load-track-config track)
+    (let ((config.json (format "closet/json/~a.json" track)))
+      (unless (file-exists? config.json)
+        (download-config track))
+      (with-input-from-file config.json json-read)))
+
+  (define (persist-track-configs)
+    (let ((tracks (with-input-from-file track-configs read-all)))
+      (save-fasl (map load-track-config tracks) track-configs-fasl)))
+
+  (define (load-track-configs)
+    (fasl-load track-configs-fasl))
 
   (define (processed-config)
     (map (lambda (x)
@@ -111,7 +134,6 @@
         (close-port (car from-to-pid))
         (close-port (cadr from-to-pid))
         (symbol->string fresh-uuid))))
-
   
   ;;; Configlet formatting
   (define (kebab->snake str)

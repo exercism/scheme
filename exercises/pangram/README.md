@@ -9,17 +9,21 @@ The alphabet used consists of ASCII letters `a` to `z`, inclusive, and is case
 insensitive. Input will not contain non-ASCII symbols.
 
 
+
 ## Track Specific Notes
 
 Consider inputs case insensitive
 and allow more than one of each required char\.
 
+
 ## Running and testing your solutions
+
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
+
 
 ### From a REPL
 
@@ -27,12 +31,6 @@ Simply type `make chez` if you're using ChezScheme or `make guile` if you're usi
 * Develop your solution in `pangram.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
 
-
-### Testing options
-
-You can see more information about failing test cases by passing
-arguments to the procedure `test`\.
- To see the failing input and output call `(test 'input 'output)`\.
 
 ## Source
 
