@@ -52,7 +52,6 @@ track-requirements := \
 	closet/skeleton-makefile \
 	closet/specifications.fasl \
 	closet/config.fasl \
-	closet/track-configs.fasl \
 	$(readme-splice) \
 	$(exercisms) \
 	config.json
@@ -72,7 +71,7 @@ closet/specifications.fasl : ../problem-specifications
 closet/tracks.html :
 	wget https://exercism.io/tracks -O $@
 
-closet/tracks.txt : closet/tracks.html script/fetch-tracks.sh
+closet/tracks.txt : # closet/tracks.html script/fetch-tracks.sh
 	./script/fetch-tracks.sh $< $@
 
 closet/track-configs.fasl : closet/tracks.txt
@@ -115,4 +114,3 @@ clean :
 	rm ci
 
 .PHONY : track clean
-

@@ -49,11 +49,17 @@
                        (inline-code "make chez")
                        " if you're using ChezScheme or "
                        (inline-code "make guile")
-                       " if you're using GNU Guile."))
+                       " if you're using GNU Guile.")
+             (sentence "Sometimes the name for the scheme binary on your system will differ from the defaults.")
+             (sentence "When this is the case, you'll need to tell make by running "
+                       (inline-code "make chez chez=your-chez-binary")
+                       " or "
+                       (inline-code "make guile guile=your-guile-binary")
+                       "."))
             (subsection
              "From a REPL"
              (enum
-              (item "Enter " (inline-code "test.scm") " at the repl prompt.")
+              (item "Enter " (inline-code "(load \"test.scm\")") " at the repl prompt.")
               (item "Develop your solution in "
                     (inline-code ,(format "~a.scm" exercism))
                     " reloading as you go.")
@@ -82,12 +88,12 @@
           ((strike-through) `("~~" ,@(sxml->md content) "~~"))
           ((code) `("```" ,(car content) "\n" ,(cdr content) "\n" "```"))
           ((inline-code) `("`" ,content "`"))
-          ((h1) `("\n\n" "# " ,@(sxml->md content) "\n"))
-          ((h2) `("\n\n" "## " ,@(sxml->md content) "\n"))
-          ((h3) `("\n\n" "### " ,@(sxml->md content) "\n"))
-          ((h4) `("\n\n" "#### " ,@(sxml->md content) "\n"))
-          ((h5) `("\n\n" "##### " ,@(sxml->md content) "\n"))
-          ((h6) `("\n\n" "###### " ,@(sxml->md content) "\n"))
+          ((h1) `("\n" "# " ,@(sxml->md content) "\n"))
+          ((h2) `("\n" "## " ,@(sxml->md content) "\n"))
+          ((h3) `("\n" "### " ,@(sxml->md content) "\n"))
+          ((h4) `("\n" "#### " ,@(sxml->md content) "\n"))
+          ((h5) `("\n" "##### " ,@(sxml->md content) "\n"))
+          ((h6) `("\n" "###### " ,@(sxml->md content) "\n"))
           ((item) `("* " ,@(sxml->md content) "\n"))
           ((enum) `(,@(sxml->md content) "\n"))
           ((nl) "\n")
