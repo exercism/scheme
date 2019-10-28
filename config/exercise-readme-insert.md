@@ -1,13 +1,10 @@
 
-
 ## Running and testing your solutions
-
 
 
 ### From the command line
 
 Simply type `make chez` if you're using ChezScheme or `make guile` if you're using GNU Guile\.
-
 
 ### From a REPL
 
