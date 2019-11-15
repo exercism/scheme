@@ -1,3 +1,5 @@
+# -*- mode: org -*-
+
 #+TITLE: Exercism Scheme Track
 #+AUTHOR: Jason Lewis
 
@@ -32,7 +34,7 @@ Exercisms in scheme.
 
     To work the track, you should start by heading to this directory
     and firing up a Scheme REPL. Once here enter =(load "load.ss")=,
-    which will orchestrate loading the appropriate files.
+    which will orchestrate loading the appropriate files. 
 
 *** Adding new problems
     
@@ -78,6 +80,9 @@ Exercisms in scheme.
     problem-specifications repository, you'll write them by hand in
     the =test.ss= file. Make sure to cover all the analogous
     requirements.
+
+    Lastly, if you're wondering about why there's a =closet=
+    directory, where else should our skeletons go?
 
 ** Scheme icon
 
