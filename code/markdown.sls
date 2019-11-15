@@ -34,7 +34,7 @@
       (subsection . ,(lambda (_ subtitle . x)
                        `((h3 ,subtitle) (nl) ,@x)))
       (paragraph . ,(lambda (_ . x)
-                      `(,@x (nl) (nl))))
+                      `(,@x (nl))))
       (sentence . ,(lambda (_ . x)
                      `(,@x (nl))))
       (exercism-test-help
@@ -65,7 +65,20 @@
                     " reloading as you go.")
               (item "Run "
                     (inline-code "(test)")
-                    " to check your solution."))))))
+                    " to check your solution.")))
+            (subsection
+             "Failed Test Cases"
+             (sentence "If some of the test cases fail, you should see the failing input and the expected output.")
+             (sentence "The failing input is presented as a list because the tests call your solution by "
+                       (inline-code ,(with-output-to-string
+                                      (lambda ()
+                                        (write `(apply ,exercism input-list)))))
+                       ".")
+             (sentence "To learn more about "
+                       (inline-code "apply")
+                       " see "
+                       (link "The Scheme Programming Language -- Chapter 5"
+                             "https://www.scheme.com/tspl4/control.html#./control:h1"))))))
       (link . ,(case-lambda
                  ((_ description href)
                   `(*raw* "[" ,description "]" "(" ,href ")"))
@@ -95,7 +108,7 @@
           ((h5) `("\n" "##### " ,@(sxml->md content) "\n"))
           ((h6) `("\n" "###### " ,@(sxml->md content) "\n"))
           ((item) `("* " ,@(sxml->md content) "\n"))
-          ((enum) `(,@(sxml->md content) "\n"))
+          ((enum) `(,@(sxml->md content)))
           ((nl) "\n")
           (else (error 'sxml->md "unexpected tag" tag)))))
      ((string? tree) (list (string->goodMD tree)))

@@ -20,3 +20,8 @@ When this is the case, you'll need to tell make by running `make chez chez=your-
 * Develop your solution in `forth.scm` reloading as you go\.
 * Run `(test)` to check your solution\.
 
+### Failed Test Cases
+
+If some of the test cases fail, you should see the failing input and the expected output\.
+The failing input is presented as a list because the tests call your solution by `(apply forth input-list)`\.
+To learn more about `apply` see [The Scheme Programming Language -- Chapter 5](https://www.scheme.com/tspl4/control.html#./control:h1)
