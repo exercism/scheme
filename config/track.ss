@@ -240,7 +240,7 @@
 
  ((slug . collatz-conjecture)
   (uuid . "dbab5247-54d1-4830-a159-655397bd91e4")
-  (auto-approve . #f)
+  (core . #f)
   (unlocked-by . grains)
   (difficulty . 1)
   (topics math recursion))

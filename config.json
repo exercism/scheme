@@ -339,7 +339,7 @@
     {
       "slug": "collatz-conjecture",
       "uuid": "dbab5247-54d1-4830-a159-655397bd91e4",
-      "auto_approve": false,
+      "core": false,
       "unlocked_by": "grains",
       "difficulty": 1,
       "topics": [
