@@ -125,8 +125,8 @@
       "core": false,
       "unlocked_by": "anagram",
       "difficulty": 1,
-      "deprecated": true,
-      "topics": null
+      "topics": null,
+      "deprecated": true
     },
     {
       "slug": "phone-number",
@@ -155,8 +155,8 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "deprecated": true,
-      "topics": null
+      "topics": null,
+      "deprecated": true
     },
     {
       "slug": "scrabble-score",
@@ -306,35 +306,35 @@
       "uuid": "fa78d295-adc0-41ae-bfe2-4a6eb8c40f9d",
       "core": false,
       "unlocked_by": "leap",
+      "difficulty": 5,
       "topics": [
         "fold",
         "parsing",
         "stack",
         "string"
-      ],
-      "difficulty": 5
+      ]
     },
     {
       "slug": "queen-attack",
       "uuid": "c38e9025-4b47-41ef-a91a-5ca9cca2a91f",
       "core": false,
       "unlocked_by": "hamming",
+      "difficulty": 2,
       "topics": [
         "chess"
-      ],
-      "difficulty": 2
+      ]
     },
     {
       "slug": "forth",
       "uuid": "09cb9d2b-3a04-4685-95d5-10fe0128be8f",
       "core": false,
       "unlocked_by": "hello-world",
+      "difficulty": 8,
       "topics": [
         "interpreter",
         "language",
         "stack_machine"
-      ],
-      "difficulty": 8
+      ]
     },
     {
       "slug": "collatz-conjecture",
