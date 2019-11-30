@@ -83,7 +83,7 @@ config.json : config/track.ss
 
 # configlet binary
 bin/configlet :
-	mkdir bin
+	mkdir -p bin
 	./script/fetch-configlet
 
 # documentation
