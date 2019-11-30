@@ -7,9 +7,10 @@
     '(uuid
       core))
 
-  (define (check-config field problem)
-    (unless (assoc field problem)
-      (error 'check-for-field "please add field" field problem))
+  (define (check-config field problem-config)
+    (unless (assoc field problem-config)
+      (format #t "~a~%~%" problem-config)
+      (error 'check-for-field "please add field" field problem-config))
     'ok)
 
   (define (check-config-for problem)
@@ -19,9 +20,9 @@
                      (eq? problem (lookup 'slug exercism)))
                    exercisms)
              =>
-             (lambda (problem)
+             (lambda (config)
                (for-all (lambda (field)
-                          (check-config field problem))
+                          (check-config field config))
                         checkworthy-fields)))
             (else
              (error 'check-config-for

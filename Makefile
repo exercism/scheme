@@ -79,7 +79,7 @@ closet/track-configs.fasl : closet/tracks.txt
 
 # CONFIG
 config.json : config/track.ss
-	$(call exercise, "(persist-config)(make-config)")
+	$(call exercise, "(make-config)")
 
 # configlet binary
 bin/configlet :
@@ -100,6 +100,7 @@ exercises/% : code/markdown.sls closet/skeleton-test.ss code/track.ss code/exerc
 # build track
 track : $(track-requirements)
 	./bin/configlet generate .
+	./bin/configlet fmt .
 	./bin/configlet lint .
 
 # send a list of implementations to run stub-makefile tests on
