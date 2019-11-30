@@ -43,78 +43,36 @@
    (only (chezscheme) include)
    (packrat))
 
-  ;; write-json :: sexp -> json
-  ;; The interface is three-fold and implemented as a case-lambda
-  ;; 1 argument  = simple unformatted json
-  ;; 2 arguments = first must be the symbolic representation of a scheme object
-  ;;               second must be 'pretty
-  ;;                 any other symbol will throw an error
-  ;; 3 arguments = first must be the symbolic representation of a scheme object
-  ;;               second must be 'pretty
-  ;;                 any other symbol will throw an error
-  ;;               third must be the tabpstop size defined in spaces
   (define json-write
-    (let (;; toggle pretty printing
-          (pretty? #f)
-          ;; internal control var for pretty indentation
-          (indent-level 0)
-          ;; default tabstop size can be changed
-          (tabstop-size 2))
-
-      ;; Print the indentation level
-      (define (display-level p)
-        (display (make-string (* indent-level tabstop-size) #\space) p))
-
+    (let ()
       (define (write-ht vec p)
         (display "{" p)
-        (when pretty?
-          (display "\n" p)
-          (set! indent-level (+ indent-level 1)))
         (do ((need-comma #f #t)
              (vec vec (cdr vec)))
             ((null? vec))
           (if need-comma
-              (begin (display "," p)
-                     (if pretty?
-                         (display "\n" p)
-                         (display " " p)))
+              (display ", " p)
               (set! need-comma #t))
           (let* ((entry (car vec))
                  (k (car entry))
                  (v (cdr entry)))
-            (when pretty? (display-level p))
-            (display "\"" p)
             (cond
-             ((symbol? k) (display (symbol->string k) p))
-             ((string? k) (display k p))
+             ((symbol? k) (write (symbol->string k) p))
+             ((string? k) (write k p)) ;; for convenience
              (else (error "Invalid JSON table key in json-write" k)))
-            (display "\": " p)
+            (display ": " p)
             (write-any v p)))
-        (when pretty?
-          (set! indent-level (- indent-level 1))
-          (display "\n" p)
-          (display-level p))
         (display "}" p))
 
       (define (write-array a p)
         (display "[" p)
-        (when pretty?
-          (display "\n" p)
-          (set! indent-level (+ indent-level 1)))
         (let ((need-comma #f))
           (for-each (lambda (v)
                       (if need-comma
-                          (if pretty?
-                              (display ",\n" p)
-                              (display "," p))
+                          (display ", " p)
                           (set! need-comma #t))
-                      (when pretty? (display-level p))
                       (write-any v p))
                     a))
-        (when pretty?
-          (set! indent-level (- indent-level 1))
-          (display "\n" p)
-          (display-level p))
         (display "]" p))
 
       (define (write-any x p)
@@ -122,8 +80,8 @@
          ((or (string? x)
               (number? x)) (write x p))
          ((boolean? x) (display (if x "true" "false") p))
-         ((symbol? x)
-          (write (if (eq? x 'null) 'null (symbol->string x)) p))
+         ((symbol? x) (write (if (eq? x 'null) 'null (symbol->string x))
+                             p)) ;; for convenience
          ((null? x) (display "null" p))
          ((and (list? x)
                (pair? (car x))
@@ -132,27 +90,8 @@
          ((list? x) (write-array x p))
          (else (error "Invalid JSON object in json-write" x))))
 
-      (case-lambda
-        ;; For default unformatted json rendering
-        ((obj)
-         (set! pretty? #f)
-         (write-any obj (current-output-port)))
-        ;; For default Pretty Printing with a tabstop of 2 spaces
-        ((obj msg)
-         (case msg
-           ((pretty)
-            (set! pretty? #t)
-            (set! tabstop-size 2)
-            (write-any obj (current-output-port)))
-           (else (error 'json-write "Invalid message" msg))))
-        ;; Pretty Print with custom tabsize defined in spaces
-        ((obj msg tabsize)
-         (case msg
-           ((pretty)
-            (set! pretty? #t)
-            (set! tabstop-size tabsize)
-            (write-any obj (current-output-port)))
-           (else (error 'json-write "invalid message" msg)))))))
+      (lambda (x . maybe-port)
+        (write-any x (if (pair? maybe-port) (car maybe-port) (current-output-port))))))
 
   (define json-read
     (let ()

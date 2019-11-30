@@ -12,7 +12,6 @@
           fasl-load
 
           ;; config utilities
-          persist-config
           persist-track-configs
           processed-config
           load-track-configs
@@ -85,15 +84,11 @@
   ;;; Config
   
   (define config-file "config/track.ss")
-  (define config-fasl "closet/config.fasl")
   (define track-configs "closet/tracks.txt")
   (define track-configs-fasl "closet/track-configs.fasl")
 
-  (define (persist-config)
-    (save-fasl (with-input-from-file config-file read-all) config-fasl))
-
   (define (load-config)
-    (fasl-load config-fasl))
+    (with-input-from-file config-file read-all))
 
   (define (download-config track)
     (let ((config.json (format "closet/json/~a.json" track)))
@@ -115,14 +110,14 @@
     (fasl-load track-configs-fasl))
 
   (define (processed-config)
-    (map (lambda (x)
-           (if (not (eq? (car x) 'exercises))
-               x
-               `(exercises . ,(map (lambda (ex)
-                                     (map format-for-configlet ex))
+    (map (lambda (config)
+           (if (not (eq? (car config) 'exercises))
+               config
+               `(exercises . ,(map (lambda (exercise)
+                                     (map prepare-for-configlet exercise))
                                    (remp (lambda (exercise)
                                            (memq 'wip (map car exercise)))
-                                         (cdr x))))))
+                                         (cdr config))))))
          (load-config)))
 
 
@@ -137,23 +132,21 @@
   
   ;;; Configlet formatting
   (define (kebab->snake str)
-    (let ((k->s (lambda (c) (if (char=? c #\-) #\_ c))))
-      (apply string (map k->s (string->list str)))))
+    (list->string
+     (map (lambda (c)
+            (if (char=? c #\-) #\_ c))
+          (string->list str))))
 
-  (define (symbol->snake-case-string symbol)
+  (define (prepare-snake-case symbol)
     (kebab->snake (symbol->string symbol)))
 
   ;; to make exercism/configlet happy
-  (define (format-for-configlet pair)
-    (let ((snake-key (symbol->snake-case-string (car pair))))
+  (define (prepare-for-configlet pair)
+    (let ((snake-key (prepare-snake-case (car pair))))
       (if (null? (cdr pair))
           `(,snake-key)
-          ;; sort the topics list
           (if (eq? 'topics (car pair))
-              (cons snake-key
-                    (sort string<?
-                          (map symbol->snake-case-string (cdr pair))))
-              ;; regular pair for everything else
+              `(,snake-key ,@(map prepare-snake-case (cdr pair)))
               `(,snake-key . ,(cdr pair))))))
-  ;; End Preprocessing/Helpers for make-config
+
   )

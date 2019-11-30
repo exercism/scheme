@@ -9,7 +9,7 @@
       (delete-file config.json))
     (with-output-to-file config.json
       (lambda ()
-        (json-write (processed-config) 'pretty)))))
+        (json-write (processed-config))))))
 
 ;;; Problem Specifications
 

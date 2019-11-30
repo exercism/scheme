@@ -10,31 +10,33 @@ Exercisms in scheme.
 
 ** Overview
 
-   Most things run through the [[/code][code]] directory including exercise test
-   generation and document generation. The [[Makefile][Makefile]] is the main way to
-   interact with this code base, which has been designed to work from
-   the scheme REPL, too.
-
-   Problems are implemented in [[https://github.com/exercism/scheme/tree/master/code/exercises/][code/exercises/]]. The track contents are
-   generated from there to [[https://github.com/exercism/scheme/tree/master/exercises][exercises/]]. The student facing track
-   documentation is built from files in [[/code/docs][code/docs/]].
-
+   Welcome to the home of the exercism scheme track! Many parts of the
+   track are specified in scheme such as the =config.json=, the
+   exercise tests, and the documentation. The way to modify the track
+   is usually to edit something in the [[https://github.com/exercism/scheme/tree/master/code][code/]] directory. Exercism
+   problem implementations are done in [[https://github.com/exercism/scheme/tree/master/code/exercises][code/exercises/]]. Student facing
+   documentation is built from files in [[https://github.com/exercism/scheme/tree/master/code/docs][code/docs/]].
+    
 ** Setup
 
-    To work on the scheme track you'll want [[https://cisco.github.io/ChezScheme/][ChezScheme]] . The json
+    To work on the scheme track you'll need [[https://cisco.github.io/ChezScheme/][ChezScheme]] . The json
     serialization library in =code/json.sls= relies on some modules
     from the [[https://github.com/fedeinthemix/chez-srfi][srfi]] collection, whose path needs to be visible to scheme
     via the =CHEZSCHEMELIBDIRS= environment variable. Instructions for
     installing the srfi collection can be found at
-    [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. Alternatively, if you use the nix package
-    manager, there's an expression in the [[https://github.com/exercism/scheme/blob/master/nix/][nix/]] directory that may help
-    you install the srfis.
+    [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. If you're wise enough to use either the [[https://guix.gnu.org/][guix]] or
+    [[https://nixos.org/nix/][nix]] package managers, you can find the srfis as a package
+    there. For nix, they're in the nixpkgs unstable channel. 
+
+    To verify your example solutions pass the tests, you also need [[https://www.gnu.org/software/guile/][GNU
+    Guile]] installed. Implementations are checked by =make= using both
+    schemes.
 
 ** Working on the Scheme track
 
     To work the track, you should start by heading to this directory
-    and firing up a Scheme REPL. Once here enter =(load "load.ss")=,
-    which will orchestrate loading the appropriate files. 
+    and firing up a Scheme REPL. Once running enter =(load "load.ss")=
+    to orchestrate loading the appropriate files.
 
 *** Adding new problems
     
@@ -81,11 +83,12 @@ Exercisms in scheme.
     the =test.ss= file. Make sure to cover all the analogous
     requirements.
 
-    Lastly, if you're wondering about why there's a =closet=
-    directory, where else should our skeletons go?
+    If you're wondering about why there's a =closet= directory, where
+    else should our skeletons go?
 
 ** Scheme icon
 
-   The Scheme logo was created by https://en.wikipedia.org/wiki/User:Matthias.f
- and released under the Creative Commons Attribution-Share Alike 3.0 Unported license.
- We adapted the logo, creating a pink/black version to use on Exercism.
+   The Scheme logo was created by
+ https://en.wikipedia.org/wiki/User:Matthias.f and released under the
+ Creative Commons Attribution-Share Alike 3.0 Unported license.  We
+ adapted the logo, creating a pink/black version to use on Exercism.
