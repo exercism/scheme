@@ -94,7 +94,7 @@ $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/markdown.sls closet/skeleton-test.ss code/track.ss code/exercises/%/* closet/skeleton-makefile
+exercises/% : code/*.sls closet/skeleton-* code/track.ss code/exercises/%/*
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track

@@ -24,9 +24,13 @@ Exercisms in scheme.
     from the [[https://github.com/fedeinthemix/chez-srfi][srfi]] collection, whose path needs to be visible to scheme
     via the =CHEZSCHEMELIBDIRS= environment variable. Instructions for
     installing the srfi collection can be found at
-    [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. If you're fortunate to use either [[https://guix.gnu.org/][guix]] or [[https://nixos.org/nix/][nix]]
-    package managers, you can find the srfis as a package there. For
-    nix, they're in the nixpkgs unstable channel.
+    [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. If you're wise enough to use either the [[https://guix.gnu.org/][guix]] or
+    [[https://nixos.org/nix/][nix]] package managers, you can find the srfis as a package
+    there. For nix, they're in the nixpkgs unstable channel. 
+
+    To verify your example solutions pass the tests, you also need [[https://www.gnu.org/software/guile/][GNU
+    Guile]] installed. Implementations are checked by =make= using both
+    schemes.
 
 ** Working on the Scheme track
 
@@ -84,6 +88,7 @@ Exercisms in scheme.
 
 ** Scheme icon
 
-   The Scheme logo was created by https://en.wikipedia.org/wiki/User:Matthias.f
- and released under the Creative Commons Attribution-Share Alike 3.0 Unported license.
- We adapted the logo, creating a pink/black version to use on Exercism.
+   The Scheme logo was created by
+ https://en.wikipedia.org/wiki/User:Matthias.f and released under the
+ Creative Commons Attribution-Share Alike 3.0 Unported license.  We
+ adapted the logo, creating a pink/black version to use on Exercism.

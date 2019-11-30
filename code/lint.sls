@@ -5,7 +5,10 @@
 
   (define checkworthy-fields
     '(uuid
-      core))
+      core
+      unlocked-by
+      difficulty
+      topics))
 
   (define (check-config field problem-config)
     (unless (assoc field problem-config)
