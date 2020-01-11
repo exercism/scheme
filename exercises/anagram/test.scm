@@ -70,7 +70,11 @@
            (for-each
              (lambda (field)
                (let ([info (assoc field (cdr failure))])
-                 (format #t "  - ~a: ~a~%" (car info) (cdr info))))
+                 (display "  - ")
+                 (write (car info))
+                 (display ": ")
+                 (write (cdr info))
+                 (newline)))
              query))
          failures)
        (error 'test "incorrect solution")])))
