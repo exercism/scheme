@@ -50,8 +50,7 @@ track-requirements := \
 	../problem-specifications \
 	bin/configlet \
 	closet/skeleton-makefile \
-	closet/specifications.fasl \
-	closet/config.fasl \
+	closet/specifications.ss \
 	$(readme-splice) \
 	$(exercisms) \
 	config.json
@@ -65,7 +64,7 @@ default : track
 ../problem-specifications :
 	cd .. && git clone $(problem-specifications)
 
-closet/specifications.fasl : ../problem-specifications
+closet/specifications.ss : ../problem-specifications
 	$(call exercise, "(persist-specifications)")
 
 closet/tracks.html :
