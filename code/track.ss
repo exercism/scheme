@@ -37,19 +37,21 @@
 
 ;; name of the file containing all the persisted specifications
 (define specification-file
-  "closet/specifications.fasl")
+  "closet/specifications.ss")
 
 ;; read all the problems with canonical-data.json files and save as
 ;; a scheme datum
 (define (persist-specifications)
-  (save-fasl (filter (lambda (x) x)
-                     (map get-implemented-test-specification
-                          (get-problem-list)))
-             specification-file))
+  (with-output-to-file specification-file
+    (lambda ()
+      (pretty-print
+       (filter (lambda (x) x)
+               (map get-implemented-test-specification
+                    (get-problem-list)))))))
 
 ;; load saved specifications
 (define (load-specifications)
-  (fasl-load specification-file))
+  (with-input-from-file specification-file read))
 
 ;; list all the problems in the problem-specifications directory
 (define (get-problem-list)
