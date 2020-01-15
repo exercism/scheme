@@ -81,96 +81,96 @@
 
 (define anagram)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "no matches"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("diaper" ("hello" "world" "zombies" "pants"))
+        '()))
+    (lambda ()
+      (test-success "detects two anagrams"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("master" ("stream" "pigeon" "maters"))
+        '("stream" "maters")))
+    (lambda ()
+      (test-success "does not detect anagram subsets"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("good" ("dog" "goody")) '()))
+    (lambda ()
+      (test-success "detects anagram"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("listen" ("enlists" "google" "inlets" "banana"))
+        '("inlets")))
+    (lambda ()
+      (test-success "detects three anagrams"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram
+        '("allergy"
+           ("gallery" "ballerina" "regally" "clergy" "largely"
+             "leading"))
+        '("gallery" "regally" "largely")))
+    (lambda ()
+      (test-success "detects multiple anagrams with different case"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("nose" ("Eons" "ONES")) '("Eons" "ONES")))
+    (lambda ()
+      (test-success "does not detect non-anagrams with identical checksum"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("mass" ("last")) '()))
+    (lambda ()
+      (test-success "detects anagrams case-insensitively"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram
+        '("Orchestra" ("cashregister" "Carthorse" "radishes"))
+        '("Carthorse")))
+    (lambda ()
+      (test-success "detects anagrams using case-insensitive subject"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram
+        '("Orchestra" ("cashregister" "carthorse" "radishes"))
+        '("carthorse")))
+    (lambda ()
+      (test-success "detects anagrams using case-insensitive possible matches"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram
+        '("orchestra" ("cashregister" "Carthorse" "radishes"))
+        '("Carthorse")))
+    (lambda ()
+      (test-success
+        "does not detect an anagram if the original word is repeated"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("go" ("go Go GO")) '()))
+    (lambda ()
+      (test-success "anagrams must use all letters exactly once"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("tapper" ("patter")) '()))
+    (lambda ()
+      (test-success "words are not anagrams of themselves (case-insensitive)"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("BANANA" ("BANANA" "Banana" "banana")) '()))
+    (lambda ()
+      (test-success "words other than themselves can be anagrams"
+        (lambda (xs ys)
+          (equal? (list-sort string<? xs) (list-sort string<? ys)))
+        anagram '("LISTEN" ("Listen" "Silent" "LISTEN"))
+        '("Silent")))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "no matches"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("diaper" ("hello" "world" "zombies" "pants"))
-          '()))
-      (lambda ()
-        (test-success "detects two anagrams"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("master" ("stream" "pigeon" "maters"))
-          '("stream" "maters")))
-      (lambda ()
-        (test-success "does not detect anagram subsets"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("good" ("dog" "goody")) '()))
-      (lambda ()
-        (test-success "detects anagram"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("listen" ("enlists" "google" "inlets" "banana"))
-          '("inlets")))
-      (lambda ()
-        (test-success "detects three anagrams"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram
-          '("allergy"
-             ("gallery" "ballerina" "regally" "clergy" "largely"
-               "leading"))
-          '("gallery" "regally" "largely")))
-      (lambda ()
-        (test-success "detects multiple anagrams with different case"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("nose" ("Eons" "ONES")) '("Eons" "ONES")))
-      (lambda ()
-        (test-success "does not detect non-anagrams with identical checksum"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("mass" ("last")) '()))
-      (lambda ()
-        (test-success "detects anagrams case-insensitively"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram
-          '("Orchestra" ("cashregister" "Carthorse" "radishes"))
-          '("Carthorse")))
-      (lambda ()
-        (test-success "detects anagrams using case-insensitive subject"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram
-          '("Orchestra" ("cashregister" "carthorse" "radishes"))
-          '("carthorse")))
-      (lambda ()
-        (test-success "detects anagrams using case-insensitive possible matches"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram
-          '("orchestra" ("cashregister" "Carthorse" "radishes"))
-          '("Carthorse")))
-      (lambda ()
-        (test-success
-          "does not detect an anagram if the original word is repeated"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("go" ("go Go GO")) '()))
-      (lambda ()
-        (test-success "anagrams must use all letters exactly once"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("tapper" ("patter")) '()))
-      (lambda ()
-        (test-success "words are not anagrams of themselves (case-insensitive)"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("BANANA" ("BANANA" "Banana" "banana")) '()))
-      (lambda ()
-        (test-success "words other than themselves can be anagrams"
-          (lambda (xs ys)
-            (equal? (list-sort string<? xs) (list-sort string<? ys)))
-          anagram '("LISTEN" ("Listen" "Silent" "LISTEN"))
-          '("Silent"))))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

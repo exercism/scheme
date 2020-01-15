@@ -81,32 +81,32 @@
 
 (define attacking?)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "can not attack" eq? attacking? '((2 4) (6 6))
+        #f))
+    (lambda ()
+      (test-success "can attack on same row" eq? attacking?
+        '((2 4) (2 6)) #t))
+    (lambda ()
+      (test-success "can attack on same column" eq? attacking?
+        '((4 5) (2 5)) #t))
+    (lambda ()
+      (test-success "can attack on first diagonal" eq? attacking?
+        '((2 2) (0 4)) #t))
+    (lambda ()
+      (test-success "can attack on second diagonal" eq? attacking?
+        '((2 2) (3 1)) #t))
+    (lambda ()
+      (test-success "can attack on third diagonal" eq? attacking?
+        '((2 2) (1 1)) #t))
+    (lambda ()
+      (test-success "can attack on fourth diagonal" eq? attacking?
+        '((1 7) (0 6)) #t))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "can not attack" eq? attacking? '((2 4) (6 6))
-          #f))
-      (lambda ()
-        (test-success "can attack on same row" eq? attacking?
-          '((2 4) (2 6)) #t))
-      (lambda ()
-        (test-success "can attack on same column" eq? attacking?
-          '((4 5) (2 5)) #t))
-      (lambda ()
-        (test-success "can attack on first diagonal" eq? attacking?
-          '((2 2) (0 4)) #t))
-      (lambda ()
-        (test-success "can attack on second diagonal" eq? attacking?
-          '((2 2) (3 1)) #t))
-      (lambda ()
-        (test-success "can attack on third diagonal" eq? attacking?
-          '((2 2) (1 1)) #t))
-      (lambda ()
-        (test-success "can attack on fourth diagonal" eq? attacking?
-          '((1 7) (0 6)) #t)))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

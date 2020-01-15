@@ -42,7 +42,6 @@
                keys))
 
   ;;; i/o
-  
   (define (read-all)
     (let loop ((sexp (read)) (config '()))
       (if (eof-object? sexp)

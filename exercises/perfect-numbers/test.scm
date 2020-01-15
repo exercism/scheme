@@ -81,64 +81,64 @@
 
 (define classify)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success
+        "Smallest perfect number is classified correctly" eq?
+        classify '(6) 'perfect))
+    (lambda ()
+      (test-success
+        "Medium perfect number is classified correctly" eq? classify
+        '(28) 'perfect))
+    (lambda ()
+      (test-success "Large perfect number is classified correctly"
+        eq? classify '(33550336) 'perfect))
+    (lambda ()
+      (test-success
+        "Smallest abundant number is classified correctly" eq?
+        classify '(12) 'abundant))
+    (lambda ()
+      (test-success
+        "Medium abundant number is classified correctly" eq?
+        classify '(30) 'abundant))
+    (lambda ()
+      (test-success
+        "Large abundant number is classified correctly" eq? classify
+        '(33550335) 'abundant))
+    (lambda ()
+      (test-success
+        "Smallest prime deficient number is classified correctly"
+        eq? classify '(2) 'deficient))
+    (lambda ()
+      (test-success
+        "Smallest non-prime deficient number is classified correctly"
+        eq? classify '(4) 'deficient))
+    (lambda ()
+      (test-success
+        "Medium deficient number is classified correctly" eq?
+        classify '(32) 'deficient))
+    (lambda ()
+      (test-success
+        "Large deficient number is classified correctly" eq?
+        classify '(33550337) 'deficient))
+    (lambda ()
+      (test-success
+        "Edge case (no factors other than itself) is classified correctly"
+        eq? classify '(1) 'deficient))
+    (lambda ()
+      (test-error
+        "Zero is rejected (not a natural number)"
+        classify
+        '(0)))
+    (lambda ()
+      (test-error
+        "Negative integer is rejected (not a natural number)"
+        classify
+        '(-1)))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success
-          "Smallest perfect number is classified correctly" eq?
-          classify '(6) 'perfect))
-      (lambda ()
-        (test-success
-          "Medium perfect number is classified correctly" eq? classify
-          '(28) 'perfect))
-      (lambda ()
-        (test-success "Large perfect number is classified correctly"
-          eq? classify '(33550336) 'perfect))
-      (lambda ()
-        (test-success
-          "Smallest abundant number is classified correctly" eq?
-          classify '(12) 'abundant))
-      (lambda ()
-        (test-success
-          "Medium abundant number is classified correctly" eq?
-          classify '(30) 'abundant))
-      (lambda ()
-        (test-success
-          "Large abundant number is classified correctly" eq? classify
-          '(33550335) 'abundant))
-      (lambda ()
-        (test-success
-          "Smallest prime deficient number is classified correctly"
-          eq? classify '(2) 'deficient))
-      (lambda ()
-        (test-success
-          "Smallest non-prime deficient number is classified correctly"
-          eq? classify '(4) 'deficient))
-      (lambda ()
-        (test-success
-          "Medium deficient number is classified correctly" eq?
-          classify '(32) 'deficient))
-      (lambda ()
-        (test-success
-          "Large deficient number is classified correctly" eq?
-          classify '(33550337) 'deficient))
-      (lambda ()
-        (test-success
-          "Edge case (no factors other than itself) is classified correctly"
-          eq? classify '(1) 'deficient))
-      (lambda ()
-        (test-error
-          "Zero is rejected (not a natural number)"
-          classify
-          '(0)))
-      (lambda ()
-        (test-error
-          "Negative integer is rejected (not a natural number)"
-          classify
-          '(-1))))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

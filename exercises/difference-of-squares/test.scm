@@ -85,34 +85,34 @@
 
 (define square-of-sum)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "square of sum 1" = square-of-sum '(1) 1))
+    (lambda ()
+      (test-success "square of sum 5" = square-of-sum '(5) 225))
+    (lambda ()
+      (test-success "square of sum 100" = square-of-sum '(100)
+        25502500))
+    (lambda ()
+      (test-success "sum of squares 1" = sum-of-squares '(1) 1))
+    (lambda ()
+      (test-success "sum of squares 5" = sum-of-squares '(5) 55))
+    (lambda ()
+      (test-success "sum of squares 100" = sum-of-squares '(100)
+        338350))
+    (lambda ()
+      (test-success "difference of squares 1" =
+        difference-of-squares '(1) 0))
+    (lambda ()
+      (test-success "difference of squares 5" =
+        difference-of-squares '(5) 170))
+    (lambda ()
+      (test-success "difference of squares 100" =
+        difference-of-squares '(100) 25164150))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "square of sum 1" = square-of-sum '(1) 1))
-      (lambda ()
-        (test-success "square of sum 5" = square-of-sum '(5) 225))
-      (lambda ()
-        (test-success "square of sum 100" = square-of-sum '(100)
-          25502500))
-      (lambda ()
-        (test-success "sum of squares 1" = sum-of-squares '(1) 1))
-      (lambda ()
-        (test-success "sum of squares 5" = sum-of-squares '(5) 55))
-      (lambda ()
-        (test-success "sum of squares 100" = sum-of-squares '(100)
-          338350))
-      (lambda ()
-        (test-success "difference of squares 1" =
-          difference-of-squares '(1) 0))
-      (lambda ()
-        (test-success "difference of squares 5" =
-          difference-of-squares '(5) 170))
-      (lambda ()
-        (test-success "difference of squares 100" =
-          difference-of-squares '(100) 25164150)))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

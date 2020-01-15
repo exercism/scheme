@@ -81,41 +81,41 @@
 
 (define pangram?)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "empty sentence" eq? pangram? '("") #f))
+    (lambda ()
+      (test-success "perfect lower case" eq? pangram?
+        '("abcdefghijklmnopqrstuvwxyz") #t))
+    (lambda ()
+      (test-success "only lower case" eq? pangram?
+        '("the quick brown fox jumps over the lazy dog") #t))
+    (lambda ()
+      (test-success "missing the letter 'x'" eq? pangram?
+        '("a quick movement of the enemy will jeopardize five gunboats")
+        #f))
+    (lambda ()
+      (test-success "missing the letter 'h'" eq? pangram?
+        '("five boxing wizards jump quickly at it") #f))
+    (lambda ()
+      (test-success "with underscores" eq? pangram?
+        '("the_quick_brown_fox_jumps_over_the_lazy_dog") #t))
+    (lambda ()
+      (test-success "with numbers" eq? pangram?
+        '("the 1 quick brown fox jumps over the 2 lazy dogs") #t))
+    (lambda ()
+      (test-success "missing letters replaced by numbers" eq? pangram?
+        '("7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog") #f))
+    (lambda ()
+      (test-success "mixed case and punctuation" eq? pangram?
+        '("\"Five quacking Zephyrs jolt my wax bed.\"") #t))
+    (lambda ()
+      (test-success "case insensitive" eq? pangram?
+        '("the quick brown fox jumps over with lazy FX") #f))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "empty sentence" eq? pangram? '("") #f))
-      (lambda ()
-        (test-success "perfect lower case" eq? pangram?
-          '("abcdefghijklmnopqrstuvwxyz") #t))
-      (lambda ()
-        (test-success "only lower case" eq? pangram?
-          '("the quick brown fox jumps over the lazy dog") #t))
-      (lambda ()
-        (test-success "missing the letter 'x'" eq? pangram?
-          '("a quick movement of the enemy will jeopardize five gunboats")
-          #f))
-      (lambda ()
-        (test-success "missing the letter 'h'" eq? pangram?
-          '("five boxing wizards jump quickly at it") #f))
-      (lambda ()
-        (test-success "with underscores" eq? pangram?
-          '("the_quick_brown_fox_jumps_over_the_lazy_dog") #t))
-      (lambda ()
-        (test-success "with numbers" eq? pangram?
-          '("the 1 quick brown fox jumps over the 2 lazy dogs") #t))
-      (lambda ()
-        (test-success "missing letters replaced by numbers" eq? pangram?
-          '("7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog") #f))
-      (lambda ()
-        (test-success "mixed case and punctuation" eq? pangram?
-          '("\"Five quacking Zephyrs jolt my wax bed.\"") #t))
-      (lambda ()
-        (test-success "case insensitive" eq? pangram?
-          '("the quick brown fox jumps over with lazy FX") #f)))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))
