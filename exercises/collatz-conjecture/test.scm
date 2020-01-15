@@ -81,20 +81,20 @@
 
 (define collatz)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "zero steps for one" = collatz '(1) 0))
+    (lambda ()
+      (test-success "divide if even" = collatz '(16) 4))
+    (lambda ()
+      (test-success "even and odd steps" = collatz '(12) 9))
+    (lambda ()
+      (test-success "large number of even and odd steps" = collatz
+        '(1000000) 152))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "zero steps for one" = collatz '(1) 0))
-      (lambda ()
-        (test-success "divide if even" = collatz '(16) 4))
-      (lambda ()
-        (test-success "even and odd steps" = collatz '(12) 9))
-      (lambda ()
-        (test-success "large number of even and odd steps" = collatz
-          '(1000000) 152)))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

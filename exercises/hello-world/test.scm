@@ -81,14 +81,14 @@
 
 (define hello-world)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "Say Hi!" equal? hello-world '()
+        "Hello, World!"))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "Say Hi!" equal? hello-world '()
-          "Hello, World!")))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

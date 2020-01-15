@@ -42,6 +42,8 @@
 ;; read all the problems with canonical-data.json files and save as
 ;; a scheme datum
 (define (persist-specifications)
+  (when (file-exists? specifications-file)
+    (delete-file specifications-file))
   (with-output-to-file specification-file
     (lambda ()
       (pretty-print
@@ -167,14 +169,14 @@
     ,@(map (lambda (stub-def)
              `(define ,stub-def))
            stub-defs)
+    (define test-cases
+      (list
+       ,@(map (lambda (test)
+                `(lambda ()
+                   ,test))
+              tests)))
     (define (test . query)
-      (apply run-test-suite
-             (list
-              ,@(map (lambda (test)
-                       `(lambda ()
-                          ,test))
-                     tests))
-             query))
+      (apply run-test-suite test-cases query))
     (let ((args (command-line)))
       (if (null? (cdr args))
           (load ,(format "~a.scm" problem))

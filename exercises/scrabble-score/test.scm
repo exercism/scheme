@@ -81,34 +81,34 @@
 
 (define score)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "lowercase letter" = score '("a") 1))
+    (lambda ()
+      (test-success "uppercase letter" = score '("A") 1))
+    (lambda ()
+      (test-success "valuable letter" = score '("f") 4))
+    (lambda () (test-success "short word" = score '("at") 2))
+    (lambda ()
+      (test-success "short, valuable word" = score '("zoo") 12))
+    (lambda ()
+      (test-success "medium word" = score '("street") 6))
+    (lambda ()
+      (test-success "medium, valuable word" = score '("quirky")
+        22))
+    (lambda ()
+      (test-success "long, mixed-case word" = score
+        '("OxyphenButazone") 41))
+    (lambda ()
+      (test-success "english-like word" = score '("pinata") 8))
+    (lambda () (test-success "empty input" = score '("") 0))
+    (lambda ()
+      (test-success "entire alphabet available" = score
+        '("abcdefghijklmnopqrstuvwxyz") 87))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "lowercase letter" = score '("a") 1))
-      (lambda ()
-        (test-success "uppercase letter" = score '("A") 1))
-      (lambda ()
-        (test-success "valuable letter" = score '("f") 4))
-      (lambda () (test-success "short word" = score '("at") 2))
-      (lambda ()
-        (test-success "short, valuable word" = score '("zoo") 12))
-      (lambda ()
-        (test-success "medium word" = score '("street") 6))
-      (lambda ()
-        (test-success "medium, valuable word" = score '("quirky")
-          22))
-      (lambda ()
-        (test-success "long, mixed-case word" = score
-          '("OxyphenButazone") 41))
-      (lambda ()
-        (test-success "english-like word" = score '("pinata") 8))
-      (lambda () (test-success "empty input" = score '("") 0))
-      (lambda ()
-        (test-success "entire alphabet available" = score
-          '("abcdefghijklmnopqrstuvwxyz") 87)))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

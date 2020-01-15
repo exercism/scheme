@@ -83,36 +83,36 @@
 
 (define total)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success
+        "returns the total number of grains on the board" equal?
+        total '() 18446744073709551615))
+    (lambda () (test-success "1" equal? square '(1) 1))
+    (lambda () (test-success "2" equal? square '(2) 2))
+    (lambda () (test-success "3" equal? square '(3) 4))
+    (lambda () (test-success "4" equal? square '(4) 8))
+    (lambda () (test-success "16" equal? square '(16) 32768))
+    (lambda ()
+      (test-success "32" equal? square '(32) 2147483648))
+    (lambda ()
+      (test-success "64" equal? square '(64) 9223372036854775808))
+    (lambda ()
+      (test-error "square 0 raises an exception" square '(0)))
+    (lambda ()
+      (test-error
+        "negative square raises an exception"
+        square
+        '(-1)))
+    (lambda ()
+      (test-error
+        "square greater than 64 raises an exception"
+        square
+        '(65)))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success
-          "returns the total number of grains on the board" equal?
-          total '() 18446744073709551615))
-      (lambda () (test-success "1" equal? square '(1) 1))
-      (lambda () (test-success "2" equal? square '(2) 2))
-      (lambda () (test-success "3" equal? square '(3) 4))
-      (lambda () (test-success "4" equal? square '(4) 8))
-      (lambda () (test-success "16" equal? square '(16) 32768))
-      (lambda ()
-        (test-success "32" equal? square '(32) 2147483648))
-      (lambda ()
-        (test-success "64" equal? square '(64) 9223372036854775808))
-      (lambda ()
-        (test-error "square 0 raises an exception" square '(0)))
-      (lambda ()
-        (test-error
-          "negative square raises an exception"
-          square
-          '(-1)))
-      (lambda ()
-        (test-error
-          "square greater than 64 raises an exception"
-          square
-          '(65))))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

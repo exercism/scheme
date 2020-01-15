@@ -81,46 +81,46 @@
 
 (define hamming-distance)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "empty strands" = hamming-distance '("" "")
+        0))
+    (lambda ()
+      (test-success "single letter identical strands" =
+        hamming-distance '("A" "A") 0))
+    (lambda ()
+      (test-success "single letter different strands" =
+        hamming-distance '("G" "T") 1))
+    (lambda ()
+      (test-success "long identical strands" = hamming-distance
+        '("GGACTGAAATCTG" "GGACTGAAATCTG") 0))
+    (lambda ()
+      (test-success "long different strands" = hamming-distance
+        '("GGACGGATTCTG" "AGGACGGATTCT") 9))
+    (lambda ()
+      (test-error
+        "disallow first strand longer"
+        hamming-distance
+        '("AATG" "AAA")))
+    (lambda ()
+      (test-error
+        "disallow second strand longer"
+        hamming-distance
+        '("ATA" "AGTG")))
+    (lambda ()
+      (test-error
+        "disallow left empty strand"
+        hamming-distance
+        '("" "G")))
+    (lambda ()
+      (test-error
+        "disallow right empty strand"
+        hamming-distance
+        '("G" "")))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "empty strands" = hamming-distance '("" "")
-          0))
-      (lambda ()
-        (test-success "single letter identical strands" =
-          hamming-distance '("A" "A") 0))
-      (lambda ()
-        (test-success "single letter different strands" =
-          hamming-distance '("G" "T") 1))
-      (lambda ()
-        (test-success "long identical strands" = hamming-distance
-          '("GGACTGAAATCTG" "GGACTGAAATCTG") 0))
-      (lambda ()
-        (test-success "long different strands" = hamming-distance
-          '("GGACGGATTCTG" "AGGACGGATTCT") 9))
-      (lambda ()
-        (test-error
-          "disallow first strand longer"
-          hamming-distance
-          '("AATG" "AAA")))
-      (lambda ()
-        (test-error
-          "disallow second strand longer"
-          hamming-distance
-          '("ATA" "AGTG")))
-      (lambda ()
-        (test-error
-          "disallow left empty strand"
-          hamming-distance
-          '("" "G")))
-      (lambda ()
-        (test-error
-          "disallow right empty strand"
-          hamming-distance
-          '("G" ""))))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

@@ -83,69 +83,69 @@
 
 (define decode)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "encode yes" equal? encode '((5 . 7) "yes")
+        "xbt"))
+    (lambda ()
+      (test-success "encode no" equal? encode '((15 . 18) "no")
+        "fu"))
+    (lambda ()
+      (test-success "encode OMG" equal? encode '((21 . 3) "OMG")
+        "lvz"))
+    (lambda ()
+      (test-success "encode O M G" equal? encode
+        '((25 . 47) "O M G") "hjp"))
+    (lambda ()
+      (test-success "encode mindblowingly" equal? encode
+        '((11 . 15) "mindblowingly") "rzcwa gnxzc dgt"))
+    (lambda ()
+      (test-success "encode numbers" equal? encode
+        '((3 . 4) "Testing,1 2 3, testing.")
+        "jqgjc rw123 jqgjc rw"))
+    (lambda ()
+      (test-success "encode deep thought" equal? encode
+        '((5 . 17) "Truth is fiction.") "iynia fdqfb ifje"))
+    (lambda ()
+      (test-success "encode all the letters" equal? encode
+        '((17 . 33) "The quick brown fox jumps over the lazy dog.")
+        "swxtj npvyk lruol iejdc blaxk swxmh qzglf"))
+    (lambda ()
+      (test-error
+        "encode with a not coprime to m"
+        encode
+        '(((a . 6) (b . 17)) "This is a test.")))
+    (lambda ()
+      (test-success "decode exercism" equal? decode
+        '((3 . 7) "tytgn fjr") "exercism"))
+    (lambda ()
+      (test-success "decode a sentence" equal? decode
+        '((19 . 16) "qdwju nqcro muwhn odqun oppmd aunwd o")
+        "anobstacleisoftenasteppingstone"))
+    (lambda ()
+      (test-success "decode numbers" equal? decode
+        '((25 . 7) "odpoz ub123 odpoz ub") "testing123testing"))
+    (lambda ()
+      (test-success "decode all the letters" equal? decode
+        '((17 . 33) "swxtj npvyk lruol iejdc blaxk swxmh qzglf")
+        "thequickbrownfoxjumpsoverthelazydog"))
+    (lambda ()
+      (test-success "decode with no spaces in input" equal? decode
+        '((17 . 33) "swxtjnpvyklruoliejdcblaxkswxmhqzglf")
+        "thequickbrownfoxjumpsoverthelazydog"))
+    (lambda ()
+      (test-success "decode with too many spaces" equal? decode
+        '((15 . 16) "vszzm    cly   yd cg    qdp")
+        "jollygreengiant"))
+    (lambda ()
+      (test-error
+        "decode with a not coprime to m"
+        decode
+        '(((a . 13) (b . 5)) "Test")))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "encode yes" equal? encode '((5 . 7) "yes")
-          "xbt"))
-      (lambda ()
-        (test-success "encode no" equal? encode '((15 . 18) "no")
-          "fu"))
-      (lambda ()
-        (test-success "encode OMG" equal? encode '((21 . 3) "OMG")
-          "lvz"))
-      (lambda ()
-        (test-success "encode O M G" equal? encode
-          '((25 . 47) "O M G") "hjp"))
-      (lambda ()
-        (test-success "encode mindblowingly" equal? encode
-          '((11 . 15) "mindblowingly") "rzcwa gnxzc dgt"))
-      (lambda ()
-        (test-success "encode numbers" equal? encode
-          '((3 . 4) "Testing,1 2 3, testing.")
-          "jqgjc rw123 jqgjc rw"))
-      (lambda ()
-        (test-success "encode deep thought" equal? encode
-          '((5 . 17) "Truth is fiction.") "iynia fdqfb ifje"))
-      (lambda ()
-        (test-success "encode all the letters" equal? encode
-          '((17 . 33) "The quick brown fox jumps over the lazy dog.")
-          "swxtj npvyk lruol iejdc blaxk swxmh qzglf"))
-      (lambda ()
-        (test-error
-          "encode with a not coprime to m"
-          encode
-          '(((a . 6) (b . 17)) "This is a test.")))
-      (lambda ()
-        (test-success "decode exercism" equal? decode
-          '((3 . 7) "tytgn fjr") "exercism"))
-      (lambda ()
-        (test-success "decode a sentence" equal? decode
-          '((19 . 16) "qdwju nqcro muwhn odqun oppmd aunwd o")
-          "anobstacleisoftenasteppingstone"))
-      (lambda ()
-        (test-success "decode numbers" equal? decode
-          '((25 . 7) "odpoz ub123 odpoz ub") "testing123testing"))
-      (lambda ()
-        (test-success "decode all the letters" equal? decode
-          '((17 . 33) "swxtj npvyk lruol iejdc blaxk swxmh qzglf")
-          "thequickbrownfoxjumpsoverthelazydog"))
-      (lambda ()
-        (test-success "decode with no spaces in input" equal? decode
-          '((17 . 33) "swxtjnpvyklruoliejdcblaxkswxmhqzglf")
-          "thequickbrownfoxjumpsoverthelazydog"))
-      (lambda ()
-        (test-success "decode with too many spaces" equal? decode
-          '((15 . 16) "vszzm    cly   yd cg    qdp")
-          "jollygreengiant"))
-      (lambda ()
-        (test-error
-          "decode with a not coprime to m"
-          decode
-          '(((a . 13) (b . 5)) "Test"))))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

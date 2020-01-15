@@ -81,29 +81,29 @@
 
 (define dna->rna)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "Empty RNA sequence" equal? dna->rna '("")
+        ""))
+    (lambda ()
+      (test-success "RNA complement of cytosine is guanine" equal?
+        dna->rna '("C") "G"))
+    (lambda ()
+      (test-success "RNA complement of guanine is cytosine" equal?
+        dna->rna '("G") "C"))
+    (lambda ()
+      (test-success "RNA complement of thymine is adenine" equal?
+        dna->rna '("T") "A"))
+    (lambda ()
+      (test-success "RNA complement of adenine is uracil" equal?
+        dna->rna '("A") "U"))
+    (lambda ()
+      (test-success "RNA complement" equal? dna->rna
+        '("ACGTGGTCTTAA") "UGCACCAGAAUU"))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "Empty RNA sequence" equal? dna->rna '("")
-          ""))
-      (lambda ()
-        (test-success "RNA complement of cytosine is guanine" equal?
-          dna->rna '("C") "G"))
-      (lambda ()
-        (test-success "RNA complement of guanine is cytosine" equal?
-          dna->rna '("G") "C"))
-      (lambda ()
-        (test-success "RNA complement of thymine is adenine" equal?
-          dna->rna '("T") "A"))
-      (lambda ()
-        (test-success "RNA complement of adenine is uracil" equal?
-          dna->rna '("A") "U"))
-      (lambda ()
-        (test-success "RNA complement" equal? dna->rna
-          '("ACGTGGTCTTAA") "UGCACCAGAAUU")))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))

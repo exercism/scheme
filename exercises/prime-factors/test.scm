@@ -81,39 +81,39 @@
 
 (define factorize)
 
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "no factors"
+        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+        factorize '(1) '()))
+    (lambda ()
+      (test-success "prime number"
+        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+        factorize '(2) '(2)))
+    (lambda ()
+      (test-success "square of a prime"
+        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+        factorize '(9) '(3 3)))
+    (lambda ()
+      (test-success "cube of a prime"
+        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+        factorize '(8) '(2 2 2)))
+    (lambda ()
+      (test-success "product of primes and non-primes"
+        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+        factorize '(12) '(2 2 3)))
+    (lambda ()
+      (test-success "product of primes"
+        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+        factorize '(901255) '(5 17 23 461)))
+    (lambda ()
+      (test-success "factors include a large prime"
+        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+        factorize '(93819012551) '(11 9539 894119)))))
+
 (define (test . query)
-  (apply
-    run-test-suite
-    (list
-      (lambda ()
-        (test-success "no factors"
-          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-          factorize '(1) '()))
-      (lambda ()
-        (test-success "prime number"
-          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-          factorize '(2) '(2)))
-      (lambda ()
-        (test-success "square of a prime"
-          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-          factorize '(9) '(3 3)))
-      (lambda ()
-        (test-success "cube of a prime"
-          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-          factorize '(8) '(2 2 2)))
-      (lambda ()
-        (test-success "product of primes and non-primes"
-          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-          factorize '(12) '(2 2 3)))
-      (lambda ()
-        (test-success "product of primes"
-          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-          factorize '(901255) '(5 17 23 461)))
-      (lambda ()
-        (test-success "factors include a large prime"
-          (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-          factorize '(93819012551) '(11 9539 894119))))
-    query))
+  (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
   (if (null? (cdr args))
