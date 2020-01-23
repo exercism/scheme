@@ -164,7 +164,7 @@
 
 ;; splice the skeleton test file with the problem's test cases
 (define (make-test-file tests problem . stub-defs)
-  `((import (rnrs))
+  `((import (except (rnrs) current-output-port))
     ,@*test-definitions*
     ,@(map (lambda (stub-def)
              `(define ,stub-def))
@@ -182,7 +182,7 @@
 	     (load ,(format "~a.scm" problem))
 	     (test 'input 'output))
 	    ((string=? (cadr args) "--docker")
-	     (load (caddr args))
+	     (load ,(format "~a.scm" problem))
 	     (run-docker test-cases))
 	    (else
 	     (load (cadr args))

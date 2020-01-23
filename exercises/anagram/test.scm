@@ -1,6 +1,6 @@
-(import (rnrs))
+(import (except (rnrs) current-output-port))
 
-(define test-fields '(input output who))
+(define test-fields '(input output))
 
 (define (test-run-solution solution input)
   (if (procedure? solution) (apply solution input) solution))
@@ -9,36 +9,53 @@
          procedure input output)
   (call/cc
     (lambda (k)
-      (with-exception-handler
-        (lambda (e)
-          (k `(fail
-                (description . ,description)
-                (input . ,input)
-                (output . ,output)
-                (who . ,procedure))))
-        (lambda ()
-          (let ([result (test-run-solution procedure input)])
-            (unless (success-predicate result output)
-              (error 'exercism-test
-                "test fails"
-                description
-                input
-                result
-                output)))
-          `(pass . ,description))))))
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . ,output)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (let ([result (parameterize ([current-output-port out])
+                            (test-run-solution procedure input))])
+              (unless (success-predicate result output)
+                (error 'exercism-test
+                  "test fails"
+                  description
+                  input
+                  result
+                  output)))
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
 (define (test-error description procedure input)
   (call/cc
     (lambda (k)
-      (with-exception-handler
-        (lambda (e) (k `(pass . ,description)))
-        (lambda ()
-          (test-run-solution procedure input)
-          `(fail
-             (description . ,description)
-             (input . ,input)
-             (output . error)
-             (who . ,procedure)))))))
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (parameterize ([current-output-port out])
+              (test-run-solution procedure input))
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . error)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
 (define (run-test-suite tests . query)
   (for-each
@@ -181,7 +198,7 @@
      (load "anagram.scm")
      (test 'input 'output)]
     [(string=? (cadr args) "--docker")
-     (load (caddr args))
+     (load "anagram.scm")
      (run-docker test-cases)]
     [else (load (cadr args)) (test 'input 'output)]))
 
