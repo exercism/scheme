@@ -110,7 +110,6 @@ clean :
 	find . -name "*.so" -exec rm {} \;
 	find . -name "*~" -exec rm {} \;
 	find . -name "*.html" -exec rm {} \;
-	rm -rf _build
-	rm ci
+	rm -rf _build ci
 
 .PHONY : track clean

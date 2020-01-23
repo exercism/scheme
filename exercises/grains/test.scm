@@ -79,6 +79,9 @@
          failures)
        (error 'test "incorrect solution")])))
 
+(define (run-docker test-cases)
+  (write (map (lambda (test) (test)) test-cases)))
+
 (define square)
 
 (define total)
@@ -115,8 +118,12 @@
   (apply run-test-suite test-cases query))
 
 (let ([args (command-line)])
-  (if (null? (cdr args))
-      (load "grains.scm")
-      (load (cadr args)))
-  (test 'input 'output))
+  (cond
+    [(null? (cdr args))
+     (load "grains.scm")
+     (test 'input 'output)]
+    [(string=? (cadr args) "--docker")
+     (load (caddr args))
+     (run-docker test-cases)]
+    [else (load (cadr args)) (test 'input 'output)]))
 

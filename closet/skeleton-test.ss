@@ -71,3 +71,5 @@
 		failures)
       (error 'test "incorrect solution")))))
 
+(define (run-docker test-cases)
+  (write (map (lambda (test) (test)) test-cases)))
