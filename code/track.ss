@@ -2,7 +2,7 @@
 
 ;;; Config
 
-;; code/config.ss => config.json
+;; config/config.ss => config.json
 (define (make-config)
   (let ((config.json "config.json"))
     (when (file-exists? config.json)
@@ -37,7 +37,7 @@
 
 ;; name of the file containing all the persisted specifications
 (define specification-file
-  "closet/specifications.ss")
+  "input/specifications.ss")
 
 ;; read all the problems with canonical-data.json files and save as
 ;; a scheme datum
@@ -61,14 +61,14 @@
 
 ;;; Test suite
 
-;; read the code/test.ss file as s-expressions
+;; read the input/test.ss file as s-expressions
 (define *test-definitions*
-  (with-input-from-file "closet/skeleton-test.ss" read-all))
+  (with-input-from-file "input/skeleton-test.ss" read-all))
 
 ;;; Problem Implementations
 
 (define (load-problem problem)
-  (load (format "code/exercises/~a/test.ss" problem)))
+  (load (format "input/exercises/~a/test.ss" problem)))
 
 ;; table to hold problem implementations
 (define *problem-table*
@@ -103,12 +103,12 @@
 ;; implementation.
 (define (stub-exercism problem)
   (format #t "setting up ~a~%" problem)
-  (let* ((dir (format "code/exercises/~a" problem))
+  (let* ((dir (format "input/exercises/~a" problem))
          (implementation (format "~a/test.ss" dir))
          ;; todo, add "properties" found in spec to stub skeleton and solution
          (skeleton (format "~a/~a.scm" dir problem))
          (solution (format "~a/example.scm" dir))
-         ;; see code/exercises/anagram/anagram.ss for more information
+         ;; see input/exercises/anagram/anagram.ss for more information
          (stub-implementation
           `(,@'((define (parse-test test)
                   `(test-success (lookup 'description test)
@@ -139,20 +139,20 @@
     (format #t "~~ writing stub skeleton~%")
     (write-expression-to-file stub-solution solution)))
 
-;; output the problem as specified in code/exercises/problem/* to
+;; output the problem as specified in input/exercises/problem/* to
 ;; _build/exercises/problem/*. This is a temporary location to first
 ;; test the problem before actually writing to exercises/problem/*.
 (define (build-exercism problem)
   (let ((implementation (get-problem problem)))
     (let* ((dir (format "_build/exercises/~a" problem))
-           (src (format "code/exercises/~a" problem))
+           (src (format "input/exercises/~a" problem))
            (test.scm (format "~a/test.scm" dir))
            (skeleton.scm (format "~a/~a" src (lookup 'skeleton implementation)))
            (solution.scm (format "~a/~a" src (lookup 'solution implementation))))
       (format #t "writing _build/exercises/~a~%" problem)
       (system
        (format "mkdir -p ~a && cp ~a ~a && cp ~a ~a && cp ~a ~a/Makefile"
-               dir skeleton.scm dir solution.scm dir "closet/skeleton-makefile" dir))
+               dir skeleton.scm dir solution.scm dir "input/skeleton-makefile" dir))
       (markdown-exercism problem)
       (version-exercism problem)
       (write-expression-to-file
@@ -164,7 +164,7 @@
 
 ;; splice the skeleton test file with the problem's test cases
 (define (make-test-file tests problem . stub-defs)
-  `((import (rnrs))
+  `((import (except (rnrs) current-output-port))
     ,@*test-definitions*
     ,@(map (lambda (stub-def)
              `(define ,stub-def))
@@ -178,10 +178,15 @@
     (define (test . query)
       (apply run-test-suite test-cases query))
     (let ((args (command-line)))
-      (if (null? (cdr args))
-          (load ,(format "~a.scm" problem))
-          (load (cadr args)))
-      (test 'input 'output))))
+      (cond ((null? (cdr args))
+	     (load ,(format "~a.scm" problem))
+	     (test 'input 'output))
+	    ((string=? (cadr args) "--docker")
+	     (load ,(format "~a.scm" problem))
+	     (run-docker test-cases))
+	    (else
+	     (load (cadr args))
+	     (test 'input 'output))))))
 
 ;; output the markdown for the problem
 (define (markdown-exercism problem)

@@ -1,7 +1,6 @@
 (define test-fields
   '(input
-    output
-    who))
+    output))
 
 (define (test-run-solution solution input)
   (if (procedure? solution)
@@ -11,30 +10,44 @@
 (define (test-success description success-predicate procedure input output)
   (call/cc
    (lambda (k)
-     (with-exception-handler
-	 (lambda (e)
-	   (k `(fail . ((description . ,description)
-			(input . ,input)
-			(output . ,output)
-			(who . ,procedure)))))
-       (lambda ()
-	 (let ((result (test-run-solution procedure input)))
-	   (unless (success-predicate result output)
-	     (error 'exercism-test "test fails" description input result output)))
-	 `(pass . ,description))))))
+     (let ((out (open-output-string)))
+       (with-exception-handler
+	   (lambda (e)
+	     (let ((result `(fail . ((description . ,description)
+				     (input . ,input)
+				     (output . ,output)
+				     (stdout . ,(get-output-string out))))))
+	       (close-output-port out)
+	       (k result)))
+	 (lambda ()
+	   (let ((result (parameterize ((current-output-port out))
+			   (test-run-solution procedure input))))
+	     (unless (success-predicate result output)
+	       (error 'exercism-test "test fails" description input result output)))
+	   (let ((result `(pass . ((description . ,description)
+				   (stdout . ,(get-output-string out))))))
+	     (close-output-port out)
+	     result)))))))
 
 (define (test-error description procedure input)
   (call/cc
    (lambda (k)
-     (with-exception-handler
-	 (lambda (e)
-	   (k `(pass . ,description)))
-       (lambda ()
-	 (test-run-solution procedure input)
-	 `(fail . ((description . ,description)
-		   (input . ,input)
-		   (output . error)
-		   (who . ,procedure))))))))
+     (let ((out (open-output-string)))
+       (with-exception-handler
+	   (lambda (e)
+	     (let ((result `(pass . ((description . ,description)
+				     (stdout . ,(get-output-string out))))))
+	       (close-output-port out)
+	       (k result)))
+	 (lambda ()
+	   (parameterize ((current-output-port out))
+	     (test-run-solution procedure input))
+	   (let ((result `(fail . ((description . ,description)
+				   (input . ,input)
+				   (output . error)
+				   (stdout . ,(get-output-string out))))))
+	       (close-output-port out)
+	       result)))))))
 
 (define (run-test-suite tests . query)
   (for-each (lambda (field)
@@ -71,3 +84,5 @@
 		failures)
       (error 'test "incorrect solution")))))
 
+(define (run-docker test-cases)
+  (write (map (lambda (test) (test)) test-cases)))
