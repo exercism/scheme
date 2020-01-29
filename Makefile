@@ -47,15 +47,16 @@ exercisms := $(foreach exercism,$(implementations),exercises/$(exercism))
 readme-splice := config/exercise-readme-insert.md
 
 track-requirements := \
+	Makefile \
 	../problem-specifications \
 	bin/configlet \
-	closet/skeleton-makefile \
-	closet/specifications.ss \
+	input/skeleton-makefile \
+	input/specifications.ss \
 	$(readme-splice) \
 	$(exercisms) \
 	config.json
 
-# run given expression after loading load.ss
+# run given expression upon loading the code
 exercise = echo $(1) | $(chez) -q load.ss
 
 default : track
@@ -64,17 +65,8 @@ default : track
 ../problem-specifications :
 	cd .. && git clone $(problem-specifications)
 
-closet/specifications.ss : ../problem-specifications
+input/specifications.ss : ../problem-specifications
 	$(call exercise, "(persist-specifications)")
-
-closet/tracks.html :
-	wget https://exercism.io/tracks -O $@
-
-closet/tracks.txt : # closet/tracks.html script/fetch-tracks.sh
-	./script/fetch-tracks.sh $< $@
-
-closet/track-configs.fasl : closet/tracks.txt
-	$(call exercise, "(persist-track-configs)")
 
 # CONFIG
 config.json : config/track.ss
@@ -86,14 +78,14 @@ bin/configlet :
 	./script/fetch-configlet
 
 # documentation
-docs/%.md : code/markdown.sls code/docs/%.ss
+docs/%.md : code/markdown.sls input/docs/%.ss
 	$(call exercise, "(put-doc '$(@F:.md=))")
 
 $(readme-splice) : $(track-documentation)
 	cp docs/TESTS.md $@
 
 # exercises
-exercises/% : code/*.sls closet/skeleton-* code/track.ss code/exercises/%/*
+exercises/% : code/*.sls input/skeleton-* code/track.ss input/exercises/%/*
 	$(call exercise, "(make-exercism '$(@F))")
 
 # build track
