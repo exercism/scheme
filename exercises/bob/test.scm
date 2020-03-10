@@ -123,15 +123,14 @@
        '("fffbbcbeab?") "Sure."))
    (lambda ()
      (test-success "talking forcefully" equal? response-for
-       '("Let's go make out behind the gym!") "Whatever."))
+       '("Hi there!") "Whatever."))
    (lambda ()
      (test-success "using acronyms in regular speech" equal? response-for
-       '("It's OK if you don't want to go to the DMV.")
+       '("It's OK if you don't want to go work for NASA.")
        "Whatever."))
    (lambda ()
      (test-success "forceful question" equal? response-for
-       '("WHAT THE HELL WERE YOU THINKING?")
-       "Calm down, I know what I'm doing!"))
+       '("WHAT'S GOING ON?") "Calm down, I know what I'm doing!"))
    (lambda ()
      (test-success "shouting numbers" equal? response-for
        '("1, 2, 3 GO!") "Whoa, chill out!"))
@@ -147,7 +146,7 @@
        "Whoa, chill out!"))
    (lambda ()
      (test-success "shouting with no exclamation mark" equal?
-       response-for '("I HATE THE DMV") "Whoa, chill out!"))
+       response-for '("I HATE THE DENTIST") "Whoa, chill out!"))
    (lambda ()
      (test-success "statement containing question mark" equal? response-for
        '("Ending with ? means a question.") "Whatever."))

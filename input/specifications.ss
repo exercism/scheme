@@ -4779,7 +4779,7 @@
        (expected . 5))))
  (luhn
    (exercise . "luhn")
-   (version . "1.6.1")
+   (version . "1.7.0")
    (cases
      ((description . "single digit strings can not be valid")
        (property . "valid")
@@ -4812,6 +4812,12 @@
      ((description . "invalid credit card")
        (property . "valid")
        (input (value . "8273 1232 7352 0569"))
+       (expected . #f))
+     ((description
+        .
+        "invalid long number with an even remainder")
+       (property . "valid")
+       (input (value . "1 2345 6789 1234 5678 9012"))
        (expected . #f))
      ((description
         .
@@ -9021,7 +9027,7 @@
            (expected
              (error . "exchange code cannot start with one")))))))
  (bob (exercise . "bob")
-      (version . "1.4.0")
+      (version . "1.6.0")
       (cases
        ((description . "stating something")
          (property . "response")
@@ -9050,16 +9056,16 @@
          (expected . "Sure."))
        ((description . "talking forcefully")
          (property . "response")
-         (input (heyBob . "Let's go make out behind the gym!"))
+         (input (heyBob . "Hi there!"))
          (expected . "Whatever."))
        ((description . "using acronyms in regular speech")
          (property . "response")
          (input
-           (heyBob . "It's OK if you don't want to go to the DMV."))
+           (heyBob . "It's OK if you don't want to go work for NASA."))
          (expected . "Whatever."))
        ((description . "forceful question")
          (property . "response")
-         (input (heyBob . "WHAT THE HELL WERE YOU THINKING?"))
+         (input (heyBob . "WHAT'S GOING ON?"))
          (expected . "Calm down, I know what I'm doing!"))
        ((description . "shouting numbers")
          (property . "response")
@@ -9080,7 +9086,7 @@
          (expected . "Whoa, chill out!"))
        ((description . "shouting with no exclamation mark")
          (property . "response")
-         (input (heyBob . "I HATE THE DMV"))
+         (input (heyBob . "I HATE THE DENTIST"))
          (expected . "Whoa, chill out!"))
        ((description . "statement containing question mark")
          (property . "response")
