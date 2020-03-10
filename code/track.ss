@@ -42,8 +42,8 @@
 ;; read all the problems with canonical-data.json files and save as
 ;; a scheme datum
 (define (persist-specifications)
-  (when (file-exists? specifications-file)
-    (delete-file specifications-file))
+  (when (file-exists? specification-file)
+    (delete-file specification-file))
   (with-output-to-file specification-file
     (lambda ()
       (pretty-print
