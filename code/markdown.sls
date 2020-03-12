@@ -118,7 +118,7 @@
   ;; a simple way to test the output. eventual goal is to generate the
   ;; markdown in docs/*
   (define (put-doc md)
-    (let ((source (format "code/docs/~a.ss" md))
+    (let ((source (format "input/docs/~a.ss" md))
           (target (format "docs/~a.md" (symbol->string md))))
       (when (file-exists? target)
         (delete-file target))
