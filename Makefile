@@ -1,5 +1,6 @@
 chez := scheme
 
+problem-specifications-rev := c6cd8f27b20aa931457bce4377214cb62fbe4187
 problem-specifications := git@github.com:exercism/problem-specifications.git
 
 doc-files := \
@@ -62,10 +63,11 @@ exercise = echo $(1) | $(chez) -q load.ss
 default : track
 
 # PROBLEM-SPECIFICATIONS
-../problem-specifications :
-	cd .. && git clone $(problem-specifications)
+problem-specifications :
+	git clone $(problem-specifications)
+	cd $@ && git checkout $(problem-specifications-rev)
 
-input/specifications.ss : ../problem-specifications
+input/specifications.ss : problem-specifications
 	$(call exercise, "(persist-specifications)")
 
 # CONFIG

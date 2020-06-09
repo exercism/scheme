@@ -11,22 +11,32 @@ Exercisms in scheme.
 ** Overview
 
    Welcome to the home of the exercism scheme track! Many parts of the
-   track are specified in scheme such as the =config.json=, the
-   exercise implementations, and the documentation. The way to modify
-   the track is usually to edit something in the [[https://github.com/exercism/scheme/tree/master/input][input/]]
-   directory. Exercism problem implementations are done in
-   [[https://github.com/exercism/scheme/tree/master/input/exercises][input/exercises/]]. Student facing documentation (like resource
-   links) is built from files in [[https://github.com/exercism/scheme/tree/master/input/docs][input/docs/]].
+   track are specified inside scheme and then output in various
+   formats. For example, exercism wants a =config.json= file, which is
+   actually specified in [[file:input/track.ss][input/track.ss]]. Everything including the
+   exercise implementations, and the documentation is also done from
+   scheme. In general, the way to modify the track is to edit
+   something in the [[https://github.com/exercism/scheme/tree/master/input][input/]] directory. Exercism problem implementations
+   live in [[https://github.com/exercism/scheme/tree/master/input/exercises][input/exercises/]]. Student facing documentation (like
+   resources and links) is built from files in [[https://github.com/exercism/scheme/tree/master/input/docs][input/docs/]].
     
 ** Setup
 
     To work on the scheme track you'll need [[https://cisco.github.io/ChezScheme/][ChezScheme]] and [[https://www.gnu.org/software/guile/][GNU
-    Guile]]. The json serialization library in =code/json.sls= relies on
-    some modules from the [[https://github.com/fedeinthemix/chez-srfi][srfi]] collection, whose path needs to be
-    visible to scheme via the =CHEZSCHEMELIBDIRS= environment
-    variable. Instructions for installing the srfi collection can be
-    found at [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. If you're using either the [[https://guix.gnu.org/][guix]] or [[https://nixos.org/nix/][nix]]
-    package managers, you can find the srfis as packaged.
+    Guile]]. The goal is for exercises to be implemented such that they
+    work in either scheme. Each exercise has tests and an example
+    solution and, as part of the build process, it is checked that
+    these tests pass in both schemes.
+
+    There is a small json library (borrowed from [[https://github.com/weinholt/packrat][packrat]]) in
+    =code/json.sls=, which relies on some modules from the [[https://github.com/fedeinthemix/chez-srfi][srfi]]
+    collection. ChezScheme finds libraries through an environment
+    variable =CHEZSCHEMELIBDIRS=. So, you'll need to make sure the
+    location of your downloaded srfi is added to
+    =CHEZSCHEMELIBDIRS=. Instructions for installing the srfi
+    collection can be found at [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. If you're using
+    either the [[https://guix.gnu.org/][guix]] or [[https://nixos.org/nix/][nix]] package managers, you can find the srfis as
+    packaged.
 
 ** Working on the Scheme track
 
