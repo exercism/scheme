@@ -3,7 +3,6 @@
 #+TITLE: Exercism Scheme Track
 #+AUTHOR: Jason Lewis
 
-[[https://gitter.im/exercism/xscheme][https://badges.gitter.im/Join%20Chat.svg]]
 [[https://travis-ci.org/exercism/scheme][https://travis-ci.org/exercism/scheme.svg?branch=master]]
 
 Exercisms in scheme.
@@ -13,12 +12,12 @@ Exercisms in scheme.
    Welcome to the home of the exercism scheme track! Many parts of the
    track are specified inside scheme and then output in various
    formats. For example, exercism wants a =config.json= file, which is
-   actually specified in [[file:input/track.ss][input/track.ss]]. Everything including the
+   actually specified in [[file:config/track.ss][config/track.ss]]. Everything including the
    exercise implementations, and the documentation is also done from
    scheme. In general, the way to modify the track is to edit
-   something in the [[https://github.com/exercism/scheme/tree/master/input][input/]] directory. Exercism problem implementations
-   live in [[https://github.com/exercism/scheme/tree/master/input/exercises][input/exercises/]]. Student facing documentation (like
-   resources and links) is built from files in [[https://github.com/exercism/scheme/tree/master/input/docs][input/docs/]].
+   something in the [[file:input/][input/]] directory. Exercism problem implementations
+   live in [[file:input/exercises/][input/exercises/]]. Student facing documentation (like
+   resources and links) is built from files in [[file:input/docs/][input/docs/]].
     
 ** Setup
 
@@ -35,49 +34,127 @@ Exercisms in scheme.
     location of your downloaded srfi is added to
     =CHEZSCHEMELIBDIRS=. Instructions for installing the srfi
     collection can be found at [[https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/INSTALL.chez][srfi/INSTALL.chez]]. If you're using
-    either the [[https://guix.gnu.org/][guix]] or [[https://nixos.org/nix/][nix]] package managers, you can find the srfis as
-    packaged.
+    either the [[https://guix.gnu.org/][guix]] or [[https://nixos.org/nix/][nix]] package managers, you can find the srfis
+    pre-packaged.
 
 ** Working on the Scheme track
 
     To work the track, you should start by heading to this directory
-    and firing up a Scheme REPL. Enter =(load "load.ss")= to
-    orchestrate loading the appropriate files.
+    and firing up a Scheme REPL. Enter =(load "load.ss")=, which
+    orchestrates loading the appropriate files.
 
-*** Adding new problems
+    Exercises are typically specified in [[https://github.com/exercism/problem-specifications][problem-specifications]], a
+    repository that has descriptions, versions, and tests described
+    through JSON files. The [[file:Makefile][Makefile]] will clone it; the scheme in
+    [[file:code/][code/]] will read problem information from that JSON. It is,
+    however, also possible to define novel exercises if you wish.
+
+*** Requirements
+
+    Exercises have a few required parts, taking the exercise
+    [[file:input/exercises/pascals-triangle/][input/exercises/pascals-triangle/]] as an example.
+    + The [[file:input/exercises/pascals-triangle/example.scm][example.scm]] file which is an example solution that must pass
+      the tests. It must also use only =r6rs= scheme features so that
+      it can run in both Guile and Chez scheme.
+    + A stub file [[file:input/exercises/pascals-triangle/pascals-triangle.scm][pascals-triangle.scm]] usually named after the problem
+      that the student will be given to write their solultion.
+    + The [[file:input/exercises/pascals-triangle/test.ss][test.ss]] which builds the test cases as well as problem
+      metadata (such as problem versions, read from the
+      specifications) and extra documentation (if needed). The crucial
+      part of this file is a call to ~put-problem!~, a procedure
+      defined in [[file:code/track.ss][code/track.ss]] that defines the problem whose name is
+      a symbol (eg ='pascals-triangle=) and an association list with
+      the following form
+
+#+begin_src scheme :exports code
+(let ((spec (get-test-specification 'pascals-triangle)))
+  (put-problem!
+   'pascals-triangle
+   `((test . ,(spec->tests spec))
+     (stubs pascals-triangle)
+     (version . ,(lookup 'version spec))
+     (skeleton . "pascals-triangle.scm")
+     (solution . "example.scm")
+     (markdown . ,(splice-exercism 'pascals-triangle)))))
+#+end_src
+
+    The tests are parsed in a fairly horrible and ad-hoc way:
+
+#+begin_src scheme :exports code
+(define (spec->tests spec)
+  (map parse-test
+       (lookup 'cases
+               (car
+                (lookup 'cases spec)))))
+#+end_src
+
+    due to the fairly irregular problem specifications. =parse-test=
+    is defined:
+
+#+begin_src scheme :exports code
+(define (parse-test test)
+  `(test-success ,(lookup 'description test)
+                 equal?
+                 pascals-triangle
+                 '(,(cdar (lookup 'input test)))
+                 ',(lookup 'expected test)))
+#+end_src
+
+    =pascals-triangle= has a fairly friendly specification. An example
+    of a less straightforward one from [[file:input/exercises/change/test.ss][change]] is the following:
+
+#+begin_src scheme
+(define (parse-test test)
+  (let ((expected (lookup 'expected test))
+        (input (lookup 'input test)))
+    (if (or (null? expected)
+            (number? (car expected)))
+        `(test-success ,(lookup 'description test)
+                       (lambda (out expected)
+                         (equal? (list-sort < out) (list-sort < expected)))
+                       change
+                       '(,(lookup 'target input)
+                         ,(lookup 'coins input))
+                       ',expected)
+        `(test-error ,(lookup 'description test)
+                     change
+                     '(,(lookup 'target input)
+                       ,(lookup 'coins input))))))
+#+end_src
+
+    There are test cases expected to fail and a more elaborate passing
+    predicate to allow students to return answers in any order.
+
+    Final requirement:
+
+     + Add the problem to the configuration expression in
+      [[file:config/track.ss][config/track.ss]]. You need to provide a uuid, which can be
+      generated from the scheme repl by calling =(configlet-uuid)=
+      (which is just a wrapper for the configlet binary). Finally,
+      include the problem in the list of implementations in the
+      [[https://github.com/exercism/scheme/blob/master/Makefile][Makefile]].
+
+    When [[file:Makefile][building]] the track, the makefile reads each exercise
+    directory and uses the =test.ss= files to generate the [[file:exercises/pascals-triangle/test.scm][test.scm]]
+    files that the students use. The procedure =spec->tests= reads the
+    parsed specification json and turns that into runnable scheme
+    tests. The json is parsed through a procedure
+    ~get-test-specification~.
+
+    Basically, =test.ss= defines each problem as an instance of an
+    exercism problem, having the parts described above, which are used
+    to output the files that the students get.
+
+*** Extras
     
-    Say you'd like to add =change=, a problem in the
-    exercism/problem-specifications repository you think should be in
-    the scheme track. The process for adding it to the track goes
-    something like this. Load ~load.ss~ in a scheme repl. Then:
+    Helpful and useful procedures include:
 
-     - =(stub-exercism 'change)= creates the rough stubs for
-       =test.ss=, =change.scm=, and =example.scm= in the directory
-       =input/exercises/change/=.
-     - In =test.ss=, you need to implement two functions to turn the
-       specification json into a test suite, =spec->tests= and
-       =parse-test=. The job of =spec->tests= is to take the
-       canonical-data.json information parsed to scheme and find the
-       test specs. Each test case is transformed runnable scheme
-       function by =parse-test=, which ends up in the generated
-       =test.scm= file (the file that the student uses to check their
-       answers). See the subdirectories in [[https://github.com/exercism/scheme/tree/master/code/exercises][code/exercises/*]] for
-       examples.
-     - In =example.scm=, you need to implement an example solution to
-       the problem. =(verify-exercism 'change)= checks that the
-       solution passes generated test suite. The solution ought to
-       work with =Guile= and =Chez=, with =(rnrs)= as the imported
-       library.
-     - =change.scm= contains the solution stub. Please make sure that
-       the stub function(s) match the ones expected by the test suite,
-       and that the arguments match the arguments in the =example.scm=
-       solution. 
-     -  Add the problem to the configuration expression in
-       [[https://github.com/exercism/scheme/blob/master/config/track.ss][config/track.ss]]. You need to provide a uuid, which can be
-       generated from the scheme repl by calling =(configlet-uuid)=
-       (which is just a wrapper for the configlet binary). Finally,
-       include the problem in the list of implementations in the
-       [[https://github.com/exercism/scheme/blob/master/Makefile][Makefile]].
+     - To start a new exercise, use =(stub-exercism 'change)=. This
+       creates rough stubs for =test.ss=, =change.scm=, and
+       =example.scm= in the directory [[file:input/exercises/change/][input/exercises/change/]].
+     - =(verify-exercism 'change)= checks that the solution passes
+       generated test suite. It ought to work under both =Guile= and
+       =Chez=, with =(rnrs)= as the imported library.
 
 *** Adding problems not in exercism/problem-specifications
 
