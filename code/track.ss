@@ -16,7 +16,7 @@
 ;; List the files in the given problem's
 ;; problem-specifications/exercises/problem directory
 (define (get-problem-specification problem)
-  (let* ((problem-dir (format "../problem-specifications/exercises/~a" problem))
+  (let* ((problem-dir (format "./problem-specifications/exercises/~a" problem))
          (spec (directory-list problem-dir)))
     (map (lambda (file)
            (format "~a/~a" problem-dir file))
@@ -57,7 +57,7 @@
 
 ;; list all the problems in the problem-specifications directory
 (define (get-problem-list)
-  (map string->symbol (directory-list "../problem-specifications/exercises")))
+  (map string->symbol (directory-list "./problem-specifications/exercises")))
 
 ;;; Test suite
 
