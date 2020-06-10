@@ -63,11 +63,11 @@ exercise = echo $(1) | $(chez) -q load.ss
 default : track
 
 # PROBLEM-SPECIFICATIONS
-problem-specifications :
-	git clone $(problem-specifications)
+../problem-specifications :
+	cd .. && git clone $(problem-specifications)
 	cd $@ && git checkout $(problem-specifications-rev)
 
-input/specifications.ss : problem-specifications
+input/specifications.ss : ../problem-specifications
 	$(call exercise, "(persist-specifications)")
 
 # CONFIG
