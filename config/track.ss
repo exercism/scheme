@@ -245,4 +245,10 @@
   (difficulty . 1)
   (topics math recursion))
 
+ ((slug . accumulate)
+  (uuid . "76de9eb6-bb39-4135-8534-5eb6c542bff9")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 1)
+  (topics list))
  )

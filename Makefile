@@ -10,6 +10,7 @@ doc-files := \
 	TESTS
 
 implementations := \
+	accumulate \
 	collatz-conjecture \
 	forth \
 	affine-cipher \
