@@ -25,11 +25,13 @@
 
 (test-skip "squares")
 (test-equal "squares"
-  (accumulate square '(1 2 3)) '(1 4 9))
+  (accumulate square '(1 2 3))
+  '(1 4 9))
 
 (test-skip "upcases")
 (test-equal "upcases"
-  (accumulate string-upcase '("hello" "world")) '("HELLO" "WORLD"))
+  (accumulate string-upcase '("hello" "world"))
+  '("HELLO" "WORLD"))
 
 (test-skip "reverse strings")
 (test-equal "reverse strings"
