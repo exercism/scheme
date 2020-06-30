@@ -3,9 +3,9 @@
 (define (list-digits n)
   (let loop ([n n]
              [ms '()])
-    (let-values ([(d m) (div-and-mod n 10)])
-      (if (zero? n)
-          ms
+    (if (zero? n)
+        ms
+        (let-values ([(d m) (div-and-mod n 10)])
           (loop d (cons m ms))))))
 
 (define (armstrong-number? n)
