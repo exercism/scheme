@@ -29,6 +29,9 @@ tools instead.
 
 ### From the command line
 
+NB: Unlike other exercises in this track, the tests for this exercise *only*
+work with __GNU Guile__ (not Chez Scheme).
+
 Simply execute,
 
 ```sh
