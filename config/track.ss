@@ -252,4 +252,11 @@
   (difficulty . 1)
   (topics math))
 
+ ((slug . acronym)
+  (uuid . "72567f88-e651-4537-99dc-e53760ed2ff1")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics string))
+
  )
