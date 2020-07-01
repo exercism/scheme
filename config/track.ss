@@ -252,4 +252,11 @@
   (difficulty . 1)
   (topics list))
 
+ ((slug . armstrong-numbers)
+  (uuid . "84e07f6a-ee1e-4874-b73a-de27f5c09bb6")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 1)
+  (topics math))
+
  )
