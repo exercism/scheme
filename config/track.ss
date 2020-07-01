@@ -245,6 +245,13 @@
   (difficulty . 1)
   (topics math recursion))
 
+ ((slug . accumulate)
+  (uuid . "9c4c95d1-bd65-4663-9bc7-b48210a6f485")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 1)
+  (topics list))
+
  ((slug . armstrong-numbers)
   (uuid . "84e07f6a-ee1e-4874-b73a-de27f5c09bb6")
   (core . #f)
