@@ -376,6 +376,16 @@
       "topics": [
         "string"
       ]
+    },
+    {
+      "slug": "triangle",
+      "uuid": "d3ee5c3d-1d5e-4843-b390-e83d72615ea7",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "conditionals"
+      ]
     }
   ]
 }
