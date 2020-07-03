@@ -266,4 +266,11 @@
   (difficulty . 2)
   (topics string))
 
+ ((slug . triangle)
+  (uuid . "d3ee5c3d-1d5e-4843-b390-e83d72615ea7")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics conditionals))
+
  )
