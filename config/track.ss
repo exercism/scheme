@@ -273,4 +273,11 @@
   (difficulty . 2)
   (topics conditionals))
 
+ ((slug . sum-of-multiples)
+  (uuid . "5cc081d8-1e48-4a42-8473-9a5f231f6012")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics math))
+ 
  )
