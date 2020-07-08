@@ -279,5 +279,12 @@
   (unlocked-by)
   (difficulty . 2)
   (topics math))
- 
+
+ ((slug . strain)
+  (uuid . "703df259-b73e-422a-a175-15d065598f61")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics conditionals control-flow list))
+
  )

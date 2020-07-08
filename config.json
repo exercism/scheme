@@ -396,6 +396,18 @@
       "topics": [
         "math"
       ]
+    },
+    {
+      "slug": "strain",
+      "uuid": "703df259-b73e-422a-a175-15d065598f61",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "conditionals",
+        "control_flow",
+        "list"
+      ]
     }
   ]
 }
