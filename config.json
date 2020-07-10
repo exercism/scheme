@@ -408,6 +408,17 @@
         "control_flow",
         "list"
       ]
+    },
+    {
+      "slug": "trinary",
+      "uuid": "05159700-b0d9-4d05-8ed3-9b461adbae35",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "conditionals",
+        "math"
+      ]
     }
   ]
 }
