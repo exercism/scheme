@@ -287,4 +287,11 @@
   (difficulty . 2)
   (topics conditionals control-flow list))
 
+ ((slug . trinary)
+  (uuid .  "05159700-b0d9-4d05-8ed3-9b461adbae35")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics conditionals math))
+
  )
