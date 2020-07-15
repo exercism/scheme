@@ -294,4 +294,11 @@
   (difficulty . 2)
   (topics conditionals math))
 
+ ((slug . roman-numerals)
+  (uuid .  "f1159ca1-8639-4519-8f96-a7f26a536f7e")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics conditionals string loop))
+
  )
