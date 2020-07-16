@@ -18,3 +18,10 @@
      [(>= n (caar r)) (string-append (cdar r)
                                      (loop (- n (caar r)) r))]
      [else (loop n (cdr r))])))
+
+;;; Or, alternatively ...
+;;
+;; (use-modules (ice-9 format))
+;;
+;; (define (roman n)
+;;   (format #f "~@r" n))
