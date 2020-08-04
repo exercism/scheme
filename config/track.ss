@@ -288,17 +288,24 @@
   (topics conditionals control-flow list))
 
  ((slug . trinary)
-  (uuid .  "05159700-b0d9-4d05-8ed3-9b461adbae35")
+  (uuid . "05159700-b0d9-4d05-8ed3-9b461adbae35")
   (core . #f)
   (unlocked-by)
   (difficulty . 2)
   (topics conditionals math))
 
  ((slug . roman-numerals)
-  (uuid .  "f1159ca1-8639-4519-8f96-a7f26a536f7e")
+  (uuid . "f1159ca1-8639-4519-8f96-a7f26a536f7e")
   (core . #f)
   (unlocked-by)
   (difficulty . 2)
   (topics conditionals string loop))
+
+ ((slug . octal)
+  (uuid . "19cec98f-1fca-4bde-9000-75db12f5416e")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics conditionals string loop math))
 
  )
