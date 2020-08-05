@@ -431,6 +431,19 @@
         "loop",
         "string"
       ]
+    },
+    {
+      "slug": "octal",
+      "uuid": "19cec98f-1fca-4bde-9000-75db12f5416e",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "conditionals",
+        "loop",
+        "math",
+        "string"
+      ]
     }
   ]
 }
