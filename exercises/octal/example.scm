@@ -5,8 +5,7 @@
                 [dec 0])
        (cond
         [(null? cs) dec]
-        [(and (char>=? (car cs) #\0)
-              (char<=? (car cs) #\7))
+        [(char<=? #\0 (car cs) #\7)
          (loop (cdr cs) (+ (* dec 8)
                            (- (char->integer (car cs))
                               (char->integer #\0))))]
