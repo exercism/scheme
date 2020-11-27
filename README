@@ -3,7 +3,8 @@
 #+TITLE: Exercism Scheme Track
 #+AUTHOR: Jason Lewis
 
-[[https://travis-ci.org/exercism/scheme][https://travis-ci.org/exercism/scheme.svg?branch=master]]
+[![Configlet Status](https://github.com/exercism/scheme/workflows/configlet/badge.svg)]
+[![Exercise Test Status](https://github.com/exercism/scheme/workflows/scheme%20%2F%20main/badge.svg)]
 
 Exercisms in scheme.
 
