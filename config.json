@@ -17,6 +17,7 @@
   "exercises": [
     {
       "slug": "hello-world",
+      "name": "Hello World",
       "uuid": "f2936612-edc4-44f9-a403-c60f7c6486e4",
       "difficulty": 1,
       "topics": [
@@ -25,6 +26,7 @@
     },
     {
       "slug": "leap",
+      "name": "Leap",
       "uuid": "b94548df-3b35-4ce1-80c7-36179d2b3b86",
       "difficulty": 2,
       "topics": [
@@ -34,6 +36,7 @@
     },
     {
       "slug": "rna-transcription",
+      "name": "Rna Transcription",
       "uuid": "26bf9c24-ba92-473e-9270-8964f1bf71f2",
       "difficulty": 2,
       "topics": [
@@ -42,6 +45,7 @@
     },
     {
       "slug": "hamming",
+      "name": "Hamming",
       "uuid": "ce513303-471b-459a-bcf1-6c69f4d83ae7",
       "difficulty": 3,
       "topics": [
@@ -50,6 +54,7 @@
     },
     {
       "slug": "grains",
+      "name": "Grains",
       "uuid": "397d9cfc-43f9-4c57-bc55-5c94ae8f532e",
       "difficulty": 3,
       "topics": [
@@ -58,6 +63,7 @@
     },
     {
       "slug": "anagram",
+      "name": "Anagram",
       "uuid": "c550055c-4bd5-478b-8e91-94347a314aef",
       "difficulty": 4,
       "topics": [
@@ -67,6 +73,7 @@
     },
     {
       "slug": "difference-of-squares",
+      "name": "Difference Of Squares",
       "uuid": "a3c7a4d2-ba08-47c9-a88e-2311ad02d945",
       "difficulty": 3,
       "topics": [
@@ -76,6 +83,7 @@
     },
     {
       "slug": "pascals-triangle",
+      "name": "Pascals Triangle",
       "uuid": "d5caff8b-ffaa-4055-9bb9-7d31a4480956",
       "difficulty": 4,
       "topics": [
@@ -86,6 +94,7 @@
     },
     {
       "slug": "knapsack",
+      "name": "Knapsack",
       "uuid": "96f2a7e3-1283-4fca-944d-8cf2fe463c56",
       "difficulty": 8,
       "topics": [
@@ -96,6 +105,7 @@
     },
     {
       "slug": "binary-search",
+      "name": "Binary Search",
       "uuid": "38ebcac5-4080-41e2-ba80-d809c4a637ac",
       "difficulty": 3,
       "topics": [
@@ -105,6 +115,7 @@
     },
     {
       "slug": "two-fer",
+      "name": "Two Fer",
       "uuid": "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e",
       "difficulty": 3,
       "topics": [
@@ -114,6 +125,7 @@
     },
     {
       "slug": "transpose",
+      "name": "Transpose",
       "uuid": "f2dc14e3-89e9-4942-80b6-6578b7a7f71b",
       "difficulty": 6,
       "topics": [
@@ -122,6 +134,7 @@
     },
     {
       "slug": "forth",
+      "name": "Forth",
       "uuid": "09cb9d2b-3a04-4685-95d5-10fe0128be8f",
       "difficulty": 8,
       "topics": [
@@ -132,6 +145,7 @@
     },
     {
       "slug": "phone-number",
+      "name": "Phone Number",
       "uuid": "8ed74044-2361-459e-aca5-abd73ed5c1cb",
       "difficulty": 4,
       "topics": [
@@ -140,12 +154,14 @@
     },
     {
       "slug": "raindrops",
+      "name": "Raindrops",
       "uuid": "9f13b913-a650-4cbf-a392-4b5614e1aa2a",
       "difficulty": 4,
       "topics": null
     },
     {
       "slug": "matching-brackets",
+      "name": "Matching Brackets",
       "uuid": "fa78d295-adc0-41ae-bfe2-4a6eb8c40f9d",
       "difficulty": 5,
       "topics": [
@@ -157,6 +173,7 @@
     },
     {
       "slug": "perfect-numbers",
+      "name": "Perfect Numbers",
       "uuid": "68a1d62a-fc10-41f4-9960-ebebc099404b",
       "difficulty": 5,
       "topics": [
@@ -165,6 +182,7 @@
     },
     {
       "slug": "nucleotide-count",
+      "name": "Nucleotide Count",
       "uuid": "d72cf2c3-9f30-4df1-a69b-04c638bb2426",
       "difficulty": 3,
       "topics": [
@@ -174,6 +192,7 @@
     },
     {
       "slug": "scrabble-score",
+      "name": "Scrabble Score",
       "uuid": "5b44ccd4-b1f4-4b86-89c8-f1dec5905ccb",
       "difficulty": 3,
       "topics": [
@@ -183,6 +202,7 @@
     },
     {
       "slug": "word-count",
+      "name": "Word Count",
       "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e",
       "difficulty": 4,
       "topics": [
@@ -193,6 +213,7 @@
     },
     {
       "slug": "pangram",
+      "name": "Pangram",
       "uuid": "511b0c8b-0dee-43a5-b107-a08fc8ea0103",
       "difficulty": 2,
       "topics": [
@@ -201,6 +222,7 @@
     },
     {
       "slug": "queen-attack",
+      "name": "Queen Attack",
       "uuid": "c38e9025-4b47-41ef-a91a-5ca9cca2a91f",
       "difficulty": 2,
       "topics": [
@@ -209,6 +231,7 @@
     },
     {
       "slug": "atbash-cipher",
+      "name": "Atbash Cipher",
       "uuid": "82169e85-3938-48da-ada9-7394adadc57a",
       "difficulty": 4,
       "topics": [
@@ -218,6 +241,7 @@
     },
     {
       "slug": "change",
+      "name": "Change",
       "uuid": "6f2d8731-2c2c-4faa-a9bf-11f785c2e5bc",
       "difficulty": 5,
       "topics": [
@@ -228,6 +252,7 @@
     },
     {
       "slug": "collatz-conjecture",
+      "name": "Collatz Conjecture",
       "uuid": "dbab5247-54d1-4830-a159-655397bd91e4",
       "difficulty": 1,
       "topics": [
@@ -237,6 +262,7 @@
     },
     {
       "slug": "rotational-cipher",
+      "name": "Rotational Cipher",
       "uuid": "067ff4f0-df23-4a48-842c-65e375361f2b",
       "difficulty": 3,
       "topics": [
@@ -246,6 +272,7 @@
     },
     {
       "slug": "prime-factors",
+      "name": "Prime Factors",
       "uuid": "e9f82c77-fde0-41fd-a0b6-e459bd3b71d9",
       "difficulty": 5,
       "topics": [
@@ -254,6 +281,7 @@
     },
     {
       "slug": "robot-name",
+      "name": "Robot Name",
       "uuid": "62a5a71c-a9eb-416b-809c-c862a4828e8b",
       "difficulty": 1,
       "topics": null,
@@ -261,6 +289,7 @@
     },
     {
       "slug": "bob",
+      "name": "Bob",
       "uuid": "4cf6697c-ad9e-426c-a2d8-6c3695812421",
       "difficulty": 4,
       "topics": [
@@ -269,6 +298,7 @@
     },
     {
       "slug": "affine-cipher",
+      "name": "Affine Cipher",
       "uuid": "c8969b0a-232a-4c88-ab2a-0047e8b4b6d0",
       "difficulty": 6,
       "topics": [
@@ -279,6 +309,7 @@
     },
     {
       "slug": "accumulate",
+      "name": "Accumulate",
       "uuid": "9c4c95d1-bd65-4663-9bc7-b48210a6f485",
       "difficulty": 1,
       "topics": [
@@ -287,6 +318,7 @@
     },
     {
       "slug": "armstrong-numbers",
+      "name": "Armstrong Numbers",
       "uuid": "84e07f6a-ee1e-4874-b73a-de27f5c09bb6",
       "difficulty": 1,
       "topics": [
@@ -295,6 +327,7 @@
     },
     {
       "slug": "list-ops",
+      "name": "List Ops",
       "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc",
       "difficulty": 1,
       "topics": null,
@@ -302,6 +335,7 @@
     },
     {
       "slug": "acronym",
+      "name": "Acronym",
       "uuid": "72567f88-e651-4537-99dc-e53760ed2ff1",
       "difficulty": 2,
       "topics": [
@@ -310,6 +344,7 @@
     },
     {
       "slug": "octal",
+      "name": "Octal",
       "uuid": "19cec98f-1fca-4bde-9000-75db12f5416e",
       "difficulty": 2,
       "topics": [
@@ -321,6 +356,7 @@
     },
     {
       "slug": "roman-numerals",
+      "name": "Roman Numerals",
       "uuid": "f1159ca1-8639-4519-8f96-a7f26a536f7e",
       "difficulty": 2,
       "topics": [
@@ -331,6 +367,7 @@
     },
     {
       "slug": "strain",
+      "name": "Strain",
       "uuid": "703df259-b73e-422a-a175-15d065598f61",
       "difficulty": 2,
       "topics": [
@@ -341,6 +378,7 @@
     },
     {
       "slug": "sum-of-multiples",
+      "name": "Sum Of Multiples",
       "uuid": "5cc081d8-1e48-4a42-8473-9a5f231f6012",
       "difficulty": 2,
       "topics": [
@@ -349,6 +387,7 @@
     },
     {
       "slug": "triangle",
+      "name": "Triangle",
       "uuid": "d3ee5c3d-1d5e-4843-b390-e83d72615ea7",
       "difficulty": 2,
       "topics": [
@@ -357,6 +396,7 @@
     },
     {
       "slug": "trinary",
+      "name": "Trinary",
       "uuid": "05159700-b0d9-4d05-8ed3-9b461adbae35",
       "difficulty": 2,
       "topics": [
@@ -366,6 +406,7 @@
     },
     {
       "slug": "sieve",
+      "name": "Sieve",
       "uuid": "732e4c98-675d-4b67-b672-37ef9c848733",
       "difficulty": 6,
       "topics": [
