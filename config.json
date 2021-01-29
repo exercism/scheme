@@ -138,7 +138,8 @@
       "unlocked_by": "anagram",
       "difficulty": 1,
       "topics": null,
-      "deprecated": true
+      "deprecated": true,
+      "status": "deprecated"
     },
     {
       "slug": "phone-number",
@@ -168,7 +169,8 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": null,
-      "deprecated": true
+      "deprecated": true,
+      "status": "deprecated"
     },
     {
       "slug": "scrabble-score",
