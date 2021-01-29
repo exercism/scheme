@@ -1,5 +1,6 @@
 {
   "language": "Scheme",
+  "slug": "scheme",
   "active": true,
   "status": {
     "concept_exercises": false,
