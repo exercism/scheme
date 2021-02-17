@@ -14,6 +14,20 @@
     "indent_style": "space",
     "indent_size": 4
   },
+  "files": {
+    "solution": [
+      "%{kebab_slug}.scm"
+    ],
+    "test": [
+      "test.scm"
+    ],
+    "example": [
+      "example.scm"
+    ],
+    "exemplar": [
+      ".meta/exemplar.scm"
+    ]
+  },
   "exercises": {
     "concept": [],
     "practice": [
