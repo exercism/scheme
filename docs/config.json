@@ -1,0 +1,25 @@
+{
+  "docs": [
+    {
+      "uuid": "6c5c46c6-fd05-4c1b-ae89-7dbf16b466c4",
+      "slug": "installation",
+      "path": "docs/INSTALLATION.md",
+      "title": "Installing Scheme locally",
+      "blurb": "Learn how to install Scheme locally to solve Exercism's exercises on your own machine"
+    },
+    {
+      "uuid": "1528fa64-cf14-4310-a1be-f731c604d34e",
+      "slug": "tests",
+      "path": "docs/TESTS.md",
+      "title": "Testing on the Scheme track",
+      "blurb": "Learn how to test your Scheme exercises on Exercism"
+    },
+    {
+      "uuid": "5e72db99-3bf8-4161-8369-dfba4fdc9596",
+      "slug": "resources",
+      "path": "docs/RESOURCES.md",
+      "title": "Useful Scheme resources",
+      "blurb": "A collection of useful resources to help you master Scheme"
+    }
+  ]
+}
