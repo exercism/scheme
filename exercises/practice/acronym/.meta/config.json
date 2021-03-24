@@ -1,6 +1,8 @@
 {
   "blurb": "Convert a long phrase to its acronym",
-  "authors": [],
+  "authors": [
+    "tongkiat"
+  ],
   "files": {
     "solution": [],
     "test": [],
