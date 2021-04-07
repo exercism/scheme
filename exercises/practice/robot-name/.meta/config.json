@@ -2,9 +2,15 @@
   "blurb": "Manage robot factory settings.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "robot-name.scm"
+    ],
+    "test": [
+      "test.scm"
+    ],
+    "example": [
+      "example.scm"
+    ]
   },
   "source": "A debugging session with Paul Blackwell at gSchool."
 }
