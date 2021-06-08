@@ -9,3 +9,4 @@ closet/json/*
 *.html
 ci
 problem-specifications/*
+!bin/fetch-configlet
