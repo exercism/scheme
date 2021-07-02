@@ -1,6 +1,8 @@
 {
   "blurb": "Implement a binary search algorithm.",
-  "authors": [],
+  "authors": [
+    "jitwit"
+  ],
   "files": {
     "solution": [
       "binary-search.scm"

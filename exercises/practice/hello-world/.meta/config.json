@@ -1,6 +1,17 @@
 {
   "blurb": "The classical introductory exercise. Just say \"Hello, World!\"",
-  "authors": [],
+  "authors": [
+    "canweriotnow"
+  ],
+  "contributors": [
+    "benreyn",
+    "cyborgsphinx",
+    "guygastineau",
+    "herwinw",
+    "jitwit",
+    "kytrinyx",
+    "skeskali"
+  ],
   "files": {
     "solution": [
       "hello-world.scm"

@@ -1,6 +1,15 @@
 {
   "blurb": "Given a word, compute the Scrabble score for that word.",
-  "authors": [],
+  "authors": [
+    "cyborgsphinx"
+  ],
+  "contributors": [
+    "benreyn",
+    "guygastineau",
+    "herwinw",
+    "jitwit",
+    "yurrriq"
+  ],
   "files": {
     "solution": [
       "scrabble-score.scm"

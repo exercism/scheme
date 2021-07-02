@@ -1,6 +1,11 @@
 {
   "blurb": "Compute Pascal's triangle up to a given number of rows.",
-  "authors": [],
+  "authors": [
+    "jitwit"
+  ],
+  "contributors": [
+    "guygastineau"
+  ],
   "files": {
     "solution": [
       "pascals-triangle.scm"

@@ -1,6 +1,15 @@
 {
   "blurb": "Implement basic list operations",
-  "authors": [],
+  "authors": [
+    "pminten"
+  ],
+  "contributors": [
+    "canweriotnow",
+    "cyborgsphinx",
+    "guygastineau",
+    "jitwit",
+    "kytrinyx"
+  ],
   "files": {
     "solution": [
       "list-ops.scm"

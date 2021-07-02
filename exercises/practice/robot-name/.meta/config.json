@@ -1,6 +1,14 @@
 {
   "blurb": "Manage robot factory settings.",
-  "authors": [],
+  "authors": [
+    "canweriotnow"
+  ],
+  "contributors": [
+    "cyborgsphinx",
+    "guygastineau",
+    "jitwit",
+    "kytrinyx"
+  ],
   "files": {
     "solution": [
       "robot-name.scm"
