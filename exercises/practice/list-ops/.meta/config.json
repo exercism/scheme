@@ -18,7 +18,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   }
 }

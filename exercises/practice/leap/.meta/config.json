@@ -17,7 +17,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "JavaRanch Cattle Drive, exercise 3",

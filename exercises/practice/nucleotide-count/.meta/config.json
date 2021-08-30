@@ -17,7 +17,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "The Calculating DNA Nucleotides_problem at Rosalind",

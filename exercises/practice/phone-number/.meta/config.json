@@ -17,7 +17,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "Event Manager by JumpstartLab",

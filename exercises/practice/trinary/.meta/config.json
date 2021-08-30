@@ -11,7 +11,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "All of Computer Science",

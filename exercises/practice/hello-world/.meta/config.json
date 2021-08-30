@@ -20,7 +20,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "This is an exercise to introduce users to using Exercism",
