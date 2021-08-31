@@ -14,7 +14,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "Pascal's Triangle at Wolfram Math World",

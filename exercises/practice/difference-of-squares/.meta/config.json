@@ -19,7 +19,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "Problem 6 at Project Euler",

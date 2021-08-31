@@ -17,7 +17,7 @@
       "test.scm"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ]
   },
   "source": "A debugging session with Paul Blackwell at gSchool."
