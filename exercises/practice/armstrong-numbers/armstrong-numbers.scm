@@ -1,4 +1,4 @@
 (import (rnrs))
 
-(define (armstrong-numbers? n)
+(define (armstrong-number? n)
   'implement-me!)
