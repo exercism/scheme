@@ -1,62 +1,149 @@
-(load "trinary.scm")
+(import (except (rnrs) current-output-port))
 
-(use-modules (srfi srfi-64))
+(define test-fields '(input output))
 
-(test-begin "trinary")
+(define (test-run-solution solution input)
+  (if (procedure? solution) (apply solution input) solution))
 
-; (test-skip "returns the decimal representation of the input trinary value")
-(test-eqv "returns the decimal representation of the input trinary value"
-  (to-decimal "1")
-  1)
+(define (test-success description success-predicate
+         procedure input output)
+  (call/cc
+    (lambda (k)
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . ,output)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (let ([result (parameterize ([current-output-port out])
+                            (test-run-solution procedure input))])
+              (unless (success-predicate result output)
+                (error 'exercism-test
+                  "test fails"
+                  description
+                  input
+                  result
+                  output)))
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
-(test-skip "trinary 2 is decimal 2")
-(test-eqv "trinary 2 is decimal 2"
-  (to-decimal "2")
-  2)
+(define (test-error description procedure input)
+  (call/cc
+    (lambda (k)
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (parameterize ([current-output-port out])
+              (test-run-solution procedure input))
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . error)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
-(test-skip "trinary 10 is decimal 3")
-(test-eqv "trinary 10 is decimal 3"
-  (to-decimal "10")
-  3)
+(define (run-test-suite tests . query)
+  (for-each
+    (lambda (field)
+      (unless (and (symbol? field) (memq field test-fields))
+        (error 'run-test-suite
+          (format #t "~a not in ~a" field test-fields))))
+    query)
+  (let-values ([(passes failures)
+                (partition
+                  (lambda (result) (eq? 'pass (car result)))
+                  (map (lambda (test) (test)) tests))])
+    (cond
+      [(null? failures) (format #t "~%Well done!~%~%")]
+      [else
+       (format
+         #t
+         "~%Passed ~a/~a tests.~%~%The following test cases failed:~%~%"
+         (length passes)
+         (length tests))
+       (for-each
+         (lambda (failure)
+           (format
+             #t
+             "* ~a~%"
+             (cond
+               [(assoc 'description (cdr failure)) => cdr]
+               [else (cdr failure)]))
+           (for-each
+             (lambda (field)
+               (let ([info (assoc field (cdr failure))])
+                 (display "  - ")
+                 (write (car info))
+                 (display ": ")
+                 (write (cdr info))
+                 (newline)))
+             query))
+         failures)
+       (error 'test "incorrect solution")])))
 
-(test-skip "trinary 11 is decimal 4")
-(test-eqv "trinary 11 is decimal 4"
-  (to-decimal "11")
-  4)
+(define (run-docker test-cases)
+  (write (map (lambda (test) (test)) test-cases)))
 
-(test-skip "trinary 100 is decimal 9")
-(test-eqv "trinary 100 is decimal 9"
-  (to-decimal "100")
-  9)
+(define trinary)
 
-(test-skip "trinary 112 is decimal 14")
-(test-eqv "trinary 112 is decimal 14"
-  (to-decimal "112")
-  14)
+(define test-cases
+  (list
+    (lambda ()
+      (test-success
+        "returns the decimal representation of the input trinary value" equal?
+        to-decimal '("1") 1))
+    (lambda ()
+      (test-success "trinary 2 is decimal 2" equal? to-decimal '("2") 2))
+    (lambda ()
+      (test-success "trinary 10 is decimal 3" equal? to-decimal '("10") 3))
+    (lambda ()
+      (test-success "trinary 11 is decimal 4" equal? to-decimal '("11") 4))
+    (lambda ()
+      (test-success "trinary 100 is decimal 9" equal? to-decimal '("100") 9))
+    (lambda ()
+      (test-success "trinary 112 is decimal 14" equal? to-decimal '("112") 14))
+    (lambda ()
+      (test-success "trinary 222 is decimal 26" equal? to-decimal '("222") 26))
+    (lambda ()
+      (test-success
+        "trinary 1122000120 is decimal 32091" equal?
+        to-decimal '("1122000120") 32091))
+    (lambda ()
+      (test-success
+        "invalid trinary digits returns 0" equal? to-decimal '("1234") 0))
+    (lambda ()
+      (test-success
+        "invalid word as input returns 0" equal? to-decimal '("carrot") 0))
+    (lambda ()
+      (test-success
+        "invalid numbers with letters as input returns 0" equal?
+        to-decimal '("0a1b2c") 0))))
 
-(test-skip "trinary 222 is decimal 26")
-(test-eqv "trinary 222 is decimal 26"
-  (to-decimal "222")
-  26)
+(define (test . query)
+  (apply run-test-suite test-cases query))
 
-(test-skip "trinary 1122000120 is decimal 32091")
-(test-eqv "trinary 1122000120 is decimal 32091"
-  (to-decimal "1122000120")
-  32091)
+(let ([args (command-line)])
+  (cond
+    [(null? (cdr args))
+     (load "trinary.scm")
+     (test 'input 'output)]
+    [(string=? (cadr args) "--docker")
+     (load "trinary.scm")
+     (run-docker test-cases)]
+    [else (load (cadr args)) (test 'input 'output)]))
 
-(test-skip "invalid trinary digits returns 0")
-(test-eqv "invalid trinary digits returns 0"
-  (to-decimal "1234")
-  0)
-
-(test-skip "invalid word as input returns 0")
-(test-eqv "invalid word as input returns 0"
-  (to-decimal "carrot")
-  0)
-
-(test-skip "invalid numbers with letters as input returns 0")
-(test-eqv "invalid numbers with letters as input returns 0"
-  (to-decimal "0a1b2c")
-  0)
-
-(test-end "trinary")
