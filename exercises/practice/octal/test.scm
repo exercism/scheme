@@ -1,82 +1,154 @@
-(load "octal.scm")
+(import (except (rnrs) current-output-port))
 
-(use-modules (srfi srfi-64))
+(define test-fields '(input output))
 
-(test-begin "octal")
+(define (test-run-solution solution input)
+  (if (procedure? solution) (apply solution input) solution))
 
-; (test-skip "octal 1 is decimal 1")
-(test-eqv "octal 1 is decimal 1"
-  (to-decimal "1")
-  1)
+(define (test-success description success-predicate
+         procedure input output)
+  (call/cc
+    (lambda (k)
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . ,output)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (let ([result (parameterize ([current-output-port out])
+                            (test-run-solution procedure input))])
+              (unless (success-predicate result output)
+                (error 'exercism-test
+                  "test fails"
+                  description
+                  input
+                  result
+                  output)))
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
-(test-skip "octal 2 is decimal 2")
-(test-eqv "octal 2 is decimal 2"
-  (to-decimal "2")
-  2)
+(define (test-error description procedure input)
+  (call/cc
+    (lambda (k)
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (parameterize ([current-output-port out])
+              (test-run-solution procedure input))
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . error)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
-(test-skip "octal 10 is decimal 8")
-(test-eqv "octal 10 is decimal 8"
-  (to-decimal "10")
-  8)
+(define (run-test-suite tests . query)
+  (for-each
+    (lambda (field)
+      (unless (and (symbol? field) (memq field test-fields))
+        (error 'run-test-suite
+          (format #t "~a not in ~a" field test-fields))))
+    query)
+  (let-values ([(passes failures)
+                (partition
+                  (lambda (result) (eq? 'pass (car result)))
+                  (map (lambda (test) (test)) tests))])
+    (cond
+      [(null? failures) (format #t "~%Well done!~%~%")]
+      [else
+       (format
+         #t
+         "~%Passed ~a/~a tests.~%~%The following test cases failed:~%~%"
+         (length passes)
+         (length tests))
+       (for-each
+         (lambda (failure)
+           (format
+             #t
+             "* ~a~%"
+             (cond
+               [(assoc 'description (cdr failure)) => cdr]
+               [else (cdr failure)]))
+           (for-each
+             (lambda (field)
+               (let ([info (assoc field (cdr failure))])
+                 (display "  - ")
+                 (write (car info))
+                 (display ": ")
+                 (write (cdr info))
+                 (newline)))
+             query))
+         failures)
+       (error 'test "incorrect solution")])))
 
-(test-skip "octal 11 is decimal 9")
-(test-eqv "octal 11 is decimal 9"
-  (to-decimal "11")
-  9)
+(define (run-docker test-cases)
+  (write (map (lambda (test) (test)) test-cases)))
 
-(test-skip "octal 17 is deciaml 15")
-(test-eqv "octal 17 is deciaml 15"
-  (to-decimal "17")
-  15)
+(define to-decimal)
 
-(test-skip "octal 130 is decimal 88")
-(test-eqv "octal 130 is decimal 88"
-  (to-decimal "130")
-  88)
+(define test-cases
+  (list
+    (lambda ()
+      (test-success "octal 1 is decimal 1" equal? to-decimal '("1") 1))
+    (lambda ()
+      (test-success "octal 2 is decimal 2" equal? to-decimal '("2") 2))
+    (lambda ()
+      (test-success "octal 10 is decimal 8" equal? to-decimal '("10") 8))
+    (lambda ()
+      (test-success "octal 11 is decimal 9" equal? to-decimal '("11") 9))
+    (lambda ()
+      (test-success "octal 17 is deciaml 15" equal? to-decimal '("17") 15))
+    (lambda ()
+      (test-success "octal 130 is decimal 88" equal? to-decimal '("130") 88))
+    (lambda ()
+      (test-success "octal 2047 is decimal 1063" equal? to-decimal
+                    '("2047") 1063))
+    (lambda ()
+      (test-success "octal 7777 is decimal 4095" equal? to-decimal
+                    '("7777") 4095))
+    (lambda ()
+      (test-success "octal 1234567 is decimal 342391" equal? to-decimal
+                    '("1234567") 342391))
+    (lambda ()
+      (test-success "invalid input is decimal 0" equal? to-decimal
+                    '("carrot should be invalid") 0))
+    (lambda ()
+      (test-success "8 is invalid octal" equal? to-decimal '("8") 0))
+    (lambda ()
+      (test-success "9 is invalid octal" equal? to-decimal '("9") 0))
+    (lambda ()
+      (test-success "6789 is invalid octal" equal? to-decimal '("6789") 0))
+    (lambda ()
+      (test-success "abc1z is invalid octal" equal? to-decimal '("abc1z") 0))
+    (lambda ()
+      (test-success "leading zero is valid octal" equal? to-decimal
+                    '("011") 9))))
 
-(test-skip "octal 2047 is decimal 1063")
-(test-eqv "octal 2047 is decimal 1063"
-  (to-decimal "2047")
-  1063)
+(define (test . query)
+  (apply run-test-suite test-cases query))
 
-(test-skip "octal 7777 is decimal 4095")
-(test-eqv "octal 7777 is decimal 4095"
-  (to-decimal "7777")
-  4095)
+(let ([args (command-line)])
+  (cond
+    [(null? (cdr args))
+     (load "octal.scm")
+     (test 'input 'output)]
+    [(string=? (cadr args) "--docker")
+     (load "octal.scm")
+     (run-docker test-cases)]
+    [else (load (cadr args)) (test 'input 'output)]))
 
-(test-skip "octal 1234567 is decimal 342391")
-(test-eqv "octal 1234567 is decimal 342391"
-  (to-decimal "1234567")
-  342391)
-
-(test-skip "invalid input is decimal 0")
-(test-eqv "invalid input is decimal 0"
-  (to-decimal "carrot should be invalid")
-  0)
-
-(test-skip "8 is invalid octal")
-(test-eqv "8 is invalid octal"
-  (to-decimal "8")
-  0)
-
-(test-skip "9 is invalid octal")
-(test-eqv "9 is invalid octal"
-  (to-decimal "9")
-  0)
-
-(test-skip "6789 is invalid octal")
-(test-eqv "6789 is invalid octal"
-  (to-decimal "6789")
-  0)
-
-(test-skip "abc1z is invalid octal")
-(test-eqv "abc1z is invalid octal"
-  (to-decimal "abc1z")
-  0)
-
-(test-skip "leading zero is valid octal")
-(test-eqv "leading zero is valid octal"
-  (to-decimal "011")
-  9)
-
-(test-end "octal")

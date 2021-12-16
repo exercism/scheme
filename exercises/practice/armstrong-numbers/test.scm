@@ -1,91 +1,203 @@
-(load "armstrong-numbers.scm")
+(import (except (rnrs) current-output-port))
 
-(use-modules (srfi srfi-64))
+(define test-fields '(input output))
 
-(test-begin "armstrong-numbers")
+(define (test-run-solution solution input)
+  (if (procedure? solution) (apply solution input) solution))
 
-; (test-skip "Zero is an Armstrong number")
-(test-assert "Zero is an Armstrong number"
-  (armstrong-number? 0))
+(define (test-success description success-predicate
+         procedure input output)
+  (call/cc
+    (lambda (k)
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . ,output)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (let ([result (parameterize ([current-output-port out])
+                            (test-run-solution procedure input))])
+              (unless (success-predicate result output)
+                (error 'exercism-test
+                  "test fails"
+                  description
+                  input
+                  result
+                  output)))
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
-(test-skip "Single digit numbers are Armstrong numbers")
-(test-assert "Single digit numbers are Armstrong numbers"
-  (armstrong-number? 5))
+(define (test-error description procedure input)
+  (call/cc
+    (lambda (k)
+      (let ([out (open-output-string)])
+        (with-exception-handler
+          (lambda (e)
+            (let ([result `(pass
+                             (description . ,description)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              (k result)))
+          (lambda ()
+            (parameterize ([current-output-port out])
+              (test-run-solution procedure input))
+            (let ([result `(fail
+                             (description . ,description)
+                             (input . ,input)
+                             (output . error)
+                             (stdout . ,(get-output-string out)))])
+              (close-output-port out)
+              result)))))))
 
-(test-skip "There are no 2 digit Armstrong numbers")
-(test-assert "There are no 2 digit Armstrong numbers"
-  (not (armstrong-number? 10)))
+(define (run-test-suite tests . query)
+  (for-each
+    (lambda (field)
+      (unless (and (symbol? field) (memq field test-fields))
+        (error 'run-test-suite
+          (format #t "~a not in ~a" field test-fields))))
+    query)
+  (let-values ([(passes failures)
+                (partition
+                  (lambda (result) (eq? 'pass (car result)))
+                  (map (lambda (test) (test)) tests))])
+    (cond
+      [(null? failures) (format #t "~%Well done!~%~%")]
+      [else
+       (format
+         #t
+         "~%Passed ~a/~a tests.~%~%The following test cases failed:~%~%"
+         (length passes)
+         (length tests))
+       (for-each
+         (lambda (failure)
+           (format
+             #t
+             "* ~a~%"
+             (cond
+               [(assoc 'description (cdr failure)) => cdr]
+               [else (cdr failure)]))
+           (for-each
+             (lambda (field)
+               (let ([info (assoc field (cdr failure))])
+                 (display "  - ")
+                 (write (car info))
+                 (display ": ")
+                 (write (cdr info))
+                 (newline)))
+             query))
+         failures)
+       (error 'test "incorrect solution")])))
 
-(test-skip "Three digit number that is an Armstrong number")
-(test-assert "Three digit number that is an Armstrong number"
-  (armstrong-number? 153))
+(define (run-docker test-cases)
+  (write (map (lambda (test) (test)) test-cases)))
 
-(test-skip "Three digit number that is not an Armstrong number")
-(test-assert "Three digit number that is not an Armstrong number"
-  (not (armstrong-number? 100)))
+(define armstrong-number?)
 
-(test-skip "Four digit number that is an Armstrong number")
-(test-assert "Four digit number that is an Armstrong number"
-  (armstrong-number? 9474))
+(define test-cases
+  (list
+    (lambda ()
+      (test-success
+        "Zero is an Armstrong number" equal?
+        armstrong-number? '(0) #t))
+    (lambda ()
+      (test-success
+        "Single digit numbers are Armstrong numbers" equal?
+        armstrong-number? '(5) #t))
+    (lambda ()
+      (test-success
+        "There are no 2 digit Armstrong numbers" equal?
+        armstrong-number? '(10) #f))
+    (lambda ()
+      (test-success
+        "Three digit number that is an Armstrong number" equal?
+        armstrong-number? '(153) #t))
+    (lambda ()
+      (test-success
+        "Three digit number that is not an Armstrong number" equal?
+        armstrong-number? '(100) #f))
+    (lambda ()
+      (test-success
+        "Four digit number that is an Armstrong number" equal?
+        armstrong-number? '(9474) #t))
+    (lambda ()
+      (test-success
+        "Four digit number that is not an Armstrong number" equal?
+        armstrong-number? '(9475) #f))
+    (lambda ()
+      (test-success
+        "Seven digit number that is an Armstrong number" equal?
+        armstrong-number? '(9926315) #t))
+    (lambda ()
+      (test-success
+        "Seven digit number that is not an Armstrong number" equal?
+        armstrong-number? '(9926314) #f))
+    (lambda ()
+      (test-success
+        "The 25th Armstrong number" equal?
+        armstrong-number? '(24678050) #t))
+    (lambda ()
+      (test-success
+        "Eight digit number that is not an Armstrong number" equal?
+        armstrong-number? '(30852815) #f))
+    (lambda ()
+      (test-success
+        "The 28th Armstrong number" equal?
+        armstrong-number? '(146511208) #t))
+    (lambda ()
+      (test-success
+        "Nine digit number that is not an Armstrong number" equal?
+        armstrong-number? '(927427554) #f))
+    (lambda ()
+      (test-success
+        "The 32nd Armstrong number" equal?
+        armstrong-number? '(4679307774) #t))
+    (lambda ()
+      (test-success
+        "Ten digit number that is not an Armstrong number" equal?
+        armstrong-number? '(8320172640) #f))
+    (lambda ()
+      (test-success
+        "The 34th Armstrong number" equal?
+        armstrong-number? '(32164049651) #t))
+    (lambda ()
+      (test-success
+        "Eleven digit number that is not an Armstrong number" equal?
+        armstrong-number? '(13930642218) #f))
+    (lambda ()
+      (test-success
+        "The 66th Armstrong number" equal?
+        armstrong-number? '(4422095118095899619457938) #t))
+    (lambda ()
+      (test-success
+        "The 77th Armstrong number" equal?
+        armstrong-number? '(1927890457142960697580636236639) #t))
+    (lambda ()
+      (test-success
+        "The 88th Armstrong number" equal?
+        armstrong-number? '(115132219018763992565095597973971522401) #t))
+    (lambda ()
+      (test-success
+        "Thirty-nine digit number that is not an Armstrong number" equal?
+        armstrong-number? '(7744959048678381442547644364350528967165) #f))))
 
-(test-skip "Four digit number that is not an Armstrong number")
-(test-assert "Four digit number that is not an Armstrong number"
-  (not (armstrong-number? 9475)))
+(define (test . query)
+  (apply run-test-suite test-cases query))
 
-(test-skip "Seven digit number that is an Armstrong number")
-(test-assert "Seven digit number that is an Armstrong number"
-  (armstrong-number? 9926315))
+(let ([args (command-line)])
+  (cond
+    [(null? (cdr args))
+     (load "armstrong-numbers.scm")
+     (test 'input 'output)]
+    [(string=? (cadr args) "--docker")
+     (load "armstrong-numbers.scm")
+     (run-docker test-cases)]
+    [else (load (cadr args)) (test 'input 'output)]))
 
-(test-skip "Seven digit number that is not an Armstrong number")
-(test-assert "Seven digit number that is not an Armstrong number"
-  (not (armstrong-number? 9926314)))
-
-(test-skip "The 25th Armstrong number")
-(test-assert "The 25th Armstrong number"
-  (armstrong-number? 24678050))
-
-(test-skip "Eight digit number that is not an Armstrong number")
-(test-assert "Eight digit number that is not an Armstrong number"
-  (not (armstrong-number? 30852815)))
-
-(test-skip "The 28th Armstrong number")
-(test-assert "The 28th Armstrong number"
-  (armstrong-number? 146511208))
-
-(test-skip "Nine digit number that is not an Armstrong number")
-(test-assert "Nine digit number that is not an Armstrong number"
-  (not (armstrong-number? 927427554)))
-
-(test-skip "The 32nd Armstrong number")
-(test-assert "The 32nd Armstrong number"
-  (armstrong-number? 4679307774))
-
-(test-skip "Ten digit number that is not an Armstrong number")
-(test-assert "Ten digit number that is not an Armstrong number"
-  (not (armstrong-number? 8320172640)))
-
-(test-skip "The 34th Armstrong number")
-(test-assert "The 34th Armstrong number"
-  (armstrong-number? 32164049651))
-
-(test-skip "Eleven digit number that is not an Armstrong number")
-(test-assert "Eleven digit number that is not an Armstrong number"
-  (not (armstrong-number? 13930642218)))
-
-(test-skip "The 66th Armstrong number")
-(test-assert "The 66th Armstrong number"
-  (armstrong-number? 4422095118095899619457938))
-
-(test-skip "The 77th Armstrong number")
-(test-assert "The 77th Armstrong number"
-  (armstrong-number? 1927890457142960697580636236639))
-
-(test-skip "The 88th Armstrong number")
-(test-assert "The 88th Armstrong number"
-  (armstrong-number? 115132219018763992565095597973971522401))
-
-(test-skip "Thirty-nine digit number that is not an Armstrong number")
-(test-assert "Thirty-nine digit number that is not an Armstrong number"
-  (not (armstrong-number? 7744959048678381442547644364350528967165)))
-
-(test-end "armstrong-numbers")
