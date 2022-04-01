@@ -76,8 +76,7 @@ config.json : config/track.ss
 
 # configlet binary
 bin/configlet :
-	mkdir -p bin
-	./script/fetch-configlet
+	./bin/fetch-configlet
 
 # documentation
 docs/%.md : code/markdown.sls input/docs/%.ss
