@@ -4,11 +4,10 @@
   (system "touch ci"))
 
 (define (run-tests exercism)
-  (let* ((dir (format "exercises/~a" exercism))
+  (let* ((dir (format "exercises/practice/~a" exercism))
          (result (system
-                  (format "cp input/skeleton-makefile ~a/Makefile && cd ~a && make check-all solution=example.scm"
+                  (format "cp input/skeleton-makefile ~a/Makefile && cd ~a && make check-all solution=.meta/example.scm"
                           dir
                           dir))))
     (unless (zero? result)
       (error 'run-ci "failed test" exercism))))
-
