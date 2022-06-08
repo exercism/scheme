@@ -11,3 +11,6 @@
                           dir))))
     (unless (zero? result)
       (error 'run-ci "failed test" exercism))))
+
+(define (run-all-tests)
+  (for-each run-tests (directory-list "exercises/practice/")))
