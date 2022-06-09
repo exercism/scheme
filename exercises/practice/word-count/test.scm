@@ -198,3 +198,4 @@
      (load "word-count.scm")
      (run-docker test-cases)]
     [else (load (cadr args)) (test 'input 'output)]))
+
