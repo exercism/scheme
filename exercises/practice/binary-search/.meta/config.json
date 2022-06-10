@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement a binary search algorithm.",
   "authors": [
     "jitwit"
   ],
@@ -8,12 +7,14 @@
       "binary-search.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
   },
+  "blurb": "Implement a binary search algorithm.",
   "source": "Wikipedia",
   "source_url": "http://en.wikipedia.org/wiki/Binary_search_algorithm"
 }

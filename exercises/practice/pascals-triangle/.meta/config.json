@@ -1,5 +1,4 @@
 {
-  "blurb": "Compute Pascal's triangle up to a given number of rows.",
   "authors": [
     "jitwit"
   ],
@@ -11,12 +10,14 @@
       "pascals-triangle.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
   },
+  "blurb": "Compute Pascal's triangle up to a given number of rows.",
   "source": "Pascal's Triangle at Wolfram Math World",
   "source_url": "http://mathworld.wolfram.com/PascalsTriangle.html"
 }

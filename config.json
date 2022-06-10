@@ -23,7 +23,8 @@
       "%{kebab_slug}.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       "example.scm"

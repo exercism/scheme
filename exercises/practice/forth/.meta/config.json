@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement an evaluator for a very simple subset of Forth",
   "authors": [
     "jitwit"
   ],
@@ -8,10 +7,12 @@
       "forth.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
-  }
+  },
+  "blurb": "Implement an evaluator for a very simple subset of Forth"
 }

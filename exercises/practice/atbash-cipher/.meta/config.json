@@ -1,5 +1,4 @@
 {
-  "blurb": "Create an implementation of the atbash cipher, an ancient encryption system created in the Middle East.",
   "authors": [
     "mattwellss"
   ],
@@ -13,12 +12,14 @@
       "atbash-cipher.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
   },
+  "blurb": "Create an implementation of the atbash cipher, an ancient encryption system created in the Middle East.",
   "source": "Wikipedia",
   "source_url": "http://en.wikipedia.org/wiki/Atbash"
 }
