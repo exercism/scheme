@@ -1,5 +1,4 @@
 {
-  "blurb": "Calculate the Hamming difference between two DNA strands.",
   "authors": [
     "PurityControl"
   ],
@@ -15,12 +14,14 @@
       "hamming.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
   },
+  "blurb": "Calculate the Hamming difference between two DNA strands.",
   "source": "The Calculating Point Mutations problem at Rosalind",
   "source_url": "http://rosalind.info/problems/hamm/"
 }

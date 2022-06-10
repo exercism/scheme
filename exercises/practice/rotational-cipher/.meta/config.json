@@ -1,5 +1,4 @@
 {
-  "blurb": "Create an implementation of the rotational cipher, also sometimes called the Caesar cipher.",
   "authors": [
     "jitwit"
   ],
@@ -8,12 +7,14 @@
       "rotational-cipher.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
   },
+  "blurb": "Create an implementation of the rotational cipher, also sometimes called the Caesar cipher.",
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Caesar_cipher"
 }

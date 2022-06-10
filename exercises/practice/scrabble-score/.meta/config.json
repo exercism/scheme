@@ -1,5 +1,4 @@
 {
-  "blurb": "Given a word, compute the Scrabble score for that word.",
   "authors": [
     "cyborgsphinx"
   ],
@@ -15,12 +14,14 @@
       "scrabble-score.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
   },
+  "blurb": "Given a word, compute the Scrabble score for that word.",
   "source": "Inspired by the Extreme Startup game",
   "source_url": "https://github.com/rchatley/extreme_startup"
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement basic list operations",
   "authors": [
     "pminten"
   ],
@@ -15,10 +14,12 @@
       "list-ops.scm"
     ],
     "test": [
-      "test.scm"
+      "test.scm",
+      "test-util.ss"
     ],
     "example": [
       ".meta/example.scm"
     ]
-  }
+  },
+  "blurb": "Implement basic list operations"
 }
