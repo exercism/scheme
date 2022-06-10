@@ -1,147 +1,27 @@
-(import (except (rnrs) current-output-port))
-
-(define test-fields '(input output))
-
-(define (test-run-solution solution input)
-  (if (procedure? solution) (apply solution input) solution))
-
-(define (test-success description success-predicate
-         procedure input output)
-  (call/cc
-    (lambda (k)
-      (let ([out (open-output-string)])
-        (with-exception-handler
-          (lambda (e)
-            (let ([result `(fail
-                             (description . ,description)
-                             (input . ,input)
-                             (output . ,output)
-                             (stdout . ,(get-output-string out)))])
-              (close-output-port out)
-              (k result)))
-          (lambda ()
-            (let ([result (parameterize ([current-output-port out])
-                            (test-run-solution procedure input))])
-              (unless (success-predicate result output)
-                (error 'exercism-test
-                  "test fails"
-                  description
-                  input
-                  result
-                  output)))
-            (let ([result `(pass
-                             (description . ,description)
-                             (stdout . ,(get-output-string out)))])
-              (close-output-port out)
-              result)))))))
-
-(define (test-error description procedure input)
-  (call/cc
-    (lambda (k)
-      (let ([out (open-output-string)])
-        (with-exception-handler
-          (lambda (e)
-            (let ([result `(pass
-                             (description . ,description)
-                             (stdout . ,(get-output-string out)))])
-              (close-output-port out)
-              (k result)))
-          (lambda ()
-            (parameterize ([current-output-port out])
-              (test-run-solution procedure input))
-            (let ([result `(fail
-                             (description . ,description)
-                             (input . ,input)
-                             (output . error)
-                             (stdout . ,(get-output-string out)))])
-              (close-output-port out)
-              result)))))))
-
-(define (run-test-suite tests . query)
-  (for-each
-    (lambda (field)
-      (unless (and (symbol? field) (memq field test-fields))
-        (error 'run-test-suite
-          (format #t "~a not in ~a" field test-fields))))
-    query)
-  (let-values ([(passes failures)
-                (partition
-                  (lambda (result) (eq? 'pass (car result)))
-                  (map (lambda (test) (test)) tests))])
-    (cond
-      [(null? failures) (format #t "~%Well done!~%~%")]
-      [else
-       (format
-         #t
-         "~%Passed ~a/~a tests.~%~%The following test cases failed:~%~%"
-         (length passes)
-         (length tests))
-       (for-each
-         (lambda (failure)
-           (format
-             #t
-             "* ~a~%"
-             (cond
-               [(assoc 'description (cdr failure)) => cdr]
-               [else (cdr failure)]))
-           (for-each
-             (lambda (field)
-               (let ([info (assoc field (cdr failure))])
-                 (display "  - ")
-                 (write (car info))
-                 (display ": ")
-                 (write (cdr info))
-                 (newline)))
-             query))
-         failures)
-       (error 'test "incorrect solution")])))
-
-(define (run-docker test-cases)
-  (write (map (lambda (test) (test)) test-cases)))
-
-(define factorize)
+(load "test-util.ss")
 
 (define test-cases
-  (list
-    (lambda ()
-      (test-success "no factors"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '(1) '()))
-    (lambda ()
-      (test-success "prime number"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '(2) '(2)))
-    (lambda ()
-      (test-success "square of a prime"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '(9) '(3 3)))
-    (lambda ()
-      (test-success "cube of a prime"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '(8) '(2 2 2)))
-    (lambda ()
-      (test-success "product of primes and non-primes"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '(12) '(2 2 3)))
-    (lambda ()
-      (test-success "product of primes"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '(901255) '(5 17 23 461)))
-    (lambda ()
-      (test-success "factors include a large prime"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '(93819012551) '(11 9539 894119)))))
+  `((test-success "no factors"
+      (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+      factorize '(1) '())
+     (test-success "prime number"
+       (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+       factorize '(2) '(2))
+     (test-success "square of a prime"
+       (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+       factorize '(9) '(3 3))
+     (test-success "cube of a prime"
+       (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+       factorize '(8) '(2 2 2))
+     (test-success "product of primes and non-primes"
+       (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+       factorize '(12) '(2 2 3))
+     (test-success "product of primes"
+       (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+       factorize '(901255) '(5 17 23 461))
+     (test-success "factors include a large prime"
+       (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
+       factorize '(93819012551) '(11 9539 894119))))
 
-(define (test . query)
-  (apply run-test-suite test-cases query))
-
-(let ([args (command-line)])
-  (cond
-    [(null? (cdr args))
-     (load "prime-factors.scm")
-     (test 'input 'output)]
-    [(string=? (cadr args) "--docker")
-     (load "prime-factors.scm")
-     (run-docker test-cases)]
-    [else (load (cadr args)) (test 'input 'output)]))
+(run-with-cli "prime-factors.scm" (list test-cases))
 
