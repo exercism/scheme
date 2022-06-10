@@ -6,4 +6,4 @@
    [else (keep pred (cdr seq))]))
 
 (define (discard pred seq)
-  (keep (compose not pred) seq))
+  (keep (lambda (x) (not (pred x))) seq))
