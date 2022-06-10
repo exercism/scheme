@@ -159,4 +159,4 @@
                                    (append results (map run-test suite)))
                                  '()  suites))))))))]
      ;; You can pass the name of a file to load instead of the "expected" solution filename.
-     [else (load (cadr args)) (tests suites 'input 'expected)])))
+     [else (load (cadr args)) (tests suites 'input 'expected 'actual)])))

@@ -132,5 +132,5 @@
   (for-each
    (lambda (slug)
      (copy-file "input/test-util.ss"
-                (slug->directory slug `(kind . practice))))
+                (slug->directory slug)))
    (directory-list "exercises/practice/")))
