@@ -16,8 +16,9 @@
         ,(if (who-condition? e) (condition-who e)
              'unknown)
         ,(condition-message e)
-        ,@(if (not (irritants-condition? e)) '()
-              (condition-irritants e)))))
+        ,@(map scheme->string
+               (if (not (irritants-condition? e)) '()
+                   (condition-irritants e))))))
 
 (define (test-success description success-predicate
                       procedure input expected code)
