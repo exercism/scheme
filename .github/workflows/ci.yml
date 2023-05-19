@@ -16,7 +16,7 @@ jobs:
       - name: Install project dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install guile-2.2 chezscheme
+          sudo apt-get install guile-3.0 chezscheme
 
       - name: Run exercism/scheme ci (runs tests) for all exercises
         run: make ci
