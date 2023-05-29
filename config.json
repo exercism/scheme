@@ -521,7 +521,38 @@
     ]
   },
   "concepts": [],
-  "key_features": [],
+  "key_features": [
+    {
+      "title": "Compact",
+      "content": "Scheme supplies a small number of general-purpose features.",
+      "icon": "small"
+    },
+    {
+      "title": "Functional",
+      "content": "Inspired by lambda calculus, scopes and loops are expressed by defining and calling functions.",
+      "icon": "functional"
+    },
+    {
+      "title": "Suitable for embedding",
+      "content": "Some applications use Scheme as their extension language.",
+      "icon": "embeddable"
+    },
+    {
+      "title": "S-expressions",
+      "content": "Both source code and data are expressed using nested lists.",
+      "icon": "homoiconic"
+    },
+    {
+      "title": "Numeric tower",
+      "content": "Scheme supports exact and inexact numbers.",
+      "icon": "scientific"
+    },
+    {
+      "title": "Hygienic macros",
+      "content": "Scheme supports hygienic macros, allowing the syntax to be extended reliably.",
+      "icon": "extensible"
+    }
+  ],
   "tags": [
     "paradigm/functional",
     "typing/dynamic",
