@@ -27,7 +27,7 @@
       "test-util.ss"
     ],
     "example": [
-      "example.scm"
+      ".meta/example.scm"
     ],
     "exemplar": [
       ".meta/exemplar.scm"
