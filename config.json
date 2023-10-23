@@ -34,7 +34,6 @@
     ]
   },
   "exercises": {
-    "concept": [],
     "practice": [
       {
         "slug": "hello-world",
@@ -207,8 +206,7 @@
         "uuid": "9f13b913-a650-4cbf-a392-4b5614e1aa2a",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 4,
-        "topics": null
+        "difficulty": 4
       },
       {
         "slug": "matching-brackets",
@@ -361,7 +359,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": null,
         "status": "deprecated"
       },
       {
@@ -417,7 +414,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": null,
         "status": "deprecated"
       },
       {
@@ -520,7 +516,6 @@
       }
     ]
   },
-  "concepts": [],
   "key_features": [
     {
       "title": "Compact",
@@ -554,14 +549,14 @@
     }
   ],
   "tags": [
+    "execution_mode/interpreted",
     "paradigm/functional",
+    "platform/linux",
+    "platform/mac",
+    "platform/windows",
+    "runtime/language_specific",
     "typing/dynamic",
     "typing/strong",
-    "execution_mode/interpreted",
-    "platform/windows",
-    "platform/mac",
-    "platform/linux",
-    "runtime/language_specific",
     "used_for/scripts"
   ]
 }
