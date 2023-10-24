@@ -3,8 +3,8 @@
 #+TITLE: Exercism Scheme Track
 #+AUTHOR: Jason Lewis
 
-[![Configlet Status](https://github.com/exercism/scheme/workflows/configlet/badge.svg)]
-[![Exercise Test Status](https://github.com/exercism/scheme/workflows/scheme%20%2F%20main/badge.svg)]
+[![Configlet](https://github.com/exercism/scheme/actions/workflows/configlet.yml/badge.svg)](https://github.com/exercism/scheme/actions/workflows/configlet.yml)
+[![scheme / main](https://github.com/exercism/scheme/actions/workflows/ci.yml/badge.svg)](https://github.com/exercism/scheme/actions/workflows/ci.yml)
 
 Exercisms in scheme.
 
