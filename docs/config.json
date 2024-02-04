@@ -8,6 +8,13 @@
       "blurb": "Learn how to install Scheme locally to solve Exercism's exercises on your own machine"
     },
     {
+      "uuid": "d39be63c-89ea-491d-81d5-00d8d0f9bb19",
+      "slug": "learning",
+      "path": "docs/LEARNING.md",
+      "title": "How to learn Scheme",
+      "blurb": "An overview of how to get started from scratch with Scheme"
+    },
+    {
       "uuid": "1528fa64-cf14-4310-a1be-f731c604d34e",
       "slug": "tests",
       "path": "docs/TESTS.md",
