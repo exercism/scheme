@@ -308,4 +308,11 @@
   (difficulty . 2)
   (topics conditionals string loop math))
 
+ ((slug . sublist)
+  (uuid . "ac954921-31e4-4c8d-8125-9d44a8c1baba")
+  (core . #f)
+  (unlocked-by)
+  (difficulty . 2)
+  (topics list))
+
  )
