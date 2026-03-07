@@ -513,6 +513,16 @@
           "math",
           "vector"
         ]
+      },
+      {
+        "slug": "sublist",
+        "uuid": "ac954921-31e4-4c8d-8125-9d44a8c1baba",
+        "core": false,
+        "unlocked_by": null,
+        "difficulty": 2,
+        "topics": [
+        "list"
+        ]
       }
     ]
   },
