@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Synopsis:
+# Verify that each example solution passes the tests.
+# This runs all non-deprecated practice exercises.
+
+set -euo pipefail
+
+# Fetch non-deprecated exercises. Acronym is excluded since it's Guile-only.
+mapfile -t active_exercises < <(
+    jq -r '.exercises.practice[] | select(.status != "deprecated" and .slug != "acronym") | .slug' config.json
+)
+
+for exercise in "${active_exercises[@]}"; do
+    target_dir="exercises/practice/${exercise}"
+    [[ -d "${target_dir}" ]] || continue
+
+    echo "Verifying ${target_dir}..."
+    make -C "${target_dir}" check-all solution=.meta/example.scm
+done
