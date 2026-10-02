@@ -12,7 +12,7 @@ fmt: $(CONFIGLET)
 	$(CONFIGLET) --track-dir . fmt --update --yes
 
 ci:
-	./script/ci.sh
+	./bin/verify-exercises
 
 clean:
 	find exercises -name '*.so' -delete
