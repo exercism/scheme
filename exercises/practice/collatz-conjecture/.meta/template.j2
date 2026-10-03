@@ -1,0 +1,15 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ case["description"] }}" = collatz '({{ case["input"]["number"] }}) {{ case["expected"] }})
+{%- else %}
+    (test-error "{{ case["description"] }}" collatz '({{ case["input"]["number"] }}))
+{%- endif %}
+{% endfor %}))
+
+(run-with-cli "collatz-conjecture.scm" (list test-cases))
