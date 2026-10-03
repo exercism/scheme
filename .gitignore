@@ -11,3 +11,5 @@ ci
 problem-specifications/*
 !bin/fetch-configlet
 !bin/verify-exercises
+
+.idea/
