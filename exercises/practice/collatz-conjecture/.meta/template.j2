@@ -6,10 +6,11 @@
   `(
 {%- for case in cases %}
 {%- if not case["expect_error"] %}
-    (test-success "{{ case["description"] }}" = collatz '({{ case["input"]["number"] }}) {{ case["expected"] }})
+    (test-success "{{ loop.index }}. {{ case["description"] }}" = collatz '({{ case["input"]["number"] }}) {{ case["expected"] }})
 {%- else %}
-    (test-error "{{ case["description"] }}" collatz '({{ case["input"]["number"] }}))
+    (test-error "{{ loop.index }}. {{ case["description"] }}" collatz '({{ case["input"]["number"] }}))
 {%- endif %}
-{% endfor %}))
+{%- endfor %}
+    ))
 
 (run-with-cli "collatz-conjecture.scm" (list test-cases))
