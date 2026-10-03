@@ -1,22 +1,24 @@
-name: scheme / main
+name: Test
 
 on:
   push:
-    branches: [master, main]
+    branches: [main]
   pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
-  ci:
+  verify_exercises:
     runs-on: ubuntu-26.04
 
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
-      - name: Install project dependencies
+      - name: Install Scheme
         run: |
           sudo apt-get update
-          sudo apt-get install guile-3.0 chezscheme
+          sudo apt-get install guile-3.0 chezscheme jq
 
-      - name: Run exercism/scheme ci (runs tests) for all exercises
-        run: make ci
+      - name: Verify all exercises
+        run: bin/verify-exercises
