@@ -103,7 +103,8 @@ def template_stub() -> str:
         {%- else %}
             (test-error "{{ case["description"] }}" {{ case["property"] }} '({{ case["input"]["..."] }}))
         {%- endif %}
-        {% endfor %}))
+        {%- endfor %}
+            ))
         
         (run-with-cli "{{ name }}.scm" (list test-cases))
     """)

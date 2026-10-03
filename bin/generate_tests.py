@@ -111,9 +111,9 @@ def bool_to_str(obj):
     if isinstance(obj, list):
         return [bool_to_str(val) for val in obj]
     if obj is True:
-        return ".true."
+        return "#t"
     if obj is False:
-        return ".false."
+        return "#f"
     return obj
 
 
@@ -131,7 +131,7 @@ def generate(specs: pathlib.Path, exercise: pathlib.Path) -> None:
         "cases": cases,
         "header": header,
         "solution": json.loads((exercise / ".meta/config.json").read_text())["files"]["solution"][0],
-        "name": exercise.name.replace("-", "_"),
+        "name": exercise.name,
     }
 
     # Render the template.
