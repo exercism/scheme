@@ -29,7 +29,7 @@ include = false
 description = "zero is an error"
 reimplements = "7d4750e6-def9-4b86-aec7-9f7eb44f95a3"
 include = false
-comment = Excluding to protect older solutions.
+comment = "Excluding to protect older solutions."
 
 [c6c795bf-a288-45e9-86a1-841359ad426d]
 description = "negative value is an error"
