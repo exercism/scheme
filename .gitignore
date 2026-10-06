@@ -1,7 +1,6 @@
 .DS_Store
 *.log
 .#*
-bin/*
 _build/*
 closet/track-configs.fasl
 closet/json/*
@@ -9,5 +8,6 @@ closet/json/*
 *.html
 ci
 problem-specifications/*
-!bin/fetch-configlet
-!bin/verify-exercises
+bin/configlet
+
+.idea/

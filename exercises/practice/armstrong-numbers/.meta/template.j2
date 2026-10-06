@@ -1,0 +1,17 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" 
+        equal? armstrong-number? '({{ case["input"]["number"] }}) {{ case["expected"] }})
+{%- else %}
+    (test-error "{{ case["description"] }}" armstrong-number? '({{ case["input"]["number"] }}))
+{%- endif %}
+{% endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
