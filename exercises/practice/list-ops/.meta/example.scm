@@ -1,13 +1,3 @@
-(define-module (list-ops)
-  #:export (my-length ; Avoid overriding core bindings
-            my-reverse
-            my-map
-            my-filter
-            my-fold
-            my-append
-            my-concatenate
-            ))
-
 (define (my-length l)
   (define (go l acc)
     (if (null? l)

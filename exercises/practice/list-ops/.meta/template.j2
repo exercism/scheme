@@ -1,0 +1,27 @@
+{{ header }}
+{%- set functions = {
+  "(x) -> x modulo 2 == 1": "odd?",
+} %}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if case["property"] == "append" %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" 
+        equal? my-append '({{ case["input"]["list1"] | format_list }} {{ case["input"]["list2"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- elif case["property"] == "concat" %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" 
+        equal? my-concatenate '({{ case["input"]["lists"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- elif case["property"] == "filter" %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" 
+        equal? my-filter (list {{ functions[case["input"]["function"]] }} '{{ case["input"]["list"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

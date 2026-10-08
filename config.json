@@ -86,8 +86,7 @@
         "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1,
-        "status": "deprecated"
+        "difficulty": 1
       },
       {
         "slug": "robot-name",
