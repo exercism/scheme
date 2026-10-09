@@ -1,7 +1,4 @@
 {{ header }}
-{%- set functions = {
-  "(x) -> x modulo 2 == 1": "odd?",
-} %}
 
 (load "test-util.ss")
 
@@ -9,17 +6,28 @@
   `(
 {%- for case in cases %}
 {%- if case["property"] == "append" %}
-    (test-success "{{ loop.index }}. {{ case["description"] }}" 
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
         equal? my-append '({{ case["input"]["list1"] | format_list }} {{ case["input"]["list2"] | format_list }})
         '{{ case["expected"] | format_list }})
 {%- elif case["property"] == "concat" %}
-    (test-success "{{ loop.index }}. {{ case["description"] }}" 
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
         equal? my-concatenate '({{ case["input"]["lists"] | format_list }})
         '{{ case["expected"] | format_list }})
-{%- elif case["property"] == "filter" %}
-    (test-success "{{ loop.index }}. {{ case["description"] }}" 
-        equal? my-filter (list {{ functions[case["input"]["function"]] }} '{{ case["input"]["list"] | format_list }})
+{%- elif case["property"] == "length" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        = my-length '({{ case["input"]["list"] | format_list }})
+        {{ case["expected"] }})
+{%- elif case["property"] == "reverse" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-reverse '({{ case["input"]["list"] | format_list }})
         '{{ case["expected"] | format_list }})
+{#- TODO: filter, map, foldl, foldr need case["input"]["function"] translated
+    from pseudocode into Scheme lambdas (and foldl/foldr need case["input"]["initial"]).
+{%- elif case["property"] == "filter" %}
+{%- elif case["property"] == "map" %}
+{%- elif case["property"] == "foldl" %}
+{%- elif case["property"] == "foldr" %}
+#}
 {%- endif %}
 {%- endfor %}
     ))
