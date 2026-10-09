@@ -1,4 +1,13 @@
 {{ header }}
+{#- Scheme translations of the canonical data's pseudocode functions.
+    my-foldl/my-foldr call (f el acc), so fold lambdas take el first. #}
+{%- set functions = {
+    "(x) -> x modulo 2 == 1": "(lambda (x) (odd? x))",
+    "(x) -> x + 1": "(lambda (x) (+ x 1))",
+    "(acc, el) -> el * acc": "(lambda (el acc) (* el acc))",
+    "(acc, el) -> el + acc": "(lambda (el acc) (+ el acc))",
+    "(acc, el) -> el / acc": "(lambda (el acc) (/ el acc))",
+} %}
 
 (load "test-util.ss")
 
@@ -21,13 +30,22 @@
     (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
         equal? my-reverse '({{ case["input"]["list"] | format_list }})
         '{{ case["expected"] | format_list }})
-{#- TODO: filter, map, foldl, foldr need case["input"]["function"] translated
-    from pseudocode into Scheme lambdas (and foldl/foldr need case["input"]["initial"]).
 {%- elif case["property"] == "filter" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-filter '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
+        '{{ case["expected"] | format_list }})
 {%- elif case["property"] == "map" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-map '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
+        '{{ case["expected"] | format_list }})
 {%- elif case["property"] == "foldl" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        = my-foldl '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
+        {{ case["expected"] }})
 {%- elif case["property"] == "foldr" %}
-#}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        = my-foldr '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
+        {{ case["expected"] }})
 {%- endif %}
 {%- endfor %}
     ))
