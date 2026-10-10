@@ -1,0 +1,21 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        (lambda (out expected)
+            (equal? (list-sort < out) (list-sort < expected)))
+        change '({{ case["input"]["target"] }} {{ case["input"]["coins"] | format_list }})
+        `{{ case["expected"] | format_list }})
+{%- else %}
+    (test-error "{{ case["description"] }}" 
+        change '({{ case["input"]["target"] }} {{ case["input"]["coins"] | format_list }}))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
