@@ -1,0 +1,33 @@
+{%- macro triangle_type(sides) -%}
+{%- if sides[0] == sides[1] and sides[1] == sides[2] -%}
+equilateral
+{%- elif sides[0] == sides[1] or sides[0] == sides[2] or sides[1] == sides[2] -%}
+isosceles
+{%- else -%}
+scalene
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro invalid_triangle(sides) -%}
+{%- set sorted_sides = sides | sort -%}
+{{- sorted_sides[0] <= 0 or sorted_sides[2] >= sorted_sides[0] + sorted_sides[1] -}}
+{%- endmacro -%}
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- set sides = case["input"]["sides"] %}
+{%- if case["expected"] == "#f" and invalid_triangle(sides) == "True" %}
+    (test-error "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        triangle '({{ sides | join(" ") }}))
+{%- else %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? triangle '({{ sides | join(" ") }}) '{{ triangle_type(sides) }})
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ solution }}" (list test-cases))

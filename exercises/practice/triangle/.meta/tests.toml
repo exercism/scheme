@@ -35,6 +35,7 @@ description = "isosceles triangle -> first and last sides are equal"
 
 [8d71e185-2bd7-4841-b7e1-71689a5491d8]
 description = "isosceles triangle -> equilateral triangles are also isosceles"
+include = false
 
 [840ed5f8-366f-43c5-ac69-8f05e6f10bbb]
 description = "isosceles triangle -> no sides are equal"
