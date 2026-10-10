@@ -1,0 +1,13 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"  equal? response-for '("{{ case["input"]["heyBob"] }}") 
+        "{{ case["expected"] }}")
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
