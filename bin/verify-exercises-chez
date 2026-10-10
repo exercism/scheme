@@ -40,9 +40,9 @@ if [[ -n "${exercise_slug}" ]]; then
     fi
     active_exercises=("${exercise_slug}")
 else
-    # Fetch non-deprecated exercises.
+    # Fetch non-deprecated exercises. Acronym is excluded since it's Guile-only.
     mapfile -t active_exercises < <(
-        jq -r '.exercises.practice[] | select(.status != "deprecated") | .slug' config.json
+        jq -r '.exercises.practice[] | select(.status != "deprecated" and .slug != "acronym") | .slug' config.json
     )
 fi
 
@@ -51,5 +51,5 @@ for exercise in "${active_exercises[@]}"; do
     [[ -d "${target_dir}" ]] || continue
 
     echo "Verifying ${target_dir}..."
-    make -C "${target_dir}" guile solution=.meta/example.scm
+    make -C "${target_dir}" chez solution=.meta/example.scm
 done
