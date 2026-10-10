@@ -1,13 +1,3 @@
-(define-module (list-ops)
-  #:export (my-length ; Avoid overriding core bindings
-            my-reverse
-            my-map
-            my-filter
-            my-fold
-            my-append
-            my-concatenate
-            ))
-
 (define (my-length l)
   (define (go l acc)
     (if (null? l)
@@ -38,10 +28,13 @@
             (go (cdr l) acc))))
   (go l '()))
 
-(define (my-fold f acc l)
+(define (my-foldl f acc l)
   (if (null? l)
       acc
-      (my-fold f (f (car l) acc) (cdr l))))
+      (my-foldl f (f (car l) acc) (cdr l))))
+
+(define (my-foldr f acc l)
+  (my-foldl f acc (my-reverse l)))
 
 (define (my-append a b)
   (define (go l acc)
@@ -51,4 +44,4 @@
   (go (my-reverse a) b))
 
 (define (my-concatenate ll)
-  (my-fold my-append '() (my-reverse ll)))
+  (my-foldl my-append '() (my-reverse ll)))

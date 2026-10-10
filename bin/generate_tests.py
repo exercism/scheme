@@ -84,6 +84,14 @@ def filter_escape_whitespace_and_quote(data: str) -> str:
     return data
 
 
+def filter_list_format(data):
+    """Convert JSON [1, 2, 3] to Lisp-y (1 2 3)"""
+    data = f'"{data}"'
+    for char, replacement in [("[", "("), ("]", ")"), (", ", " "), (",", " ")]:
+        data = data.replace(char, replacement)
+    return data.replace('"', '')
+
+
 def jinja_env(exercise: pathlib.Path) -> jinja2.Environment:
     """Return a configured Jinja env with filters added."""
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(exercise / ".meta"))
@@ -95,9 +103,7 @@ def jinja_env(exercise: pathlib.Path) -> jinja2.Environment:
     env.filters["repr"] = repr
     # Return a dict with only specified keys kepts.
     env.filters["camel_to_snake"] = lambda x: re.sub(r"([a-z])([A-Z])", (lambda m: f"{m.group(1)}_{m.group(2).lower()}"), x)
-    env.filters["format_list"] = lambda x: shlex.quote(
-        "[" + ",".join(f'"{i}"' if isinstance(i, str) else str(i) for i in x) + "]"
-    )
+    env.filters["format_list"] = filter_list_format
     # Replace whitespace with chars and concatenation.
     env.filters["escape_quote_whitespace"] = filter_escape_whitespace_and_quote
 

@@ -1,130 +1,80 @@
+; These tests are auto-generated with test data from: 
+; https://github.com/exercism/problem-specifications/blob/main/exercises/list-ops/canonical-data.json
+; File last updated on 2026-10-09T22:38:09+00:00
+
 (load "test-util.ss")
 
-(use-modules (srfi srfi-64))
-
-(use-modules (srfi srfi-1))
-
-(module-define!
-  (resolve-module '(srfi srfi-64))
-  'test-log-to-file
-  #f)
-
-(add-to-load-path (dirname (current-filename)))
-
-(use-modules (list-ops))
-
-(test-begin "list-ops-test")
-
-(test-eqv "length of empty list" 0 (my-length '()))
-
-(test-eqv "length of normal list" 4 (my-length '(1 3 5 7)))
-
-(test-eqv
-  "length of huge list"
-  1000000
-  (my-length (list-tabulate 1000000 values)))
-
-(test-equal "reverse of empty list" '() (my-reverse '()))
-
-(test-equal
-  "reverse of normal list"
-  '(7 5 3 1)
-  (my-reverse '(1 3 5 7)))
-
-(test-equal
-  "reverse of huge list"
-  (list-tabulate 1000000 (lambda (x) (- 999999 x)))
-  (my-reverse (list-tabulate 1000000 values)))
-
-(define (inc x) (+ 1 x))
-
-(test-equal "map of empty list" '() (my-map inc '()))
-
-(test-equal
-  "map of normal list"
-  '(2 3 4 5)
-  (my-map inc '(1 2 3 4)))
-
-(test-equal
-  "map of huge list"
-  (list-tabulate 1000000 (lambda (x) (+ x 1)))
-  (my-map inc (list-tabulate 1000000 values)))
-
-(test-equal "filter of empty list" '() (my-filter odd? '()))
-
-(test-equal
-  "filter of normal list"
-  '(1 3)
-  (my-filter odd? '(1 2 3 4)))
-
-(test-equal
-  "filter of huge list"
-  (filter odd? (list-tabulate 1000000 values))
-  (my-filter odd? (list-tabulate 1000000 values)))
-
-(test-eqv "fold of empty list" 0 (my-fold + 0 '()))
-
-(test-eqv "fold of normal list" 7 (my-fold + -3 '(1 2 3 4)))
-
-(test-eqv
-  "fold of huge list"
-  (fold + 0 (list-tabulate 1000000 values))
-  (my-fold + 0 (list-tabulate 1000000 values)))
-
-(test-eqv
-  "fold with non-commutative function"
-  0
-  (my-fold (lambda (x acc) (- acc x)) 10 '(1 2 3 4)))
-
-(test-equal "append of empty lists" '() (my-append '() '()))
-
-(test-equal
-  "append of empty and non-empty list"
-  '(1 2 3 4)
-  (my-append '() '(1 2 3 4)))
-
-(test-equal
-  "append of non-empty and empty list"
-  '(1 2 3 4)
-  (my-append '(1 2 3 4) '()))
-
-(test-equal
-  "append of non-empty lists"
-  '(1 2 3 4 5)
-  (my-append '(1 2 3) '(4 5)))
-
-(test-equal
-  "append of huge lists"
-  (list-tabulate 2000000 values)
-  (my-append
-    (list-tabulate 1000000 values)
-    (list-tabulate 1000000 (lambda (x) (+ x 1000000)))))
-
-(test-equal
-  "concatenate of empty list of lists"
-  '()
-  (my-concatenate '()))
-
-(test-equal
-  "concatenate of normal list of lists"
-  '(1 2 3 4 5 6)
-  (my-concatenate '((1 2) (3) () (4 5 6))))
-
-(test-equal
-  "concatenate of huge list of small lists"
-  (list-tabulate 1000000 values)
-  (my-concatenate (list-tabulate 1000000 list)))
-
-(test-equal
-  "concatenate of small list of huge lists"
-  (list-tabulate 1000000 values)
-  (my-concatenate
-    (list-tabulate
-      10
-      (lambda (i)
-        (list-tabulate 100000 (lambda (j) (+ (* 100000 i) j)))))))
-
-(test-end "list-ops-test")
+(define test-cases
+  `(
+    (test-success "1. append: empty lists"
+        equal? my-append '(() ())
+        '())
+    (test-success "2. append: list to empty list"
+        equal? my-append '(() (1 2 3 4))
+        '(1 2 3 4))
+    (test-success "3. append: empty list to list"
+        equal? my-append '((1 2 3 4) ())
+        '(1 2 3 4))
+    (test-success "4. append: non-empty lists"
+        equal? my-append '((1 2) (2 3 4 5))
+        '(1 2 2 3 4 5))
+    (test-success "5. concat: empty list"
+        equal? my-concatenate '(())
+        '())
+    (test-success "6. concat: list of lists"
+        equal? my-concatenate '(((1 2) (3) () (4 5 6)))
+        '(1 2 3 4 5 6))
+    (test-success "7. concat: list of nested lists"
+        equal? my-concatenate '((((1) (2)) ((3)) (()) ((4 5 6))))
+        '((1) (2) (3) () (4 5 6)))
+    (test-success "8. filter: empty list"
+        equal? my-filter '(,(lambda (x) (odd? x)) ())
+        '())
+    (test-success "9. filter: non-empty list"
+        equal? my-filter '(,(lambda (x) (odd? x)) (1 2 3 5))
+        '(1 3 5))
+    (test-success "10. length: empty list"
+        = my-length '(())
+        0)
+    (test-success "11. length: non-empty list"
+        = my-length '((1 2 3 4))
+        4)
+    (test-success "12. map: empty list"
+        equal? my-map '(,(lambda (x) (+ x 1)) ())
+        '())
+    (test-success "13. map: non-empty list"
+        equal? my-map '(,(lambda (x) (+ x 1)) (1 3 5 7))
+        '(2 4 6 8))
+    (test-success "14. foldl: empty list"
+        = my-foldl '(,(lambda (el acc) (* el acc)) 2 ())
+        2)
+    (test-success "15. foldl: direction independent function applied to non-empty list"
+        = my-foldl '(,(lambda (el acc) (+ el acc)) 5 (1 2 3 4))
+        15)
+    (test-success "16. foldl: direction dependent function applied to non-empty list"
+        = my-foldl '(,(lambda (el acc) (/ el acc)) 24 (1 2 3 4))
+        64)
+    (test-success "17. foldr: empty list"
+        = my-foldr '(,(lambda (el acc) (* el acc)) 2 ())
+        2)
+    (test-success "18. foldr: direction independent function applied to non-empty list"
+        = my-foldr '(,(lambda (el acc) (+ el acc)) 5 (1 2 3 4))
+        15)
+    (test-success "19. foldr: direction dependent function applied to non-empty list"
+        = my-foldr '(,(lambda (el acc) (/ el acc)) 24 (1 2 3 4))
+        9)
+    (test-success "20. reverse: empty list"
+        equal? my-reverse '(())
+        '())
+    (test-success "21. reverse: non-empty even-length list"
+        equal? my-reverse '((1 3 5 7))
+        '(7 5 3 1))
+    (test-success "22. reverse: non-empty odd-length list"
+        equal? my-reverse '((1 3 5 7 9 11 13))
+        '(13 11 9 7 5 3 1))
+    (test-success "23. reverse: list of lists is not flattened"
+        equal? my-reverse '(((1 2) (3) () (4 5 6)))
+        '((4 5 6) () (3) (1 2)))
+    ))
 
 (run-with-cli "list-ops.scm" (list test-cases))
-

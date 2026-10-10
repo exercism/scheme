@@ -1,0 +1,53 @@
+{{ header }}
+{#- Scheme translations of the canonical data's pseudocode functions.
+    my-foldl/my-foldr call (f el acc), so fold lambdas take el first. #}
+{%- set functions = {
+    "(x) -> x modulo 2 == 1": "(lambda (x) (odd? x))",
+    "(x) -> x + 1": "(lambda (x) (+ x 1))",
+    "(acc, el) -> el * acc": "(lambda (el acc) (* el acc))",
+    "(acc, el) -> el + acc": "(lambda (el acc) (+ el acc))",
+    "(acc, el) -> el / acc": "(lambda (el acc) (/ el acc))",
+} %}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if case["property"] == "append" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-append '({{ case["input"]["list1"] | format_list }} {{ case["input"]["list2"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- elif case["property"] == "concat" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-concatenate '({{ case["input"]["lists"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- elif case["property"] == "length" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        = my-length '({{ case["input"]["list"] | format_list }})
+        {{ case["expected"] }})
+{%- elif case["property"] == "reverse" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-reverse '({{ case["input"]["list"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- elif case["property"] == "filter" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-filter '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- elif case["property"] == "map" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        equal? my-map '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
+        '{{ case["expected"] | format_list }})
+{%- elif case["property"] == "foldl" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        = my-foldl '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
+        {{ case["expected"] }})
+{%- elif case["property"] == "foldr" %}
+    (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
+        = my-foldr '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
+        {{ case["expected"] }})
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
