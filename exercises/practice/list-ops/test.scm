@@ -28,10 +28,10 @@
         equal? my-concatenate '((((1) (2)) ((3)) (()) ((4 5 6))))
         '((1) (2) (3) () (4 5 6)))
     (test-success "8. filter: empty list"
-        equal? my-filter '(,(lambda (x) (odd? x)) ())
+        equal? my-filter `(,(lambda (x) (odd? x)) ())
         '())
     (test-success "9. filter: non-empty list"
-        equal? my-filter '(,(lambda (x) (odd? x)) (1 2 3 5))
+        equal? my-filter `(,(lambda (x) (odd? x)) (1 2 3 5))
         '(1 3 5))
     (test-success "10. length: empty list"
         = my-length '(())
@@ -40,28 +40,28 @@
         = my-length '((1 2 3 4))
         4)
     (test-success "12. map: empty list"
-        equal? my-map '(,(lambda (x) (+ x 1)) ())
+        equal? my-map `(,(lambda (x) (+ x 1)) ())
         '())
     (test-success "13. map: non-empty list"
-        equal? my-map '(,(lambda (x) (+ x 1)) (1 3 5 7))
+        equal? my-map `(,(lambda (x) (+ x 1)) (1 3 5 7))
         '(2 4 6 8))
     (test-success "14. foldl: empty list"
-        = my-foldl '(,(lambda (el acc) (* el acc)) 2 ())
+        = my-foldl `(,(lambda (el acc) (* el acc)) 2 ())
         2)
     (test-success "15. foldl: direction independent function applied to non-empty list"
-        = my-foldl '(,(lambda (el acc) (+ el acc)) 5 (1 2 3 4))
+        = my-foldl `(,(lambda (el acc) (+ el acc)) 5 (1 2 3 4))
         15)
     (test-success "16. foldl: direction dependent function applied to non-empty list"
-        = my-foldl '(,(lambda (el acc) (/ el acc)) 24 (1 2 3 4))
+        = my-foldl `(,(lambda (el acc) (/ el acc)) 24 (1 2 3 4))
         64)
     (test-success "17. foldr: empty list"
-        = my-foldr '(,(lambda (el acc) (* el acc)) 2 ())
+        = my-foldr `(,(lambda (el acc) (* el acc)) 2 ())
         2)
     (test-success "18. foldr: direction independent function applied to non-empty list"
-        = my-foldr '(,(lambda (el acc) (+ el acc)) 5 (1 2 3 4))
+        = my-foldr `(,(lambda (el acc) (+ el acc)) 5 (1 2 3 4))
         15)
     (test-success "19. foldr: direction dependent function applied to non-empty list"
-        = my-foldr '(,(lambda (el acc) (/ el acc)) 24 (1 2 3 4))
+        = my-foldr `(,(lambda (el acc) (/ el acc)) 24 (1 2 3 4))
         9)
     (test-success "20. reverse: empty list"
         equal? my-reverse '(())

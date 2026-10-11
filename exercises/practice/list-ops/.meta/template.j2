@@ -32,19 +32,19 @@
         '{{ case["expected"] | format_list }})
 {%- elif case["property"] == "filter" %}
     (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
-        equal? my-filter '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
+        equal? my-filter `(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
         '{{ case["expected"] | format_list }})
 {%- elif case["property"] == "map" %}
     (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
-        equal? my-map '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
+        equal? my-map `(,{{ functions[case["input"]["function"]] }} {{ case["input"]["list"] | format_list }})
         '{{ case["expected"] | format_list }})
 {%- elif case["property"] == "foldl" %}
     (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
-        = my-foldl '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
+        = my-foldl `(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
         {{ case["expected"] }})
 {%- elif case["property"] == "foldr" %}
     (test-success "{{ loop.index }}. {{ case["property"] }}: {{ case["description"] }}"
-        = my-foldr '(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
+        = my-foldr `(,{{ functions[case["input"]["function"]] }} {{ case["input"]["initial"] }} {{ case["input"]["list"] | format_list }})
         {{ case["expected"] }})
 {%- endif %}
 {%- endfor %}
