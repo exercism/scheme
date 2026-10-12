@@ -374,6 +374,14 @@
         "difficulty": 4
       },
       {
+        "slug": "nth-prime",
+        "name": "Nth Prime",
+        "uuid": "78e6a985-9001-4ac5-b1c9-708fd83e5523",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "pascals-triangle",
         "name": "Pascal's Triangle",
         "uuid": "d5caff8b-ffaa-4055-9bb9-7d31a4480956",
