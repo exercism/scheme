@@ -75,10 +75,14 @@ for exercise in "${active_exercises[@]}"; do
             solution_file="${exercise}.scm"
             backup_file="$(mktemp)"
             output_file="$(mktemp)"
-            trap 'cp "${backup_file}" "${solution_file}"; rm -f "${backup_file}" "${output_file}"' EXIT
+            error_file="$(mktemp)"
+            trap 'cp "${backup_file}" "${solution_file}"; rm -f "${backup_file}" "${output_file}" "${error_file}"' EXIT
             cp "${solution_file}" "${backup_file}"
             cp .meta/example.scm "${solution_file}"
-            GUILE_AUTO_COMPILE=0 make --silent guile solution=--docker > "${output_file}"
+            if ! GUILE_AUTO_COMPILE=0 make --silent guile solution=--docker > "${output_file}" 2> "${error_file}"; then
+                cat "${error_file}" >&2
+                exit 1
+            fi
             if ! verify_test_output "${output_file}"; then
                 cat "${output_file}" >&2
                 exit 1
