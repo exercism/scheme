@@ -1,0 +1,19 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? slices '("{{ case["input"]["series"] }}" {{ case["input"]["sliceLength"] }})
+        '{{ case["expected"] | format_list | replace("'", '"') }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}"
+        slices '("{{ case["input"]["series"] }}" {{ case["input"]["sliceLength"] }}))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
