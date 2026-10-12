@@ -18,7 +18,7 @@ jobs:
       - name: Install Scheme
         run: |
           sudo apt-get update
-          sudo apt-get install guile-3.0 chezscheme jq
+          sudo apt-get install guile-3.0 jq
 
       - name: Verify all exercises
-        run: bin/verify-exercises
+        run: bin/verify-exercises --validate-output
