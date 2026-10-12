@@ -1,0 +1,18 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if case["property"] == "consistency" %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        string=? (lambda (string) (decode (encode string))) '("{{ case["input"]["string"] }}") "{{ case["expected"] }}")
+{%- else %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        string=? {{ case["property"] }} '("{{ case["input"]["string"] }}") "{{ case["expected"] }}")
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
