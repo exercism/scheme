@@ -8,7 +8,7 @@
     (test-success "{{ loop.index }}. {{ case["description"] }}"
         (lambda (xs ys)
             (equal? (list-sort string<? xs) (list-sort string<? ys)))
-        anagram '("{{ case["input"]["subject"] }}" {{ case["input"]["candidates"] | format_list | replace("'", '"') }}) 
+        anagram '("{{ case["input"]["subject"] }}" {{ case["input"]["candidates"] | format_list | replace("'", '"') }})
         `{{ case["expected"] | format_list | replace("'", '"') }})
 {%- endfor %}
     ))

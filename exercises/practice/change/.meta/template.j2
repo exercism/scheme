@@ -12,7 +12,7 @@
         change '({{ case["input"]["target"] }} {{ case["input"]["coins"] | format_list }})
         `{{ case["expected"] | format_list }})
 {%- else %}
-    (test-error "{{ case["description"] }}" 
+    (test-error "{{ case["description"] }}"
         change '({{ case["input"]["target"] }} {{ case["input"]["coins"] | format_list }}))
 {%- endif %}
 {%- endfor %}
