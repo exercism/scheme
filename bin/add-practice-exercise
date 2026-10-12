@@ -80,11 +80,10 @@ cp exercises/shared/stub.scm "${exercise_dir}/.meta/example.scm"
 cat << NEXT_STEPS
 
 Your next steps are:
-- Create the test suite in $(jq -r '.test' <<< "${files}")
-  - The tests should be based on the canonical data at 'https://github.com/exercism/problem-specifications/blob/main/exercises/${slug}/canonical-data.json'
-  - Any test cases you don't implement, mark them in 'exercises/practice/${slug}/.meta/tests.toml' with "include = false"
-  - Create the template in ${exercise_dir}/.meta/template.j2
-  - Generate the test suite using 'bin/generate_tests.py ${slug}'
+- Create the test generator template in '${exercise_dir}/.meta/template.j2'
+  - The template should be based on the canonical data at 'https://github.com/exercism/problem-specifications/blob/main/exercises/${slug}/canonical-data.json'
+  - Any test cases you don't want generated, mark them in '${exercise_dir}/.meta/tests.toml' with "include = false"
+- Generate the test suite in '${exercise_dir}/test.scm' using 'bin/generate_tests.py ${slug}'
 - Create the example solution in $(jq -r '.example' <<< "${files}")
 - Verify the example solution passes the tests by running 'bin/verify-exercises -e ${slug}'
 - Create the stub solution in $(jq -r '.solution' <<< "${files}")

@@ -7,7 +7,6 @@
 {%- for case in cases %}
     (test-success "{{ loop.index }}. {{ case["description"] }}"
         equal? fn '("{{ case["input"]["arg"] }}") {{ case["expected"] }})
-{% endfor %}
-    ))
+{% endfor %}    ))
 
 (run-with-cli "{{ name }}.scm" (list test-cases))
