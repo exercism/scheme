@@ -1,0 +1,19 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        = largest-product '("{{ case["input"]["digits"] }}" {{ case["input"]["span"] }})
+        {{ case["expected"] }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}"
+        largest-product '("{{ case["input"]["digits"] }}" {{ case["input"]["span"] }}))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
