@@ -6,15 +6,17 @@
 #
 # Options:
 #   -e, --exercise <slug>   Verify only the given exercise.
+#       --validate-output   Validate test-runner output locally.
 
 set -euo pipefail
 
 usage() {
-    echo "Usage: $0 [-e|--exercise <slug>]" >&2
+    echo "Usage: $0 [-e|--exercise <slug>] [--validate-output]" >&2
     exit 1
 }
 
 exercise_slug=""
+validate_output=false
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -26,12 +28,28 @@ while [[ $# -gt 0 ]]; do
         -h|--help)
             usage
             ;;
+        --validate-output)
+            validate_output=true
+            shift
+            ;;
         *)
             echo "Unknown argument: $1" >&2
             usage
             ;;
     esac
 done
+
+verify_test_output() {
+    guile -c '
+      (let ((output (call-with-input-file (cadr (command-line)) read)))
+        (unless (and (equal? (assq '\''status output) '\''(status . ok))
+                     (let loop ((results (cddr output)))
+                       (or (null? results)
+                           (and (eq? (caar results) '\''pass) (loop (cdr results))))))
+          (display "Invalid or failing test output\n" (current-error-port))
+          (exit 1)))
+    ' "$1"
+}
 
 if [[ -n "${exercise_slug}" ]]; then
     if [[ ! -d "exercises/practice/${exercise_slug}" ]]; then
@@ -51,5 +69,22 @@ for exercise in "${active_exercises[@]}"; do
     [[ -d "${target_dir}" ]] || continue
 
     echo "Verifying ${target_dir}..."
-    make -C "${target_dir}" guile solution=.meta/example.scm
+    if "${validate_output}"; then
+        (
+            cd "${target_dir}"
+            solution_file="${exercise}.scm"
+            backup_file="$(mktemp)"
+            output_file="$(mktemp)"
+            trap 'cp "${backup_file}" "${solution_file}"; rm -f "${backup_file}" "${output_file}"' EXIT
+            cp "${solution_file}" "${backup_file}"
+            cp .meta/example.scm "${solution_file}"
+            GUILE_AUTO_COMPILE=0 make --silent guile solution=--docker > "${output_file}"
+            if ! verify_test_output "${output_file}"; then
+                cat "${output_file}" >&2
+                exit 1
+            fi
+        )
+    else
+        make -C "${target_dir}" guile solution=.meta/example.scm
+    fi
 done
