@@ -90,5 +90,5 @@ Your next steps are:
 - Create the stub solution in $(jq -r '.solution' <<< "${files}")
 - Update the 'difficulty' value for the exercise's entry in the 'config.json' file in the repo's root
 - Sort exercises using 'bin/reorder-exercises'
-- Validate CI using 'bin/configlet lint' and 'bin/configlet fmt'
+- Validate CI using 'bin/configlet lint'
 NEXT_STEPS
