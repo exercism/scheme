@@ -1,6 +1,6 @@
-; These tests are auto-generated with test data from: 
+; These tests are auto-generated with test data from:
 ; https://github.com/exercism/problem-specifications/blob/main/exercises/triangle/canonical-data.json
-; File last updated on 2026-10-10T19:00:47+00:00
+; File last updated on 2026-10-12T11:00:25+00:00
 
 (load "test-util.ss")
 

@@ -5,7 +5,7 @@
 (define test-cases
   `(
 {%- for case in cases %}
-    (test-success "{{ loop.index }}. {{ case["description"] }}"  equal? response-for '("{{ case["input"]["heyBob"] }}") 
+    (test-success "{{ loop.index }}. {{ case["description"] }}"  equal? response-for '("{{ case["input"]["heyBob"] }}")
         "{{ case["expected"] }}")
 {%- endfor %}
     ))

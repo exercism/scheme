@@ -1,6 +1,6 @@
-; These tests are auto-generated with test data from: 
+; These tests are auto-generated with test data from:
 ; https://github.com/exercism/problem-specifications/blob/main/exercises/change/canonical-data.json
-; File last updated on 2026-10-10T20:03:07+00:00
+; File last updated on 2026-10-12T11:00:32+00:00
 
 (load "test-util.ss")
 
@@ -56,14 +56,12 @@
             (equal? (list-sort < out) (list-sort < expected)))
         change '(0 (1 5 10 21 25))
         `())
-    (test-error "error testing for change smaller than the smallest of coins" 
+    (test-error "error testing for change smaller than the smallest of coins"
         change '(3 (5 10)))
-    (test-error "error if no combination can add up to target" 
+    (test-error "error if no combination can add up to target"
         change '(94 (5 10)))
-    (test-error "cannot find negative change values" 
+    (test-error "cannot find negative change values"
         change '(-5 (1 2 5)))
     ))
 
 (run-with-cli "change.scm" (list test-cases))
-
-
