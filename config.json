@@ -319,6 +319,14 @@
         ]
       },
       {
+        "slug": "series",
+        "name": "Series",
+        "uuid": "a91b4d6d-db4f-4937-b3ef-2b8c915e908b",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "two-fer",
         "name": "Two Fer",
         "uuid": "3ecc2d1c-55e0-45c9-ba35-57d7d8cfd51e",
