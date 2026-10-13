@@ -9,7 +9,7 @@
        '("10") 8)
      (test-success "octal 11 is decimal 9" equal? to-decimal
        '("11") 9)
-     (test-success "octal 17 is deciaml 15" equal? to-decimal
+     (test-success "octal 17 is decimal 15" equal? to-decimal
        '("17") 15)
      (test-success "octal 130 is decimal 88" equal? to-decimal
        '("130") 88)
