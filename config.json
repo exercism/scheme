@@ -484,6 +484,14 @@
         ]
       },
       {
+        "slug": "run-length-encoding",
+        "name": "Run-Length Encoding",
+        "uuid": "33c52440-1ce2-488c-af9a-17a30278203d",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "affine-cipher",
         "name": "Affine Cipher",
         "uuid": "c8969b0a-232a-4c88-ab2a-0047e8b4b6d0",
