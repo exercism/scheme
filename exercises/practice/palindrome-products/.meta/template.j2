@@ -1,0 +1,25 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define (smallest-values min-factor max-factor)
+  (call-with-values (lambda () (smallest min-factor max-factor)) list))
+
+(define (largest-values min-factor max-factor)
+  (call-with-values (lambda () (largest min-factor max-factor)) list))
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? {{ case["property"] }}-values '({{ case["input"]["min"] }} {{ case["input"]["max"] }})
+        '({{ "#f" if case["expected"]["value"] is none else case["expected"]["value"] }} {{ case["expected"]["factors"] | format_list }}))
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}"
+        {{ case["property"] }}-values '({{ case["input"]["min"] }} {{ case["input"]["max"] }}))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
