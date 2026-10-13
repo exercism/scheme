@@ -1,0 +1,14 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? plants '("{{ case["input"]["diagram"] | replace("\n", "\\n") }}" "{{ case["input"]["student"] }}")
+        '{{ case["expected"] | format_list | replace("'", '"') }})
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

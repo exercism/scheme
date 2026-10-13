@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "keiravillekode"
+  ],
+  "files": {
+    "solution": [
+      "kindergarten-garden.scm"
+    ],
+    "test": [
+      "test.scm",
+      "test-util.ss"
+    ],
+    "example": [
+      ".meta/example.scm"
+    ]
+  },
+  "blurb": "Given a diagram, determine which plants each child in the kindergarten class is responsible for.",
+  "source": "Exercise by the JumpstartLab team for students at The Turing School of Software and Design.",
+  "source_url": "https://www.turing.edu/"
+}
