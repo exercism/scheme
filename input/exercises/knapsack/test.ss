@@ -140,7 +140,7 @@
       .
       ,(splice-exercism
         'knapsack
-        '((sentence "In the scheme version the aruguments are the "
+        '((sentence "In the scheme version the arguments are the "
                     (inline-code "capacity")
                     " of the knapsack and a list of the "
                     (inline-code "weights")
