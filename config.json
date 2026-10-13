@@ -513,6 +513,14 @@
         ]
       },
       {
+        "slug": "pig-latin",
+        "name": "Pig Latin",
+        "uuid": "4726ece6-2522-4fa4-bf0e-631f858730a0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "prime-factors",
         "name": "Prime Factors",
         "uuid": "e9f82c77-fde0-41fd-a0b6-e459bd3b71d9",
