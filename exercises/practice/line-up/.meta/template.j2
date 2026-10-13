@@ -6,7 +6,7 @@
   `(
 {%- for case in cases %}
     (test-success "{{ loop.index }}. {{ case["description"] }}"
-        string=? format '("{{ case["input"]["name"] }}" {{ case["input"]["number"] }})
+        string=? format-message '("{{ case["input"]["name"] }}" {{ case["input"]["number"] }})
         "{{ case["expected"] }}")
 {%- endfor %}
     ))

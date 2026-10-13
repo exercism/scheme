@@ -1,4 +1,4 @@
 (import (rnrs))
 
-(define (format name number)
+(define (format-message name number)
   'implement-me!)

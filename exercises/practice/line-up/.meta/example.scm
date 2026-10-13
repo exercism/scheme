@@ -10,7 +10,7 @@
       ((= 3 units) "rd")
       (else "th"))))
 
-(define (format name number)
+(define (format-message name number)
   (string-append name
                  ", you are the "
                  (number->string number)
