@@ -459,6 +459,14 @@
         ]
       },
       {
+        "slug": "yacht",
+        "name": "Yacht",
+        "uuid": "633c88ee-6d64-4d16-af16-a68d32607454",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "change",
         "name": "Change",
         "uuid": "6f2d8731-2c2c-4faa-a9bf-11f785c2e5bc",
