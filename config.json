@@ -275,6 +275,14 @@
         "difficulty": 3
       },
       {
+        "slug": "kindergarten-garden",
+        "name": "Kindergarten Garden",
+        "uuid": "77573e43-b169-4302-9482-856a68179b52",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "luhn",
         "name": "Luhn",
         "uuid": "44dc7279-4295-49f2-9619-6f691dc5a9fe",
