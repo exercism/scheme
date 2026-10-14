@@ -114,6 +114,14 @@
         ]
       },
       {
+        "slug": "line-up",
+        "name": "Line Up",
+        "uuid": "a2867201-40f7-42e5-b735-3f4dfb19812e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "octal",
         "name": "Octal",
         "uuid": "19cec98f-1fca-4bde-9000-75db12f5416e",
