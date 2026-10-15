@@ -1,0 +1,24 @@
+{%- macro number_list(values) -%}
+    {{ values | format_list | replace("'", "") }}
+{%- endmacro -%}
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- set function = case["property"] %}
+{%- set integers = number_list(case["input"]["integers"]) %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ function }} - {{ case["description"] }}"
+        equal? {{ function }} '({{ integers }})
+        '{{ number_list(case["expected"]) }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ function }} - {{ case["description"] }}"
+        {{ function }} '({{ integers }}))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

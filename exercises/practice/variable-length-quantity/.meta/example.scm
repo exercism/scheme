@@ -1,0 +1,30 @@
+(import (rnrs))
+
+(define (encode integers)
+  (let loop ((integers (reverse integers))
+             (result '()))
+    (if (null? integers)
+        result
+        (let ((integer (car integers)))
+          (loop (cdr integers)
+                (let inner ((integer (quotient integer 128))
+                            (result (cons (remainder integer 128) result)))
+                  (if (zero? integer)
+                      result
+                      (inner (quotient integer 128)
+                             (cons (+ (remainder integer 128) 128) result)))))))))
+
+(define (decode integers)
+  (let loop ((integers integers)
+             (result 0)
+             (incomplete #f)
+             (results '()))
+    (if (null? integers)
+        (if incomplete
+            (error 'decode "incomplete sequence")
+            (reverse results))
+        (let* ((integer (car integers))
+               (result (+ (* result 128) (remainder integer 128))))
+          (if (zero? (quotient integer 128))
+              (loop (cdr integers) 0 #f (cons result results))
+              (loop (cdr integers) result #t results))))))

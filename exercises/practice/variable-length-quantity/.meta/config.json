@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "keiravillekode"
+  ],
+  "files": {
+    "solution": [
+      "variable-length-quantity.scm"
+    ],
+    "test": [
+      "test.scm",
+      "test-util.ss"
+    ],
+    "example": [
+      ".meta/example.scm"
+    ]
+  },
+  "blurb": "Implement variable length quantity encoding and decoding.",
+  "source": "A poor Splice developer having to implement MIDI encoding/decoding.",
+  "source_url": "https://splice.com"
+}
