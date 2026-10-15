@@ -1,0 +1,24 @@
+{%- macro hex_list(values) -%}
+    {{ values | format_list | replace("0x", "#x") | replace("'", "") }}
+{%- endmacro -%}
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- set function = case["property"] | camel_to_snake | replace("_", "-") %}
+{%- set message = hex_list(case["input"]["message"]) %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["descriptions"] | join(" - ") }}"
+        equal? {{ function }} '({{ message }})
+        '{{ hex_list(case["expected"]) }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["descriptions"] | join(" - ") }}"
+        {{ function }} '({{ message }}))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
