@@ -1,0 +1,13 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? triplets-with-sum '({{ case["input"]["n"] }})
+        '{{ case["expected"] | format_list }})
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
