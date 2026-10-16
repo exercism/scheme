@@ -128,6 +128,7 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2,
+        "status": "deprecated",
         "topics": [
           "conditionals",
           "loop",
@@ -231,6 +232,7 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2,
+        "status": "deprecated",
         "topics": [
           "conditionals",
           "math"
@@ -361,6 +363,14 @@
           "control_flow",
           "string"
         ]
+      },
+      {
+        "slug": "all-your-base",
+        "name": "All Your Base",
+        "uuid": "98e611af-92d5-4cd2-ab13-b4443a6c0409",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
       },
       {
         "slug": "anagram",
