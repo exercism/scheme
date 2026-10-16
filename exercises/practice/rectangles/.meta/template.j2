@@ -1,0 +1,16 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        = rectangles
+        '((
+{%- for row in case["input"]["strings"] %}"{{ row }}"{% if not loop.last %}
+           {% endif %}{% endfor %}))
+        {{ case["expected"] }}){% if not loop.last %}
+{% endif %}{% endfor %}))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
