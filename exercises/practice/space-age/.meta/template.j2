@@ -1,0 +1,22 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define (approx? out expected)
+  (< (abs (- out expected)) 0.01))
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        approx? age '({{ case["input"]["planet"] | lower }} {{ case["input"]["seconds"] }})
+        {{ case["expected"] }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}"
+        age '({{ case["input"]["planet"] | lower }} {{ case["input"]["seconds"] }}))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
