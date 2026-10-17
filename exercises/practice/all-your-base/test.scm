@@ -1,4 +1,4 @@
-; These tests are auto-generated with test data from: 
+; These tests are auto-generated with test data from:
 ; https://github.com/exercism/problem-specifications/blob/main/exercises/all-your-base/canonical-data.json
 ; File last updated on 2026-10-15T23:52:50+00:00
 
