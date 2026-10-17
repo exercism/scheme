@@ -1,0 +1,21 @@
+(import (rnrs))
+
+(define (total . basket)
+  (let ((tally (make-vector 6 0)))
+    (for-each
+      (lambda (book)
+        (vector-set! tally book (+ (vector-ref tally book) 1)))
+      basket)
+
+    (vector-sort! > tally)
+    (let difference ((index 0))
+      (when (< index 5)
+        (vector-set! tally index (- (vector-ref tally index) (vector-ref tally (+ index 1))))
+        (difference (+ index 1))))
+    (let* ((one (vector-ref tally 0))
+           (two (vector-ref tally 1))
+           (three (vector-ref tally 2))
+           (four (vector-ref tally 3))
+           (five (vector-ref tally 4))
+           (adjustment (min three five)))
+      (+ (* 800 one) (* 1520 two) (* 2160 three) (* 2560 four) (* 3000 five) (* -40 adjustment)))))

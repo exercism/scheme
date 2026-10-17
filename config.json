@@ -611,6 +611,14 @@
         ]
       },
       {
+        "slug": "book-store",
+        "name": "Book Store",
+        "uuid": "522cbd0e-3e3d-48cf-8da3-cf977128140b",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 7
+      },
+      {
         "slug": "forth",
         "name": "Forth",
         "uuid": "09cb9d2b-3a04-4685-95d5-10fe0128be8f",
