@@ -1,0 +1,19 @@
+{
+  "authors": [
+    "keiravillekode"
+  ],
+  "files": {
+    "solution": [
+      "protein-translation.scm"
+    ],
+    "test": [
+      "test.scm",
+      "test-util.ss"
+    ],
+    "example": [
+      ".meta/example.scm"
+    ]
+  },
+  "blurb": "Translate RNA sequences into proteins.",
+  "source": "Tyler Long"
+}

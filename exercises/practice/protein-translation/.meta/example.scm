@@ -1,0 +1,22 @@
+(import (rnrs))
+
+(define (decode codon)
+  (cond
+    ((member codon '("AUG")) 'methionine)
+    ((member codon '("UUU" "UUC")) 'phenylalanine)
+    ((member codon '("UUA" "UUG")) 'leucine)
+    ((member codon '("UCU" "UCC" "UCA" "UCG")) 'serine)
+    ((member codon '("UAU" "UAC")) 'tyrosine)
+    ((member codon '("UGU" "UGC")) 'cysteine)
+    ((member codon '("UGG")) 'tryptophan)
+    ((member codon '("" "UAA" "UAG" "UGA")) '())
+    (else (error 'decode "Invalid codon" codon))))
+
+(define (proteins strand)
+  (let ((strand-length (string-length strand)))
+    (let loop ((index 0)
+               (acids '()))
+      (let ((acid (decode (substring strand index (min (+ index 3) strand-length)))))
+        (if (null? acid)
+          (reverse acids)
+          (loop (+ index 3) (cons acid acids)))))))
