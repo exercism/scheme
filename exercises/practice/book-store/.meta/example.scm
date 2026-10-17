@@ -1,6 +1,6 @@
 (import (rnrs))
 
-(define (total basket)
+(define (total . basket)
   (let ((tally (make-vector 6 0)))
     (for-each
       (lambda (book)

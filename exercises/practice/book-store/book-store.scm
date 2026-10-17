@@ -1,4 +1,4 @@
 (import (rnrs))
 
-(define (total basket)
+(define (total . basket)
   'implement-me!)
