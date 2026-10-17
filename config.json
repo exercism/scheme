@@ -558,6 +558,14 @@
         "difficulty": 5
       },
       {
+        "slug": "variable-length-quantity",
+        "name": "Variable Length Quantity",
+        "uuid": "92e21ff9-b967-4a75-86fb-db41c0848563",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "affine-cipher",
         "name": "Affine Cipher",
         "uuid": "c8969b0a-232a-4c88-ab2a-0047e8b4b6d0",
