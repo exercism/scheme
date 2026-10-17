@@ -1,0 +1,19 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? proteins '("{{ case["input"]["strand"] }}")
+        '({{ case["expected"] | join(" ") | lower }}))
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}"
+        proteins '("{{ case["input"]["strand"] }}"))
+{%- endif %}
+{%- endfor %}
+    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
