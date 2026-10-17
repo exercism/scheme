@@ -130,7 +130,7 @@ def generate(specs: pathlib.Path, exercise: pathlib.Path) -> None:
         case["expected"] = bool_to_str(case["expected"])
 
     timestamp = datetime.datetime.now(tz=datetime.UTC).replace(microsecond=0).isoformat()
-    header = f"""; These tests are auto-generated with test data from: 
+    header = f"""; These tests are auto-generated with test data from:
 ; https://github.com/exercism/problem-specifications/blob/main/exercises/{exercise.name}/canonical-data.json
 ; File last updated on {timestamp}"""
     data = {
