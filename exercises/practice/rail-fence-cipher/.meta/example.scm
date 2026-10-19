@@ -1,0 +1,47 @@
+(import (rnrs))
+
+(define (next-direction rails rail direction)
+  (cond
+    ((zero? rail) 1)
+    ((= (+ rail 1) rails) -1)
+    (else direction)))
+
+(define (create-offsets rails len)
+  (let ((table (make-vector rails 0)))
+    (let loop ((index 0)
+               (rail 0)
+               (direction 1))
+      (when (< index len)
+        (vector-set! table rail (+ (vector-ref table rail) 1))
+        (let ((direction (next-direction rails rail direction)))
+          (loop (+ index 1) (+ rail direction) direction))))
+    (let loop ((rail 0)
+               (total 0))
+      (if (= rail rails)
+          table
+          (let ((entry (vector-ref table rail)))
+            (vector-set! table rail total)
+            (loop (+ rail 1) (+ total entry)))))))
+
+(define (process rails decoding msg)
+  (let* ((len (string-length msg))
+         (table (create-offsets rails len))
+         (result (make-vector len #\space)))
+    (let loop ((index 0)
+               (rail 0)
+               (direction 1))
+      (if (= index len)
+          (list->string (vector->list result))
+          (let ((entry (vector-ref table rail)))
+            (if decoding
+                (vector-set! result index (string-ref msg entry))
+                (vector-set! result entry (string-ref msg index)))
+            (vector-set! table rail (+ (vector-ref table rail) 1))
+            (let ((direction (next-direction rails rail direction)))
+              (loop (+ index 1) (+ rail direction) direction)))))))
+
+(define (encode rails msg)
+  (process rails #f msg))
+
+(define (decode rails msg)
+  (process rails #t msg))
