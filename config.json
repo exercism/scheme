@@ -480,6 +480,14 @@
         ]
       },
       {
+        "slug": "crypto-square",
+        "name": "Crypto Square",
+        "uuid": "02758233-adad-43c6-9a63-114a696169ad",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "list-ops",
         "name": "List Ops",
         "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc",
