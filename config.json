@@ -424,6 +424,14 @@
         ]
       },
       {
+        "slug": "diamond",
+        "name": "Diamond",
+        "uuid": "5c94691e-9d3e-412a-bea5-55a7f03669b8",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "largest-series-product",
         "name": "Largest Series Product",
         "uuid": "b0f98043-6fea-4ffe-9e2f-51f977ff72ed",
