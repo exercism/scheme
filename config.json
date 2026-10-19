@@ -659,6 +659,14 @@
         "difficulty": 7
       },
       {
+        "slug": "rectangles",
+        "name": "Rectangles",
+        "uuid": "3911d784-a82c-44d7-9bf9-840d5dd8050a",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 7
+      },
+      {
         "slug": "forth",
         "name": "Forth",
         "uuid": "09cb9d2b-3a04-4685-95d5-10fe0128be8f",
