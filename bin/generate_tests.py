@@ -60,13 +60,28 @@ def get_cases(specs: pathlib.Path, exercise: pathlib.Path) -> list[dict]:
             continue
         if not tests[case["uuid"]].get("include", True):
             continue
-        # Add metadata.
-        case["descriptions"] = groups + [case["description"]]
-        case["expect_error"] = isinstance(case["expected"], dict) and "error" in case["expected"]
-        if case["expect_error"]:
-            case["expect_error_msg"] = case["expected"]["error"]
-        cases.append(case)
+        cases.append(add_metadata(groups, case))
+    cases.extend(additional_cases(exercise))
     return cases
+
+
+def additional_cases(exercise: pathlib.Path) -> list[dict]:
+    """Return the track-specific cases of an exercise, if it has any."""
+    path = exercise / ".meta" / "additional-test-cases.json"
+    if not path.exists():
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        additional = json.load(f)
+    return [add_metadata(groups, case) for groups, case in flatten_cases(additional)]
+
+
+def add_metadata(groups: list[str], case: dict) -> dict:
+    """Attach descriptions and error expectations to a case."""
+    case["descriptions"] = groups + [case["description"]]
+    case["expect_error"] = isinstance(case["expected"], dict) and "error" in case["expected"]
+    if case["expect_error"]:
+        case["expect_error_msg"] = case["expected"]["error"]
+    return case
 
 
 def filter_tojson(data, separators=(',', ':'), indent=None) -> str:
