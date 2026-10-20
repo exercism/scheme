@@ -1,0 +1,12 @@
+(import (rnrs))
+
+(define (rows letter)
+  (let ((mid (- (char->integer letter) (char->integer #\A))))
+    (let loop ((index 0)
+               (result '()))
+      (if (<= index mid)
+        (let ((row (make-vector (+ mid 1 mid) #\space)))
+          (vector-set! row (- mid index) (integer->char (+ (char->integer #\A) index)))
+          (vector-set! row (+ mid index) (integer->char (+ (char->integer #\A) index)))
+          (loop (+ index 1) (cons (list->string (vector->list row)) result)))
+        (append (reverse (cdr result)) result)))))
