@@ -691,6 +691,14 @@
           "optimization",
           "search"
         ]
+      },
+      {
+        "slug": "wordy",
+        "name": "Wordy",
+        "uuid": "5acf1a4c-78d8-40d6-8eac-149c5f8caa35",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 8
       }
     ]
   },
