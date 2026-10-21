@@ -1,0 +1,3 @@
+The current Scheme implementation is fairly remote from the canonical JSON,
+
+Manual updates are probably easier than rewriting generate_tests.py.
