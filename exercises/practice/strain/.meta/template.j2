@@ -1,0 +1,22 @@
+{{ header }}
+{#- Scheme translations of the canonical data's pseudocode predicates. #}
+{%- set predicates = {
+    "fn(x) -> true": "(lambda (x) #t)",
+    "fn(x) -> false": "(lambda (x) #f)",
+    "fn(x) -> x % 2 == 1": "odd?",
+    "fn(x) -> x % 2 == 0": "even?",
+    "fn(x) -> starts_with(x, 'z')": "(lambda (x) (char=? (string-ref x 0) #\\z))",
+    "fn(x) -> contains(x, 5)": "(lambda (x) (memv 5 x))",
+} %}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? {{ case["property"] }} `(,{{ predicates[case["input"]["predicate"]] }} {{ case["input"]["list"] | datum }})
+        '{{ case["expected"] | datum }})
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

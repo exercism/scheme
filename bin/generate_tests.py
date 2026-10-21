@@ -107,6 +107,25 @@ def filter_list_format(data):
     return data.replace('"', '')
 
 
+def filter_datum(data) -> str:
+    """Convert a JSON value to a Scheme datum, e.g. [1, "a", [true]] to (1 "a" (#t)).
+
+    Unlike `format_list`, strings keep their quotes. The "#t"/"#f" strings that
+    `bool_to_str` puts in `expected` are written as booleans too.
+    """
+    if data is True or data == "#t":
+        return "#t"
+    if data is False or data == "#f":
+        return "#f"
+    if isinstance(data, str):
+        return json.dumps(data)
+    if isinstance(data, list):
+        return "(" + " ".join(filter_datum(i) for i in data) + ")"
+    if isinstance(data, (int, float)):
+        return str(data)
+    raise TypeError(f"datum: cannot convert {data!r} to a Scheme datum")
+
+
 def jinja_env(exercise: pathlib.Path) -> jinja2.Environment:
     """Return a configured Jinja env with filters added."""
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(exercise / ".meta"))
@@ -119,6 +138,8 @@ def jinja_env(exercise: pathlib.Path) -> jinja2.Environment:
     # Return a dict with only specified keys kepts.
     env.filters["camel_to_snake"] = lambda x: re.sub(r"([a-z])([A-Z])", (lambda m: f"{m.group(1)}_{m.group(2).lower()}"), x)
     env.filters["format_list"] = filter_list_format
+    # JSON value to Scheme datum, keeping string quotes.
+    env.filters["datum"] = filter_datum
     # Replace whitespace with chars and concatenation.
     env.filters["escape_quote_whitespace"] = filter_escape_whitespace_and_quote
 
