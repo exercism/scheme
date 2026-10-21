@@ -1,6 +1,6 @@
 ; These tests are auto-generated with test data from:
 ; https://github.com/exercism/problem-specifications/blob/main/exercises/roman-numerals/canonical-data.json
-; File last updated on 2026-10-20T19:41:15+00:00
+; File last updated on 2026-10-21T21:31:55+00:00
 
 (load "test-util.ss")
 
@@ -62,6 +62,3 @@
     ))
 
 (run-with-cli "roman-numerals.scm" (list test-cases))
-
-
-

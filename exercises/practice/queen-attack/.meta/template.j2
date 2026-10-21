@@ -5,32 +5,8 @@
 (define test-cases
   `(
 {%- for case in cases %}
-    {%- if not case["expect_error"] %}
     (test-success "{{ loop.index }}. {{ case["description"] }}"
-        equal? clean '("{{ case.input.queen. }}") "{{ case["expected"] }}")
-    {%- else %}
-    (test-error "{{ loop.index }}. {{ case["description"] }}"
-        clean '("{{ case["input"]["phrase"] }}"))
-    {%- endif %}
-{% endfor %}    ))
+        eq? attacking? '(({{ case.input.white_queen.position.row }} {{ case.input.white_queen.position.column }}) ({{ case.input.black_queen.position.row }} {{ case.input.black_queen.position.column }})) {{ case["expected"] }}){% if not loop.last %}
+{% endif %}{% endfor %}))
 
 (run-with-cli "{{ name }}.scm" (list test-cases))
-
-
-
-
-(define test-cases
-  `((test-success "can not attack" eq? attacking?
-      '((2 4) (6 6)) #f)
-     (test-success "can attack on same row" eq? attacking?
-       '((2 4) (2 6)) #t)
-     (test-success "can attack on same column" eq? attacking?
-       '((4 5) (2 5)) #t)
-     (test-success "can attack on first diagonal" eq? attacking?
-       '((2 2) (0 4)) #t)
-     (test-success "can attack on second diagonal" eq? attacking?
-       '((2 2) (3 1)) #t)
-     (test-success "can attack on third diagonal" eq? attacking?
-       '((2 2) (1 1)) #t)
-     (test-success "can attack on fourth diagonal" eq? attacking?
-       '((1 7) (0 6)) #t)))

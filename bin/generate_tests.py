@@ -166,8 +166,8 @@ def generate(specs: pathlib.Path, exercise: pathlib.Path) -> None:
     # Check for changes or the lack thereof.
     test_file = exercise / json.loads((exercise / ".meta/config.json").read_text())["files"]["test"][0]
     if test_file.exists():
-        old_content = [i for i in test_file.read_text().strip().splitlines() if "generated on" not in i]
-        new_content = [i for i in out.splitlines() if "generated on" not in i]
+        old_content = [i for i in test_file.read_text().splitlines() if "File last updated on" not in i]
+        new_content = [i for i in out.splitlines() if "File last updated on" not in i]
         if old_content == new_content:
             return
 
