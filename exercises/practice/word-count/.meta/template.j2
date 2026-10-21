@@ -1,0 +1,27 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define (matches? result expected)
+  (let ([get-count (if (hashtable? result)
+                       (lambda (word) (hashtable-ref result word 0))
+                       (lambda (word)
+                         (cond [(assoc word result) => cdr] [else 0])))])
+    (and (= (length expected)
+            (if (hashtable? result)
+                (hashtable-size result)
+                (length result)))
+         (fold-left
+           (lambda (count-agrees w.c)
+             (and count-agrees (= (cdr w.c) (get-count (car w.c)))))
+           #t
+           expected))))
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" matches? word-count '({{ case["input"]["sentence"] | tojson }})
+        '({% for word, count in case["expected"].items() %}({{ word | tojson }} . {{ count }}){{ " " if not loop.last }}{% endfor %}))
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
