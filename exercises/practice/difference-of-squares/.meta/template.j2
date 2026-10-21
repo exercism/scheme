@@ -1,0 +1,11 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" = {{ case["property"] | camel_to_snake | replace("_", "-") }} '({{ case["input"]["number"] }}) {{ case["expected"] }})
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
