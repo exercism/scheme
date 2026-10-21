@@ -1,4 +1,4 @@
 (import (rnrs))
 
-(define (fn arg)
+(define (score arg)
   'implement-me!)
