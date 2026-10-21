@@ -1,0 +1,12 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- set name = case["input"]["name"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" equal? two-fer '({% if name is not none %}"{{ name }}"{% endif %}) "{{ case["expected"] }}")
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

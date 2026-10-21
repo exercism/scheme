@@ -1,0 +1,15 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" = hamming-distance '("{{ case["input"]["strand1"] }}" "{{ case["input"]["strand2"] }}") {{ case["expected"] }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}" hamming-distance '("{{ case["input"]["strand1"] }}" "{{ case["input"]["strand2"] }}"))
+{%- endif %}
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
