@@ -1,0 +1,19 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- set args = "(" ~ case["input"]["key"]["a"] ~ " . " ~ case["input"]["key"]["b"] ~ ") " ~ (case["input"]["phrase"] | tojson) %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? {{ case["property"] }} '({{ args }})
+        {{ case["expected"] | tojson }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}"
+        {{ case["property"] }} '({{ args }}))
+{%- endif %}
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
