@@ -102,6 +102,14 @@
         ]
       },
       {
+        "slug": "darts",
+        "name": "Darts",
+        "uuid": "932323e0-8fb3-4539-96eb-d6cb8ce785e3",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "eliuds-eggs",
         "name": "Eliud's Eggs",
         "uuid": "f7ab1c26-e756-46e2-9670-57746f7ebd1c",
