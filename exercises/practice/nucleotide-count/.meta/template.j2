@@ -1,0 +1,23 @@
+{{ header }}
+
+(load "test-util.ss")
+
+; Compare nucleotide counts ignoring order and zero counts.
+(define (counts-equal? xs ys)
+  (let ([normalize (lambda (counts)
+                     (list-sort (lambda (a b) (char<? (car a) (car b)))
+                                (filter (lambda (x) (not (zero? (cdr x)))) counts)))])
+    (equal? (normalize xs) (normalize ys))))
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}" counts-equal? nucleotide-count '("{{ case["input"]["strand"] }}")
+        '({% for k, v in case["expected"].items() %}(#\{{ k }} . {{ v }}){{ " " if not loop.last }}{% endfor %}))
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}" nucleotide-count '("{{ case["input"]["strand"] }}"))
+{%- endif %}
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
