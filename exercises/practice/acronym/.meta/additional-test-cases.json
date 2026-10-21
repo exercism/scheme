@@ -1,0 +1,10 @@
+[
+  {
+    "description": "colon",
+    "property": "abbreviate",
+    "input": {
+      "phrase": "PHP: Hypertext Preprocessor"
+    },
+    "expected": "PHP"
+  }
+]
