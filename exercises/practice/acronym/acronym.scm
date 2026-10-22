@@ -1,4 +1,4 @@
 (import (rnrs))
 
-(define (acronym test)
+(define (acronym text)
   'implement-me!)
