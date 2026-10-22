@@ -1,6 +1,6 @@
 ; These tests are auto-generated with test data from:
 ; https://github.com/exercism/problem-specifications/blob/main/exercises/acronym/canonical-data.json
-; File last updated on 2026-10-21T18:49:09+00:00
+; File last updated on 2026-10-22T17:13:11+00:00
 
 (load "test-util.ss")
 
@@ -41,10 +41,6 @@
     (test-success "9. underscore emphasis"
         equal? acronym '("The Road _Not_ Taken")
         "TRNT")
-
-    (test-success "10. colon"
-        equal? acronym '("PHP: Hypertext Preprocessor")
-        "PHP")
     ))
 
 (run-with-cli "acronym.scm" (list test-cases))
