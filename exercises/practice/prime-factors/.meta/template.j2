@@ -2,12 +2,15 @@
 
 (load "test-util.ss")
 
+; Compare lists of factors ignoring order.
+(define (is-equal? xs ys)
+  (equal? (list-sort < xs) (list-sort < ys)))
+
 (define test-cases
   `(
 {%- for case in cases %}
     (test-success "{{ loop.index }}. {{ case["description"] }}"
-        (lambda (xs ys) (equal? (list-sort < xs) (list-sort < ys)))
-        factorize '({{ case["input"]["value"] }}) '{{ case["expected"] | format_list }})
+        is-equal? factorize '({{ case["input"]["value"] }}) '{{ case["expected"] | format_list }})
 {% endfor %}    ))
 
 (run-with-cli "{{ name }}.scm" (list test-cases))
