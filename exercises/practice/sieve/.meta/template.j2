@@ -1,0 +1,17 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- if case["property"] == "countPrimes" %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        (lambda (result n) (= n (length result))) sieve '({{ case["input"]["limit"] }}) {{ case["expected"] }})
+{%- else %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? sieve '({{ case["input"]["limit"] }}) '{{ case["expected"] | format_list }})
+{%- endif %}
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

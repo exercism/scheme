@@ -6,11 +6,13 @@
 	   (char=? x #\'))))
 
 (define (remove-quotes word)
-  (cond ((< (string-length word) 2) word)
-	((and (char=? #\' (string-ref word 0))
-	      (char=? #\' (string-ref word (1- (string-length word)))))
-	 (remove-quotes (substring word 1 (1- (string-length word)))))
-	(else word)))
+  (let ((n (string-length word)))
+    (cond ((zero? n) word)
+	  ((char=? #\' (string-ref word 0))
+	   (remove-quotes (substring word 1 n)))
+	  ((char=? #\' (string-ref word (1- n)))
+	   (remove-quotes (substring word 0 (1- n))))
+	  (else word))))
 
 (define (tokenize sentence)
   (let ((n (string-length sentence)))
@@ -27,9 +29,10 @@
 (define (word-count sentence)
   (let ((table (make-hashtable string-ci-hash string-ci=?)))
     (for-each (lambda (word)
-		(hashtable-set! table
-				word
-				(1+ (hashtable-ref table word 0))))
+		(unless (zero? (string-length word))
+		  (hashtable-set! table
+				  word
+				  (1+ (hashtable-ref table word 0)))))
 	      (tokenize sentence))
     table))
 

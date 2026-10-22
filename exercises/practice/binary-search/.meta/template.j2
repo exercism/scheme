@@ -1,0 +1,12 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? binary-search '(#{{ case["input"]["array"] | format_list }} {{ case["input"]["value"] }}) {{ "'not-found" if case["expect_error"] else case["expected"] }})
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

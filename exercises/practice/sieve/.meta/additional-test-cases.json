@@ -1,0 +1,26 @@
+[
+  {
+    "description": "1229 primes below 10000",
+    "property": "countPrimes",
+    "input": {
+      "limit": 10000
+    },
+    "expected": 1229
+  },
+  {
+    "description": "9592 primes below 100000",
+    "property": "countPrimes",
+    "input": {
+      "limit": 100000
+    },
+    "expected": 9592
+  },
+  {
+    "description": "78498 primes below 1000000",
+    "property": "countPrimes",
+    "input": {
+      "limit": 1000000
+    },
+    "expected": 78498
+  }
+]
