@@ -1,5 +1,4 @@
 (import (rnrs))
 
-(define (transpose matrix)
+(define (transpose lines)
   'implement-me!)
-

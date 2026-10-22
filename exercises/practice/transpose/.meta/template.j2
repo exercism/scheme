@@ -1,0 +1,17 @@
+{{ header }}
+
+(load "test-util.ss")
+
+{% macro string_list(strings) -%}
+({% for s in strings %}{{ s | tojson }}{{ " " if not loop.last }}{% endfor %})
+{%- endmacro -%}
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? transpose '({{ string_list(case["input"]["lines"]) }})
+        '{{ string_list(case["expected"]) }})
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))

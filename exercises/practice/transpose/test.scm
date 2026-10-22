@@ -1,68 +1,58 @@
+; These tests are auto-generated with test data from:
+; https://github.com/exercism/problem-specifications/blob/main/exercises/transpose/canonical-data.json
+; File last updated on 2026-10-21T18:44:59+00:00
+
 (load "test-util.ss")
 
 (define test-cases
-  `((test-success "empty string" equal? transpose '(()) '())
-     (test-success "two characters in a row" equal? transpose
-       '(((65 49))) '((65) (49)))
-     (test-success "two characters in a column" equal? transpose
-       '(((65) (49))) '((65 49)))
-     (test-success "simple" equal? transpose
-       '(((65 66 67) (49 50 51))) '((65 49) (66 50) (67 51)))
-     (test-success "single line" equal? transpose
-       '(((83 105 110 103 108 101 32 108 105 110 101 46)))
-       '((83) (105) (110) (103) (108) (101) (32) (108) (105) (110)
-          (101) (46)))
-     (test-success "first line longer than second line" equal? transpose
-       '(((84 104 101 32 102 111 117 114 116 104 32 108 105 110 101
-              46)
-           (84 104 101 32 102 105 102 116 104 32 108 105 110 101 46
-               32)))
-       '((84 84) (104 104) (101 101) (32 32) (102 102) (111 105) (117 102)
-          (114 116) (116 104) (104 32) (32 108) (108 105) (105 110)
-          (110 101) (101 46) (46 32)))
-     (test-success "second line longer than first line" equal? transpose
-       '(((84 104 101 32 102 105 114 115 116 32 108 105 110 101 46
-              32)
-           (84 104 101 32 115 101 99 111 110 100 32 108 105 110 101
-               46)))
-       '((84 84) (104 104) (101 101) (32 32) (102 115) (105 101) (114 99)
-          (115 111) (116 110) (32 100) (108 32) (105 108) (110 105)
-          (101 110) (46 101) (32 46)))
-     (test-success "mixed line length" equal? transpose
-       '(((84 104 101 32 108 111 110 103 101 115 116 32 108 105 110
-              101 46)
-           (65 32 108 111 110 103 32 108 105 110 101 46 32 32 32 32 32)
-           (65 32 108 111 110 103 101 114 32 108 105 110 101 46 32 32
-               32)
-           (65 32 108 105 110 101 46 32 32 32 32 32 32 32 32 32 32)))
-       '((84 65 65 65) (104 32 32 32) (101 108 108 108) (32 111 111 105)
-          (108 110 110 110) (111 103 103 101) (110 32 101 46)
-          (103 108 114 32) (101 105 32 32) (115 110 108 32)
-          (116 101 105 32) (32 46 110 32) (108 32 101 32)
-          (105 32 46 32) (110 32 32 32) (101 32 32 32) (46 32 32 32)))
-     (test-success "square" equal? transpose
-       '(((72 69 65 82 84)
-           (69 77 66 69 82)
-           (65 66 85 83 69)
-           (82 69 83 73 78)
-           (84 82 69 78 68)))
-       '((72 69 65 82 84)
-          (69 77 66 69 82)
-          (65 66 85 83 69)
-          (82 69 83 73 78)
-          (84 82 69 78 68)))
-     (test-success "rectangle" equal? transpose
-       '(((70 82 65 67 84 85 82 69)
-           (79 85 84 76 73 78 69 68)
-           (66 76 79 79 77 73 78 71)
-           (83 69 80 84 69 84 84 69)))
-       '((70 79 66 83) (82 85 76 69) (65 84 79 80) (67 76 79 84) (84 73 77 69)
-          (85 78 73 84) (82 69 78 84) (69 68 71 69)))
-     (test-success "triangle" equal? transpose
-       '(((84 32 32 32 32 32) (69 69 32 32 32 32) (65 65 65 32 32 32) (83 83 83 83 32 32)
-           (69 69 69 69 69 32) (82 82 82 82 82 82)))
-       '((84 69 65 83 69 82) (32 69 65 83 69 82) (32 32 65 83 69 82) (32 32 32 83 69 82)
-          (32 32 32 32 69 82) (32 32 32 32 32 82)))))
+  `(
+    (test-success "1. empty string"
+        equal? transpose '(())
+        '())
+
+    (test-success "2. two characters in a row"
+        equal? transpose '(("A1"))
+        '("A" "1"))
+
+    (test-success "3. two characters in a column"
+        equal? transpose '(("A" "1"))
+        '("A1"))
+
+    (test-success "4. simple"
+        equal? transpose '(("ABC" "123"))
+        '("A1" "B2" "C3"))
+
+    (test-success "5. single line"
+        equal? transpose '(("Single line."))
+        '("S" "i" "n" "g" "l" "e" " " "l" "i" "n" "e" "."))
+
+    (test-success "6. first line longer than second line"
+        equal? transpose '(("The fourth line." "The fifth line."))
+        '("TT" "hh" "ee" "  " "ff" "oi" "uf" "rt" "th" "h " " l" "li" "in" "ne" "e." "."))
+
+    (test-success "7. second line longer than first line"
+        equal? transpose '(("The first line." "The second line."))
+        '("TT" "hh" "ee" "  " "fs" "ie" "rc" "so" "tn" " d" "l " "il" "ni" "en" ".e" " ."))
+
+    (test-success "8. mixed line length"
+        equal? transpose '(("The longest line." "A long line." "A longer line." "A line."))
+        '("TAAA" "h   " "elll" " ooi" "lnnn" "ogge" "n e." "glr" "ei " "snl" "tei" " .n" "l e" "i ." "n" "e" "."))
+
+    (test-success "9. square"
+        equal? transpose '(("HEART" "EMBER" "ABUSE" "RESIN" "TREND"))
+        '("HEART" "EMBER" "ABUSE" "RESIN" "TREND"))
+
+    (test-success "10. rectangle"
+        equal? transpose '(("FRACTURE" "OUTLINED" "BLOOMING" "SEPTETTE"))
+        '("FOBS" "RULE" "ATOP" "CLOT" "TIME" "UNIT" "RENT" "EDGE"))
+
+    (test-success "11. triangle"
+        equal? transpose '(("T" "EE" "AAA" "SSSS" "EEEEE" "RRRRRR"))
+        '("TEASER" " EASER" "  ASER" "   SER" "    ER" "     R"))
+
+    (test-success "12. jagged triangle"
+        equal? transpose '(("11" "2" "3333" "444" "555555" "66666"))
+        '("123456" "1 3456" "  3456" "  3 56" "    56" "    5"))
+    ))
 
 (run-with-cli "transpose.scm" (list test-cases))
-
