@@ -1,0 +1,46 @@
+(import (rnrs))
+
+(define (lengthen row)
+  (string-append " " row " "))
+
+(define (annotate-cell above-row current-row below-row j)
+  (if (char=? (string-ref current-row (- j 2)) #\*)
+    #\*
+    (let* ((adjacent (list (string-ref above-row (- j 3))
+                           (string-ref above-row (- j 2))
+                           (string-ref above-row (- j 1))
+                           (string-ref current-row (- j 3))
+                           (string-ref current-row (- j 1))
+                           (string-ref below-row (- j 3))
+                           (string-ref below-row (- j 2))
+                           (string-ref below-row (- j 1))))
+           (count (length (filter (lambda (char) (char=? char #\*)) adjacent))))
+      (if (zero? count)
+        #\space
+        (integer->char (+ (char->integer #\0) count))))))
+
+(define (annotate-row above-row current-row below-row)
+  (let loop ((j (string-length current-row))
+             (result '()))
+    (if (= j 2)
+      (list->string result)
+      (loop
+        (- j 1)
+        (cons (annotate-cell above-row current-row below-row j) result)))))
+
+(define (annotate garden)
+  (if (null? garden)
+    '()
+    (let* ((width (string-length (car garden)))
+           (blank (make-string width #\space))
+           (garden (map lengthen (append (list blank) garden (list blank)))))
+      (let loop ((garden garden)
+                 (result '()))
+        (if (null? (cddr garden))
+          (reverse result)
+          (let ((above-row (car garden))
+                (current-row (cadr garden))
+                (below-row (caddr garden)))
+            (loop
+              (cdr garden)
+              (cons (annotate-row above-row current-row below-row) result))))))))

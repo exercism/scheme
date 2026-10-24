@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "keiravillekode"
+  ],
+  "files": {
+    "solution": [
+      "flower-field.scm"
+    ],
+    "test": [
+      "test.scm",
+      "test-util.ss"
+    ],
+    "example": [
+      ".meta/example.scm"
+    ]
+  },
+  "blurb": "Mark all the flowers in a garden."
+}

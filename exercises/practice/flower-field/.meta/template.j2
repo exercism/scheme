@@ -1,0 +1,19 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? annotate
+        '((
+{%- for row in case["input"]["garden"] %}"{{ row }}"{% if not loop.last %}
+           {% endif %}{% endfor %}))
+
+         '(
+{%- for row in case["expected"] %}"{{ row }}"{% if not loop.last %}
+           {% endif %}{% endfor %})){% if not loop.last %}
+{% endif %}{% endfor %}))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
