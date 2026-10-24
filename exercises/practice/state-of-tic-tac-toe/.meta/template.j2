@@ -1,0 +1,22 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- set board %}'(({% for row in case["input"]["board"] %}"{{ row }}"{% if not loop.last %}
+           {% endif %}{% endfor %})){% endset %}
+{%- if not case["expect_error"] %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        eq? gamestate
+        {{ board }}
+        '{{ case["expected"] }})
+{%- else %}
+    (test-error "{{ loop.index }}. {{ case["description"] }}"
+        gamestate
+        {{ board }})
+{%- endif %}{% if not loop.last %}
+{% endif %}{% endfor %}))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
