@@ -1,0 +1,28 @@
+{{ header }}
+{#- forth returns the stack top first, so canonical stacks (bottom first) are reversed. #}
+{%- macro stack(values) -%}
+{{ values | reverse | list | datum }}
+{%- endmacro %}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+{%- set description = loop.index ~ ". " ~ case["descriptions"] | join(" -> ") %}
+{%- if case["property"] == "evaluateBoth" %}
+    (test-success "{{ description }}"
+        equal? (lambda (first second) (list (forth first) (forth second)))
+        '({{ case["input"]["instructionsFirst"] | datum }} {{ case["input"]["instructionsSecond"] | datum }})
+        '({% for s in case["expected"] %}{{ stack(s) }}{{ " " if not loop.last }}{% endfor %}))
+{%- elif case["expect_error"] %}
+    (test-error "{{ description }}"
+        forth '({{ case["input"]["instructions"] | datum }}))
+{%- else %}
+    (test-success "{{ description }}"
+        equal? forth '({{ case["input"]["instructions"] | datum }})
+        '{{ stack(case["expected"]) }})
+{%- endif %}
+{% endfor %}    ))
+
+(run-with-cli "{{ name }}.scm" (list test-cases))
