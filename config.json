@@ -635,6 +635,14 @@
         ]
       },
       {
+        "slug": "flower-field",
+        "name": "Flower Field",
+        "uuid": "71385dd7-c040-448a-ad31-513061e6902e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 6
+      },
+      {
         "slug": "intergalactic-transmission",
         "name": "Intergalactic Transmission",
         "uuid": "1b64e8eb-d90d-422a-a9ba-611387ae6c28",
