@@ -496,6 +496,14 @@
         "difficulty": 4
       },
       {
+        "slug": "twelve-days",
+        "name": "Twelve Days",
+        "uuid": "802ff283-0554-4589-b52e-df3c4017cb77",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "word-count",
         "name": "Word Count",
         "uuid": "9460b65d-dc80-4a95-8782-b395d2cc979e",
