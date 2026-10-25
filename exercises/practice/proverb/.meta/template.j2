@@ -1,0 +1,19 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        equal? recite
+        '((
+{%- for row in case["input"]["strings"] %}"{{ row }}"{% if not loop.last %}
+           {% endif %}{% endfor %}))
+
+        ,(string-append
+{%- for verse in case["expected"] %}
+          {{ (verse ~ ("" if loop.last else "\n")) | tojson }}
+{%- endfor %})){% if loop.last %})){% endif %}
+{% endfor %}
+(run-with-cli "{{ name }}.scm" (list test-cases))
