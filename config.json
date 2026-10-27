@@ -377,6 +377,14 @@
         ]
       },
       {
+        "slug": "secret-handshake",
+        "name": "Secret Handshake",
+        "uuid": "07358264-42fa-4075-b760-0d8f2ee4efab",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "series",
         "name": "Series",
         "uuid": "a91b4d6d-db4f-4937-b3ef-2b8c915e908b",
