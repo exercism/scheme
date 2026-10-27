@@ -570,6 +570,14 @@
         "difficulty": 5
       },
       {
+        "slug": "food-chain",
+        "name": "Food Chain",
+        "uuid": "4f7eea63-2cda-401c-af8c-b5007e5baffe",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "list-ops",
         "name": "List Ops",
         "uuid": "903374d2-8155-4fe3-bf90-5b6359c7b5cc",
