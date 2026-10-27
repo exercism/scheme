@@ -1,0 +1,15 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        string=? winner
+        '(#(
+{%- for row in case["input"]["board"] %}"{{ row }}"{% if not loop.last %}
+            {% endif %}{% endfor %}))
+        "{{ case["expected"] }}"){% if loop.last %})){% endif %}
+{% endfor %}
+(run-with-cli "{{ name }}.scm" (list test-cases))
