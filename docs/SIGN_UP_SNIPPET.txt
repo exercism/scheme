@@ -1,0 +1,11 @@
+(define (most-common-word words)
+  (let ((counts (make-hashtable string-hash string=?))
+        (best ""))
+    (for-each
+     (lambda (word)
+       (hashtable-update! counts word (lambda (n) (+ n 1)) 0)
+       (when (> (hashtable-ref counts word 0) (hashtable-ref counts best 0))
+         (set! best word)))
+     (map string-downcase words))
+    (string-append "\"" best "\" appears "
+                   (number->string (hashtable-ref counts best 0)) " times")))
