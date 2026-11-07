@@ -1,0 +1,12 @@
+{{ header }}
+
+(load "test-util.ss")
+
+(define test-cases
+  `(
+{%- for case in cases %}
+    (test-success "{{ loop.index }}. {{ case["description"] }}"
+        eq? can-chain? '({% for stone in case["input"]["dominoes"] %}({{ stone[0] }} . {{ stone[1] }}){% if not loop.last %} {% endif %}{% endfor %})
+        {{ case["expected"] }}){% if loop.last %})){% endif %}
+{% endfor %}
+(run-with-cli "{{ name }}.scm" (list test-cases))

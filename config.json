@@ -763,6 +763,14 @@
         "difficulty": 8
       },
       {
+        "slug": "dominoes",
+        "name": "Dominoes",
+        "uuid": "74d2e1de-66c8-4ce7-b86e-7f3004ed232a",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 8
+      },
+      {
         "slug": "forth",
         "name": "Forth",
         "uuid": "09cb9d2b-3a04-4685-95d5-10fe0128be8f",
