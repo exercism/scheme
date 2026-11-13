@@ -1,6 +1,6 @@
 ; These tests are auto-generated with test data from:
 ; https://github.com/exercism/problem-specifications/blob/main/exercises/pig-latin/canonical-data.json
-; File last updated on 2026-10-17T09:48:14+00:00
+; File last updated on 2026-11-13T23:03:18+00:00
 
 (load "test-util.ss")
 
@@ -51,7 +51,7 @@
     (test-success "22. y as second letter in two letter word"
         string=? translate '("my") "ymay")
     (test-success "23. a whole phrase"
-        string=? translate '("quick fast run") "ickquay astfay unray")
+        string=? translate '("why do squids enjoy xrays") "ywhay oday idssquay enjoyay xraysay")
     ))
 
 (run-with-cli "pig-latin.scm" (list test-cases))
